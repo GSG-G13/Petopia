@@ -15,8 +15,11 @@ module.exports = {
   },
   plugins: ['@typescript-eslint'],
   rules: {
+    '@typescript-eslint/no-explicit-any': 'error',
+    'max-len': ['error', { code: 120 }],
     'linebreak-style': 0,
     'consistent-return': 'off',
+    'arrow-body-style': ['error', 'as-needed'],
   },
   ignorePatterns: ['__test__/*', 'dist/*'],
 };
