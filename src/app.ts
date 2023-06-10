@@ -9,7 +9,7 @@ dotenv.config()
 const { NODE_ENV, PORT } = process.env
 const app = express()
 
-app.disabled('x-powered-by')
+app.disable('x-powered-by')
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
