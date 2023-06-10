@@ -12,11 +12,8 @@ const app = express()
 app.disabled('x-powered-by')
 
 app.use(express.json())
-
 app.use(express.urlencoded({ extended: false }))
-
 app.use(compression())
-
 app.use(cookieParser())
 
 app.use('/api/v1', router)
