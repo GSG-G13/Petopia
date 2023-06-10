@@ -3,14 +3,12 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const sequelize = new Sequelize(
-  process.env.DB_DATABASE!,
-  process.env.DB_USERNAME!,
-  process.env.DB_PASSWORD!,
-  {
-    host: process.env.DB_HOST!,
-    dialect: process.env.DB_DIALECT as 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql',
-  }
-);
+const { DB_DATABASE, DB_USERNAME, DB_PASSWORD, DB_HOST, DB_DIALECT } = process.env;
+
+const sequelize = new Sequelize(DB_DATABASE!, DB_USERNAME!, DB_PASSWORD!, {
+  host: DB_HOST!,
+  dialect: DB_DIALECT as 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql',
+  logging: false, 
+});
 
 export default sequelize;
