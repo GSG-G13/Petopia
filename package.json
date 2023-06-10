@@ -7,7 +7,7 @@
     "start": "cross-env NODE_ENV=production node dist/index.js",
     "dev": "cross-env NODE_ENV=development ts-node-dev src/index.ts",
     "build": "tsc -p .",
-    "postbuild": "npm run build && cd client/ && npm i && npm run build",
+    "deployment-postbuild": "npm run build && cd client/ && npm i && npm run build",
     "client": "cd client/ && npm start"
   },
   "repository": {
@@ -43,6 +43,7 @@
     "@types/compression": "^1.7.2",
     "@types/cookie-parser": "^1.4.3",
     "@types/cors": "^2.8.13",
+    "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.17",
     "@types/jest": "^29.5.2",
     "@types/jsonwebtoken": "^9.0.2",
