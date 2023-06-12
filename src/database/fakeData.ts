@@ -1,19 +1,19 @@
-import type {
-  ICategory, IComment, IFollower, ILike,
-  IPet, IPetType, IPost, IPostImage, IProduct, IUser
-} from '../interfaces/models'
+import {
+  type User, type Post, type PostImage, type Comment, type Like, type Follower, type PetType,
+  type Category, type Product, type Pet
+} from '../interfaces/fakeDataTypes'
 
 const fakeData: {
-  users: IUser[]
-  categories: ICategory[]
-  comments: IComment[]
-  followers: IFollower[]
-  likes: ILike[]
-  pets: IPet[]
-  petTypes: IPetType[]
-  posts: IPost[]
-  postImages: IPostImage[]
-  products: IProduct[]
+  users: User[]
+  categories: Category[]
+  comments: Comment[]
+  followers: Follower[]
+  likes: Like[]
+  pets: Pet[]
+  petTypes: PetType[]
+  posts: Post[]
+  postImages: PostImage[]
+  products: Product[]
 } = {
   users: [
     {
