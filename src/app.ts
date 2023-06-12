@@ -18,13 +18,13 @@ app.use(cookieParser())
 
 app.use('/api/v1', router)
 
+app.set('port', PORT ?? 3000)
+
 if (NODE_ENV === 'production') {
   app.use(express.static(join(__dirname, '..', 'client', 'build')))
   app.get('/*', (_req, res) => {
     res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'))
   })
 }
-
-app.set('port', PORT ?? 3000)
 
 export default app
