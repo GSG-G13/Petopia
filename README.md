@@ -76,13 +76,13 @@ As an admin, I can log into my account, and I can see a dashboard with five opti
 ## **How to Launch App Locally** :-
 
 - clone this repo by typing this command in the terminal:  
-  `git clone https://github.com/CA-G12`
+  `git clone https://github.com/CA-G13/Petopia`
 
 - Run `npm i` to install the packages for the app as general.
 
 - Run `cd client` and `npm i` to install the packages for the client- React Js.
 
-### Database Setup :clipboard:
+### Database Setup📋
 
 make sure you have installed PostgreSQL and pgcli
 
@@ -95,11 +95,7 @@ ALTER DATABASE {database name} OWNER TO {user name};
 - Test DB:
 - Do the same as before but make sure to change the names.
 
-* Run the following command in the database pgcli terminal  
-  `\i server/database/config/build.sql`
-  and the command
-  `\i server/database/config/fakeData.sql`
-  to add fake Data
+- Run the following command in the terminal `npm run db:seed` to create the fake-data, **BUT don't forget to create your .env File👇🏻**
 
 ### **Environment variables:**
 
@@ -107,31 +103,35 @@ Environment variables are one of the ways we keep our product safe. If you want 
 
 - create .env file
 - add your Environment variables
+-you will find the necessary variables in `example.env`
+
+they will be like this:
 
 ```sh
 DEV_DB_URL= # Your development PostgreSQL connect
 DATABASE_URL= # Your production PostgreSQL connect
 SECRET_TOKEN= # Your token Secret key
+PORT= # your available port.
 ```
 
-### Start the App :electric_plug:
+### Start the App 🔌:
 
 To start the App Locally you can start the server First then start client-side or vice versa!
 
 > To run Server, In your terminal Type:
 
-    `npm run dev` then you should be able to go to [localhost](http://localhost:5000/)
+    `npm run dev` then you should be able to go to [localhost](http://localhost:3000/)
 
 > To run client-side, In your terminal Type:
 
-    `cd client` => `npm start` then you will be able to run [localhost](http://localhost:3000/)
+    `cd client` => `npm run dev` then you will be able to run [localhost](http://localhost:5173/)
 
 Now you can view the app live in the Browser!
 
 You can use this email and password for testing only
 
-- Email:`someemail@admin.com`
-- Password:`password`
+- Email:`Mohammed@example.com`
+- Password:`password456`
 
 ## **Technologies** 💻 :-
 
@@ -139,14 +139,14 @@ You can use this email and password for testing only
 - FrontEnd: **React JS & TS**
 - Database: **PostgreSQL & Sequelize**
 - Styling: **Tailwind CSS**
-- Testing: **Jest**
+- Testing: **Jest & Supertest**
 - Libraries:
 
-## **Lead Mentor**🕶️ :-
+## **Lead Mentor🕶️** :-
 
 - Muhammad Abdulhadi
 
-## **Team Members** :-
+## **Team Members🧑🏻‍💻** :-
 
 - Abdallah Abujazar
 - Mohammed Salloot
