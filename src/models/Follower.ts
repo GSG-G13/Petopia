@@ -1,5 +1,5 @@
 import { Model, DataTypes } from 'sequelize'
-import sequelize from '../config'
+import sequelize from '../database/config'
 
 class Follower extends Model {
   public follow_id!: number

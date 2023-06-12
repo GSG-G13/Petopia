@@ -1,5 +1,5 @@
 import { Model, DataTypes } from 'sequelize'
-import sequelize from '../config'
+import sequelize from '../database/config'
 
 class Like extends Model {
   public like_id!: number

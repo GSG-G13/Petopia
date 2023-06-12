@@ -1,14 +1,14 @@
 import { Model, DataTypes } from 'sequelize'
-import sequelize from '../config'
+import sequelize from '../database/config'
 
-class Category extends Model {
-  public category_id!: number
+class PetType extends Model {
+  public type_id!: number
   public title!: string
 }
 
-Category.init(
+PetType.init(
   {
-    category_id: {
+    type_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
@@ -19,9 +19,9 @@ Category.init(
   },
   {
     sequelize,
-    modelName: 'Category',
-    tableName: 'categories'
+    modelName: 'PetType',
+    tableName: 'pet_types'
   }
 )
 
-export default Category
+export default PetType
