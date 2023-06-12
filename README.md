@@ -54,7 +54,7 @@
 
 As a user I can see the home page which contains all the posts with a login button and a register button on the navigation bar, after I log in I want to see the landing page which contains community posts with all types whether it's build, sale or normal post with tag A tab for follow-up posts, I can add a new post with specifying the type of this post, I can also edit and delete the post, close posts and comments on posts, the ability to change the language and communicate on chat with others and easy access to notifications, if I am a veterinarian I want a mechanism to change the name on the site as a veterinarian for By contacting the owners of the site.
 
-### **User who is an administrator**🧑🏻‍💻
+### **User who is an administrator🧑🏻‍💻**
 
 As an admin, I can log into my account, and I can see a dashboard with five options (Posts, Stats, Users, Reports, Genres, Products, and Additional Settings).
 
@@ -140,7 +140,6 @@ You can use this email and password for testing only
 - Database: **PostgreSQL & Sequelize**
 - Styling: **Tailwind CSS**
 - Testing: **Jest & Supertest**
-- Libraries:
 
 ## **Lead Mentor🕶️** :-
 
