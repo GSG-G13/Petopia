@@ -7,6 +7,7 @@ import {
 
 dotenv.config()
 const SEED = process.env.SEED
+
 const buildTables = async (): Promise<void> => {
   try {
     await sequelize.sync({ force: true })
@@ -20,19 +21,14 @@ const buildTables = async (): Promise<void> => {
     await Follower.bulkCreate(fakeData.followers)
     await Product.bulkCreate(fakeData.products)
     await Pet.bulkCreate(fakeData.pets)
-
-    // eslint-disable-next-line no-console
-    console.log('Database built successfully')
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.log(`error in building data: ${String(error)}`)
   }
 }
 
 if (SEED !== null && SEED !== undefined) {
-  void buildTables().catch((error) => {
-    console.log(`error in building data: ${String(error)}`)
-  })
+  buildTables().then(() => { console.log('Database built successfully') })
+    .catch(err => { console.log(`error in building data: ${String(err)}`) })
 }
 
 export default buildTables
