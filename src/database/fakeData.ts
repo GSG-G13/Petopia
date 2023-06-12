@@ -1,4 +1,20 @@
-const fakeData = {
+import type {
+  ICategory, IComment, IFollower, ILike,
+  IPet, IPetType, IPost, IPostImage, IProduct, IUser
+} from '../interfaces/models'
+
+const fakeData: {
+  users: IUser[]
+  categories: ICategory[]
+  comments: IComment[]
+  followers: IFollower[]
+  likes: ILike[]
+  pets: IPet[]
+  petTypes: IPetType[]
+  posts: IPost[]
+  postImages: IPostImage[]
+  products: IProduct[]
+} = {
   users: [
     {
       full_name: 'Abdallah Abujazar',
