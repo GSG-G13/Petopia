@@ -71,11 +71,7 @@ const fakeData = {
     },
     {
       follower_id: 2,
-      following_id: 3
-    },
-    {
-      follower_id: 1,
-      following_id: 3
+      following_id: 1
     }
   ],
   likes: [
@@ -128,7 +124,7 @@ const fakeData = {
       user_id: 1,
       category_id: 1,
       post_content: 'This is a regular post.',
-      is_have_img: false
+      is_have_img: true
     },
     {
       user_id: 2,
@@ -137,7 +133,7 @@ const fakeData = {
       is_have_img: true
     },
     {
-      user_id: 3,
+      user_id: 2,
       category_id: 1,
       post_content: 'Looking to adopt a pet.',
       is_have_img: false
