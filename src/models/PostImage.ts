@@ -1,31 +1,19 @@
-import { Model, DataTypes } from 'sequelize'
 import sequelize from '../database/config'
+import { DataTypes } from 'sequelize'
+import { type IPostImage } from '../interfaces/models'
 
-class PostImage extends Model {
-  public image_id!: number
-  public post_id!: number
-  public image_url!: string
-}
-
-PostImage.init(
-  {
-    image_id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    post_id: {
-      type: DataTypes.INTEGER
-    },
-    image_url: {
-      type: DataTypes.STRING
-    }
+const PostImage = sequelize.define<IPostImage>('postImage', {
+  image_id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
   },
-  {
-    sequelize,
-    modelName: 'PostImage',
-    tableName: 'post_images'
+  post_id: {
+    type: DataTypes.INTEGER
+  },
+  image_url: {
+    type: DataTypes.STRING
   }
-)
+})
 
 export default PostImage

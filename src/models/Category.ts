@@ -1,27 +1,16 @@
-import { Model, DataTypes } from 'sequelize'
 import sequelize from '../database/config'
+import { DataTypes } from 'sequelize'
+import { type ICategory } from '../interfaces/models'
 
-class Category extends Model {
-  public category_id!: number
-  public title!: string
-}
-
-Category.init(
-  {
-    category_id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    title: {
-      type: DataTypes.STRING
-    }
+const Category = sequelize.define<ICategory>('category', {
+  category_id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
   },
-  {
-    sequelize,
-    modelName: 'Category',
-    tableName: 'categories'
+  title: {
+    type: DataTypes.STRING
   }
-)
+})
 
 export default Category

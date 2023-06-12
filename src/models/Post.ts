@@ -1,39 +1,25 @@
-import { Model, DataTypes } from 'sequelize'
 import sequelize from '../database/config'
+import { DataTypes } from 'sequelize'
+import { type IPost } from '../interfaces/models'
 
-class Post extends Model {
-  public post_id!: number
-  public user_id!: number
-  public category_id!: string
-  public post_content!: string
-  public is_have_img!: boolean
-}
-
-Post.init(
-  {
-    post_id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    user_id: {
-      type: DataTypes.INTEGER
-    },
-    category_id: {
-      type: DataTypes.INTEGER
-    },
-    post_content: {
-      type: DataTypes.STRING
-    },
-    is_have_img: {
-      type: DataTypes.BOOLEAN
-    }
+const Post = sequelize.define<IPost>('post', {
+  post_id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
   },
-  {
-    sequelize,
-    modelName: 'Post',
-    tableName: 'posts'
+  user_id: {
+    type: DataTypes.INTEGER
+  },
+  category_id: {
+    type: DataTypes.INTEGER
+  },
+  post_content: {
+    type: DataTypes.STRING
+  },
+  is_have_img: {
+    type: DataTypes.BOOLEAN
   }
-)
+})
 
 export default Post

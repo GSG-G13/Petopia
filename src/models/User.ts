@@ -1,59 +1,46 @@
-import { Model, DataTypes } from 'sequelize'
 import sequelize from '../database/config'
+import { DataTypes } from 'sequelize'
+import { type IUser } from '../interfaces/models'
 
-class User extends Model {
-  public user_id!: number
-  public full_name!: string
-  public email!: string
-  public password!: string
-  public user_image!: string
-  public profile_image!: string
-  public address!: string
-  public phone!: string
-  public user_type!: string
-  public status!: string
-}
-
-User.init(
-  {
-    user_id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    full_name: {
-      type: DataTypes.STRING
-    },
-    email: {
-      type: DataTypes.STRING
-    },
-    password: {
-      type: DataTypes.STRING
-    },
-    user_image: {
-      type: DataTypes.STRING
-    },
-    profile_image: {
-      type: DataTypes.STRING
-    },
-    address: {
-      type: DataTypes.STRING
-    },
-    phone: {
-      type: DataTypes.STRING
-    },
-    user_type: {
-      type: DataTypes.STRING
-    },
-    status: {
-      type: DataTypes.STRING
-    }
+const User = sequelize.define<IUser>('user', {
+  user_id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
   },
-  {
-    sequelize,
-    modelName: 'User',
-    tableName: 'users'
+  full_name: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  user_image: {
+    type: DataTypes.STRING
+  },
+  profile_image: {
+    type: DataTypes.STRING
+  },
+  address: {
+    type: DataTypes.STRING
+  },
+  phone: {
+    type: DataTypes.STRING
+  },
+  user_type: {
+    type: DataTypes.STRING,
+    defaultValue: 'regular',
+    allowNull: false
+  },
+  status: {
+    type: DataTypes.ENUM('active', 'deactive'),
+    allowNull: false
   }
-)
+})
 
 export default User

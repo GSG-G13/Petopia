@@ -1,35 +1,22 @@
-import { Model, DataTypes } from 'sequelize'
+import { DataTypes } from 'sequelize'
 import sequelize from '../database/config'
+import { type IComment } from '../interfaces/models'
 
-class Comment extends Model {
-  public comment_id!: number
-  public user_id!: number
-  public post_id!: number
-  public comment_text!: string
-}
-
-Comment.init(
-  {
-    comment_id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    user_id: {
-      type: DataTypes.INTEGER
-    },
-    post_id: {
-      type: DataTypes.INTEGER
-    },
-    comment_text: {
-      type: DataTypes.STRING
-    }
+const Comment = sequelize.define<IComment>('comment', {
+  comment_id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
   },
-  {
-    sequelize,
-    modelName: 'Comment',
-    tableName: 'comments'
+  user_id: {
+    type: DataTypes.INTEGER
+  },
+  post_id: {
+    type: DataTypes.INTEGER
+  },
+  comment_text: {
+    type: DataTypes.STRING
   }
-)
+})
 
 export default Comment

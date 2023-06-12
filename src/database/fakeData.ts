@@ -21,6 +21,16 @@ const fakeData = {
       phone: '987-654-3210',
       user_type: 'admin',
       status: 'active'
+    },
+    {
+      full_name: 'Muhammad Abdulhadi',
+      email: 'mu7ammadabed@gmail.com',
+      password: 'password456',
+      user_image: 'https://Mohammed.com/user2.jpg',
+      profile_image: 'https://Mohammed.com/profile2.jpg',
+      address: '456 Elm St, Khaniones',
+      phone: '987-654-3210',
+      status: 'active'
     }
   ],
   categories: [

@@ -1,27 +1,16 @@
-import { Model, DataTypes } from 'sequelize'
 import sequelize from '../database/config'
+import { DataTypes } from 'sequelize'
+import { type IPetType } from '../interfaces/models'
 
-class PetType extends Model {
-  public type_id!: number
-  public title!: string
-}
-
-PetType.init(
-  {
-    type_id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    title: {
-      type: DataTypes.STRING
-    }
+const PetType = sequelize.define<IPetType>('petType', {
+  type_id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
   },
-  {
-    sequelize,
-    modelName: 'PetType',
-    tableName: 'pet_types'
+  title: {
+    type: DataTypes.STRING
   }
-)
+})
 
 export default PetType

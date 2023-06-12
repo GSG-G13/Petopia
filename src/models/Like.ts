@@ -1,31 +1,19 @@
-import { Model, DataTypes } from 'sequelize'
 import sequelize from '../database/config'
+import { DataTypes } from 'sequelize'
+import { type ILike } from '../interfaces/models'
 
-class Like extends Model {
-  public like_id!: number
-  public user_id!: number
-  public post_id!: number
-}
-
-Like.init(
-  {
-    like_id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    user_id: {
-      type: DataTypes.INTEGER
-    },
-    post_id: {
-      type: DataTypes.INTEGER
-    }
+const Like = sequelize.define<ILike>('like', {
+  like_id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
   },
-  {
-    sequelize,
-    modelName: 'Like',
-    tableName: 'likes'
+  user_id: {
+    type: DataTypes.INTEGER
+  },
+  post_id: {
+    type: DataTypes.INTEGER
   }
-)
+})
 
 export default Like
