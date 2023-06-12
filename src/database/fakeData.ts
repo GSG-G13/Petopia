@@ -17,33 +17,33 @@ const fakeData: {
 } = {
   users: [
     {
-      full_name: 'Abdallah Abujazar',
+      fullName: 'Abdallah Abujazar',
       email: 'Abujazar@example.com',
       password: 'password123',
-      user_image: 'https://Abujazar.com/user1.jpg',
-      profile_image: 'https://Abujazar.com/profile1.jpg',
+      userImage: 'https://Abujazar.com/user1.jpg',
+      profileImage: 'https://Abujazar.com/profile1.jpg',
       address: '123 Main St, Gaza',
       phone: '123-456-7890',
-      user_type: 'regular',
+      userType: 'regular',
       status: 'active'
     },
     {
-      full_name: 'Mohammed Sallout',
+      fullName: 'Mohammed Sallout',
       email: 'Mohammed@example.com',
       password: 'password456',
-      user_image: 'https://Mohammed.com/user2.jpg',
-      profile_image: 'https://Mohammed.com/profile2.jpg',
+      userImage: 'https://Mohammed.com/user2.jpg',
+      profileImage: 'https://Mohammed.com/profile2.jpg',
       address: '456 Elm St, Khaniones',
       phone: '987-654-3210',
-      user_type: 'admin',
+      userType: 'admin',
       status: 'active'
     },
     {
-      full_name: 'Muhammad Abdulhadi',
+      fullName: 'Muhammad Abdulhadi',
       email: 'mu7ammadabed@gmail.com',
       password: 'password456',
-      user_image: 'https://Mohammed.com/user2.jpg',
-      profile_image: 'https://Mohammed.com/profile2.jpg',
+      userImage: 'https://Mohammed.com/user2.jpg',
+      profileImage: 'https://Mohammed.com/profile2.jpg',
       address: '456 Elm St, Khaniones',
       phone: '987-654-3210',
       status: 'active'

@@ -3,12 +3,12 @@ import { DataTypes } from 'sequelize'
 import { type IUser } from '../interfaces/models'
 
 const User = sequelize.define<IUser>('user', {
-  user_id: {
+  userId: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true
   },
-  full_name: {
+  fullName: {
     type: DataTypes.STRING,
     allowNull: false
   },
@@ -20,10 +20,10 @@ const User = sequelize.define<IUser>('user', {
     type: DataTypes.STRING,
     allowNull: false
   },
-  user_image: {
+  userImage: {
     type: DataTypes.STRING
   },
-  profile_image: {
+  profileImage: {
     type: DataTypes.STRING
   },
   address: {
@@ -32,7 +32,7 @@ const User = sequelize.define<IUser>('user', {
   phone: {
     type: DataTypes.STRING
   },
-  user_type: {
+  userType: {
     type: DataTypes.STRING,
     defaultValue: 'regular',
     allowNull: false

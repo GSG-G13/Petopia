@@ -1,12 +1,12 @@
 export interface User {
-  full_name: string
+  fullName: string
   email: string
   password: string
-  user_image?: string
-  profile_image?: string
+  userImage?: string
+  profileImage?: string
   address?: string
   phone?: string
-  user_type?: string
+  userType?: string
   status: string
 }
 

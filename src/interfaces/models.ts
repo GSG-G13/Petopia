@@ -58,15 +58,15 @@ interface IProduct extends Model<InferAttributes<IProduct>, InferCreationAttribu
   rating: number
 }
 interface IUser extends Model<InferAttributes<IUser>, InferCreationAttributes<IUser>> {
-  user_id: CreationOptional<number>
-  full_name: string
+  userId: CreationOptional<number>
+  fullName: string
   email: string
   password: string
-  user_image: CreationOptional<string>
-  profile_image: CreationOptional<string>
+  userImage: CreationOptional<string>
+  profileImage: CreationOptional<string>
   address: CreationOptional<string>
   phone: CreationOptional<string>
-  user_type: string
+  userType: string
   status: string
 }
 export type { ICategory, IComment, IFollower, ILike, IPet, IPetType, IPost, IPostImage, IProduct, IUser }

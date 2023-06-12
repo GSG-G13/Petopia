@@ -1,8 +1,11 @@
-import express from 'express'
+import express, { type Request, type Response } from 'express'
+
+import { signup } from '../controllers/auth/signup'
 
 const router = express.Router()
-// just for testing endpoint.
-router.get('/test', (_req, res) => {
+
+// Just for testing endpoint.
+router.get('/test', (_req: Request, res: Response) => {
   res.json({
     error: false,
     data: {
@@ -11,5 +14,7 @@ router.get('/test', (_req, res) => {
     }
   })
 })
+
+router.post('/signup', signup)
 
 export default router
