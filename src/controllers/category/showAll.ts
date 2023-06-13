@@ -13,6 +13,5 @@ const showAllCategories = async (_req: Request, res: Response, next: NextFunctio
     next(new CustomError(500, 'Server Error'))
   }
 }
-
-
+ 
 export { showAllCategories }

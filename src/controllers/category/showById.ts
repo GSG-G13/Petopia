@@ -31,6 +31,5 @@ const showCategoryById = async (req: Request, res: Response, next: NextFunction)
     next(new CustomError(500, 'Server Error'))
   }
 }
-
-
+ 
 export { showCategoryById }
