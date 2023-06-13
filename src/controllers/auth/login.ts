@@ -1,10 +1,11 @@
-import { type Request, type Response } from 'express'
+import { type NextFunction, type Request, type Response } from 'express'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import loginQuery from '../../queries/auth/login'
 import { loginSchema } from '../../validation/users'
+import CustomError from '../../helpers/CustomError'
 
-const loginUsers = async (req: Request, res: Response): Promise<void> => {
+const loginUsers = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { email, password } = req.body
 
@@ -26,15 +27,15 @@ const loginUsers = async (req: Request, res: Response): Promise<void> => {
 
         const token = jwt.sign(payload, process.env.SECRET_KEY as string)
 
-        return res.cookie('token', token).json({ err: false, msg: 'Login successfully' })
+        res.cookie('token', token).json({ err: false, msg: 'Login successfully' })
       } else {
-        res.status(400).json({ err: true, msg: 'Wrong password' })
+        next(new CustomError(400, 'Wrong password'))
       }
     } else {
-      res.status(401).json({ err: true, msg: 'Please create an account first' })
+      next(new CustomError(401, 'Please create an account first'))
     }
   } catch (error) {
-    res.status(400).json({ msg: (error as Error).message })
+    next(error)
   }
 }
 
