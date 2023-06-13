@@ -23,5 +23,5 @@ module.exports = {
     "@typescript-eslint/no-misused-promises": "off",
     "@typescript-eslint/strict-boolean-expressions": "off"
   },
-  ignorePatterns: ['__test__/*', 'dist/*'],
+  ignorePatterns: ['__test__/*', 'dist/*', 'jest.config.js'],
 };
