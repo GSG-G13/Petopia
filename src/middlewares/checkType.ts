@@ -20,7 +20,7 @@ const checkType = (authorizedTypes: userTypes[]) => async (req: CustomRequest, _
   const user = (await getUserQuery(userId)).toJSON()
 
   if (user === null) {
-    next(new CustomError(404, 'User not found'))
+    next(new CustomError(402, 'User not found'))
   } else {
     if (authorizedTypes.includes(user.userType as userTypes)) {
       next()
