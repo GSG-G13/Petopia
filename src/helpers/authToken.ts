@@ -1,34 +1,24 @@
-import { sign, verify, type Secret } from 'jsonwebtoken'
+import jwt, { type Secret, type JwtPayload } from 'jsonwebtoken'
 import { config } from 'dotenv'
+import { type User } from '../interfaces/iAuth'
 config()
 
 const { SECRET_KEY } = process.env
 
-// const generateToken = async (payload: string | object): Promise<string> =>
-//   await new Promise<string>((resolve, reject) => {
-//     if (SECRET_KEY == null) {
-//       reject(new Error('Secret key is undefined'))
-//     }
-//     sign(payload, SECRET_KEY as Secret, (err, token) => {
-//       if (err != null) reject(err)
-//       else resolve(token)
-//     })
-//   })
-const signAsync = promisify(sign)
-const generateToken = async (payload: string | object): Promise<string> => {
-  if (SECRET_KEY == null) {
-    throw new Error('Secret key is undefined')
-  }
-
-  const token = await signAsync(payload, SECRET_KEY as Secret)
-  return token
-}
-
-const verifyToken = async (token) =>
+const generateToken = async (payload: JwtPayload): Promise<string | JwtPayload | undefined> =>
   await new Promise((resolve, reject) => {
-    verify(token, SECRET_KEY as Secret, (err, decode) => {
+    jwt.sign(payload, SECRET_KEY as Secret, (err, token) => {
       if (err != null) reject(err)
-      else resolve(decode)
+      else resolve(token)
     })
   })
+
+const verifyToken = async (token: string): Promise<User> =>
+  await new Promise((resolve, reject) => {
+    jwt.verify(token, SECRET_KEY as Secret, (err, decode) => {
+      if (err != null) reject(err)
+      else resolve(decode as User)
+    })
+  })
+
 export { generateToken, verifyToken }
