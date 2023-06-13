@@ -19,7 +19,7 @@ const fakeData: {
     {
       fullName: 'Abdallah Abujazar',
       email: 'Abujazar@example.com',
-      password: 'password123',
+      password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
       userImage: 'https://Abujazar.com/user1.jpg',
       profileImage: 'https://Abujazar.com/profile1.jpg',
       address: '123 Main St, Gaza',
@@ -30,7 +30,7 @@ const fakeData: {
     {
       fullName: 'Mohammed Sallout',
       email: 'Mohammed@example.com',
-      password: 'password456',
+      password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
       userImage: 'https://Mohammed.com/user2.jpg',
       profileImage: 'https://Mohammed.com/profile2.jpg',
       address: '456 Elm St, Khaniones',
@@ -41,7 +41,7 @@ const fakeData: {
     {
       fullName: 'Muhammad Abdulhadi',
       email: 'mu7ammadabed@gmail.com',
-      password: 'password456',
+      password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
       userImage: 'https://Mohammed.com/user2.jpg',
       profileImage: 'https://Mohammed.com/profile2.jpg',
       address: '456 Elm St, Khaniones',

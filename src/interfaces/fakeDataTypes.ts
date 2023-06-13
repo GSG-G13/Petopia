@@ -7,7 +7,7 @@ export interface IUser {
   address?: string
   phone?: string
   userType?: string
-  status: string
+  status?: string
 }
 
 export interface ICategory {

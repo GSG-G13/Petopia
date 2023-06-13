@@ -71,12 +71,12 @@ interface IUser extends Model<InferAttributes<IUser>, InferCreationAttributes<IU
   fullName: string
   email: string
   password: string
-  userImage: CreationOptional<string>
-  profileImage: CreationOptional<string>
-  address: CreationOptional<string>
-  phone: CreationOptional<string>
+  userImage?: string
+  profileImage?: string
+  address?: string
+  phone?: string
   userType?: string
-  status: string
+  status?: string
 }
 
 export type { ICategory, IComment, IFollower, ILike, IPet, IPetType, IPost, IPostImage, IProduct, IUser }

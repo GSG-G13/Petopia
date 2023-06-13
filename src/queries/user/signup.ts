@@ -1,35 +1,17 @@
 import User from '../../models/User'
-import { type IUser } from '../../interfaces/models'
+import { type IUser } from '../../interfaces/fakeDataTypes'
+import CustomError from '../../helpers/CustomError'
 
-interface CreateUserProps {
-  fullName: string
-  email: string
-  password: string
-  phone?: string
-  userImage?: string
-  profileImage?: string
-  address?: string
-  userType?: string
-  status: string
-}
 interface INewUser extends IUser {
   userId: number
 }
 
 const createUser = async ({
-  fullName,
-  email,
-  password,
-  phone,
-  userImage,
-  profileImage,
-  address,
-  userType,
-  status
-}: CreateUserProps): Promise<INewUser> => {
+  fullName, email, password, phone, userImage, profileImage, address, userType, status
+}: IUser): Promise<INewUser> => {
   const existingUser = await User.findOne({ where: { email } })
   if (existingUser != null) {
-    throw new Error('Email already exists')
+    throw new CustomError(400, 'Email already exists')
   }
 
   // Create the new user

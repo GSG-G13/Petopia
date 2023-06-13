@@ -10,12 +10,8 @@ const validateSignup = async (data: IUser): Promise<IUser> => {
     userImage: Yup.string(),
     profileImage: Yup.string(),
     address: Yup.string(),
-    userType: Yup.string()
-      .required('User Type is required')
-      .test('is-valid-user-type', 'Invalid User Type', (value) => value === 'admin' || value === 'user'),
+    userType: Yup.string(),
     status: Yup.string()
-      .required('Status is required')
-      .test('is-valid-status', 'Invalid Status', (value) => value === 'active' || value === 'inactive')
   })
 
   const result = await schema.validate(data, { abortEarly: false })
