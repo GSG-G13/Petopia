@@ -16,7 +16,7 @@ const checkType = (authorizedTypes: userTypes[]) => async (req: CustomRequest, _
   if (req.user == null) {
     throw new CustomError(401, 'Unauthorized')
   }
-  const userId = req.user.userId
+  const { userId } = req.user
   const user = (await getUserQuery(userId)).toJSON()
 
   if (user === null) {
