@@ -40,4 +40,5 @@ const updateCategory = async (req: Request, res: Response, next: NextFunction): 
   }
 }
 
+
 export { updateCategory }

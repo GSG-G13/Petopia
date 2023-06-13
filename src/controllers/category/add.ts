@@ -15,6 +15,7 @@ const createCategory = async (req: Request, res: Response, next: NextFunction): 
 
     const newCategory = await addCategory(title)
 
+    
     res.json({
       message: 'Category created successfully',
       data: newCategory

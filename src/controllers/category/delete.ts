@@ -11,6 +11,7 @@ const deleteCategory = async (req: Request, res: Response, next: NextFunction): 
       categoryId: yup.number().required()
     })
 
+    
     try {
       await schema.validate({ categoryId })
     } catch (error: unknown) {

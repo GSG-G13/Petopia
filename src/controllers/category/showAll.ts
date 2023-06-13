@@ -14,4 +14,5 @@ const showAllCategories = async (_req: Request, res: Response, next: NextFunctio
   }
 }
 
+
 export { showAllCategories }
