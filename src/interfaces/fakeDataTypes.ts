@@ -1,4 +1,4 @@
-export interface User {
+export interface IUser {
   fullName: string
   email: string
   password: string
@@ -10,43 +10,43 @@ export interface User {
   status: string
 }
 
-export interface Category {
+export interface ICategory {
   title: string
 }
 
-export interface PetType {
+export interface IPetType {
   title: string
 }
 
-export interface Post {
+export interface IPost {
   user_id: number
   category_id: number
   post_content: string
   is_have_img: boolean
 }
 
-export interface PostImage {
+export interface IPostImage {
   post_id: number
   image_url: string
 }
 
-export interface Comment {
+export interface IComment {
   user_id: number
   post_id: number
   comment_text: string
 }
 
-export interface Like {
+export interface ILike {
   user_id: number
   post_id: number
 }
 
-export interface Follower {
+export interface IFollower {
   follower_id: number
   following_id: number
 }
 
-export interface Product {
+export interface IProduct {
   post_id: number
   title: string
   price: number
@@ -54,7 +54,7 @@ export interface Product {
   rating: number
 }
 
-export interface Pet {
+export interface IPet {
   post_id: number
   pet_name: string
   pet_type: number

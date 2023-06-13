@@ -2,9 +2,8 @@ import { type Request, type Response } from 'express'
 import jwt, { type Secret } from 'jsonwebtoken'
 import dotenv from 'dotenv'
 import bcrypt from 'bcrypt'
-import User from '../../models/User'
 import { createUser } from '../../queries/user/signup'
-import { type IUser } from '../../interfaces/models'
+import { type IUser } from '../../interfaces/fakeDataTypes'
 import { validateSignup } from '../../validation/auth/signup'
 
 dotenv.config()
@@ -42,15 +41,7 @@ const signup = async (req: Request, res: Response): Promise<void> => {
       address,
       userType,
       status
-    }: IUser = req.body
-
-    await validateSignup(req.body)
-
-    const existingUser = await User.findOne({ where: { email } })
-    if (existingUser != null) {
-      res.status(400).json({ error: 'Email already exists' })
-      return
-    }
+    }: IUser = await validateSignup(req.body)
 
     const hashedPassword = await bcrypt.hash(password, 10)
 
@@ -70,19 +61,20 @@ const signup = async (req: Request, res: Response): Promise<void> => {
 
     res.cookie('token', token)
 
-    res.json({
-      message: 'Created successfully',
-      data: {
-        fullName,
-        email: newUser.email,
-        phone: newUser.phone,
-        userImage,
-        profileImage,
-        address,
-        userType,
-        status
-      }
-    })
+    res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' })
+      .json({
+        message: 'User Created Successfully',
+        data: {
+          fullName,
+          email: newUser.email,
+          phone: newUser.phone,
+          userImage,
+          profileImage,
+          address,
+          userType,
+          status
+        }
+      })
   } catch (error: unknown) {
     if ((error as { name?: string }).name === 'ValidationError') {
       const validationErrors = (error as { errors: string[] }).errors.map((err: string) => ({

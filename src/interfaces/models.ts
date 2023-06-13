@@ -66,7 +66,7 @@ interface IUser extends Model<InferAttributes<IUser>, InferCreationAttributes<IU
   profileImage: CreationOptional<string>
   address: CreationOptional<string>
   phone: CreationOptional<string>
-  userType: string
+  userType?: string
   status: string
 }
 export type { ICategory, IComment, IFollower, ILike, IPet, IPetType, IPost, IPostImage, IProduct, IUser }

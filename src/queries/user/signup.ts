@@ -5,12 +5,15 @@ interface CreateUserProps {
   fullName: string
   email: string
   password: string
-  phone: string
-  userImage: string
-  profileImage: string
-  address: string
-  userType: string
+  phone?: string
+  userImage?: string
+  profileImage?: string
+  address?: string
+  userType?: string
   status: string
+}
+interface INewUser extends IUser {
+  userId: number
 }
 
 const createUser = async ({
@@ -23,7 +26,13 @@ const createUser = async ({
   address,
   userType,
   status
-}: CreateUserProps): Promise<IUser> => {
+}: CreateUserProps): Promise<INewUser> => {
+  const existingUser = await User.findOne({ where: { email } })
+  if (existingUser != null) {
+    throw new Error('Email already exists')
+  }
+
+  // Create the new user
   const newUser = await User.create({
     fullName,
     email,

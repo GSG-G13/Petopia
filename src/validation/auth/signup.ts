@@ -1,7 +1,7 @@
 import * as Yup from 'yup'
-import { type IUser } from '../../interfaces/models'
+import { type IUser } from '../../interfaces/fakeDataTypes'
 
-const validateSignup = async (data: IUser): Promise<void> => {
+const validateSignup = async (data: IUser): Promise<IUser> => {
   const schema = Yup.object().shape({
     fullName: Yup.string().required('Full Name is required'),
     email: Yup.string().email('Invalid email').required('Email is required'),
@@ -18,7 +18,8 @@ const validateSignup = async (data: IUser): Promise<void> => {
       .test('is-valid-status', 'Invalid Status', (value) => value === 'active' || value === 'inactive')
   })
 
-  await schema.validate(data, { abortEarly: false })
+  const result = await schema.validate(data, { abortEarly: false })
+  return result
 }
 
 export { validateSignup }
