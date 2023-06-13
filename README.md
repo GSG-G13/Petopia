@@ -124,7 +124,7 @@ To start the App Locally you can start the server First then start client-side o
 
 > To run client-side, In your terminal Type:
 
-    `cd client` => `npm run dev` then you will be able to run [localhost](http://localhost:5173/)
+    `npm run client` then you will be able to run [localhost](http://localhost:5173/)
 
 Now you can view the app live in the Browser!
 
