@@ -4,19 +4,9 @@ import dotenv from 'dotenv'
 import User from '../../models/User'
 import { createUser } from '../../queries/user/signup'
 import { type IUser } from '../../interfaces/models'
-dotenv.config()
+import { validateSignup } from '../../validation/auth/signup'
 
-/* interface CreateUserProps {
-  fullName: string
-  email: string
-  password: string
-  phone: string
-  userImage: string
-  profileImage: string
-  address: string
-  userType: string
-  status: string
-} */
+dotenv.config()
 
 interface UserPayload {
   userId: number
@@ -53,6 +43,8 @@ const signup = async (req: Request, res: Response): Promise<void> => {
       status
     }: IUser = req.body
 
+    await validateSignup(req.body)
+
     const existingUser = await User.findOne({ where: { email } })
     if (existingUser != null) {
       res.status(400).json({ error: 'Email already exists' })
@@ -88,9 +80,16 @@ const signup = async (req: Request, res: Response): Promise<void> => {
         status
       }
     })
-  } catch (error) {
-    console.error('Error occurred during signup:', error)
-    res.status(500).json({ error: 'Server Error' })
+  } catch (error: unknown) {
+    if ((error as { name?: string }).name === 'ValidationError') {
+      const validationErrors = (error as { errors: string[] }).errors.map((err: string) => ({
+        message: err
+      }))
+      res.status(400).json({ error: 'Validation Error', details: validationErrors })
+    } else {
+      console.error('Error occurred during signup:', error)
+      res.status(500).json({ error: 'Server Error' })
+    }
   }
 }
 
