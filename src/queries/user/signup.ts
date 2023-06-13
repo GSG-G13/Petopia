@@ -1,4 +1,3 @@
-import bcrypt from 'bcrypt'
 import User from '../../models/User'
 import { type IUser } from '../../interfaces/models'
 
@@ -25,12 +24,10 @@ const createUser = async ({
   userType,
   status
 }: CreateUserProps): Promise<IUser> => {
-  const hashedPassword = await bcrypt.hash(password, 10)
-
   const newUser = await User.create({
     fullName,
     email,
-    password: hashedPassword,
+    password,
     phone,
     userImage,
     profileImage,

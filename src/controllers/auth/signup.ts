@@ -1,6 +1,7 @@
 import { type Request, type Response } from 'express'
 import jwt, { type Secret } from 'jsonwebtoken'
 import dotenv from 'dotenv'
+import bcrypt from 'bcrypt'
 import User from '../../models/User'
 import { createUser } from '../../queries/user/signup'
 import { type IUser } from '../../interfaces/models'
@@ -51,10 +52,12 @@ const signup = async (req: Request, res: Response): Promise<void> => {
       return
     }
 
+    const hashedPassword = await bcrypt.hash(password, 10)
+
     const newUser = await createUser({
       fullName,
       email,
-      password,
+      password: hashedPassword,
       phone,
       userImage,
       profileImage,
