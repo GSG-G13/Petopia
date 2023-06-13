@@ -1,19 +1,19 @@
 import {
-  type User, type Post, type PostImage, type Comment, type Like, type Follower, type PetType,
-  type Category, type Product, type Pet
+  type IUser, type IPost, type IPostImage, type IComment, type ILike, type IFollower, type IPetType,
+  type ICategory, type IProduct, type IPet
 } from '../interfaces/fakeDataTypes'
 
 const fakeData: {
-  users: User[]
-  categories: Category[]
-  comments: Comment[]
-  followers: Follower[]
-  likes: Like[]
-  pets: Pet[]
-  petTypes: PetType[]
-  posts: Post[]
-  postImages: PostImage[]
-  products: Product[]
+  users: IUser[]
+  categories: ICategory[]
+  comments: IComment[]
+  followers: IFollower[]
+  likes: ILike[]
+  pets: IPet[]
+  petTypes: IPetType[]
+  posts: IPost[]
+  postImages: IPostImage[]
+  products: IProduct[]
 } = {
   users: [
     {
