@@ -1,15 +1,16 @@
-import { type Request, type Response } from 'express'
-import { getAllCategories } from '../../queries/category/showall'
+import { type Request, type Response, type NextFunction } from 'express'
+import { getAllCategories } from '../../queries/category/showAll'
+import CustomError from '../../helpers/CustomError'
 
-const showAllCategories = async (_req: Request, res: Response): Promise<void> => {
+const showAllCategories = async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const categories = await getAllCategories()
 
     res.json({
       data: categories
     })
-  } catch (error) {
-    res.status(500).json({ error: 'Server Error' })
+  } catch (error: unknown) {
+    next(new CustomError(500, 'Server Error'))
   }
 }
 

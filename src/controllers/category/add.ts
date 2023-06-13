@@ -1,14 +1,17 @@
 import { type Request, type Response, type NextFunction } from 'express'
 import addCategory from '../../queries/category/add'
 import CustomError from '../../helpers/CustomError'
-import { addCategoryVal } from '../../validation/category/add'
-import * as Yup from 'yup'
+import * as yup from 'yup'
 
 const createCategory = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    await addCategoryVal(req.body)
-
     const { title } = req.body
+
+    const schema = yup.object().shape({
+      title: yup.string().required('Title is required')
+    })
+
+    await schema.validate({ title }, { abortEarly: false })
 
     const newCategory = await addCategory(title)
 
@@ -16,12 +19,9 @@ const createCategory = async (req: Request, res: Response, next: NextFunction): 
       message: 'Category created successfully',
       data: newCategory
     })
-  } catch (error) {
-    if (error instanceof Yup.ValidationError) {
-      const validationErrors = error.errors.map((err: string) => ({
-        message: err
-      }))
-      res.status(400).json({ error: 'Validation Error', details: validationErrors })
+  } catch (error: unknown) {
+    if (error instanceof yup.ValidationError) {
+      next(new CustomError(400, 'Validation Error'))
     } else {
       next(new CustomError(500, 'Server Error'))
     }

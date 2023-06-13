@@ -1,8 +1,9 @@
-import { type Request, type Response } from 'express'
+import { type Request, type Response, type NextFunction } from 'express'
 import { getCategoryById } from '../../queries/category/showById'
 import * as yup from 'yup'
+import CustomError from '../../helpers/CustomError'
 
-const showCategoryById = async (req: Request, res: Response): Promise<void> => {
+const showCategoryById = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { categoryId } = req.params
 
@@ -13,7 +14,7 @@ const showCategoryById = async (req: Request, res: Response): Promise<void> => {
     try {
       await schema.validate({ categoryId })
     } catch (error: unknown) {
-      res.status(400).json({ error: 'Validation Error', details: (error as yup.ValidationError).errors })
+      next(new CustomError(400, 'Validation Error'))
       return
     }
 
@@ -24,10 +25,10 @@ const showCategoryById = async (req: Request, res: Response): Promise<void> => {
         data: category
       })
     } else {
-      res.status(404).json({ error: 'Category not found' })
+      next(new CustomError(404, 'Category not found'))
     }
-  } catch (error) {
-    res.status(500).json({ error: 'Server Error' })
+  } catch (error: unknown) {
+    next(new CustomError(500, 'Server Error'))
   }
 }
 

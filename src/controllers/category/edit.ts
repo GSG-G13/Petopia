@@ -1,9 +1,10 @@
-import { type Request, type Response } from 'express'
+import { type Request, type Response, type NextFunction } from 'express'
 import { editCategory } from '../../queries/category/edit'
 import { type ICategory } from '../../interfaces/models'
 import * as yup from 'yup'
+import CustomError from '../../helpers/CustomError'
 
-const updateCategory = async (req: Request, res: Response): Promise<void> => {
+const updateCategory = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { categoryId } = req.params
 
@@ -28,10 +29,14 @@ const updateCategory = async (req: Request, res: Response): Promise<void> => {
         data: updatedCategory
       })
     } else {
-      res.status(404).json({ error: 'Category not found' })
+      throw new CustomError(404, 'Category not found')
     }
-  } catch (error) {
-    res.status(500).json({ error: 'Server Error' })
+  } catch (error: unknown) {
+    if (error instanceof CustomError) {
+      res.status(error.status).json({ error: error.message })
+    } else {
+      next(error)
+    }
   }
 }
 
