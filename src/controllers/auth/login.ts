@@ -27,7 +27,7 @@ const loginUsers = async (req: Request, res: Response, next: NextFunction): Prom
 
         const token = jwt.sign(payload, process.env.SECRET_KEY as string)
 
-        res.cookie('token', token).json({ err: false, msg: 'Login successfully' })
+        res.cookie('token', token).status(202).json({ err: false, msg: 'Login successfully' })
       } else {
         next(new CustomError(400, 'Wrong password'))
       }

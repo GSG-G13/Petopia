@@ -10,7 +10,8 @@
     "deployment-postbuild": "npm run build && cd client/ && npm i && npm run build",
     "client": "cd client/ && npm start",
     "db:seed": "cross-env SEED=true NODE_ENV=development ts-node src/database/build.ts",
-    "db:seed:production": "cross-env SEED=true NODE_ENV=production ts-node src/db/build.ts"
+    "db:seed:production": "cross-env SEED=true NODE_ENV=production ts-node src/db/build.ts",
+    "test": "cross-env NODE_ENV=test jest --detectOpenHandles"
   },
   "repository": {
     "type": "git",
