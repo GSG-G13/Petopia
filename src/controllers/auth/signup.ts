@@ -1,10 +1,11 @@
-import { type Request, type Response } from 'express'
+import { type Request, type Response, type NextFunction } from 'express'
 import jwt, { type Secret } from 'jsonwebtoken'
 import dotenv from 'dotenv'
 import bcrypt from 'bcrypt'
 import { createUser } from '../../queries/user/signup'
 import { type IUser } from '../../interfaces/fakeDataTypes'
 import { validateSignup } from '../../validation/auth/signup'
+import CustomError from '../../helpers/CustomError'
 
 dotenv.config()
 
@@ -29,7 +30,7 @@ const signToken = (user: UserPayload): string => {
   return token
 }
 
-const signup = async (req: Request, res: Response): Promise<void> => {
+const signup = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const {
       fullName,
@@ -59,8 +60,6 @@ const signup = async (req: Request, res: Response): Promise<void> => {
 
     const token = signToken({ userId: newUser.userId, email: newUser.email })
 
-    res.cookie('token', token)
-
     res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' })
       .json({
         message: 'User Created Successfully',
@@ -83,7 +82,7 @@ const signup = async (req: Request, res: Response): Promise<void> => {
       res.status(400).json({ error: 'Validation Error', details: validationErrors })
     } else {
       console.error('Error occurred during signup:', error)
-      res.status(500).json({ error: 'Server Error' })
+      next(new CustomError(500, 'Server Error'))
     }
   }
 }
