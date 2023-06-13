@@ -1,31 +1,32 @@
-import type { Request, Response } from 'express'
+import { type Request, type Response } from 'express'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import loginQuery from '../../queries/users/login'
+import loginQuery from '../../queries/auth/login'
 import { loginSchema } from '../../validation/users'
 
-const handleLogin = async (req: Request, res: Response): Promise<void> => {
-  const { email, password } = req.body
-
+const loginUsers = async (req: Request, res: Response): Promise<void> => {
   try {
-    await loginSchema.validate({ email, password }, { abortEarly: false })
+    const { email, password } = req.body
+
+    await loginSchema.validate({ email, password })
 
     const data = await loginQuery({ email })
 
     if (data != null) {
-      const { user_id, full_name, password: hashedPassword } = data
+      const { user_id, user_type, email, password: hashedPassword } = data
 
       const result = await bcrypt.compare(password, hashedPassword)
 
       if (result) {
         const payload = {
           user_id,
-          full_name
+          user_type,
+          email
         }
 
         const token = jwt.sign(payload, process.env.SECRET_KEY as string)
 
-        res.cookie('token', token).json({ err: false, msg: 'Login successfully' })
+        return res.cookie('token', token).json({ err: false, msg: 'Login successfully' })
       } else {
         res.status(400).json({ err: true, msg: 'Wrong password' })
       }
@@ -37,4 +38,4 @@ const handleLogin = async (req: Request, res: Response): Promise<void> => {
   }
 }
 
-export { handleLogin }
+export { loginUsers }

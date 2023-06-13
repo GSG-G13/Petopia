@@ -1,4 +1,5 @@
 import express from 'express'
+import authRouter from './auth'
 
 const router = express.Router()
 // just for testing endpoint.
@@ -11,5 +12,7 @@ router.get('/test', (_req, res) => {
     }
   })
 })
+
+router.use(authRouter)
 
 export default router

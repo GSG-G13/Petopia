@@ -6,7 +6,6 @@ const loginQuery = async (userData: { email: string }): Promise<IUser | null> =>
 
   try {
     const user = await User.findOne({
-      attributes: ['user_id', 'full_name', 'email', 'password'],
       where: {
         email
       }
