@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
 import { join } from 'path'
 import router from './routes'
+import serverError from './helpers/serverErrors'
 
 dotenv.config()
 const { NODE_ENV, PORT } = process.env
@@ -26,5 +27,5 @@ if (NODE_ENV === 'production') {
     res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'))
   })
 }
-
+app.use(serverError)
 export default app
