@@ -13,4 +13,5 @@ categoryRouter.delete('/:categoryId', deleteCategory)
 categoryRouter.get('/', showAllCategories)
 categoryRouter.get('/:categoryId', showCategoryById)
 
+
 export default categoryRouter
