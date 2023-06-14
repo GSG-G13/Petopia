@@ -5,7 +5,6 @@ import bcrypt from 'bcrypt'
 import { createUser } from '../../queries/user/signup'
 import { type IUser } from '../../interfaces/fakeDataTypes'
 import { validateSignup } from '../../validation/auth/signup'
-import CustomError from '../../helpers/CustomError'
 
 dotenv.config()
 
@@ -61,6 +60,7 @@ const signup = async (req: Request, res: Response, next: NextFunction): Promise<
     const token = signToken({ userId: newUser.userId, email: newUser.email })
 
     res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' })
+      .status(201)
       .json({
         message: 'User Created Successfully',
         data: {
@@ -74,17 +74,9 @@ const signup = async (req: Request, res: Response, next: NextFunction): Promise<
           status
         }
       })
-  } catch (error: unknown) {
-    if ((error as { name?: string }).name === 'ValidationError') {
-      const validationErrors = (error as { errors: string[] }).errors.map((err: string) => ({
-        message: err
-      }))
-      res.status(400).json({ error: 'Validation Error', details: validationErrors })
-    } else {
-      console.error('Error occurred during signup:', error)
-      next(new CustomError(500, 'Server Error'))
-    }
+  } catch (err: unknown) {
+    next(err)
   }
 }
 
-export { signup }
+export default signup
