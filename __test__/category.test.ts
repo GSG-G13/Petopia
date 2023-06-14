@@ -141,7 +141,7 @@ describe('Test showAllCategories controller', () => {
         });
     });
   
-    test('404 | when category is not found', async () => {
+    test('404 | when  category is not found', async () => {
       (getCategoryById as jest.Mock).mockResolvedValue(null);
   
       await request(app)
@@ -152,5 +152,5 @@ describe('Test showAllCategories controller', () => {
         });
     });
   });
-  
+
   

@@ -6,5 +6,5 @@ const router = express.Router()
 
 router.use('/auth', authRouter)
 router.use('/categories', categoryRouter)
-
+ 
 export default router
