@@ -1,15 +1,6 @@
 import express from 'express'
+import postRouter from './post'
 
 const router = express.Router()
-// just for testing endpoint.
-router.get('/test', (_req, res) => {
-  res.json({
-    error: false,
-    data: {
-      id: 0,
-      message: 'hello'
-    }
-  })
-})
-
+router.use(postRouter)
 export default router
