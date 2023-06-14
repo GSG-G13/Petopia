@@ -1,49 +1,49 @@
 import {
-  type User, type Post, type PostImage, type Comment, type Like, type Follower, type PetType,
-  type Category, type Product, type Pet
+  type IUser, type IPost, type IPostImage, type IComment, type ILike, type IFollower, type IPetType,
+  type ICategory, type IProduct, type IPet
 } from '../interfaces/fakeDataTypes'
 
 const fakeData: {
-  users: User[]
-  categories: Category[]
-  comments: Comment[]
-  followers: Follower[]
-  likes: Like[]
-  pets: Pet[]
-  petTypes: PetType[]
-  posts: Post[]
-  postImages: PostImage[]
-  products: Product[]
+  users: IUser[]
+  categories: ICategory[]
+  comments: IComment[]
+  followers: IFollower[]
+  likes: ILike[]
+  pets: IPet[]
+  petTypes: IPetType[]
+  posts: IPost[]
+  postImages: IPostImage[]
+  products: IProduct[]
 } = {
   users: [
     {
-      full_name: 'Abdallah Abujazar',
+      fullName: 'Abdallah Abujazar',
       email: 'Abujazar@example.com',
-      password: 'password123',
-      user_image: 'https://Abujazar.com/user1.jpg',
-      profile_image: 'https://Abujazar.com/profile1.jpg',
+      password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
+      userImage: 'https://Abujazar.com/user1.jpg',
+      profileImage: 'https://Abujazar.com/profile1.jpg',
       address: '123 Main St, Gaza',
       phone: '123-456-7890',
-      user_type: 'regular',
+      userType: 'regular',
       status: 'active'
     },
     {
-      full_name: 'Mohammed Sallout',
+      fullName: 'Mohammed Sallout',
       email: 'Mohammed@example.com',
-      password: '$2a$10$XjlFFuI0tQ7BDwYqgU7er.pgr1Tzd0s2SoaY1F3FNP1sYerT75FcO',
-      user_image: 'https://Mohammed.com/user2.jpg',
-      profile_image: 'https://Mohammed.com/profile2.jpg',
+      password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
+      userImage: 'https://Mohammed.com/user2.jpg',
+      profileImage: 'https://Mohammed.com/profile2.jpg',
       address: '456 Elm St, Khaniones',
       phone: '987-654-3210',
-      user_type: 'admin',
+      userType: 'admin',
       status: 'active'
     },
     {
-      full_name: 'Muhammad Abdulhadi',
+      fullName: 'Muhammad Abdulhadi',
       email: 'mu7ammadabed@gmail.com',
-      password: 'password456',
-      user_image: 'https://Mohammed.com/user2.jpg',
-      profile_image: 'https://Mohammed.com/profile2.jpg',
+      password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
+      userImage: 'https://Mohammed.com/user2.jpg',
+      profileImage: 'https://Mohammed.com/profile2.jpg',
       address: '456 Elm St, Khaniones',
       phone: '987-654-3210',
       status: 'active'

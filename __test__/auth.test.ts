@@ -1,21 +1,95 @@
-import request from 'supertest'
-import app from '../src/app'
+import request from "supertest";
+import sequelize from "../src/database/config";
+import app from "../src/app";
+import buildTables from "../src/database/build";
 
-describe('loginUsers', () => {
-  test('should login successfully with valid credentials', done => {
-    request(app)
-      .post('/api/v1/login')
+beforeAll(() => buildTables());
+afterAll(() => sequelize.close());
+
+describe("Test signup route", () => {
+  test("201 | when user enters valid inputs", async () => {
+    await request(app)
+      .post("/api/v1/auth/signup")
+      .send({
+        fullName: 'Malek',
+        email: 'malek@gmail.com',
+        password: '123456789',
+        phone: '0569805073',
+      })
+      .expect(201)
+      .expect((res) => {
+        expect(res.body.message).toEqual("User Created Successfully");
+      });
+  });
+
+  test("400 | when user enters empty full name Name", async () => {
+    await request(app)
+      .post("/api/v1/auth/signup")
+      .send({
+        email: 'malek@gmail.com',
+        password: '123456789',
+        phone: '0569805073',
+      })
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.data).toEqual({"errors": ["Full Name is required"]});
+      });
+  });
+
+  test("400 | when user enters an existing email", async () => {
+    await request(app)
+      .post("/api/v1/auth/signup")
+      .send({
+        fullName: 'Malek',
+        email: 'malek@gmail.com',
+        password: '123456789',
+        phone: '0569805073',
+      })
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.message).toBe("Email already exists");
+      });
+  });
+})
+
+describe('Test login route', () => {
+  test('login successfully with valid credentials', async () => {
+    await request(app)
+      .post('/api/v1/auth/login')
       .send({
         email: 'Mohammed@example.com',
-        password: 'password456',
+        password: '123456789',
       })
-      .expect(202)
-      .expect('Content-Type', /json/)
-      .end((err) => {
-        if(err) {
-          return done(err)
-        }
-        done()
-      })
+      .expect(200)
+      .expect((res) => {
+        expect(res.body.message).toBe('Login successfully');
+      });
   })
+
+  test('400 | when user enter wrong password', async () => {
+    await request(app)
+      .post('/api/v1/auth/login')
+      .send({
+        email: 'Mohammed@example.com',
+        password: '12345678',
+      })
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.message).toBe('Wrong Password');
+      });
+  })
+
+  test('401 | when user enter wrong email or not registered', async () => {
+    await request(app)
+      .post('/api/v1/auth/login')
+      .send({
+        email: 'Mohammed5@example.com',
+        password: '12345678',
+      })
+      .expect(401)
+      .expect((res) => {
+        expect(res.body.message).toBe('Please create an account first');
+      });
+  })
+
 })

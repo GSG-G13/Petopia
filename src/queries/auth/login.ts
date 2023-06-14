@@ -1,5 +1,6 @@
 import User from '../../models/User'
 import { type IUser } from '../../interfaces/models'
+import CustomError from '../../helpers/CustomError'
 
 const loginQuery = async (userData: { email: string }): Promise<IUser | null> => {
   const { email } = userData
@@ -13,8 +14,7 @@ const loginQuery = async (userData: { email: string }): Promise<IUser | null> =>
 
     return user
   } catch (error) {
-    console.error('Error during login query:', error)
-    return null
+    throw new CustomError(500, 'Internal Server Error')
   }
 }
 

@@ -11,7 +11,7 @@
     "client": "cd client/ && npm start",
     "db:seed": "cross-env SEED=true NODE_ENV=development ts-node src/database/build.ts",
     "db:seed:production": "cross-env SEED=true NODE_ENV=production ts-node src/db/build.ts",
-    "test": "cross-env NODE_ENV=test jest --detectOpenHandles"
+    "test": "cross-env NODE_ENV=test jest -i"
   },
   "repository": {
     "type": "git",
