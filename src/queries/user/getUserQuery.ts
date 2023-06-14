@@ -1,7 +1,7 @@
 import { type IUser } from '../../interfaces/models'
 import { User } from '../../models'
 
-const getUserQuery = async (id: number): Promise<IUser> =>
+const getUserQuery = async (id: number): Promise<IUser | null> =>
   await User.findOne({
     where: { userId: id }
   })

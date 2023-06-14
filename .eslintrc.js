@@ -20,6 +20,8 @@ module.exports = {
     'linebreak-style': 0,
     'consistent-return': 'off',
     'arrow-body-style': ['error', 'as-needed'],
+    "@typescript-eslint/no-misused-promises": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off"
   },
-  ignorePatterns: ['__test__/*', 'dist/*'],
+  ignorePatterns: ['__test__/*', 'dist/*', 'jest.config.js'],
 };
