@@ -8,4 +8,3 @@ const editIDValidation = yup.object().shape({
   categoryId: yup.number().required()
 })
 export { editIDValidation, editTitleValidation }
- 

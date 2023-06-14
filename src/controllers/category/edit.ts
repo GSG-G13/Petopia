@@ -29,5 +29,5 @@ const updateCategory = async (req: Request, res: Response, next: NextFunction): 
     next(err)
   }
 }
- 
+
 export { updateCategory }

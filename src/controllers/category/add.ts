@@ -8,7 +8,7 @@ const createCategory = async (req: Request, res: Response, next: NextFunction): 
     const { title }: ICategory = await createCategoryValidation.validate(req.body, { abortEarly: false })
 
     const newCategory = await addCategory(title)
- 
+
     res.json({
       message: 'Category created successfully',
       data: newCategory

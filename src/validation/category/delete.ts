@@ -5,4 +5,3 @@ const deleteCategoryValidation = yup.object().shape({
 })
 
 export default deleteCategoryValidation
- 

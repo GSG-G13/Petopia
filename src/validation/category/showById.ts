@@ -5,4 +5,3 @@ const byIdValidation = yup.object().shape({
 })
 
 export default byIdValidation
- 

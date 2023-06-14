@@ -24,5 +24,5 @@ const deleteCategory = async (req: Request, res: Response, next: NextFunction): 
     next(err)
   }
 }
- 
+
 export { deleteCategory }
