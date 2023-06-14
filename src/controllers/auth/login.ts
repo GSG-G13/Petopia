@@ -14,9 +14,9 @@ const loginUsers = async (req: Request, res: Response, next: NextFunction): Prom
     if (data != null) {
       const { userId, userType, email, password: hashedPassword } = data
 
-      const result = await bcrypt.compare(password, hashedPassword)
+      const isPasswordTrue = await bcrypt.compare(password, hashedPassword)
 
-      if (result) {
+      if (isPasswordTrue) {
         const payload = {
           userId,
           userType,
@@ -25,7 +25,8 @@ const loginUsers = async (req: Request, res: Response, next: NextFunction): Prom
 
         const token = jwt.sign(payload, process.env.SECRET_KEY as string)
 
-        res.cookie('token', token).json({ message: 'Login successfully' })
+        res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' })
+          .json({ message: 'Login successfully' })
       } else {
         throw new CustomError(400, 'Wrong Password')
       }
