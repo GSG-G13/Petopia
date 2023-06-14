@@ -5,11 +5,10 @@ import CustomError from '../../helpers/CustomError'
 
 const showCategoryById = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const { categoryId } = req.params
-
     const schema = yup.object().shape({
       categoryId: yup.number().required()
     })
+    const { categoryId }: { categoryId: number } = await schema.validate(req.params)
 
     try {
       await schema.validate({ categoryId })
@@ -27,9 +26,9 @@ const showCategoryById = async (req: Request, res: Response, next: NextFunction)
     } else {
       next(new CustomError(404, 'Category not found'))
     }
-  } catch (error: unknown) {
-    next(new CustomError(500, 'Server Error'))
+  } catch (err: unknown) {
+    next(err)
   }
 }
- 
+
 export { showCategoryById }

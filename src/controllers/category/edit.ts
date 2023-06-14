@@ -6,20 +6,23 @@ import CustomError from '../../helpers/CustomError'
 
 const updateCategory = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const { categoryId } = req.params
-
     const schema = yup.object().shape({
+      categoryId: yup.number().required()
+    })
+
+    const { categoryId }: { categoryId: number } = await schema.validate(req.params)
+
+    try {
+      await schema.validate(req.params)
+    } catch (error: unknown) {
+      next(error)
+    }
+
+    const schema2 = yup.object().shape({
       title: yup.string().required().trim()
     })
 
-    try {
-      await schema.validate(req.body)
-    } catch (error: unknown) {
-      res.status(400).json({ error: 'Validation Error', details: (error as yup.ValidationError).errors })
-      return
-    }
-
-    const { title } = req.body
+    const { title }: { title: string } = await schema2.validate(req.body, { abortEarly: false })
 
     const updatedCategory: ICategory | null = await editCategory(Number(categoryId), title)
 
@@ -32,11 +35,7 @@ const updateCategory = async (req: Request, res: Response, next: NextFunction): 
       throw new CustomError(404, 'Category not found')
     }
   } catch (error: unknown) {
-    if (error instanceof CustomError) {
-      res.status(error.status).json({ error: error.message })
-    } else {
-      next(error)
-    }
+    next(error)
   }
 }
 

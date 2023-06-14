@@ -2,15 +2,17 @@ import { type Request, type Response, type NextFunction } from 'express'
 import { deleteCategoryById } from '../../queries/category/delete'
 import * as yup from 'yup'
 import CustomError from '../../helpers/CustomError'
+import { type ICategory } from '../../interfaces/fakeDataTypes'
+
+export type { ICategory }
 
 const deleteCategory = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const { categoryId } = req.params
-
     const schema = yup.object().shape({
       categoryId: yup.number().required()
     })
 
+    const { categoryId }: { categoryId: number } = await schema.validate(req.params)
 
     try {
       await schema.validate({ categoryId })
@@ -30,11 +32,7 @@ const deleteCategory = async (req: Request, res: Response, next: NextFunction): 
       throw new CustomError(404, 'Category not found')
     }
   } catch (error: unknown) {
-    if (error instanceof CustomError) {
-      res.status(error.status).json({ error: error.message })
-    } else {
-      next(error)
-    }
+    next(error)
   }
 }
 
