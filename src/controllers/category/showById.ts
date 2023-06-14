@@ -6,7 +6,7 @@ import byIdValidation from '../../validation/category/showById'
 const showCategoryById = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { categoryId }: { categoryId: number } = await byIdValidation.validate(req.params)
-
+ 
     try {
       await byIdValidation.validate({ categoryId })
     } catch (err: unknown) {
