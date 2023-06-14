@@ -1,4 +1,4 @@
-import { type IPost, type ICategory, type IPostImage } from './models'
+import { type IPet, type IPost, type IPostImage, type IProduct } from './models'
 
 export interface IPostWithDetails extends IPost {
   postImages?: IPostImage[]
@@ -9,5 +9,7 @@ export interface IPostWithDetails extends IPost {
     full_name: string
     user_image: string
   }
-  category: ICategory
+  category: { title: string }
+  products?: IProduct[]
+  pets?: IPet[]
 }

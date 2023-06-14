@@ -1,38 +1,48 @@
 import sequelize from 'sequelize'
-// import { type IPostImage, type IPost, type ICategory } from '../../interfaces/models'
-import { Category, Post, PostImage, User } from '../../models'
+import { Category, Pet, Post, PostImage, Product, User } from '../../models'
 import { type IPostWithDetails } from '../../interfaces/iPosts'
 
 const gePostQuery = async (id: number): Promise<IPostWithDetails | null> => {
-  try {
-    const post = await Post.findOne({
-      where: { post_id: id },
-      include: [
-        {
-          model: PostImage,
-        },
-        {
-          model: Category,
-        },
-        {
-          model: User,
-          attributes: ['userId', 'fullName', 'userImage'],
-        },
-      ],
-      attributes: {
-        include: [
-          [sequelize.literal('(SELECT COUNT(*) FROM likes WHERE likes.post_id = post.post_id)'), 'likeCount'],
-          [sequelize.literal('(SELECT COUNT(*) FROM comments WHERE comments.post_id = post.post_id)'), 'commentCount'],
-        ],
+  const post = await Post.findOne({
+    where: { post_id: id },
+    include: [
+      {
+        model: PostImage
       },
-      group: ['post.post_id', 'user.userId', 'postImages.image_id', 'category.category_id'],
-    })
+      {
+        model: Category,
+        attributes: ['title']
+      },
+      {
+        model: User,
+        attributes: ['userId', 'fullName', 'userImage']
+      },
+      {
+        model: Product
+      },
+      {
+        model: Pet
+      }
+    ],
+    attributes: {
+      include: [
+        [sequelize.literal('(SELECT COUNT(*) FROM likes WHERE likes.post_id = post.post_id)'), 'likeCount'],
+        [sequelize.literal('(SELECT COUNT(*) FROM comments WHERE comments.post_id = post.post_id)'), 'commentCount']
+        // [sequelize.fn('COUNT', sequelize.col('likes.like_id')), 'likeCount'],
+        // [sequelize.fn('COUNT', sequelize.col('comments.comment_id')), 'commentCount']
+      ]
+    },
+    group: [
+      'post.post_id',
+      'user.userId',
+      'postImages.image_id',
+      'category.category_id',
+      'products.product_id',
+      'pets.pet_id'
+    ]
+  })
 
-    return post
-  } catch (error) {
-    console.error('Error retrieving post:', error)
-    return null
-  }
+  return post
 }
 
 export default gePostQuery

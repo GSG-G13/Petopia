@@ -2,7 +2,7 @@ import sequelize from '../database/config'
 import { DataTypes } from 'sequelize'
 import { type IPet } from '../interfaces/models'
 
-const Pet = sequelize.define<IPet>('pet', {
+const Pet = sequelize.define<IPet>('pets', {
   pet_id: {
     type: DataTypes.INTEGER,
     primaryKey: true,

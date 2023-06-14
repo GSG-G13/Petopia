@@ -10,11 +10,10 @@ const getPost = async (req: Request, res: Response, next: NextFunction): Promise
       next(new CustomError(401, 'Bad Request'))
     } else {
       const post = await gePostQuery(id)
-      if (post !== null || post !== undefined) {
-        console.log(post?.user)
-        res.json({ error: false, data: post })
+      if (post !== null) {
+        res.json({ data: post })
       } else {
-        next(new CustomError(402, 'post not found'))
+        next(new CustomError(404, 'post not found'))
       }
     }
   } catch (error) {

@@ -1,3 +1,3 @@
-import getPost from './getPost'
+import getPost from './getSingelPost'
 
 export { getPost }
