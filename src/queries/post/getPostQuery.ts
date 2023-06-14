@@ -9,23 +9,23 @@ const gePostQuery = async (id: number): Promise<IPostWithDetails | null> => {
       where: { post_id: id },
       include: [
         {
-          model: PostImage
+          model: PostImage,
         },
         {
-          model: Category
+          model: Category,
         },
         {
           model: User,
-          attributes: ['user_id', 'full_name', 'user_image']
-        }
+          attributes: ['userId', 'fullName', 'userImage'],
+        },
       ],
       attributes: {
         include: [
           [sequelize.literal('(SELECT COUNT(*) FROM likes WHERE likes.post_id = post.post_id)'), 'likeCount'],
-          [sequelize.literal('(SELECT COUNT(*) FROM comments WHERE comments.post_id = post.post_id)'), 'commentCount']
-        ]
+          [sequelize.literal('(SELECT COUNT(*) FROM comments WHERE comments.post_id = post.post_id)'), 'commentCount'],
+        ],
       },
-      group: ['post.post_id', 'user.user_id', 'postImages.image_id', 'category.category_id']
+      group: ['post.post_id', 'user.userId', 'postImages.image_id', 'category.category_id'],
     })
 
     return post
