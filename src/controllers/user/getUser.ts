@@ -4,8 +4,7 @@ import CustomError from '../../helpers/CustomError'
 
 const getUser = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const { userId } = req.params
-  let data = await getUserQuery(Number(userId))
-  data = data.toJSON()
+  const data = await getUserQuery(Number(userId))
   if (data !== null) {
     res.json({ error: false, data })
   } else {

@@ -1,10 +1,10 @@
 import express, { type Request, type Response } from 'express'
 
-import { signup } from '../controllers/auth/signup'
+import { signup } from '../controllers/auth/'
 import { createCategory } from '../controllers/category/add'
 import { updateCategory } from '../controllers/category/edit'
 import { deleteCategory } from '../controllers/category/delete'
-import { showAllCategories } from '../controllers/category/showall'
+import { showAllCategories } from '../controllers/category/showAll'
 import { showCategoryById } from '../controllers/category/showById'
 
 const router = express.Router()
