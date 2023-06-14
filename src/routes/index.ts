@@ -1,10 +1,10 @@
 import express from 'express'
 import postRouter from './post'
-import account from './account'
+import authRouter from './auth'
 
 const router = express.Router()
 
 router.use(postRouter)
-router.use('/account', account)
+router.use('/auth', authRouter)
 
 export default router
