@@ -10,7 +10,7 @@ const getCommentsQuery = async (postId: number): Promise<object> => {
       include: [
         {
           model: User,
-          attributes: ['fullName', 'userId']
+          attributes: ['fullName', 'userImage']
         }]
     })
 
