@@ -2,18 +2,13 @@ import { type Request, type Response, type NextFunction } from 'express'
 import { editCategory } from '../../queries/category/edit'
 import { type ICategory } from '../../interfaces/models'
 import CustomError from '../../helpers/CustomError'
-import { editTitleValidation, editIDValidation } from '../../validation/category/edit'
+import { validateCategoryId, validateTitle } from '../../validation'
+
 const updateCategory = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const { categoryId }: { categoryId: number } = await editIDValidation.validate(req.params)
+    const { categoryId }: { categoryId: number } = await validateCategoryId.validate(req.params)
 
-    try {
-      await editIDValidation.validate(req.params)
-    } catch (error: unknown) {
-      next(error)
-    }
-
-    const { title }: { title: string } = await editTitleValidation.validate(req.body, { abortEarly: false })
+    const { title }: { title: string } = await validateTitle.validate(req.body, { abortEarly: false })
 
     const updatedCategory: ICategory | null = await editCategory(Number(categoryId), title)
 
@@ -23,7 +18,7 @@ const updateCategory = async (req: Request, res: Response, next: NextFunction): 
         data: updatedCategory
       })
     } else {
-      throw new CustomError(404, 'The Category Was Not Found')
+      throw new CustomError(400, 'The Category Was Not Found')
     }
   } catch (err: unknown) {
     next(err)

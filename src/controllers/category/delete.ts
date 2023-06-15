@@ -2,13 +2,13 @@ import { type Request, type Response, type NextFunction } from 'express'
 import { deleteCategoryById } from '../../queries/category/delete'
 import CustomError from '../../helpers/CustomError'
 import { type ICategory } from '../../interfaces/fakeDataTypes'
-import deleteCategoryValidation from '../../validation/category/delete'
+import { validateCategoryId } from '../../validation'
 
 export type { ICategory }
 
 const deleteCategory = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const { categoryId }: { categoryId: number } = await deleteCategoryValidation.validate(req.params)
+    const { categoryId }: { categoryId: number } = await validateCategoryId.validate(req.params)
 
     const deletedCategory = await deleteCategoryById(Number(categoryId))
 
@@ -18,7 +18,7 @@ const deleteCategory = async (req: Request, res: Response, next: NextFunction): 
         data: deletedCategory
       })
     } else {
-      throw new CustomError(404, 'The Category Was Not Found')
+      throw new CustomError(400, 'The Category Was Not Found')
     }
   } catch (err: unknown) {
     next(err)

@@ -32,7 +32,7 @@ describe('Test createCategory controller', () => {
       .send({ title: 'Test Category' })
       .expect(201)
       .expect((res) => {
-        expect(res.body.message).toEqual('Category created successfully');
+        expect(res.body.message).toEqual('Category Created Successfully');
         expect(res.body.data).toEqual(mockNewCategory);
       });
   });
@@ -43,7 +43,6 @@ describe('Test createCategory controller', () => {
       .send({})
       .expect(400)
       .expect((res) => {
-        console.log(res.body.data);
         expect(res.body.data).toEqual({"errors": ["Title is required"]});
       });
   });
@@ -72,7 +71,7 @@ describe('Test deleteCategory controller', () => {
 
     await request(app)
       .delete('/api/v1/categories/888881')
-      .expect(404)
+      .expect(400)
       .expect((res) => {
         expect(res.body.message).toEqual('The Category Was Not Found');
       });
@@ -104,9 +103,21 @@ describe('Test updateCategory controller', () => {
     await request(app)
       .put('/api/v1/categories/99999999999999999991')
       .send({ title: 'Updated Category' })
-      .expect(404)
+      .expect(400)
       .expect((res) => {
         expect(res.body.message).toEqual('The Category Was Not Found');
+      });
+  });
+
+  test('404 | when category is not found', async () => {
+    (editCategory as jest.Mock).mockResolvedValue(null);
+
+    await request(app)
+      .put('/api/v1/categories/1')
+      .send({})
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.data).toEqual({"errors": ["Title is required"]});
       });
   });
 });
