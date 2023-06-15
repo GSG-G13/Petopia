@@ -1,31 +1,22 @@
 import { type NextFunction, type Response } from 'express'
 import addCommentQuery from '../../queries/comment/addComment'
 import { commentSchema } from '../../validation/comment/addComment'
-import CustomError from '../../helpers/CustomError'
 import { type CustomRequest } from '../../interfaces/iAuth'
 
 const addComment = async (req: CustomRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const user_id = req.user?.userId as number
-    const post_id = Number(req.params.postId)
+    const userId = req.user?.userId as number
+    const postId = Number(req.params.postId)
+    const commentText: string = req.body.commentText
 
-    const { comment_text } = await commentSchema.validate(req.body)
+    await commentSchema.validate({ commentText })
 
-    const commentData = {
-      user_id,
-      post_id,
-      comment_text
-    }
+    const commentData = { userIds: userId, postIds: postId, commentTexts: commentText }
 
-    const data = await addCommentQuery(commentData)
+    const data = await addCommentQuery({ ...commentData })
     res.json(data)
   } catch (error) {
-    if (error.name === 'ValidationError') {
-      const customError = new CustomError(400, error.details)
-      next(customError)
-    } else {
-      next(error)
-    }
+    next(error)
   }
 }
 

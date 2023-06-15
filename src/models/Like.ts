@@ -3,15 +3,15 @@ import { DataTypes } from 'sequelize'
 import { type ILike } from '../interfaces/models'
 
 const Like = sequelize.define<ILike>('like', {
-  like_id: {
+  likeId: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true
   },
-  user_id: {
+  userId: {
     type: DataTypes.INTEGER
   },
-  post_id: {
+  postId: {
     type: DataTypes.INTEGER
   }
 })
