@@ -30,7 +30,7 @@ describe('Test createCategory controller', () => {
     await request(app)
       .post('/api/v1/categories')
       .send({ title: 'Test Category' })
-      .expect(200)
+      .expect(201)
       .expect((res) => {
         expect(res.body.message).toEqual('Category created successfully');
         expect(res.body.data).toEqual(mockNewCategory);
@@ -43,7 +43,8 @@ describe('Test createCategory controller', () => {
       .send({})
       .expect(400)
       .expect((res) => {
-        expect(res.body.message).toEqual('Validation Error');
+        console.log(res.body.data);
+        expect(res.body.data).toEqual({"errors": ["Title is required"]});
       });
   });
 });
@@ -61,7 +62,7 @@ describe('Test deleteCategory controller', () => {
       .delete('/api/v1/categories/1')
       .expect(200)
       .expect((res) => {
-        expect(res.body.message).toEqual('Category deleted successfully');
+        expect(res.body.message).toEqual('Category Deleted Successfully');
         expect(res.body.data).toEqual(mockDeletedCategory);
       });
   });
@@ -73,7 +74,7 @@ describe('Test deleteCategory controller', () => {
       .delete('/api/v1/categories/888881')
       .expect(404)
       .expect((res) => {
-        expect(res.body.message).toEqual('Category not found');
+        expect(res.body.message).toEqual('The Category Was Not Found');
       });
   });
 });
@@ -92,7 +93,7 @@ describe('Test updateCategory controller', () => {
       .send({ title: 'Updated Category' })
       .expect(200)
       .expect((res) => {
-        expect(res.body.message).toEqual('Category updated successfully');
+        expect(res.body.message).toEqual('Category Updated Successfully');
         expect(res.body.data).toEqual(mockUpdatedCategory);
       });
   });
@@ -105,7 +106,7 @@ describe('Test updateCategory controller', () => {
       .send({ title: 'Updated Category' })
       .expect(404)
       .expect((res) => {
-        expect(res.body.message).toEqual('Category not found');
+        expect(res.body.message).toEqual('The Category Was Not Found');
       });
   });
 });
@@ -148,7 +149,7 @@ describe('Test showAllCategories controller', () => {
         .get('/api/v1/categories/857349857486')
         .expect(404)
         .expect((res) => {
-          expect(res.body.message).toEqual('Category not found');
+          expect(res.body.message).toEqual('The Category Was Not Found');
         });
     });
   });
