@@ -3,21 +3,21 @@ import { DataTypes } from 'sequelize'
 import { type IPost } from '../interfaces/models'
 
 const Post = sequelize.define<IPost>('post', {
-  post_id: {
+  postId: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true
   },
-  user_id: {
+  userId: {
     type: DataTypes.INTEGER
   },
-  category_id: {
+  categoryId: {
     type: DataTypes.INTEGER
   },
-  post_content: {
+  postContent: {
     type: DataTypes.STRING
   },
-  is_have_img: {
+  isHaveImg: {
     type: DataTypes.BOOLEAN
   }
 })

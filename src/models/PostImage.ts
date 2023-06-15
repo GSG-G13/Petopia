@@ -3,15 +3,15 @@ import { DataTypes } from 'sequelize'
 import { type IPostImage } from '../interfaces/models'
 
 const PostImage = sequelize.define<IPostImage>('postImage', {
-  image_id: {
+  imageId: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true
   },
-  post_id: {
+  postId: {
     type: DataTypes.INTEGER
   },
-  image_url: {
+  imageUrl: {
     type: DataTypes.STRING
   }
 })

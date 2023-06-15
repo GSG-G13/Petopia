@@ -3,7 +3,7 @@ import { DataTypes } from 'sequelize'
 import { type IPetType } from '../interfaces/models'
 
 const PetType = sequelize.define<IPetType>('petType', {
-  type_id: {
+  typeId: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true

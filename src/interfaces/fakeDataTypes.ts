@@ -19,35 +19,35 @@ export interface IPetType {
 }
 
 export interface IPost {
-  user_id: number
-  category_id: number
-  post_content: string
-  is_have_img: boolean
+  userId: number
+  categoryId: number
+  postContent: string
+  isHaveImg: boolean
 }
 
 export interface IPostImage {
-  post_id: number
-  image_url: string
+  postId: number
+  imageUrl: string
 }
 
 export interface IComment {
-  user_id: number
-  post_id: number
-  comment_text: string
+  userId: number
+  postId: number
+  commentText: string
 }
 
 export interface ILike {
-  user_id: number
-  post_id: number
+  userId: number
+  postId: number
 }
 
 export interface IFollower {
-  follower_id: number
-  following_id: number
+  followerId: number
+  followingId: number
 }
 
 export interface IProduct {
-  post_id: number
+  postId: number
   title: string
   price: number
   details: string
@@ -55,11 +55,11 @@ export interface IProduct {
 }
 
 export interface IPet {
-  post_id: number
-  pet_name: string
-  pet_type: number
+  postId: number
+  petName: string
+  petType: number
   age: number
   gender: string
-  health_status: string
-  adoption_status: string
+  healthStatus: string
+  adoptionStatus: string
 }

@@ -10,37 +10,37 @@ import Category from './Category'
 import Product from './Product'
 import Pet from './Pet'
 
-User.hasMany(Post, { foreignKey: 'user_id' })
-Post.belongsTo(User, { foreignKey: 'user_id' })
+User.hasMany(Post, { foreignKey: 'userId' })
+Post.belongsTo(User, { foreignKey: 'userId' })
 
-Post.hasMany(PostImage, { foreignKey: 'post_id' })
-PostImage.belongsTo(Post, { foreignKey: 'post_id' })
+Post.hasMany(PostImage, { foreignKey: 'postId' })
+PostImage.belongsTo(Post, { foreignKey: 'postId' })
 
-User.hasMany(Comment, { foreignKey: 'user_id' })
-Comment.belongsTo(User, { foreignKey: 'user_id' })
+User.hasMany(Comment, { foreignKey: 'userId' })
+Comment.belongsTo(User, { foreignKey: 'userId' })
 
-Post.hasMany(Comment, { foreignKey: 'post_id' })
-Comment.belongsTo(Post, { foreignKey: 'post_id' })
+Post.hasMany(Comment, { foreignKey: 'postId' })
+Comment.belongsTo(Post, { foreignKey: 'postId' })
 
-User.hasMany(Like, { foreignKey: 'user_id' })
-Like.belongsTo(User, { foreignKey: 'user_id' })
+User.hasMany(Like, { foreignKey: 'userId' })
+Like.belongsTo(User, { foreignKey: 'userId' })
 
-Post.hasMany(Like, { foreignKey: 'post_id' })
-Like.belongsTo(Post, { foreignKey: 'post_id' })
+Post.hasMany(Like, { foreignKey: 'postId' })
+Like.belongsTo(Post, { foreignKey: 'postId' })
 
-User.hasMany(Follower, { foreignKey: 'follower_id' })
-Follower.belongsTo(User, { foreignKey: 'follower_id' })
+User.hasMany(Follower, { foreignKey: 'followerId' })
+Follower.belongsTo(User, { foreignKey: 'followerId' })
 
-User.hasMany(Follower, { foreignKey: 'following_id' })
-Follower.belongsTo(User, { foreignKey: 'following_id' })
+User.hasMany(Follower, { foreignKey: 'followingId' })
+Follower.belongsTo(User, { foreignKey: 'followingId' })
 
-Post.hasMany(Product, { foreignKey: 'post_id' })
-Product.belongsTo(Post, { foreignKey: 'post_id' })
+Post.hasMany(Product, { foreignKey: 'postId' })
+Product.belongsTo(Post, { foreignKey: 'postId' })
 
-PetType.hasMany(Pet, { foreignKey: 'pet_type' })
-Pet.belongsTo(PetType, { foreignKey: 'pet_type' })
+PetType.hasMany(Pet, { foreignKey: 'petType' })
+Pet.belongsTo(PetType, { foreignKey: 'petType' })
 
-Category.hasMany(Post, { foreignKey: 'category_id' })
-Post.belongsTo(Category, { foreignKey: 'category_id' })
+Category.hasMany(Post, { foreignKey: 'categoryId' })
+Post.belongsTo(Category, { foreignKey: 'categoryId' })
 
 export { sequelize, User, Post, PostImage, Comment, Like, Follower, PetType, Category, Product, Pet }
