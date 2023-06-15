@@ -3,12 +3,12 @@ import { DataTypes } from 'sequelize'
 import { type IProduct } from '../interfaces/models'
 
 const Product = sequelize.define<IProduct>('product', {
-  product_id: {
+  productId: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true
   },
-  post_id: {
+  postId: {
     type: DataTypes.INTEGER
   },
   title: {
