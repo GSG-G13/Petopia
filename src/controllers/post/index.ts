@@ -1,3 +1,3 @@
-import getPost from './getSingelPost'
-
-export { getPost }
+import getPost from './getSinglePost'
+import { addPost } from './addPost'
+export { getPost, addPost }

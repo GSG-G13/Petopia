@@ -1,6 +1,11 @@
 import { type IPet, type IPost, type IPostImage, type IProduct } from './models'
 
-export interface IPostWithDetails extends IPost {
+interface IPetWithTypeName extends IPet {
+  petType: {
+    'title': string
+  }
+}
+interface IPostWithDetails extends IPost {
   postImages?: IPostImage[]
   likeCount?: number
   commentsCount?: number
@@ -11,5 +16,6 @@ export interface IPostWithDetails extends IPost {
   }
   category: { title: string }
   products?: IProduct[]
-  pets?: IPet[]
+  pets?: IPetWithTypeName[]
 }
+export type { IPostWithDetails, IPetWithTypeName }

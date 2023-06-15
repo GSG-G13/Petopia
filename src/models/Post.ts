@@ -9,7 +9,7 @@ const Post = sequelize.define<IPostWithDetails>('post', {
     primaryKey: true,
     autoIncrement: true
   },
-  user_id: {
+  userId: {
     type: DataTypes.INTEGER
   },
   category_id: {

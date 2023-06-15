@@ -1,5 +1,5 @@
 import sequelize from 'sequelize'
-import { Category, Pet, Post, PostImage, Product, User } from '../../models'
+import { Category, Pet, PetType, Post, PostImage, Product, User } from '../../models'
 import { type IPostWithDetails } from '../../interfaces/iPosts'
 
 const gePostQuery = async (id: number): Promise<IPostWithDetails | null> => {
@@ -21,7 +21,8 @@ const gePostQuery = async (id: number): Promise<IPostWithDetails | null> => {
         model: Product
       },
       {
-        model: Pet
+        model: Pet,
+        include: [{ model: PetType, attributes: ['title'] }]
       }
     ],
     attributes: {
@@ -38,7 +39,8 @@ const gePostQuery = async (id: number): Promise<IPostWithDetails | null> => {
       'postImages.image_id',
       'category.category_id',
       'products.product_id',
-      'pets.pet_id'
+      'pets.pet_id',
+      'pets->petType.type_id'
     ]
   })
 

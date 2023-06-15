@@ -45,7 +45,7 @@ interface IPetType extends Model<InferAttributes<IPetType>, InferCreationAttribu
 
 interface IPost extends Model<InferAttributes<IPost>, InferCreationAttributes<IPost>> {
   post_id: CreationOptional<number>
-  user_id: ForeignKey<number>
+  userId: ForeignKey<number>
   category_id: number
   post_content: string
   is_have_img: boolean
@@ -62,8 +62,8 @@ interface IProduct extends Model<InferAttributes<IProduct>, InferCreationAttribu
   post_id: ForeignKey<number>
   title: string
   price: number
-  details: string
-  rating: number
+  details?: string
+  rating?: number
 }
 
 interface IUser extends Model<InferAttributes<IUser>, InferCreationAttributes<IUser>> {

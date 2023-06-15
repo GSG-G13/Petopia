@@ -7,7 +7,7 @@ import { getUserQuery } from '../queries/user'
 
 config()
 
-enum userTypes {
+export enum userTypes {
   ADMIN = 'admin',
   REGULAR = 'regular',
 }
@@ -22,9 +22,12 @@ const checkType = (authorizedTypes: userTypes[]) => async (req: CustomRequest, _
   if (user === null) {
     next(new CustomError(402, 'User not found'))
   } else {
+    // authorizedTypes.indexOf(user.userType) > -1
     if (authorizedTypes.includes(user.userType as userTypes)) {
       next()
     } else {
+      console.log(user.userType as userTypes)
+      console.log(authorizedTypes)
       next(new CustomError(403, 'Not enough permissions'))
     }
   }

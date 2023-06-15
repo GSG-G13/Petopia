@@ -137,19 +137,19 @@ const fakeData: {
   ],
   posts: [
     {
-      user_id: 1,
+      userId: 1,
       category_id: 1,
       post_content: 'This is a regular post.',
       is_have_img: true
     },
     {
-      user_id: 2,
+      userId: 2,
       category_id: 2,
       post_content: 'Check out this product Im selling!',
       is_have_img: true
     },
     {
-      user_id: 2,
+      userId: 2,
       category_id: 1,
       post_content: 'Looking to adopt a pet.',
       is_have_img: false

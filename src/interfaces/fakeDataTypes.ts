@@ -19,7 +19,7 @@ export interface IPetType {
 }
 
 export interface IPost {
-  user_id: number
+  userId: number
   category_id: number
   post_content: string
   is_have_img: boolean
@@ -50,8 +50,8 @@ export interface IProduct {
   post_id: number
   title: string
   price: number
-  details: string
-  rating: number
+  details?: string
+  rating?: number
 }
 
 export interface IPet {

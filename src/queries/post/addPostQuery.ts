@@ -1,16 +1,12 @@
-// import sequelize from 'sequelize'
-// import { type IPost } from '../../interfaces/models'
-// import { Post } from '../../models'
+import { type IPost } from '../../interfaces/fakeDataTypes'
+import { Post } from '../../models'
 
-// interface postData {
-//   category_id: number
-//   post_content: string
-//   is_have_img: boolean
-// }
-// const addPostQuery = async (_userId: number,postData: postData , imageUrls: string[]): Promise<IPost> => {
-//   const { userId, category_id, post_content, is_have_img, image_url } = data
-//   const transaction = await sequelize.transaction()
-//   try{
-//     const post = await Post.create(postData, { transaction });
-//   }
-// }
+const addPostQuery = async (postData: IPost): Promise<number> => {
+  const post = await Post.create(
+    { ...postData },
+    { returning: ['post_id'] }
+  )
+  const postId = post?.post_id
+  return postId
+}
+export default addPostQuery
