@@ -4,7 +4,7 @@ import {
 } from 'sequelize'
 
 interface ICategory extends Model<InferAttributes<ICategory>, InferCreationAttributes<ICategory>> {
-  category_id: CreationOptional<number>
+  categoryId: CreationOptional<number>
   title: string
 }
 
