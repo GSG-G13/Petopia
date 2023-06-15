@@ -37,8 +37,8 @@ Follower.belongsTo(User, { foreignKey: 'followingId' })
 Post.hasMany(Product, { foreignKey: 'postId' })
 Product.belongsTo(Post, { foreignKey: 'postId' })
 
-PetType.hasMany(Pet, { foreignKey: 'petType' })
-Pet.belongsTo(PetType, { foreignKey: 'petType' })
+PetType.hasMany(Pet, { foreignKey: 'typeId' })
+Pet.belongsTo(PetType, { foreignKey: 'typeId', as: 'type' })
 
 Category.hasMany(Post, { foreignKey: 'categoryId' })
 Post.belongsTo(Category, { foreignKey: 'categoryId' })
