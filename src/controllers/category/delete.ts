@@ -14,7 +14,7 @@ const deleteCategory = async (req: Request, res: Response, next: NextFunction): 
 
     if (deletedCategory) {
       res.json({
-        message: 'Category deleted successfully',
+        message: 'Category Deleted Successfully',
         data: deletedCategory
       })
     } else {
