@@ -7,12 +7,6 @@ const showCategoryById = async (req: Request, res: Response, next: NextFunction)
   try {
     const { categoryId }: { categoryId: number } = await byIdValidation.validate(req.params)
 
-    try {
-      await byIdValidation.validate({ categoryId })
-    } catch (err: unknown) {
-      next(err)
-    }
-
     const category = await getCategoryById(Number(categoryId))
 
     if (category != null) {
@@ -20,7 +14,7 @@ const showCategoryById = async (req: Request, res: Response, next: NextFunction)
         data: category
       })
     } else {
-      next(new CustomError(404, 'Category not found'))
+      next(new CustomError(404, 'The Category Was Not Found'))
     }
   } catch (err: unknown) {
     next(err)

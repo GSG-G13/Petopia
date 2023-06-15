@@ -19,11 +19,11 @@ const updateCategory = async (req: Request, res: Response, next: NextFunction): 
 
     if (updatedCategory != null) {
       res.json({
-        message: 'Category updated successfully',
+        message: 'Category Updated Successfully',
         data: updatedCategory
       })
     } else {
-      throw new CustomError(404, 'Category not found')
+      throw new CustomError(404, 'The Category Was Not Found')
     }
   } catch (err: unknown) {
     next(err)

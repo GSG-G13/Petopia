@@ -14,11 +14,11 @@ const deleteCategory = async (req: Request, res: Response, next: NextFunction): 
 
     if (deletedCategory) {
       res.json({
-        message: 'Category deleted successfully',
+        message: 'Category Deleted Successfully',
         data: deletedCategory
       })
     } else {
-      throw new CustomError(404, 'Category not found')
+      throw new CustomError(404, 'The Category Was Not Found')
     }
   } catch (err: unknown) {
     next(err)
