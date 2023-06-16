@@ -1,10 +1,12 @@
-import { type Request, type Response, type NextFunction } from 'express'
+import { type Response, type NextFunction } from 'express'
+import { type CustomRequest } from '../../interfaces/iAuth'
 import addCommentQuery from '../../queries/comment/addComment'
 import { commentSchema } from '../../validation/comment/addComment'
 
-const addComment = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+const addComment = async (req: CustomRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const { userId, postId, commentText } = req.body
+    const userId = req.user?.userId as number
+    const { postId, commentText } = req.body
     await commentSchema.validate({ commentText })
 
     const newComment = await addCommentQuery(userId, postId, commentText)
