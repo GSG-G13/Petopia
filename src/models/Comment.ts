@@ -3,18 +3,18 @@ import sequelize from '../database/config'
 import { type IComment } from '../interfaces/models'
 
 const Comment = sequelize.define<IComment>('comment', {
-  comment_id: {
+  commentId: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true
   },
-  user_id: {
+  userId: {
     type: DataTypes.INTEGER
   },
-  post_id: {
+  postId: {
     type: DataTypes.INTEGER
   },
-  comment_text: {
+  commentText: {
     type: DataTypes.STRING
   }
 })

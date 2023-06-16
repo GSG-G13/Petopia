@@ -65,63 +65,63 @@ const fakeData: {
   ],
   comments: [
     {
-      user_id: 1,
-      post_id: 1,
-      comment_text: 'Great post!'
+      userId: 1,
+      postId: 1,
+      commentText: 'Great post!'
     },
     {
-      user_id: 2,
-      post_id: 1,
-      comment_text: 'Nice work!'
+      userId: 2,
+      postId: 1,
+      commentText: 'Nice work!'
     },
     {
-      user_id: 1,
-      post_id: 2,
-      comment_text: 'Interesting topic.'
+      userId: 1,
+      postId: 2,
+      commentText: 'Interesting topic.'
     }
   ],
   followers: [
     {
-      follower_id: 1,
-      following_id: 2
+      followerId: 1,
+      followingId: 2
     },
     {
-      follower_id: 2,
-      following_id: 1
+      followerId: 2,
+      followingId: 1
     }
   ],
   likes: [
     {
-      user_id: 1,
-      post_id: 1
+      userId: 1,
+      postId: 1
     },
     {
-      user_id: 2,
-      post_id: 1
+      userId: 2,
+      postId: 1
     },
     {
-      user_id: 1,
-      post_id: 2
+      userId: 1,
+      postId: 2
     }
   ],
   pets: [
     {
-      post_id: 1,
-      pet_name: 'Max',
-      pet_type: 1,
+      postId: 1,
+      petName: 'Max',
+      petType: 1,
       age: 3,
       gender: 'Male',
-      health_status: 'Healthy',
-      adoption_status: 'Available'
+      healthStatus: 'Healthy',
+      adoptionStatus: 'Available'
     },
     {
-      post_id: 2,
-      pet_name: 'Bella',
-      pet_type: 2,
+      postId: 2,
+      petName: 'Bella',
+      petType: 2,
       age: 2,
       gender: 'Female',
-      health_status: 'Vaccinated',
-      adoption_status: 'Adopted'
+      healthStatus: 'Vaccinated',
+      adoptionStatus: 'Adopted'
     }
   ],
   petTypes: [
@@ -138,54 +138,54 @@ const fakeData: {
   posts: [
     {
       userId: 1,
-      category_id: 1,
-      post_content: 'This is a regular post.',
-      is_have_img: true
+      categoryId: 1,
+      postContent: 'This is a regular post.',
+      isHaveImg: true
     },
     {
       userId: 2,
-      category_id: 2,
-      post_content: 'Check out this product Im selling!',
-      is_have_img: true
+      categoryId: 2,
+      postContent: 'Check out this product Im selling!',
+      isHaveImg: true
     },
     {
       userId: 2,
-      category_id: 1,
-      post_content: 'Looking to adopt a pet.',
-      is_have_img: false
+      categoryId: 1,
+      postContent: 'Looking to adopt a pet.',
+      isHaveImg: false
     }
   ],
   postImages: [
     {
-      post_id: 1,
-      image_url: 'https://example.com/image1.jpg'
+      postId: 1,
+      imageUrl: 'https://example.com/image1.jpg'
     },
     {
-      post_id: 2,
-      image_url: 'https://example.com/image2.jpg'
+      postId: 2,
+      imageUrl: 'https://example.com/image2.jpg'
     },
     {
-      post_id: 1,
-      image_url: 'https://example.com/image3.jpg'
+      postId: 1,
+      imageUrl: 'https://example.com/image3.jpg'
     }
   ],
   products: [
     {
-      post_id: 1,
+      postId: 1,
       title: 'Product A',
       price: 9.99,
       details: 'This is product A.',
       rating: 4.5
     },
     {
-      post_id: 2,
+      postId: 2,
       title: 'Product B',
       price: 14.99,
       details: 'Check out product B.',
       rating: 3.8
     },
     {
-      post_id: 3,
+      postId: 3,
       title: 'Product C',
       price: 19.99,
       details: 'Introducing product C.',

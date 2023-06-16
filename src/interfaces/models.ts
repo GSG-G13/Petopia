@@ -9,57 +9,57 @@ interface ICategory extends Model<InferAttributes<ICategory>, InferCreationAttri
 }
 
 interface IComment extends Model<InferAttributes<IComment>, InferCreationAttributes<IComment>> {
-  comment_id: CreationOptional<number>
-  user_id: ForeignKey<number>
-  post_id: ForeignKey<number>
-  comment_text: string
+  commentId: CreationOptional<number>
+  userId: ForeignKey<number>
+  postId: ForeignKey<number>
+  commentText: string
 }
 
 interface IFollower extends Model<InferAttributes<IFollower>, InferCreationAttributes<IFollower>> {
-  follow_id: CreationOptional<number>
-  follower_id: ForeignKey<number>
-  following_id: ForeignKey<number>
+  followId: CreationOptional<number>
+  followerId: ForeignKey<number>
+  followingId: ForeignKey<number>
 }
 
 interface ILike extends Model<InferAttributes<ILike>, InferCreationAttributes<ILike>> {
-  like_id: CreationOptional<number>
-  user_id: ForeignKey<number>
-  post_id: ForeignKey<number>
+  likeId: CreationOptional<number>
+  userId: ForeignKey<number>
+  postId: ForeignKey<number>
 }
 
 interface IPet extends Model<InferAttributes<IPet>, InferCreationAttributes<IPet>> {
-  pet_id: CreationOptional<number>
-  post_id: ForeignKey<number>
-  pet_name: string
-  pet_type: ForeignKey<number>
+  petId: CreationOptional<number>
+  postId: ForeignKey<number>
+  petName: string
+  petType: ForeignKey<number>
   age: number
   gender: string
-  health_status: string
-  adoption_status: string
+  healthStatus: string
+  adoptionStatus: string
 }
 
 interface IPetType extends Model<InferAttributes<IPetType>, InferCreationAttributes<IPetType>> {
-  type_id: CreationOptional<number>
+  typeId: CreationOptional<number>
   title: string
 }
 
 interface IPost extends Model<InferAttributes<IPost>, InferCreationAttributes<IPost>> {
-  post_id: CreationOptional<number>
+  postId: CreationOptional<number>
   userId: ForeignKey<number>
   categoryId: number
-  post_content: string
-  is_have_img: boolean
+  postContent: string
+  isHaveImg: boolean
 }
 
 interface IPostImage extends Model<InferAttributes<IPostImage>, InferCreationAttributes<IPostImage>> {
-  image_id: CreationOptional<number>
-  post_id: ForeignKey<number>
-  image_url: string
+  imageId: CreationOptional<number>
+  postId: ForeignKey<number>
+  imageUrl: string
 }
 
 interface IProduct extends Model<InferAttributes<IProduct>, InferCreationAttributes<IProduct>> {
-  product_id: CreationOptional<number>
-  post_id: ForeignKey<number>
+  productId: CreationOptional<number>
+  postId: ForeignKey<number>
   title: string
   price: number
   details?: string

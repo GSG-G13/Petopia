@@ -1,10 +1,12 @@
 import sequelize from '../database/config'
 import { DataTypes } from 'sequelize'
-// import { type IPost } from '../interfaces/models'
-import { type IPostWithDetails } from '../interfaces/iPosts'
+import { type IPost } from '../interfaces/models'
+// import { type IPostWithDetails } from '../interfaces/iPosts'
 
-const Post = sequelize.define<IPostWithDetails>('post', {
-  post_id: {
+// const Post = sequelize.define<IPostWithDetails>('post', {
+//   post_id: {
+const Post = sequelize.define<IPost>('post', {
+  postId: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true
@@ -12,13 +14,13 @@ const Post = sequelize.define<IPostWithDetails>('post', {
   userId: {
     type: DataTypes.INTEGER
   },
-  category_id: {
+  categoryId: {
     type: DataTypes.INTEGER
   },
-  post_content: {
+  postContent: {
     type: DataTypes.STRING
   },
-  is_have_img: {
+  isHaveImg: {
     type: DataTypes.BOOLEAN
   }
 })

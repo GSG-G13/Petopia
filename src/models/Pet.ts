@@ -2,19 +2,19 @@ import sequelize from '../database/config'
 import { DataTypes } from 'sequelize'
 import { type IPet } from '../interfaces/models'
 
-const Pet = sequelize.define<IPet>('pets', {
-  pet_id: {
+const Pet = sequelize.define<IPet>('pet', {
+  petId: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true
   },
-  post_id: {
+  postId: {
     type: DataTypes.INTEGER
   },
-  pet_name: {
+  petName: {
     type: DataTypes.STRING
   },
-  pet_type: {
+  petType: {
     type: DataTypes.INTEGER
   },
   age: {
@@ -23,10 +23,10 @@ const Pet = sequelize.define<IPet>('pets', {
   gender: {
     type: DataTypes.STRING
   },
-  health_status: {
+  healthStatus: {
     type: DataTypes.STRING
   },
-  adoption_status: {
+  adoptionStatus: {
     type: DataTypes.STRING
   }
 })
