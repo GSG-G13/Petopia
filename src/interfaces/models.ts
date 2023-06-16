@@ -31,7 +31,7 @@ interface IPet extends Model<InferAttributes<IPet>, InferCreationAttributes<IPet
   petId: CreationOptional<number>
   postId: ForeignKey<number>
   petName: string
-  petType: ForeignKey<number>
+  type: ForeignKey<number>
   age: number
   gender: string
   healthStatus: string

@@ -4,9 +4,9 @@ import { Post } from '../../models'
 const addPostQuery = async (postData: IPost): Promise<number> => {
   const post = await Post.create(
     { ...postData },
-    { returning: ['post_id'] }
+    { returning: ['postId'] }
   )
-  const postId = post?.post_id
+  const postId = post?.postId
   return postId
 }
 export default addPostQuery

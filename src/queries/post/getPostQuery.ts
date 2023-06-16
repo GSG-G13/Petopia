@@ -1,10 +1,11 @@
 import sequelize from 'sequelize'
 import { Category, Pet, PetType, Post, PostImage, Product, User } from '../../models'
 import { type IPostWithDetails } from '../../interfaces/iPosts'
+// import { type IPost } from '../../interfaces/models'
 
-const gePostQuery = async (id: number): Promise<IPostWithDetails | null> => {
+const gePostQuery = async (id: number): Promise<IPostWithDetails | null > => {
   const post = await Post.findOne({
-    where: { post_id: id },
+    where: { postId: id },
     include: [
       {
         model: PostImage
@@ -27,20 +28,24 @@ const gePostQuery = async (id: number): Promise<IPostWithDetails | null> => {
     ],
     attributes: {
       include: [
-        [sequelize.literal('(SELECT COUNT(*) FROM likes WHERE likes.post_id = post.post_id)'), 'likeCount'],
-        [sequelize.literal('(SELECT COUNT(*) FROM comments WHERE comments.post_id = post.post_id)'), 'commentCount']
-        // [sequelize.fn('COUNT', sequelize.col('likes.like_id')), 'likeCount'],
-        // [sequelize.fn('COUNT', sequelize.col('comments.comment_id')), 'commentCount']
+        [
+          sequelize.literal('(SELECT COUNT(*) FROM likes WHERE likes."postId" = post."postId")'),
+          'likeCount'
+        ],
+        [
+          sequelize.literal('(SELECT COUNT(*) FROM comments WHERE comments."postId" = post."postId")'),
+          'commentCount'
+        ]
       ]
     },
     group: [
-      'post.post_id',
+      'post.postId',
       'user.userId',
-      'postImages.image_id',
-      'category.category_id',
-      'products.product_id',
-      'pets.pet_id',
-      'pets->petType.type_id'
+      'postImages.imageId',
+      'category.categoryId',
+      'products.productId',
+      'pets.petId',
+      'pets->petType.typeId'
     ]
   })
 

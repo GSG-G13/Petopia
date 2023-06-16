@@ -22,7 +22,6 @@ const checkType = (authorizedTypes: userTypes[]) => async (req: CustomRequest, _
   if (user === null) {
     next(new CustomError(402, 'User not found'))
   } else {
-    // authorizedTypes.indexOf(user.userType) > -1
     if (authorizedTypes.includes(user.userType as userTypes)) {
       next()
     } else {

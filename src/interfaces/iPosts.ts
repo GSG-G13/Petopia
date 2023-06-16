@@ -8,13 +8,13 @@ interface IPetWithTypeName extends IPet {
 interface IPostWithDetails extends IPost {
   postImages?: IPostImage[]
   likeCount?: number
-  commentsCount?: number
-  user: {
-    user_id: number
-    full_name: string
-    user_image: string
+  commentCount?: number
+  user?: {
+    userId: number
+    fullName: string
+    userImage: string
   }
-  category: { title: string }
+  category?: { title: string }
   products?: IProduct[]
   pets?: IPetWithTypeName[]
 }

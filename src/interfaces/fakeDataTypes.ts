@@ -57,7 +57,7 @@ export interface IProduct {
 export interface IPet {
   postId: number
   petName: string
-  petType: number
+  type: number
   age: number
   gender: string
   healthStatus: string

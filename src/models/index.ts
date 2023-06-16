@@ -40,11 +40,11 @@ Product.belongsTo(Post, { foreignKey: 'postId' })
 Post.hasMany(Pet, { foreignKey: 'postId' })
 Pet.belongsTo(Post, { foreignKey: 'postId' })
 
-PetType.hasMany(Pet, { foreignKey: 'petType' })
-Pet.belongsTo(PetType, { foreignKey: 'petType' })
+// PetType.hasMany(Pet, { foreignKey: 'petType' })
+// Pet.belongsTo(PetType, { foreignKey: 'petType' })
 
-// PetType.hasMany(Pet, { foreignKey: 'typeId' })
-// Pet.belongsTo(PetType, { foreignKey: 'typeId', as: 'type' })
+PetType.hasMany(Pet, { foreignKey: 'type' })
+Pet.belongsTo(PetType, { foreignKey: 'type' })
 
 Category.hasMany(Post, { foreignKey: 'categoryId' })
 Post.belongsTo(Category, { foreignKey: 'categoryId' })

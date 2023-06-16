@@ -3,7 +3,7 @@ import { type IProduct } from '../../interfaces/fakeDataTypes'
 
 const validateAddProduct = async (data: IProduct): Promise<IProduct> => {
   const schema = Yup.object().shape({
-    post_id: Yup.number().required(),
+    postId: Yup.number().required(),
     title: Yup.string().required('Product title is required'),
     price: Yup.number().required('Product price is required'),
     details: Yup.string(),

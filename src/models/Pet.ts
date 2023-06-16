@@ -14,7 +14,7 @@ const Pet = sequelize.define<IPet>('pet', {
   petName: {
     type: DataTypes.STRING
   },
-  petType: {
+  type: {
     type: DataTypes.INTEGER
   },
   age: {

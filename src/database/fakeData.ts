@@ -108,7 +108,7 @@ const fakeData: {
     {
       postId: 1,
       petName: 'Max',
-      petType: 1,
+      type: 1,
       age: 3,
       gender: 'Male',
       healthStatus: 'Healthy',
@@ -117,7 +117,7 @@ const fakeData: {
     {
       postId: 2,
       petName: 'Bella',
-      petType: 2,
+      type: 2,
       age: 2,
       gender: 'Female',
       healthStatus: 'Vaccinated',
