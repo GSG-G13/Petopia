@@ -46,7 +46,7 @@ interface IPetType extends Model<InferAttributes<IPetType>, InferCreationAttribu
 interface IPost extends Model<InferAttributes<IPost>, InferCreationAttributes<IPost>> {
   post_id: CreationOptional<number>
   userId: ForeignKey<number>
-  category_id: number
+  categoryId: number
   post_content: string
   is_have_img: boolean
 }

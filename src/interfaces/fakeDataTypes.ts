@@ -20,7 +20,7 @@ export interface IPetType {
 
 export interface IPost {
   userId: number
-  category_id: number
+  categoryId: number
   post_content: string
   is_have_img: boolean
 }
