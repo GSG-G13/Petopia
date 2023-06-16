@@ -6,7 +6,7 @@ const getCommentQuery = async (commentId: number): Promise<IComment | null> => {
   try {
     const comment = await Comment.findOne({
       where: {
-        comment_id: commentId
+        commentId
       },
       include: [
         {

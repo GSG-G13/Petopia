@@ -5,7 +5,7 @@ const getCommentsQuery = async (postId: number): Promise<object> => {
   try {
     const comments = await Comment.findAll({
       where: {
-        post_id: postId
+        postId
       },
       include: [
         {
