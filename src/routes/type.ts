@@ -3,7 +3,7 @@ import {
   createType,
   deleteType, updateType,
   showAllTypes, showTypeById
-} from '../controllers/type'
+} from '../controllers/pettype'
 
 const typeRouter = express.Router()
 
