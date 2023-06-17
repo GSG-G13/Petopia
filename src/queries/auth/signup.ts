@@ -24,7 +24,9 @@ const createUser = async ({
     profileImage,
     address,
     userType,
-    status
+    status,
+    followerCount: 0,
+    followingCount: 0
   })
 
   return newUser

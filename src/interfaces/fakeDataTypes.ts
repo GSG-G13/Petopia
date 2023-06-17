@@ -2,14 +2,14 @@ export interface IUser {
   fullName: string
   email: string
   password: string
+  phone?: string
   userImage?: string
   profileImage?: string
   address?: string
-  phone?: string
   userType?: string
   status?: string
-  followerCount: number
-  followingCount: number
+  followerCount?: number
+  followingCount?: number
 
 }
 
