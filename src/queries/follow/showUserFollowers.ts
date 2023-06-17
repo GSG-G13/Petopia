@@ -8,8 +8,8 @@ const getUserFollowers = async (followingId: number): Promise<IFollower[]> => {
     include: [
       {
         model: User,
-        attributes: ['fullName', 'userImage'],
-        as: 'user'
+        as: 'followingUser',
+        attributes: ['fullName', 'userImage']
       }
     ],
     raw: true

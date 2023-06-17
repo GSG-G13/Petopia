@@ -4,11 +4,11 @@ import { User } from '../../models/'
 
 const getUserFollowing = async (followerId: number): Promise<IFollower[]> => {
   const userFollowing = await Follower.findAll({
-    where: { followerId }, // Filter by followerId
+    where: { followerId },
     include: [
       {
         model: User,
-        attributes: ['fullName', 'userImage'] // Include fullName and userImage
+        attributes: ['fullName', 'userImage']
       }
     ]
   })

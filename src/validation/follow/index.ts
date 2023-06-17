@@ -1,3 +1,3 @@
-import validateFollowNum from './validateFollowNum'
+import { validateFollowerId, validateFollowingId, validateFollowNum } from './validateFollowNum'
 
-export { validateFollowNum }
+export { validateFollowerId, validateFollowingId, validateFollowNum }

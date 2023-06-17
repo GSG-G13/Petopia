@@ -15,7 +15,7 @@ const followRouter = express.Router()
 
 followRouter.post('/', authUser, checkType([REGULAR]), createFollow)
 followRouter.delete('/', authUser, checkType([REGULAR]), unFollow)
-followRouter.get('/following', authUser, checkType([REGULAR]), showUserFollowing)
-followRouter.get('/followers', authUser, checkType([REGULAR]), showUserFollowers)
+followRouter.get('/followings/:followerId', authUser, checkType([REGULAR]), showUserFollowing)
+followRouter.get('/followers/:followingId', authUser, checkType([REGULAR]), showUserFollowers)
 
 export default followRouter
