@@ -7,7 +7,10 @@ const getComments = async (req: Request, res: Response, next: NextFunction): Pro
 
   try {
     const comments = await getCommentsQuery(id)
-    res.json(comments)
+    res.json({
+      message: 'Comments Retrieved Successfully',
+      data: comments
+    })
   } catch (error) {
     next(error)
   }
