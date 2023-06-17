@@ -8,6 +8,9 @@ export interface IUser {
   phone?: string
   userType?: string
   status?: string
+  followerCount: number
+  followingCount: number
+
 }
 
 export interface ICategory {
@@ -44,6 +47,7 @@ export interface ILike {
 export interface IFollower {
   followerId: number
   followingId: number
+
 }
 
 export interface IProduct {

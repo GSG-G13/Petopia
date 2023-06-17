@@ -34,6 +34,9 @@ Follower.belongsTo(User, { foreignKey: 'followerId' })
 User.hasMany(Follower, { foreignKey: 'followingId' })
 Follower.belongsTo(User, { foreignKey: 'followingId' })
 
+Follower.belongsTo(User, { as: 'followerUser', foreignKey: 'followerId' })
+Follower.belongsTo(User, { as: 'followingUser', foreignKey: 'followingId' })
+
 Post.hasMany(Product, { foreignKey: 'postId' })
 Product.belongsTo(Post, { foreignKey: 'postId' })
 

@@ -25,18 +25,24 @@ const fakeData: {
       address: '123 Main St, Gaza',
       phone: '123-456-7890',
       userType: 'regular',
-      status: 'active'
+      status: 'active',
+      followerCount: 0,
+      followingCount: 0
+
     },
     {
       fullName: 'Mohammed Sallout',
       email: 'Mohammed@example.com',
-      password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
+      password: '$2b$10$J2ZP4xc/Yug8q1Gs7F8vL.rZbskXD2FyRf7iidzdDqD9ewYW4sLFG',
       userImage: 'https://Mohammed.com/user2.jpg',
       profileImage: 'https://Mohammed.com/profile2.jpg',
       address: '456 Elm St, Khaniones',
       phone: '987-654-3210',
-      userType: 'admin',
-      status: 'active'
+      userType: 'regular',
+      status: 'active',
+      followerCount: 2,
+      followingCount: 2
+
     },
     {
       fullName: 'Muhammad Abdulhadi',
@@ -46,7 +52,10 @@ const fakeData: {
       profileImage: 'https://Mohammed.com/profile2.jpg',
       address: '456 Elm St, Khaniones',
       phone: '987-654-3210',
-      status: 'active'
+      status: 'active',
+      followerCount: 0,
+      followingCount: 0
+
     }
   ],
   categories: [
@@ -84,10 +93,19 @@ const fakeData: {
     {
       followerId: 1,
       followingId: 2
+
+    },
+    {
+      followerId: 3,
+      followingId: 2
     },
     {
       followerId: 2,
       followingId: 1
+    },
+    {
+      followerId: 2,
+      followingId: 3
     }
   ],
   likes: [

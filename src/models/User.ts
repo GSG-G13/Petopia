@@ -41,7 +41,16 @@ const User = sequelize.define<IUser>('user', {
     type: DataTypes.ENUM('active', 'deactive'),
     defaultValue: 'active',
     allowNull: false
+  },
+  followerCount: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0
+  },
+  followingCount: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0
   }
+
 })
 
 export default User
