@@ -1,25 +1,23 @@
 import { type Request, type Response, type NextFunction } from 'express'
-import { gePostQuery } from '../../queries/post'
+import { getPostQuery } from '../../queries/post'
 import CustomError from '../../helpers/CustomError'
-import { type IPostWithDetails } from '../../interfaces/iPosts'
 
 const getPost = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { postId } = req.params
     const id = Number(postId)
     if (!(id > 0)) {
-      next(new CustomError(401, 'Bad Request'))
+      throw new CustomError(401, 'Bad Request')
     } else {
-      const post = await gePostQuery(id) as IPostWithDetails
+      const post = await getPostQuery(id)
       if (post !== null) {
-        console.log(post.commentCount)
-        res.json({ data: post })
+        res.status(201).json({ data: post })
       } else {
-        next(new CustomError(404, 'post not found'))
+        throw new CustomError(404, 'post not found')
       }
     }
-  } catch (error) {
-    next(error)
+  } catch (err) {
+    next(err)
   }
 }
 export default getPost

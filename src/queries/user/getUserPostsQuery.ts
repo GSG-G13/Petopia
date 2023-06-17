@@ -2,9 +2,10 @@ import sequelize from 'sequelize'
 import { Category, Pet, PetType, Post, PostImage, Product, User } from '../../models'
 import { type IPostWithDetails } from '../../interfaces/iPosts'
 
-const getPostQuery = async (id: number): Promise<IPostWithDetails | null > => {
-  const post = await Post.findOne({
-    where: { postId: id },
+const getUserPostsQuery = async (userId: number, page: number, limit: number): Promise<IPostWithDetails[]> => {
+  const offset = (page - 1) * limit
+  const posts = await Post.findAll({
+    where: { userId },
     include: [
       {
         model: PostImage
@@ -45,10 +46,13 @@ const getPostQuery = async (id: number): Promise<IPostWithDetails | null > => {
       'products.productId',
       'pets.petId',
       'pets->petType.typeId'
-    ]
+    ],
+    order: [['createdAt', 'DESC']],
+    limit,
+    offset,
+    subQuery: false
   })
-
-  return post
+  return posts
 }
 
-export default getPostQuery
+export default getUserPostsQuery

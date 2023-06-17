@@ -1,11 +1,14 @@
 import express from 'express'
-import { addPost, getPost } from '../controllers/post'
+import { addPost, deletePost, getExplorePosts, getPost, updatePost } from '../controllers/post'
 import checkType, { userTypes } from '../middlewares/checkType'
 import authUser from '../middlewares/auth'
 
 const postRouter = express.Router()
 
-const { REGULAR } = userTypes
+const { REGULAR, ADMIN } = userTypes
+postRouter.get('/', getExplorePosts)
 postRouter.get('/:postId', getPost)
 postRouter.post('/', authUser, checkType([REGULAR]), addPost)
+postRouter.put('/:postId', authUser, checkType([REGULAR]), updatePost)
+postRouter.delete('/:postId', authUser, checkType([ADMIN, REGULAR]), deletePost)
 export default postRouter

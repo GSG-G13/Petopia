@@ -1,9 +1,11 @@
 import { Post } from '../../models'
 
 const deletePostQuery = async (postId: number): Promise<number> => {
-  const post = await Post.destroy(
-    { where: { postId } }
+  const result = await Post.destroy(
+    {
+      where: { postId }
+    }
   )
-  return post
+  return result
 }
 export default deletePostQuery

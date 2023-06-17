@@ -1,3 +1,7 @@
-import gePostQuery from './getPostQuery'
+import getPostQuery from './getPostQuery'
+import addPostQuery from './addPostQuery'
+import deletePostQuery from './deletePostQuery'
+import updatePostQuery from './updatePostQuery'
+import getExplorePostsQuery from './getExplorePostsQuery'
 
-export { gePostQuery }
+export { getPostQuery, addPostQuery, deletePostQuery, updatePostQuery, getExplorePostsQuery }

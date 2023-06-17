@@ -10,43 +10,40 @@ import Category from './Category'
 import Product from './Product'
 import Pet from './Pet'
 
-User.hasMany(Post, { foreignKey: 'userId' })
-Post.belongsTo(User, { foreignKey: 'userId' })
+User.hasMany(Post, { foreignKey: 'userId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+Post.belongsTo(User, { foreignKey: 'userId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
 
-Post.hasMany(PostImage, { foreignKey: 'postId' })
-PostImage.belongsTo(Post, { foreignKey: 'postId' })
+Post.hasMany(PostImage, { foreignKey: 'postId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+PostImage.belongsTo(Post, { foreignKey: 'postId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
 
-User.hasMany(Comment, { foreignKey: 'userId' })
-Comment.belongsTo(User, { foreignKey: 'userId' })
+User.hasMany(Comment, { foreignKey: 'userId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+Comment.belongsTo(User, { foreignKey: 'userId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
 
-Post.hasMany(Comment, { foreignKey: 'postId' })
-Comment.belongsTo(Post, { foreignKey: 'postId' })
+Post.hasMany(Comment, { foreignKey: 'postId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+Comment.belongsTo(Post, { foreignKey: 'postId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
 
-User.hasMany(Like, { foreignKey: 'userId' })
-Like.belongsTo(User, { foreignKey: 'userId' })
+User.hasMany(Like, { foreignKey: 'userId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+Like.belongsTo(User, { foreignKey: 'userId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
 
-Post.hasMany(Like, { foreignKey: 'postId' })
-Like.belongsTo(Post, { foreignKey: 'postId' })
+Post.hasMany(Like, { foreignKey: 'postId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+Like.belongsTo(Post, { foreignKey: 'postId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
 
-User.hasMany(Follower, { foreignKey: 'followerId' })
-Follower.belongsTo(User, { foreignKey: 'followerId' })
+User.hasMany(Follower, { foreignKey: 'followerId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+Follower.belongsTo(User, { foreignKey: 'followerId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
 
-User.hasMany(Follower, { foreignKey: 'followingId' })
-Follower.belongsTo(User, { foreignKey: 'followingId' })
+User.hasMany(Follower, { foreignKey: 'followingId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+Follower.belongsTo(User, { foreignKey: 'followingId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
 
-Post.hasMany(Product, { foreignKey: 'postId' })
-Product.belongsTo(Post, { foreignKey: 'postId' })
+Post.hasMany(Product, { foreignKey: 'postId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+Product.belongsTo(Post, { foreignKey: 'postId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
 
-Post.hasMany(Pet, { foreignKey: 'postId' })
-Pet.belongsTo(Post, { foreignKey: 'postId' })
+Post.hasMany(Pet, { foreignKey: 'postId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+Pet.belongsTo(Post, { foreignKey: 'postId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
 
-// PetType.hasMany(Pet, { foreignKey: 'petType' })
-// Pet.belongsTo(PetType, { foreignKey: 'petType' })
+PetType.hasMany(Pet, { foreignKey: 'type', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+Pet.belongsTo(PetType, { foreignKey: 'type', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
 
-PetType.hasMany(Pet, { foreignKey: 'type' })
-Pet.belongsTo(PetType, { foreignKey: 'type' })
-
-Category.hasMany(Post, { foreignKey: 'categoryId' })
-Post.belongsTo(Category, { foreignKey: 'categoryId' })
+Category.hasMany(Post, { foreignKey: 'categoryId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+Post.belongsTo(Category, { foreignKey: 'categoryId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
 
 export { sequelize, User, Post, PostImage, Comment, Like, Follower, PetType, Category, Product, Pet }

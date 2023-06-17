@@ -115,7 +115,7 @@ const fakeData: {
       adoptionStatus: 'Available'
     },
     {
-      postId: 2,
+      postId: 3,
       petName: 'Bella',
       type: 2,
       age: 2,
@@ -144,7 +144,7 @@ const fakeData: {
     },
     {
       userId: 2,
-      categoryId: 2,
+      categoryId: 4,
       postContent: 'Check out this product Im selling!',
       isHaveImg: true
     },
@@ -171,25 +171,11 @@ const fakeData: {
   ],
   products: [
     {
-      postId: 1,
-      title: 'Product A',
-      price: 9.99,
-      details: 'This is product A.',
-      rating: 4.5
-    },
-    {
       postId: 2,
       title: 'Product B',
       price: 14.99,
       details: 'Check out product B.',
       rating: 3.8
-    },
-    {
-      postId: 3,
-      title: 'Product C',
-      price: 19.99,
-      details: 'Introducing product C.',
-      rating: 4.2
     }
   ]
 

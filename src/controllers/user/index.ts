@@ -1,2 +1,4 @@
 import getUser from './getUser'
-export { getUser }
+import getUserPosts from './getUserPosts'
+
+export { getUser, getUserPosts }
