@@ -8,6 +8,7 @@ import { commentSchema } from '../../validation'
 const updateComment = async (req: CustomRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
     const userId = req.user?.userId as number
+    const userType = req.user?.userType as string
 
     const { commentId } = req.params
 
@@ -19,19 +20,19 @@ const updateComment = async (req: CustomRequest, res: Response, next: NextFuncti
       throw new CustomError(400, 'The Comment Was Not Found')
     }
 
-    if (comment?.userId !== userId) {
-      throw new CustomError(401, 'you are unauthorized to update this comment')
-    }
+    if (comment?.userId === userId || userType === 'admin') {
+      const updatedComment: IComment | null = await updateCommentQuery(Number(commentId), commentText)
 
-    const updatedComment: IComment | null = await updateCommentQuery(Number(commentId), commentText)
-
-    if (updatedComment != null) {
-      res.json({
-        message: 'Comment Updated Successfully',
-        data: updatedComment
-      })
+      if (updatedComment != null) {
+        res.json({
+          message: 'Comment Updated Successfully',
+          data: updatedComment
+        })
+      } else {
+        throw new CustomError(400, 'The Comment Was Not Found')
+      }
     } else {
-      throw new CustomError(400, 'The Comment Was Not Found')
+      throw new CustomError(401, 'you are unauthorized to update this comment')
     }
   } catch (err: unknown) {
     next(err)
