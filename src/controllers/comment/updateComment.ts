@@ -8,7 +8,6 @@ import { commentSchema } from '../../validation'
 const updateComment = async (req: CustomRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
     const userId = req.user?.userId as number
-    const userType = req.user?.userType as string
 
     const { commentId } = req.params
 
@@ -20,7 +19,7 @@ const updateComment = async (req: CustomRequest, res: Response, next: NextFuncti
       throw new CustomError(400, 'The Comment Was Not Found')
     }
 
-    if (comment?.userId === userId || userType === 'admin') {
+    if (comment?.userId === userId) {
       const updatedComment: IComment | null = await updateCommentQuery(Number(commentId), commentText)
 
       if (updatedComment != null) {
