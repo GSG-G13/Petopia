@@ -7,7 +7,7 @@ import { getUserQuery } from '../queries/user'
 
 config()
 
-enum userTypes {
+export enum userTypes {
   ADMIN = 'admin',
   REGULAR = 'regular',
 }
