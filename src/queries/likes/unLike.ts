@@ -1,5 +1,4 @@
 import Like from '../../models/Like'
-import sequelize from '../../database/config'
 import CustomError from '../../helpers/CustomError'
 
 const unLike = async (
@@ -11,18 +10,12 @@ const unLike = async (
   })
 
   if (!existingLike) {
-    //  if does not exist
-    return
+    throw new CustomError(404, 'Like not found')
   }
 
-  const transaction = await sequelize.transaction()
-
   try {
-    await existingLike.destroy({ transaction })
-
-    await transaction.commit()
+    await existingLike.destroy()
   } catch (error) {
-    await transaction.rollback()
     throw new CustomError(500, 'Error occurred while unliking post')
   }
 }

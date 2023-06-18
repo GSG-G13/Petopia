@@ -1,6 +1,6 @@
 
-import { createLike } from '../likes/add'
-import { unLike } from '../likes/unLike'
-import { showUserFollowers } from './postLikers'
+import { createLike } from './like'
+import { deleteLike } from '../likes/unLike'
+import { showPostLikers } from './postLikers'
 
-export { createLike, unLike, showUserFollowers }
+export { createLike, deleteLike, showPostLikers }

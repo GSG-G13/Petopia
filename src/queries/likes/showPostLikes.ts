@@ -1,21 +1,20 @@
-import Follower from '../../models/Follower'
-import { type IFollower } from '../../interfaces/models'
+import Like from '../../models/Like'
+import { type ILike } from '../../interfaces/models'
 import { User } from '../../models'
 
-const getUserFollowers = async (followingId: number): Promise<IFollower[]> => {
-  const userFollowers = await Follower.findAll({
-    where: { followingId },
+const getPostLikersQuert = async (postId: number): Promise<ILike[]> => {
+  const postLikers = await Like.findAll({
+    where: { postId },
     include: [
       {
         model: User,
-        as: 'followingUser',
         attributes: ['fullName', 'userImage']
       }
     ],
     raw: true
   })
 
-  return userFollowers
+  return postLikers
 }
 
-export { getUserFollowers }
+export { getPostLikersQuert }

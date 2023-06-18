@@ -1,9 +1,9 @@
 import { type Response, type NextFunction } from 'express'
-import { getUserFollowers } from '../../queries/likes/showPostLikes'
+import { getPostLikersQuert } from '../../queries/likes/showPostLikes'
 import CustomError from '../../helpers/CustomError'
 import { type CustomRequest } from '../../interfaces/iAuth'
 import { validatePostId } from '../../validation/likes'
-const showUserFollowers = async (req: CustomRequest, res: Response, next: NextFunction): Promise<void> => {
+const showPostLikers = async (req: CustomRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { postId }: { postId: number } = await validatePostId.validate(req.params)
 
@@ -11,10 +11,10 @@ const showUserFollowers = async (req: CustomRequest, res: Response, next: NextFu
       throw new CustomError(400, 'User ID not found')
     }
 
-    const likers = await getUserFollowers(postId)
+    const likers = await getPostLikersQuert(postId)
 
     if (likers.length > 0) {
-      res.json({
+      res.status(201).json({
         data: likers
       })
     } else {
@@ -25,4 +25,4 @@ const showUserFollowers = async (req: CustomRequest, res: Response, next: NextFu
   }
 }
 
-export { showUserFollowers }
+export { showPostLikers }

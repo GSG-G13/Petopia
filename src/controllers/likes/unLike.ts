@@ -1,29 +1,23 @@
 import { type Response, type NextFunction } from 'express'
-import showPostLikes from '../../queries/likes/add'
-import { type ILike } from '../../interfaces/fakeDataTypes'
-import { validateLikeNum } from '../../validation/likes/'
+import unLike from '../../queries/likes/unLike'
 import { type CustomRequest } from '../../interfaces/iAuth'
+import { validateLikeNum } from '../../validation/likes'
+import { type ILike } from '../../interfaces/fakeDataTypes'
 
-export type { ILike }
-
-const unLike = async (req: CustomRequest, res: Response, next: NextFunction): Promise<void> => {
+const deleteLike = async (req: CustomRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { userId, postId }: ILike = await validateLikeNum.validate({
       ...req.body,
       userId: req.user?.userId
     }, { abortEarly: false })
-
-    console.log(userId, '-----', postId)
-
-    await showPostLikes(Number(userId), Number(postId))
-
-    res.json({
+    await unLike(userId, postId)
+    res.status(200).json({
       message: 'Like Deleted Successfully',
       data: null
     })
-  } catch (err: unknown) {
-    next(err)
+  } catch (error) {
+    next(error)
   }
 }
 
-export { unLike }
+export { deleteLike }
