@@ -60,5 +60,5 @@ jobs:
           # The hostname used to communicate with the PostgreSQL service container
           TEST_DB_URL: postgres://team2:password@localhost:5432/petopia_test
           SECRET_KEY: ${{secrets.SECRET_KEY}}
-          TOKEN_REGULAR:${{secrets.TOKEN_REGULAR}}
-          TOKEN_ADMIN:${{secrets.TOKEN_ADMIN}}
+          TOKEN_REGULAR: ${{secrets.TOKEN_REGULAR}}
+          TOKEN_ADMIN: ${{secrets.TOKEN_ADMIN}}
