@@ -15,7 +15,7 @@ describe("Test addComment controller", () => {
 
     await request(app)
       .post("/api/v1/comments")
-      .set("Cookie", `token=${process.env.TOKEN}`)
+      .set("Cookie", `token=${process.env.TOKEN_REGULAR}`)
       .send({ postId: 2, commentText: "Test Comment" })
       .expect(201)
       .expect((res) => {
@@ -26,7 +26,7 @@ describe("Test addComment controller", () => {
   test("400 | when user does not provide a commentText", async () => {
     await request(app)
       .post("/api/v1/comments")
-      .set("Cookie", `token=${process.env.TOKEN}`)
+      .set("Cookie", `token=${process.env.TOKEN_REGULAR}`)
       .send({})
       .expect(400)
       .expect((res) => {
@@ -41,7 +41,7 @@ describe("Test deleteComment controller", () => {
   test("200 | when comment is deleted successfully", async () => {
     await request(app)
       .delete("/api/v1/comments/1")
-      .set("Cookie", `token=${process.env.TOKEN}`)
+      .set("Cookie", `token=${process.env.TOKEN_REGULAR}`)
       .expect(200)
       .expect((res) => {
         expect(res.body.message).toEqual("Comment Deleted Successfully");
@@ -51,7 +51,7 @@ describe("Test deleteComment controller", () => {
   test("404 | when comment is not found", async () => {
     await request(app)
       .delete("/api/v1/comments/820")
-      .set("Cookie", `token=${process.env.TOKEN}`)
+      .set("Cookie", `token=${process.env.TOKEN_REGULAR}`)
       .expect(400)
       .expect((res) => {
         expect(res.body.message).toEqual("The Comment Was Not Found");
@@ -68,7 +68,7 @@ describe("Test updateComment controller", () => {
 
     await request(app)
       .put("/api/v1/comments/3")
-      .set("Cookie", `token=${process.env.TOKEN}`)
+      .set("Cookie", `token=${process.env.TOKEN_REGULAR}`)
       .send({ commentText: "Updated Comment" })
       .expect(200)
       .expect((res) => {
@@ -80,7 +80,7 @@ describe("Test updateComment controller", () => {
   test("404 | when comment is not found", async () => {
     await request(app)
       .put("/api/v1/comments/950")
-      .set("Cookie", `token=${process.env.TOKEN}`)
+      .set("Cookie", `token=${process.env.TOKEN_REGULAR}`)
       .send({ commentText: "Updated Comment" })
       .expect(400)
       .expect((res) => {
@@ -91,7 +91,7 @@ describe("Test updateComment controller", () => {
   test("400 | when user does not provide a new comment", async () => {
     await request(app)
       .put("/api/v1/comments/2")
-      .set("Cookie", `token=${process.env.TOKEN}`)
+      .set("Cookie", `token=${process.env.TOKEN_REGULAR}`)
       .send({})
       .expect(400)
       .expect((res) => {
