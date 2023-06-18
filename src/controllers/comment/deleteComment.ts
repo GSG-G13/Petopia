@@ -1,10 +1,12 @@
 import { type Request, type Response, type NextFunction } from 'express'
 import deleteCommentQuery from '../../queries/comment/deleteComment'
 import CustomError from '../../helpers/CustomError'
+import { deleteCommentSchema } from '../../validation/comment/deleteComment'
 
 const deleteComment = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { commentId } = req.params
+    await deleteCommentSchema.validate({ commentId })
 
     const deletedComment = await deleteCommentQuery(Number(commentId))
 

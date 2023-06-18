@@ -2,7 +2,7 @@ import { type NextFunction, type Request, type Response } from 'express'
 import getCommentsQuery from '../../queries/comment/getComments'
 
 const getComments = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-  const postId = req.params.postId
+  const { postId } = req.params
   const id = Number(postId)
 
   try {

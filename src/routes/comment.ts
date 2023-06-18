@@ -10,9 +10,9 @@ const commentRouter = express.Router()
 
 const { REGULAR, ADMIN } = userTypes
 
-commentRouter.get('/post/:postId/comments', getComments)
-commentRouter.get('/comment/:commentId', getComment)
-commentRouter.post('/comment', authUser, checkType([REGULAR, ADMIN]), addComment)
-commentRouter.put('/comment/:commentId', authUser, checkType([REGULAR, ADMIN]), updateComment)
-commentRouter.delete('/comment/:commentId', authUser, checkType([REGULAR, ADMIN]), deleteComment)
+commentRouter.get('/posts/:postId/', getComments)
+commentRouter.get('/:commentId', getComment)
+commentRouter.post('/', authUser, checkType([REGULAR, ADMIN]), addComment)
+commentRouter.put('/:commentId', authUser, checkType([REGULAR, ADMIN]), updateComment)
+commentRouter.delete('/:commentId', authUser, checkType([REGULAR, ADMIN]), deleteComment)
 export default commentRouter
