@@ -11,9 +11,9 @@ const getUserPosts = async (req: Request, res: Response, next: NextFunction): Pr
     }
     const posts = await getUserPostsQuery(Number(userId), Number(page), 10)
     if (posts.length !== 0) {
-      res.status(201).json({ data: posts })
+      res.status(200).json({ data: posts })
     } else {
-      throw new CustomError(404, 'posts not found')
+      res.status(200).json({ data: [] })
     }
   } catch (error) {
     next(error)

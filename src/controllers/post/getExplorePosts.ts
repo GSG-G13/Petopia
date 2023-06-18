@@ -13,7 +13,7 @@ const getExplorePosts = async (req: Request, res: Response, next: NextFunction):
     if (posts.length !== 0) {
       res.status(200).json({ data: posts })
     } else {
-      throw new CustomError(404, 'posts not found')
+      res.status(200).json({ data: [] })
     }
   } catch (error) {
     next(error)

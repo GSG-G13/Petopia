@@ -61,7 +61,7 @@ const updatePost = async (req: CustomRequest, res: Response, next: NextFunction)
     }
     const post = await getPostQuery(Number(postId))
     if (post === null) {
-      throw new CustomError(404, 'Post not found.')
+      throw new CustomError(400, 'Bad Request')
     }
     if (post.userId !== userId) {
       throw new CustomError(401, 'you are unauthorized to update this post')

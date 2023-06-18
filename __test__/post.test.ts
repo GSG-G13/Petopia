@@ -199,12 +199,12 @@ describe('Test Get explore posts', () => {
                 expect(res.body.data).toMatchObject(explorePosts)
             })
     })
-    test('404 | get all explore posts page=2 that don\'t have posts ', async () => {
+    test('200 | get all explore posts page=2 that don\'t have posts ', async () => {
         await request(app)
             .get('/api/v1/post?page=2')
-            .expect(404)
+            .expect(200)
             .expect((res) => {
-                expect(res.body.message).toBe('posts not found')
+                expect(res.body.data).toEqual([]);
             })
     })
     test('401 | get all explore posts page=ds ', async () => {
@@ -338,14 +338,14 @@ describe('Test update post', () => {
                 expect(res.body.message).toBe("you are unauthorized to update this post");
             })
     })
-    test('404 | trying to update post that dose not exist.', async () => {
+    test('400 | trying to update post that dose not exist.', async () => {
         await request(app)
             .put("/api/v1/post/10000")
             .set("cookie", `token=${TOKEN_REGULAR}`)
             .send(adoptionPost)
-            .expect(404)
+            .expect(400)
             .expect((res) => {
-                expect(res.body.message).toBe("Post not found.");
+                expect(res.body.message).toBe("Bad Request");
             })
     })
 })
@@ -378,32 +378,32 @@ describe('Test delete post', () => {
                 expect(res.body.message).toBe("you are unauthorized to delete this post");
             })
     })
-    test('404 | trying to delete post that dose not exist', async () => {
+    test('400 | trying to delete post that dose not exist', async () => {
         await request(app)
             .delete("/api/v1/post/1000000000")
             .set("cookie", `token=${TOKEN_REGULAR}`)
-            .expect(404)
+            .expect(400)
             .expect((res) => {
-                expect(res.body.message).toBe("Post not found.");
+                expect(res.body.message).toBe("Bad Request");
             })
     })
 })
 
 describe('Test get post of user', () => {
-    test('201 | get all user posts', async () => {
+    test('200 | get all user posts', async () => {
         await request(app)
             .get("/api/v1/users/1/posts?page=1")
-            .expect(201)
+            .expect(200)
             .expect((res) => {
                 expect(res.body.data).toHaveLength(2);
             })
     })
-    test('404 | No post for user', async () => {
+    test('200 | No posts for user', async () => {
         await request(app)
             .get("/api/v1/users/1000/posts?page=1")
-            .expect(404)
+            .expect(200)
             .expect((res) => {
-                expect(res.body.message).toBe('posts not found');
+                expect(res.body.data).toEqual([]);
             })
     })
 
