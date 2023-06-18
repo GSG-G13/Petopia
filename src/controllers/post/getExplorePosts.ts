@@ -11,7 +11,7 @@ const getExplorePosts = async (req: Request, res: Response, next: NextFunction):
     }
     const posts = await getExplorePostsQuery(pageNumber, 10)
     if (posts.length !== 0) {
-      res.status(201).json({ data: posts })
+      res.status(200).json({ data: posts })
     } else {
       throw new CustomError(404, 'posts not found')
     }

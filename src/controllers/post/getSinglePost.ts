@@ -11,7 +11,7 @@ const getPost = async (req: Request, res: Response, next: NextFunction): Promise
     } else {
       const post = await getPostQuery(id)
       if (post !== null) {
-        res.status(201).json({ data: post })
+        res.status(200).json({ data: post })
       } else {
         throw new CustomError(404, 'post not found')
       }

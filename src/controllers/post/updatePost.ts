@@ -103,7 +103,7 @@ const updatePost = async (req: CustomRequest, res: Response, next: NextFunction)
       })
       updatedProduct = await updateProductQuery(postId, validatedProduct)
     }
-    res.status(201).json({
+    res.status(200).json({
       message: 'Post updated successfully',
       data: {
         post: updatedPost,

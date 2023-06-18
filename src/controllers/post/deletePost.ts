@@ -21,7 +21,7 @@ const deletePost = async (req: CustomRequest, res: Response, next: NextFunction)
     if (result === 0) {
       throw new CustomError(404, 'Post not found.')
     }
-    res.status(201).json({ message: 'Post deleted successfully', postId: Number(postId) })
+    res.status(200).json({ message: 'Post deleted successfully', postId: Number(postId) })
   } catch (err: unknown) {
     next(err)
   }

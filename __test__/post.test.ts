@@ -11,7 +11,7 @@ beforeAll(() => buildTables());
 afterAll(() => sequelize.close());
 
 describe('Test Get a specified post.', () => {
-    test('201 | get a specified post that have postId = 1', async () => {
+    test('200 | get a specified post that have postId = 1', async () => {
         const firstPost = {
             postId: 1,
             userId: 1,
@@ -59,7 +59,7 @@ describe('Test Get a specified post.', () => {
         }
         await request(app)
             .get('/api/v1/post/1')
-            .expect(201)
+            .expect(200)
             .expect((res) => {
                 expect(res.body.data).toMatchObject(firstPost)
             })
@@ -191,10 +191,10 @@ describe('Test Get explore posts', () => {
             pets: []
         }
     ]
-    test('201 | get all explore posts page=1', async () => {
+    test('200 | get all explore posts page=1', async () => {
         await request(app)
             .get('/api/v1/post?page=1')
-            .expect(201)
+            .expect(200)
             .expect((res) => {
                 expect(res.body.data).toMatchObject(explorePosts)
             })
@@ -307,12 +307,12 @@ describe('Test update post', () => {
         healthStatus: "IDK",
         adoptionStatus: "IDK"
     }
-    test('201 | post updated successfully', async () => {
+    test('200 | post updated successfully', async () => {
         await request(app)
             .put("/api/v1/post/1")
             .set("cookie", `token=${TOKEN_REGULAR}`)
             .send(adoptionPost)
-            .expect(201)
+            .expect(200)
             .expect((res) => {
                 expect(res.body.message).toBe("Post updated successfully");
                 expect(Object.keys(res.body.data)).toHaveLength(3);
@@ -350,11 +350,11 @@ describe('Test update post', () => {
     })
 })
 describe('Test delete post', () => {
-    test('201 | post deleted successfully', async () => {
+    test('200 | post deleted successfully', async () => {
         await request(app)
             .delete("/api/v1/post/1")
             .set("cookie", `token=${TOKEN_REGULAR}`)
-            .expect(201)
+            .expect(200)
             .expect((res) => {
                 expect(res.body.message).toBe("Post deleted successfully");
                 expect(res.body.postId).toBe(1);
