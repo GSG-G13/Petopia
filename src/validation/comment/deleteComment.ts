@@ -1,7 +1,7 @@
 import { number, object } from 'yup'
 
-const deleteCommentSchema = object({
-  commentId: number().required()
+const validateCommentId = object({
+  commentId: number().positive().required()
 })
 
-export { deleteCommentSchema }
+export default validateCommentId

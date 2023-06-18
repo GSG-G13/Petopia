@@ -1,7 +1,7 @@
 import { type Response, type NextFunction } from 'express'
 import { type CustomRequest } from '../../interfaces/iAuth'
-import addCommentQuery from '../../queries/comment/addComment'
-import { commentSchema } from '../../validation/comment/addComment'
+import { addCommentQuery } from '../../queries'
+import { commentSchema } from '../../validation'
 
 const addComment = async (req: CustomRequest, res: Response, next: NextFunction): Promise<void> => {
   try {

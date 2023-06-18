@@ -1,8 +1,8 @@
 
-import { createCategory } from '../category/add'
-import { deleteCategory } from '../category/delete'
-import { updateCategory } from '../category/edit'
-import { showAllCategories } from '../category/showAll'
-import { showCategoryById } from '../category/showById'
+import createCategory from './createCategory'
+import deleteCategory from './deleteCategory'
+import updateCategory from './updateCategory'
+import showAllCategories from './showAllCategories'
+import showCategoryById from './showCategoryById'
 
 export { createCategory, deleteCategory, updateCategory, showAllCategories, showCategoryById }

@@ -1,19 +1,17 @@
 import { type Request, type Response, type NextFunction } from 'express'
-import deleteCommentQuery from '../../queries/comment/deleteComment'
+import { deleteCommentQuery } from '../../queries'
 import CustomError from '../../helpers/CustomError'
-import { deleteCommentSchema } from '../../validation/comment/deleteComment'
+import { validateCommentId } from '../../validation'
 
 const deleteComment = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const { commentId } = req.params
-    await deleteCommentSchema.validate({ commentId })
+    const { commentId } = await validateCommentId.validate(req.params)
 
     const deletedComment = await deleteCommentQuery(Number(commentId))
 
     if (deletedComment) {
       res.json({
-        message: 'Comment Deleted Successfully',
-        data: deletedComment
+        message: 'Comment Deleted Successfully'
       })
     } else {
       throw new CustomError(400, 'The Comment Was Not Found')

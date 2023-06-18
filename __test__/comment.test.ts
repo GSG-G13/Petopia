@@ -45,7 +45,6 @@ describe("Test deleteComment controller", () => {
       .expect(200)
       .expect((res) => {
         expect(res.body.message).toEqual("Comment Deleted Successfully");
-        expect(res.body.data).toBe(true);
       });
   });
 

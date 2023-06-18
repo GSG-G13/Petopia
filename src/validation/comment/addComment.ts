@@ -4,4 +4,4 @@ const commentSchema = object({
   commentText: string().trim().required()
 })
 
-export { commentSchema }
+export default commentSchema

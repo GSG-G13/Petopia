@@ -1,5 +1,5 @@
 import { type NextFunction, type Request, type Response } from 'express'
-import getCommentsQuery from '../../queries/comment/getComments'
+import { getCommentsQuery } from '../../queries'
 
 const getComments = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const { postId } = req.params

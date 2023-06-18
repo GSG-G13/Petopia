@@ -1,8 +1,8 @@
 import { type Request, type Response, type NextFunction } from 'express'
-import updateCommentQuery from '../../queries/comment/updateComment'
+import { updateCommentQuery } from '../../queries'
 import { type IComment } from '../../interfaces/models'
 import CustomError from '../../helpers/CustomError'
-import { commentSchema } from '../../validation/comment/addComment'
+import { commentSchema } from '../../validation'
 
 const updateComment = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
