@@ -1,10 +1,10 @@
 import Category from '../../models/Category'
 import { type ICategory } from '../../interfaces/models'
 
-const getCategoryById = async (categoryId: number): Promise<ICategory | null> => {
+const getSpecificCategoryQuery = async (categoryId: number): Promise<ICategory | null> => {
   const category = await Category.findByPk(categoryId)
 
   return category
 }
 
-export { getCategoryById }
+export default getSpecificCategoryQuery

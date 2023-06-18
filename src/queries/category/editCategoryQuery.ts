@@ -1,7 +1,7 @@
 import Category from '../../models/Category'
 import { type ICategory } from '../../interfaces/models'
 
-const editCategory = async (categoryId: number, title: string): Promise<ICategory | null> => {
+const editCategoryQuery = async (categoryId: number, title: string): Promise<ICategory | null> => {
   const category = await Category.findByPk(categoryId)
 
   if (category != null) {
@@ -14,4 +14,4 @@ const editCategory = async (categoryId: number, title: string): Promise<ICategor
   return null
 }
 
-export { editCategory }
+export default editCategoryQuery
