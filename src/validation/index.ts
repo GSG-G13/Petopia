@@ -1,4 +1,9 @@
 import { validateCategoryId, validateTitle } from './category'
 import { validateTypeId } from './pettype'
 
-export { validateCategoryId, validateTitle, validateTypeId }
+import { validateCommentId, commentSchema } from './comment'
+
+export {
+  validateCategoryId, validateTitle, validateTypeId,
+  validateCommentId, commentSchema
+}

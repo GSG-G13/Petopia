@@ -1,10 +1,6 @@
 import request from 'supertest';
 import app from '../src/app';
-import addPetType from '../src/queries/pettype/add';
-import { deletePetType } from '../src/queries/pettype/delete';
-import { editPetType } from '../src/queries/pettype/edit';
-import { getAllTypes } from '../src/queries/pettype/showAll';
-import { getTypeById } from '../src/queries/pettype/showById';
+import {createPetTypeQuery, deletePetTypeQuery, editPetTypeQuery, getAllPetTypesQuery, getPetTypeByIdQuery} from '../src/queries';
 import sequelize from "../src/database/config";
 import buildTables from "../src/database/build";
 
@@ -12,11 +8,11 @@ beforeAll(() => buildTables());
 afterAll(() => sequelize.close());
 
 
-jest.mock('../src/queries/pettype/add');
-jest.mock('../src/queries/pettype/delete');
-jest.mock('../src/queries/pettype/edit');
-jest.mock('../src/queries/pettype/showAll');
-jest.mock('../src/queries/pettype/showById');
+jest.mock('../src/queries/petType/createPetTypeQuery');
+jest.mock('../src/queries/petType/deletePetTypeQuery');
+jest.mock('../src/queries/petType/editPetTypeQuery');
+jest.mock('../src/queries/petType/getAllPetTypesQuery');
+jest.mock('../src/queries/petType/getPetTypeByIdQuery');
 
 describe('Test createType controller', () => {
   test('201 | when user enters valid inputs', async () => {
@@ -25,7 +21,7 @@ describe('Test createType controller', () => {
       title: 'Test Type',
     };
 
-    (addPetType as jest.Mock).mockResolvedValue(mockNewType);
+    (createPetTypeQuery as jest.Mock).mockResolvedValue(mockNewType);
 
     await request(app)
       .post('/api/v1/types')
@@ -55,7 +51,7 @@ describe('Test deleteType controller', () => {
       title: 'Deleted Type',
     };
 
-    (deletePetType as jest.Mock).mockResolvedValue(mockDeletedType);
+    (deletePetTypeQuery as jest.Mock).mockResolvedValue(mockDeletedType);
 
     await request(app)
       .delete('/api/v1/types/1')
@@ -67,7 +63,7 @@ describe('Test deleteType controller', () => {
   });
 
   test('404 | when type is not found', async () => {
-    (deletePetType as jest.Mock).mockResolvedValue(null);
+    (deletePetTypeQuery as jest.Mock).mockResolvedValue(null);
 
     await request(app)
       .delete('/api/v1/types/888881')
@@ -85,7 +81,7 @@ describe('Test updateType controller', () => {
       title: 'Updated Type',
     };
 
-    (editPetType as jest.Mock).mockResolvedValue(mockUpdatedType);
+    (editPetTypeQuery as jest.Mock).mockResolvedValue(mockUpdatedType);
 
     await request(app)
       .put('/api/v1/types/1')
@@ -98,7 +94,7 @@ describe('Test updateType controller', () => {
   });
 
   test('404 | when type is not found', async () => {
-    (editPetType as jest.Mock).mockResolvedValue(null);
+    (editPetTypeQuery as jest.Mock).mockResolvedValue(null);
 
     await request(app)
       .put('/api/v1/types/99999999999999999991')
@@ -110,7 +106,7 @@ describe('Test updateType controller', () => {
   });
 
   test('404 | when type is not found', async () => {
-    (editPetType as jest.Mock).mockResolvedValue(null);
+    (editPetTypeQuery as jest.Mock).mockResolvedValue(null);
 
     await request(app)
       .put('/api/v1/types/1')
@@ -129,7 +125,7 @@ describe('Test showAllTypes controller', () => {
         { typeId: 2, title: 'Tipe 2' },
       ];
   
-      (getAllTypes as jest.Mock).mockResolvedValue(mockTypes);
+      (getAllPetTypesQuery as jest.Mock).mockResolvedValue(mockTypes);
   
       await request(app)
         .get('/api/v1/types')
@@ -143,7 +139,7 @@ describe('Test showAllTypes controller', () => {
   describe('Test showTypeById controller', () => {
     test('200 | when type is retrieved successfully', async () => {
       const mockType = { typeId: 1, title: 'Type 1' };
-      (getTypeById as jest.Mock).mockResolvedValue(mockType);
+      (getPetTypeByIdQuery as jest.Mock).mockResolvedValue(mockType);
   
       await request(app)
         .get('/api/v1/types/1999999999999999999')
@@ -154,7 +150,7 @@ describe('Test showAllTypes controller', () => {
     });
   
     test('404 | when  type is not found', async () => {
-      (getTypeById as jest.Mock).mockResolvedValue(null);
+      (getPetTypeByIdQuery as jest.Mock).mockResolvedValue(null);
   
       await request(app)
         .get('/api/v1/types/857349857486')

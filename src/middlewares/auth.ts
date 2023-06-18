@@ -20,4 +20,4 @@ const authUser = async (req: CustomRequest, _res: Response, next: NextFunction):
     next(new CustomError(401, 'unauthorized'))
   }
 }
-module.exports = authUser
+export default authUser

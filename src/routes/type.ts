@@ -1,16 +1,14 @@
 import express from 'express'
 import {
-  createType,
-  deleteType, updateType,
-  showAllTypes, showTypeById
-} from '../controllers/pettype'
+  createPetType, deletePetType, editPetType, getAllPetTypes, getPetTypeById
+} from '../controllers/'
 
 const typeRouter = express.Router()
 
-typeRouter.post('/', createType)
-typeRouter.put('/:typeId', updateType)
-typeRouter.delete('/:typeId', deleteType)
-typeRouter.get('/', showAllTypes)
-typeRouter.get('/:typeId', showTypeById)
+typeRouter.post('/', createPetType)
+typeRouter.put('/:typeId', editPetType)
+typeRouter.delete('/:typeId', deletePetType)
+typeRouter.get('/', getAllPetTypes)
+typeRouter.get('/:typeId', getPetTypeById)
 
 export default typeRouter
