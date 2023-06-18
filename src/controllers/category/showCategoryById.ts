@@ -1,5 +1,5 @@
 import { type Request, type Response, type NextFunction } from 'express'
-import { getCategoryById } from '../../queries/category/showById'
+import { getSpecificCategoryQuery } from '../../queries'
 import CustomError from '../../helpers/CustomError'
 import { validateCategoryId } from '../../validation'
 
@@ -7,7 +7,7 @@ const showCategoryById = async (req: Request, res: Response, next: NextFunction)
   try {
     const { categoryId }: { categoryId: number } = await validateCategoryId.validate(req.params)
 
-    const category = await getCategoryById(Number(categoryId))
+    const category = await getSpecificCategoryQuery(Number(categoryId))
 
     if (category != null) {
       res.json({
@@ -21,4 +21,4 @@ const showCategoryById = async (req: Request, res: Response, next: NextFunction)
   }
 }
 
-export { showCategoryById }
+export default showCategoryById

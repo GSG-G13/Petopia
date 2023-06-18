@@ -1,5 +1,5 @@
 import { type Request, type Response, type NextFunction } from 'express'
-import { editCategory } from '../../queries/category/edit'
+import { editCategoryQuery } from '../../queries'
 import { type ICategory } from '../../interfaces/models'
 import CustomError from '../../helpers/CustomError'
 import { validateCategoryId, validateTitle } from '../../validation'
@@ -10,7 +10,7 @@ const updateCategory = async (req: Request, res: Response, next: NextFunction): 
 
     const { title }: { title: string } = await validateTitle.validate(req.body, { abortEarly: false })
 
-    const updatedCategory: ICategory | null = await editCategory(Number(categoryId), title)
+    const updatedCategory: ICategory | null = await editCategoryQuery(Number(categoryId), title)
 
     if (updatedCategory != null) {
       res.json({
@@ -25,4 +25,4 @@ const updateCategory = async (req: Request, res: Response, next: NextFunction): 
   }
 }
 
-export { updateCategory }
+export default updateCategory

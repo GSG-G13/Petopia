@@ -2,7 +2,7 @@ import { type Request, type Response, type NextFunction } from 'express'
 import jwt, { type Secret } from 'jsonwebtoken'
 import dotenv from 'dotenv'
 import bcrypt from 'bcrypt'
-import { createUser } from '../../queries/auth/signup'
+import { createUser } from '../../queries'
 import { type IUser } from '../../interfaces/fakeDataTypes'
 import { validateSignup } from '../../validation/auth/signup'
 

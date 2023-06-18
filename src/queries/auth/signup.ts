@@ -30,4 +30,4 @@ const createUser = async ({
   return newUser
 }
 
-export { createUser }
+export default createUser

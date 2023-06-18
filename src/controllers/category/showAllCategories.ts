@@ -1,9 +1,9 @@
 import { type Request, type Response, type NextFunction } from 'express'
-import { getAllCategories } from '../../queries/category/showAll'
+import { getAllCategoriesQuery } from '../../queries'
 
 const showAllCategories = async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const categories = await getAllCategories()
+    const categories = await getAllCategoriesQuery()
 
     res.json({
       data: categories
@@ -13,4 +13,4 @@ const showAllCategories = async (_req: Request, res: Response, next: NextFunctio
   }
 }
 
-export { showAllCategories }
+export default showAllCategories
