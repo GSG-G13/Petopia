@@ -1,5 +1,5 @@
 import { type Request, type Response, type NextFunction } from 'express'
-import { deleteCategoryById } from '../../queries/category/delete'
+import { deleteCategoryQuery } from '../../queries'
 import CustomError from '../../helpers/CustomError'
 import { type ICategory } from '../../interfaces/fakeDataTypes'
 import { validateCategoryId } from '../../validation'
@@ -10,12 +10,11 @@ const deleteCategory = async (req: Request, res: Response, next: NextFunction): 
   try {
     const { categoryId }: { categoryId: number } = await validateCategoryId.validate(req.params)
 
-    const deletedCategory = await deleteCategoryById(Number(categoryId))
+    const deletedCategory = await deleteCategoryQuery(Number(categoryId))
 
     if (deletedCategory) {
       res.json({
-        message: 'Category Deleted Successfully',
-        data: deletedCategory
+        message: 'Category Deleted Successfully'
       })
     } else {
       throw new CustomError(400, 'The Category Was Not Found')
@@ -25,4 +24,4 @@ const deleteCategory = async (req: Request, res: Response, next: NextFunction): 
   }
 }
 
-export { deleteCategory }
+export default deleteCategory
