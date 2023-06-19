@@ -28,9 +28,6 @@ const serverError = (
       })
     }
   }
-<<<<<<< HEAD
-  console.log(err)
-=======
 
   if (err.message?.includes('invalid input syntax for type integer')) {
     return res.status(400).json({
@@ -44,7 +41,6 @@ const serverError = (
     })
   }
 
->>>>>>> 75b2f24f19751ffbf0e881f8e499b35ac5bd9fd9
   return res.status(500).json({
     data: {
       message: 'Internal server error'
