@@ -1,3 +1,4 @@
 import getUser from './getUser'
 import getAllUsers from './getAllUsers'
-export { getUser, getAllUsers }
+import updateUser from './updateUser'
+export { getUser, getAllUsers, updateUser }

@@ -1,3 +1,4 @@
 import getUserQuery from './getUserQuery'
 import getAllUsersQuery from './getAllUsersQuery'
-export { getUserQuery, getAllUsersQuery }
+import editUserQuery from './editUserQuery'
+export { getUserQuery, getAllUsersQuery, editUserQuery }

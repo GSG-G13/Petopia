@@ -1,7 +1,7 @@
 import { type IUser } from '../../interfaces/fakeDataTypes'
 import { User } from '../../models'
 
-const updateUserQuery = async (userId: number, userData: IUser): Promise<IUser | null> => {
+const editUserQuery = async (userId: number, userData: IUser): Promise<IUser | null> => {
   const [count, [updatedUser]] = await User.update(
     { ...userData },
     {
@@ -14,4 +14,4 @@ const updateUserQuery = async (userId: number, userData: IUser): Promise<IUser |
   }
   return updatedUser
 }
-export default updateUserQuery
+export default editUserQuery

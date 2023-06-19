@@ -1,9 +1,10 @@
 import { type Response, type NextFunction } from 'express'
 import { type CustomRequest } from '../../interfaces/iAuth'
 import { type IUser } from '../../interfaces/fakeDataTypes'
-import { getUserQuery } from '../../queries/user/getUserQuery'
-import { updateUserQuery } from '../../queries/user/editUserQuery'
-import { validateEditUser } from '../../validation/user/editUser'
+import { getUserQuery, editUserQuery } from '../../queries/user/'
+import bcrypt from 'bcrypt'
+
+import { validateEditUser } from '../../validation/user/'
 import CustomError from '../../helpers/CustomError'
 
 interface userData {
@@ -16,9 +17,9 @@ interface userData {
   phone?: string
 }
 
-const updatePost = async (req: CustomRequest, res: Response, next: NextFunction): Promise<void> => {
+const updateUser = async (req: CustomRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const userId = req.user?.userId as number
+    const userId = req.user?.userId
     const {
       fullName,
       email,
@@ -28,10 +29,12 @@ const updatePost = async (req: CustomRequest, res: Response, next: NextFunction)
       address,
       phone
     } = req.body as userData
-    console.log(userId)
-    const userData: IUser = { fullName, email, password, userImage, profileImage, address, phone }
 
-    if (userId < 0 || Number.isNaN(userId)) {
+    const hashedPassword = await bcrypt.hash(password, 10)
+
+    const userData: IUser = { fullName, email, password: hashedPassword, userImage, profileImage, address, phone }
+
+    if (userId < 0) {
       throw new CustomError(400, 'Bad Request')
     }
     const user = await getUserQuery(Number(userId))
@@ -41,7 +44,7 @@ const updatePost = async (req: CustomRequest, res: Response, next: NextFunction)
     if (user.userId !== userId) {
       throw new CustomError(401, 'you are unauthorized to update this user')
     }
-    const updatedUser = await updateUserQuery(userId, await validateEditUser(userData))
+    const updatedUser = await editUserQuery(userId, await validateEditUser.validate(userData))
 
     res.status(200).json({
       message: 'User updated successfully',
@@ -50,7 +53,8 @@ const updatePost = async (req: CustomRequest, res: Response, next: NextFunction)
       }
     })
   } catch (err: unknown) {
+    console.log(err)
     next(err)
   }
 }
-export default updatePost
+export default updateUser
