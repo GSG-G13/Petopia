@@ -34,9 +34,6 @@ const updateUser = async (req: CustomRequest, res: Response, next: NextFunction)
 
     const userData: IUser = { fullName, email, password: hashedPassword, userImage, profileImage, address, phone }
 
-    if (userId < 0) {
-      throw new CustomError(400, 'Bad Request')
-    }
     const user = await getUserQuery(Number(userId))
     if (user === null) {
       throw new CustomError(400, 'Bad Request')
