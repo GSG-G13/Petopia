@@ -1,2 +1,3 @@
 import getUserQuery from './getUserQuery'
-export { getUserQuery }
+import getAllUsersQuery from './getAllUsersQuery'
+export { getUserQuery, getAllUsersQuery }
