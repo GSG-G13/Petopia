@@ -1,8 +1,10 @@
 import CustomError from '../../helpers/CustomError'
 import { Comment, User } from '../../models'
 
-const getCommentsQuery = async (postId: number): Promise<object> => {
+const getCommentsQuery = async (postId: number, page: number, limit: number): Promise<object> => {
   try {
+    const offset = (page - 1) * limit
+
     const comments = await Comment.findAll({
       where: {
         postId
@@ -11,7 +13,9 @@ const getCommentsQuery = async (postId: number): Promise<object> => {
         {
           model: User,
           attributes: ['fullName', 'userImage']
-        }]
+        }],
+      limit,
+      offset
     })
 
     return comments
