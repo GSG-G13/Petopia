@@ -29,6 +29,18 @@ const serverError = (
     }
   }
 
+  if (err.message?.includes('invalid input syntax for type integer')) {
+    return res.status(400).json({
+      message: 'Please Enter a valid id number'
+    })
+  }
+
+  if (err.message?.includes('is out of range for type integer')) {
+    return res.status(400).json({
+      message: 'Please Enter a valid id number'
+    })
+  }
+
   return res.status(500).json({
     data: {
       message: 'Internal server error'

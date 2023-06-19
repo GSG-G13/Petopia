@@ -14,8 +14,7 @@ const deletePetType = async (req: Request, res: Response, next: NextFunction): P
 
     if (deletedType) {
       res.json({
-        message: 'Type Deleted Successfully',
-        data: deletedType
+        message: 'Type Deleted Successfully'
       })
     } else {
       throw new CustomError(400, 'The Type Was Not Found')
