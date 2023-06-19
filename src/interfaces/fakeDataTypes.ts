@@ -23,6 +23,9 @@ export interface IPost {
   categoryId: number
   postContent: string
   isHaveImg: boolean
+  likesCount: number
+  commentsCount: number
+
 }
 
 export interface IPostImage {
