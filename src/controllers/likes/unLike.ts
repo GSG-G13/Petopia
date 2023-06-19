@@ -1,5 +1,5 @@
 import { type Response, type NextFunction } from 'express'
-import unLikeQuery from '../../queries/likes/unLikeQuery'
+import { unLikeQuery } from '../../queries/'
 import { type CustomRequest } from '../../interfaces/iAuth'
 import { validateLikeNum } from '../../validation/likes'
 import { type ILike } from '../../interfaces/fakeDataTypes'
@@ -12,7 +12,7 @@ const unLike = async (req: CustomRequest, res: Response, next: NextFunction): Pr
     }, { abortEarly: false })
     await unLikeQuery(userId, postId)
     res.status(200).json({
-      message: 'Like Deleted Successfully',
+      message: 'Post unliked Successfully',
       data: null
     })
   } catch (error) {

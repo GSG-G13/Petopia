@@ -1,5 +1,5 @@
 import { type Response, type NextFunction } from 'express'
-import addLike from '../../queries/likes/createLikeQuery'
+import { createLikeQuery } from '../../queries/'
 import { type ILike } from '../../interfaces/fakeDataTypes'
 import { validateLikeNum } from '../../validation/likes'
 import { type CustomRequest } from '../../interfaces/iAuth'
@@ -16,15 +16,13 @@ const createLike = async (req: CustomRequest, res: Response, next: NextFunction)
       throw new CustomError(400, 'userId and postId are required fields')
     }
 
-    const newLike = await addLike(userId, postId)
+    const newLike = await createLikeQuery(userId, postId)
 
     res.status(201).json({
       message: 'Like Created Successfully',
       data: newLike
     })
   } catch (err: unknown) {
-    console.log(err)
-
     next(err)
   }
 }

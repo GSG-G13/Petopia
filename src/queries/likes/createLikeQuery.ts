@@ -5,7 +5,7 @@ import CustomError from '../../helpers/CustomError'
 
 import { type ILike } from '../../interfaces/models'
 
-const addLike = async (
+const createLikeQuery = async (
   userId: number,
   postId: number
 ): Promise<ILike | null> => {
@@ -34,13 +34,6 @@ const addLike = async (
 
     })
 
-    // Increment followerCount for another user
-    await Post.increment('commentsCount', {
-      by: 1,
-      where: { userId },
-      transaction
-    })
-
     const newLike = await Like.create({ userId, postId })
 
     await transaction.commit()
@@ -52,4 +45,4 @@ const addLike = async (
   }
 }
 
-export default addLike
+export default createLikeQuery

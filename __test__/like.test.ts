@@ -48,7 +48,7 @@ describe("Test addLike controller", () => {
       .send({ postId: 2 })
       .expect(201)
       .expect((res) => {
-        expect(res.body.message).toEqual("Like Created Successfully");
+        expect(res.body.message).toBe("Like Created Successfully");
         expect(res.body.data).toMatchObject(newLike);
       });
   });
@@ -64,7 +64,7 @@ describe("Test unLike controller", () => {
       .send({ postId: 2 })
       .expect(200)
       .expect((res) => {
-        expect(res.body.message).toEqual("Like Deleted Successfully");
+        expect(res.body.message).toBe("Post unliked Successfully");
       });
   });
 

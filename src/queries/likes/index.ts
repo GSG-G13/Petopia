@@ -1,6 +1,6 @@
 
-import createLike from './createLikeQuery'
+import createLikeQuery from './createLikeQuery'
 import unLikeQuery from './unLikeQuery'
 import getPostLikersQuery from './getPostLikersQuery'
 
-export { createLike, unLikeQuery, getPostLikersQuery }
+export { createLikeQuery, unLikeQuery, getPostLikersQuery }

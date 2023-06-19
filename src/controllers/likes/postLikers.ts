@@ -1,5 +1,5 @@
 import { type Response, type NextFunction } from 'express'
-import { getPostLikersQuery } from '../../queries/likes/'
+import { getPostLikersQuery } from '../../queries/'
 import CustomError from '../../helpers/CustomError'
 import { type CustomRequest } from '../../interfaces/iAuth'
 import { validatePostId } from '../../validation/likes'
