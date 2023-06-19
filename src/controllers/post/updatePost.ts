@@ -7,12 +7,16 @@ import {
   , validateAddPost
 } from '../../validation/post'
 import { type IPost, type IPostImage } from '../../interfaces/fakeDataTypes'
-import { getPostQuery, updatePostQuery } from '../../queries/post'
-import { addImageQuery, deleteImageQuery } from '../../queries/image'
-import { updateProductQuery } from '../../queries/product'
-import { updatePetQuery } from '../../queries/pet'
+import {
+  getPostQuery,
+  updatePostQuery,
+  getAllCategoriesQuery,
+  updateProductQuery,
+  updatePetQuery,
+  addImageQuery,
+  deleteImageQuery
+} from '../../queries'
 import CustomError from '../../helpers/CustomError'
-import { getAllCategoriesQuery } from '../../queries'
 import { type ICategory } from '../../interfaces/models'
 
 interface postData {
@@ -30,6 +34,8 @@ interface postData {
   gender: string
   healthStatus: string
   adoptionStatus: string
+  commentsCount: number
+  likesCount: number
 }
 const updatePost = async (req: CustomRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
@@ -48,10 +54,12 @@ const updatePost = async (req: CustomRequest, res: Response, next: NextFunction)
       age,
       gender,
       healthStatus,
-      adoptionStatus
+      adoptionStatus,
+      commentsCount,
+      likesCount
     } = req.body as postData
 
-    const postData: IPost = { userId, categoryId, postContent, isHaveImg }
+    const postData: IPost = { userId, categoryId, postContent, isHaveImg, commentsCount, likesCount }
     const validatePost = await validateAddPost(postData)
     const categories = await getAllCategoriesQuery()
     const isCategory = categories.filter((category: ICategory) => category.categoryId === categoryId).length === 0

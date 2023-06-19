@@ -1,5 +1,5 @@
 import { type Request, type Response, type NextFunction } from 'express'
-import { getExplorePostsQuery } from '../../queries/post'
+import { getExplorePostsQuery } from '../../queries'
 import CustomError from '../../helpers/CustomError'
 
 const getExplorePosts = async (req: Request, res: Response, next: NextFunction): Promise<void> => {

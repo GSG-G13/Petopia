@@ -1,4 +1,3 @@
-import sequelize from 'sequelize'
 import { Category, Pet, PetType, Post, PostImage, Product, User } from '../../models'
 import { type IPostWithDetails } from '../../interfaces/iPosts'
 
@@ -25,18 +24,6 @@ const getExplorePostsQuery = async (page: number, limit: number): Promise<IPostW
         include: [{ model: PetType, attributes: ['title'] }]
       }
     ],
-    attributes: {
-      include: [
-        [
-          sequelize.literal('(SELECT COUNT(*) FROM likes WHERE likes."postId" = post."postId")'),
-          'likeCount'
-        ],
-        [
-          sequelize.literal('(SELECT COUNT(*) FROM comments WHERE comments."postId" = post."postId")'),
-          'commentCount'
-        ]
-      ]
-    },
     group: [
       'post.postId',
       'user.userId',

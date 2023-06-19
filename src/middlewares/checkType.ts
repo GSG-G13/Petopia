@@ -3,7 +3,7 @@ import { config } from 'dotenv'
 
 import CustomError from '../helpers/CustomError'
 import { type CustomRequest } from '../interfaces/iAuth'
-import { getUserQuery } from '../queries/user'
+import { getUserQuery } from '../queries'
 
 config()
 

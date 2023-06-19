@@ -1,5 +1,5 @@
 import express from 'express'
-import { addPost, deletePost, getExplorePosts, getPost, updatePost } from '../controllers/post'
+import { addPost, deletePost, getExplorePosts, getPost, updatePost } from '../controllers'
 import checkType, { userTypes } from '../middlewares/checkType'
 import authUser from '../middlewares/auth'
 

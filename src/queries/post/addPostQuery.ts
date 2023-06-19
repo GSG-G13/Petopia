@@ -3,7 +3,7 @@ import { Post } from '../../models'
 
 const addPostQuery = async (postData: IPost): Promise<number> => {
   const post = await Post.create(
-    { ...postData },
+    { ...postData, likesCount: 0, commentsCount: 0 },
     { returning: ['postId'] }
   )
   const postId = post?.postId

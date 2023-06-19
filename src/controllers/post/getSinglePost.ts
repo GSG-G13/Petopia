@@ -6,7 +6,7 @@ const getPost = async (req: Request, res: Response, next: NextFunction): Promise
   try {
     const { postId } = req.params
     const id = Number(postId)
-    if (!(id > 0) || Number.isNaN(id)) {
+    if (id < 0 || Number.isNaN(id)) {
       throw new CustomError(400, 'Bad Request')
     } else {
       const post = await getPostQuery(id)

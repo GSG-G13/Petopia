@@ -7,12 +7,8 @@ import {
   , validateAddPost
 } from '../../validation/post'
 import { type IPost, type IPostImage } from '../../interfaces/fakeDataTypes'
-import { addPostQuery } from '../../queries/post'
-import addProductQuery from '../../queries/product/addProductQuery'
-import addPetQuery from '../../queries/pet/addPetQuery'
+import { addPostQuery, getAllCategoriesQuery, addProductQuery, addPetQuery, addImageQuery } from '../../queries'
 import CustomError from '../../helpers/CustomError'
-import addImageQuery from '../../queries/image/addImageQuery'
-import { getAllCategoriesQuery } from '../../queries'
 import { type ICategory } from '../../interfaces/models'
 
 interface postData {
@@ -50,7 +46,14 @@ const addPost = async (req: CustomRequest, res: Response, next: NextFunction): P
       healthStatus,
       adoptionStatus
     } = req.body as postData
-    const postData: IPost = { userId, categoryId, postContent, isHaveImg }
+    const postData: IPost = {
+      userId,
+      categoryId,
+      postContent,
+      isHaveImg,
+      likesCount: 0,
+      commentsCount: 0
+    }
 
     const categories = await getAllCategoriesQuery()
     const validatedPost = await validateAddPost(postData)

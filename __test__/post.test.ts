@@ -18,8 +18,8 @@ describe('Test Get a specified post.', () => {
             categoryId: 1,
             postContent: "This is a regular post.",
             isHaveImg: true,
-            likeCount: "2",
-            commentCount: "2",
+            likesCount: 2,
+            commentsCount: 2,
             postImages: [
                 {
                     imageId: 1,
@@ -81,8 +81,8 @@ describe('Test Get explore posts', () => {
             categoryId: 1,
             postContent: "This is a regular post.",
             isHaveImg: true,
-            likeCount: "2",
-            commentCount: "2",
+            likesCount: 2,
+            commentsCount: 2,
             postImages: [
                 {
                     imageId: 3,
@@ -114,7 +114,6 @@ describe('Test Get explore posts', () => {
                     gender: "Male",
                     healthStatus: "Healthy",
                     adoptionStatus: "Available",
-
                     petType: {
                         title: "Dog"
                     }
@@ -127,8 +126,8 @@ describe('Test Get explore posts', () => {
             categoryId: 1,
             postContent: "Looking to adopt a pet.",
             isHaveImg: false,
-            likeCount: "0",
-            commentCount: "0",
+            likesCount: 0,
+            commentsCount: 0,
             postImages: [],
             category: {
                 title: "Adoption"
@@ -161,8 +160,8 @@ describe('Test Get explore posts', () => {
             categoryId: 4,
             postContent: "Check out this product Im selling!",
             isHaveImg: true,
-            likeCount: "1",
-            commentCount: "1",
+            likesCount: 1,
+            commentsCount: 1,
             postImages: [
                 {
                     imageId: 2,
