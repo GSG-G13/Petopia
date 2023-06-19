@@ -36,6 +36,34 @@ describe("Test getAllUsers controller", () => {
         expect(res.body.data).toMatchObject(users);
       });
   });
+
+  test("200 | when users page=2 and limit=1", async () => {
+    const users = [
+      {
+        fullName: "Mohammed Sallout",
+        email: "Mohammed@example.com",
+        address: "456 Elm St, Khaniones",
+        phone: "987-654-3210",
+      },
+    ];
+
+    await request(app)
+      .get("/api/v1/users?page=2&limit=1")
+      .expect(200)
+      .expect((res) => {
+        expect(res.body.data).toMatchObject(users);
+      });
+  });
+
+  test("400 | when users limit more than 100 in page", async () => {
+
+    await request(app)
+      .get("/api/v1/users?page=1&limit=150")
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.message).toBe("limit should not be more than 100");
+      });
+  });
 });
 
 describe("Test getUserById controller", () => {
