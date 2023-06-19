@@ -12,7 +12,7 @@ const getComments = async (req: Request, res: Response, next: NextFunction): Pro
     const limitNumber = Number(limit) || 5
     if (pageNumber < 0 || Number.isNaN(pageNumber) ||
       limitNumber < 0 || Number.isNaN(limitNumber)) {
-      throw new CustomError(400, 'Bad Request.')
+      throw new CustomError(400, 'Bad Request')
     }
     if (limitNumber >= 51) throw new CustomError(400, 'limit should not be more than 50')
 
