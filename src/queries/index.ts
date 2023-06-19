@@ -8,7 +8,7 @@ import {
   getCommentQuery, deleteCommentQuery, addCommentQuery
 } from './comment'
 
-import { getUserQuery } from './user'
+import { getUserQuery, getAllUsersQuery } from './user'
 
 import { loginQuery, createUser } from './auth'
 
@@ -24,7 +24,7 @@ export {
   updateCommentQuery, getCommentsQuery,
   getCommentQuery, deleteCommentQuery, addCommentQuery,
 
-  getUserQuery,
+  getUserQuery, getAllUsersQuery,
 
   loginQuery, createUser,
 
