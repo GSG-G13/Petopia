@@ -1,9 +1,11 @@
 import CustomError from '../../helpers/CustomError'
 import { User } from '../../models'
 
-const getAllUsersQuery = async (): Promise<object> => {
+const getAllUsersQuery = async (page: number, limit: number): Promise<object> => {
   try {
-    const users = await User.findAll()
+    const offset = (page - 1) * limit
+
+    const users = await User.findAll({ limit, offset })
 
     return users
   } catch (error) {
