@@ -1,7 +1,7 @@
 import express from 'express'
 import {
   createLike,
-  deleteLike,
+  unLike,
   showPostLikers
 
 } from '../controllers/likes/'
@@ -13,7 +13,7 @@ const { REGULAR } = userTypes
 const likeRouter = express.Router()
 
 likeRouter.post('/', authUser, checkType([REGULAR]), createLike)
-likeRouter.delete('/', authUser, checkType([REGULAR]), deleteLike)
+likeRouter.delete('/', authUser, checkType([REGULAR]), unLike)
 likeRouter.get('/likers/:postId', showPostLikers)
 
 export default likeRouter

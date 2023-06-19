@@ -1,5 +1,5 @@
 import { type Response, type NextFunction } from 'express'
-import addLike from '../../queries/likes/add'
+import addLike from '../../queries/likes/createLikeQuery'
 import { type ILike } from '../../interfaces/fakeDataTypes'
 import { validateLikeNum } from '../../validation/likes'
 import { type CustomRequest } from '../../interfaces/iAuth'
@@ -29,4 +29,4 @@ const createLike = async (req: CustomRequest, res: Response, next: NextFunction)
   }
 }
 
-export { createLike }
+export default createLike

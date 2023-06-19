@@ -2,7 +2,7 @@ import Like from '../../models/Like'
 import { type ILike } from '../../interfaces/models'
 import { User } from '../../models'
 
-const getPostLikersQuert = async (postId: number): Promise<ILike[]> => {
+const getPostLikersQuery = async (postId: number): Promise<ILike[]> => {
   const postLikers = await Like.findAll({
     where: { postId },
     include: [
@@ -17,4 +17,4 @@ const getPostLikersQuert = async (postId: number): Promise<ILike[]> => {
   return postLikers
 }
 
-export { getPostLikersQuert }
+export default getPostLikersQuery

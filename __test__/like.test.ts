@@ -56,7 +56,7 @@ describe("Test addLike controller", () => {
 
 
 
-describe("Test unfollow controller", () => {
+describe("Test unLike controller", () => {
   test("200 | when like is deleted successfully", async () => {
     await request(app)
       .delete("/api/v1/like/")
