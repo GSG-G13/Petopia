@@ -58,7 +58,7 @@ describe('Test Get a specified post.', () => {
             ]
         }
         await request(app)
-            .get('/api/v1/post/1')
+            .get('/api/v1/posts/1')
             .expect(200)
             .expect((res) => {
                 expect(res.body.data).toMatchObject(firstPost)
@@ -66,7 +66,7 @@ describe('Test Get a specified post.', () => {
     })
     test('404 | when user trying to get an unavailable post', async () => {
         await request(app)
-            .get('/api/v1/post/4')
+            .get('/api/v1/posts/4')
             .expect(404)
             .expect((res) => {
                 expect(res.body.message).toBe('post not found')
@@ -193,7 +193,7 @@ describe('Test Get explore posts', () => {
     ]
     test('200 | get all explore posts page=1', async () => {
         await request(app)
-            .get('/api/v1/post?page=1')
+            .get('/api/v1/posts?page=1')
             .expect(200)
             .expect((res) => {
                 expect(res.body.data).toMatchObject(explorePosts)
@@ -201,18 +201,18 @@ describe('Test Get explore posts', () => {
     })
     test('200 | get all explore posts page=2 that don\'t have posts ', async () => {
         await request(app)
-            .get('/api/v1/post?page=2')
+            .get('/api/v1/posts?page=2')
             .expect(200)
             .expect((res) => {
                 expect(res.body.data).toEqual([]);
             })
     })
-    test('401 | get all explore posts page=ds ', async () => {
+    test('200 | get all explore posts page=ds, It will give default page =1.', async () => {
         await request(app)
-            .get('/api/v1/post?page=ds')
-            .expect(401)
+            .get('/api/v1/posts?page=ds')
+            .expect(200)
             .expect((res) => {
-                expect(res.body.message).toBe('Bad Request.')
+                expect(res.body.data).toHaveLength(3)
             })
     })
 })
@@ -259,7 +259,7 @@ describe('Test add new post', () => {
     }
     test('201 | new post of adoption added successfully', async () => {
         await request(app)
-            .post("/api/v1/post")
+            .post("/api/v1/posts")
             .set("cookie", `token=${TOKEN_REGULAR}`)
             .send(adoptionPost)
             .expect(201)
@@ -270,7 +270,7 @@ describe('Test add new post', () => {
     })
     test('201 | new post of product added successfully', async () => {
         await request(app)
-            .post("/api/v1/post")
+            .post("/api/v1/posts")
             .set("cookie", `token=${TOKEN_REGULAR}`)
             .send(productPost)
             .expect(201)
@@ -281,7 +281,7 @@ describe('Test add new post', () => {
     })
     test('400 | post don\'t have category type', async () => {
         await request(app)
-            .post("/api/v1/post")
+            .post("/api/v1/posts")
             .set("cookie", `token=${TOKEN_REGULAR}`)
             .send(productPost2)
             .expect(400)
@@ -309,7 +309,7 @@ describe('Test update post', () => {
     }
     test('200 | post updated successfully', async () => {
         await request(app)
-            .put("/api/v1/post/1")
+            .put("/api/v1/posts/1")
             .set("cookie", `token=${TOKEN_REGULAR}`)
             .send(adoptionPost)
             .expect(200)
@@ -320,7 +320,7 @@ describe('Test update post', () => {
     })
     test('400 | trying to update post with string id', async () => {
         await request(app)
-            .put("/api/v1/post/string")
+            .put("/api/v1/posts/string")
             .set("cookie", `token=${TOKEN_REGULAR}`)
             .send(adoptionPost)
             .expect(400)
@@ -330,7 +330,7 @@ describe('Test update post', () => {
     })
     test('401 | trying to update post of other user.', async () => {
         await request(app)
-            .put("/api/v1/post/2")
+            .put("/api/v1/posts/2")
             .set("cookie", `token=${TOKEN_REGULAR}`)
             .send(adoptionPost)
             .expect(401)
@@ -340,7 +340,7 @@ describe('Test update post', () => {
     })
     test('400 | trying to update post that dose not exist.', async () => {
         await request(app)
-            .put("/api/v1/post/10000")
+            .put("/api/v1/posts/10000")
             .set("cookie", `token=${TOKEN_REGULAR}`)
             .send(adoptionPost)
             .expect(400)
@@ -352,7 +352,7 @@ describe('Test update post', () => {
 describe('Test delete post', () => {
     test('200 | post deleted successfully', async () => {
         await request(app)
-            .delete("/api/v1/post/1")
+            .delete("/api/v1/posts/1")
             .set("cookie", `token=${TOKEN_REGULAR}`)
             .expect(200)
             .expect((res) => {
@@ -362,7 +362,7 @@ describe('Test delete post', () => {
     })
     test('400 | trying to update post with string id', async () => {
         await request(app)
-            .delete("/api/v1/post/string")
+            .delete("/api/v1/posts/string")
             .set("cookie", `token=${TOKEN_REGULAR}`)
             .expect(400)
             .expect((res) => {
@@ -371,7 +371,7 @@ describe('Test delete post', () => {
     })
     test('401 | trying to delete post of other user.', async () => {
         await request(app)
-            .delete("/api/v1/post/2")
+            .delete("/api/v1/posts/2")
             .set("cookie", `token=${TOKEN_REGULAR}`)
             .expect(401)
             .expect((res) => {
@@ -380,7 +380,7 @@ describe('Test delete post', () => {
     })
     test('400 | trying to delete post that dose not exist', async () => {
         await request(app)
-            .delete("/api/v1/post/1000000000")
+            .delete("/api/v1/posts/1000000000")
             .set("cookie", `token=${TOKEN_REGULAR}`)
             .expect(400)
             .expect((res) => {
@@ -415,12 +415,12 @@ describe('Test get post of user', () => {
                 expect(res.body.message).toBe('Bad Request.');
             })
     })
-    test('400 | page is a not a string ', async () => {
+    test('200 | page is a not a string so it will get a default value page = 1', async () => {
         await request(app)
             .get("/api/v1/users/1/posts?page=string")
-            .expect(400)
+            .expect(200)
             .expect((res) => {
-                expect(res.body.message).toBe('Bad Request.');
+                expect(res.body.data).toHaveLength(2);
             })
     })
 })

@@ -25,8 +25,6 @@ const checkType = (authorizedTypes: userTypes[]) => async (req: CustomRequest, _
     if (authorizedTypes.includes(user.userType as userTypes)) {
       next()
     } else {
-      console.log(user.userType as userTypes)
-      console.log(authorizedTypes)
       next(new CustomError(403, 'Not enough permissions'))
     }
   }

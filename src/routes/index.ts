@@ -7,7 +7,7 @@ import userRouter from './user'
 
 const router = express.Router()
 
-router.use('/post', postRouter)
+router.use('/posts', postRouter)
 router.use('/users', userRouter)
 router.use('/auth', authRouter)
 router.use('/comments', commentRouter)

@@ -12,6 +12,8 @@ import { addImageQuery, deleteImageQuery } from '../../queries/image'
 import { updateProductQuery } from '../../queries/product'
 import { updatePetQuery } from '../../queries/pet'
 import CustomError from '../../helpers/CustomError'
+import { getAllCategoriesQuery } from '../../queries'
+import { type ICategory } from '../../interfaces/models'
 
 interface postData {
   categoryId: number
@@ -50,6 +52,12 @@ const updatePost = async (req: CustomRequest, res: Response, next: NextFunction)
     } = req.body as postData
 
     const postData: IPost = { userId, categoryId, postContent, isHaveImg }
+    const validatePost = await validateAddPost(postData)
+    const categories = await getAllCategoriesQuery()
+    const isCategory = categories.filter((category: ICategory) => category.categoryId === categoryId).length === 0
+    if (isCategory) {
+      throw new CustomError(400, 'Bad Request')
+    }
 
     const postId = Number(req.params.postId)
     let updatedPet
@@ -66,9 +74,12 @@ const updatePost = async (req: CustomRequest, res: Response, next: NextFunction)
     if (post.userId !== userId) {
       throw new CustomError(401, 'you are unauthorized to update this post')
     }
-    const updatedPost = await updatePostQuery(postId, await validateAddPost(postData))
+    const updatedPost = await updatePostQuery(postId, validatePost)
 
     if (isHaveImg) {
+      if (imagesUrl === undefined || imagesUrl.length === 0) {
+        throw new CustomError(400, 'Images is required.')
+      }
       if (post.postImages) {
         await deleteImageQuery(postId)
       }

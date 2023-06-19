@@ -4,16 +4,24 @@ import CustomError from '../../helpers/CustomError'
 
 const getExplorePosts = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const { page } = req.query
-    const pageNumber = Number(page)
-    if (pageNumber < 0 || Number.isNaN(pageNumber)) {
-      throw new CustomError(401, 'Bad Request.')
+    const { page, limit } = req.query
+    let pageNumber = Number(page) || 1
+    let limitNumber = Number(limit) || 10
+
+    if (limitNumber >= 101) throw new CustomError(400, 'limit should not be more than 100')
+
+    if (pageNumber < 0) {
+      pageNumber = 1
     }
-    const posts = await getExplorePostsQuery(pageNumber, 10)
+    if (limitNumber < 0) {
+      limitNumber = 10
+    }
+
+    const posts = await getExplorePostsQuery(pageNumber, limitNumber)
     if (posts.length !== 0) {
-      res.status(200).json({ data: posts })
+      res.json({ data: posts })
     } else {
-      res.status(200).json({ data: [] })
+      res.json({ data: [] })
     }
   } catch (error) {
     next(error)
