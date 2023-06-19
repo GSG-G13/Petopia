@@ -1,7 +1,7 @@
 import { type NextFunction, type Request, type Response } from 'express'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import loginQuery from '../../queries/auth/login'
+import { loginQuery } from '../../queries'
 import { loginSchema } from '../../validation/auth/login'
 import CustomError from '../../helpers/CustomError'
 
