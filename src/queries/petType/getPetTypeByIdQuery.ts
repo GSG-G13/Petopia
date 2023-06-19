@@ -2,9 +2,9 @@ import PetType from '../../models/PetType'
 import { type IPetType } from '../../interfaces/models'
 
 const getPetTypeByIdQuery = async (typeId: number): Promise<IPetType | null> => {
-  const type = await PetType.findByPk(typeId)
+  const result = await PetType.findByPk(typeId)
 
-  return type
+  return result
 }
 
 export default getPetTypeByIdQuery
