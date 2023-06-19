@@ -2,9 +2,9 @@ import express from 'express'
 import {
   createLike,
   unLike,
-  showPostLikers
+  getPostLikers
 
-} from '../controllers/likes/'
+} from '../controllers'
 import authUser from '../middlewares/auth'
 
 import checkType, { userTypes } from '../middlewares/checkType'
@@ -14,6 +14,6 @@ const likeRouter = express.Router()
 
 likeRouter.post('/', authUser, checkType([REGULAR]), createLike)
 likeRouter.delete('/', authUser, checkType([REGULAR]), unLike)
-likeRouter.get('/likers/:postId', showPostLikers)
+likeRouter.get('/likers/:postId', getPostLikers)
 
 export default likeRouter

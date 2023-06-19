@@ -1,6 +1,6 @@
 
-import createLike from './like'
+import createLike from './createLike'
 import unLike from '../likes/unLike'
-import showPostLikers from './postLikers'
+import getPostLikers from './getPostLikers'
 
-export { createLike, unLike, showPostLikers }
+export { createLike, unLike, getPostLikers }

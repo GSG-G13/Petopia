@@ -1,9 +1,9 @@
 import { type Response, type NextFunction } from 'express'
-import { getPostLikersQuery } from '../../queries/'
+import { getPostLikersQuery } from '../../queries'
 import CustomError from '../../helpers/CustomError'
 import { type CustomRequest } from '../../interfaces/iAuth'
 import { validatePostId } from '../../validation/likes'
-const showPostLikers = async (req: CustomRequest, res: Response, next: NextFunction): Promise<void> => {
+const getPostLikers = async (req: CustomRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { postId }: { postId: number } = await validatePostId.validate(req.params)
 
@@ -25,4 +25,4 @@ const showPostLikers = async (req: CustomRequest, res: Response, next: NextFunct
   }
 }
 
-export default showPostLikers
+export default getPostLikers

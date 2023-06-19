@@ -1,5 +1,5 @@
 import { type Response, type NextFunction } from 'express'
-import { createLikeQuery } from '../../queries/'
+import { createLikeQuery } from '../../queries'
 import { type ILike } from '../../interfaces/fakeDataTypes'
 import { validateLikeNum } from '../../validation/likes'
 import { type CustomRequest } from '../../interfaces/iAuth'
