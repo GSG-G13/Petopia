@@ -12,24 +12,18 @@ describe("Test getAllUsers controller", () => {
       {
         fullName: "Abdallah Abujazar",
         email: "Abujazar@example.com",
-        password:
-          "$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO",
         address: "123 Main St, Gaza",
         phone: "123-456-7890",
       },
       {
         fullName: "Mohammed Sallout",
         email: "Mohammed@example.com",
-        password:
-          "$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO",
         address: "456 Elm St, Khaniones",
         phone: "987-654-3210",
       },
       {
         fullName: "Muhammad Abdulhadi",
         email: "mu7ammadabed@gmail.com",
-        password:
-          "$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO",
         address: "456 Elm St, Khaniones",
         phone: "987-654-3210",
       },
@@ -49,7 +43,6 @@ describe("Test getUserById controller", () => {
     const user = {
       fullName: "Mohammed Sallout",
       email: "Mohammed@example.com",
-      password: "$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO",
       address: "456 Elm St, Khaniones",
       phone: "987-654-3210",
     };
