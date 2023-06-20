@@ -15,6 +15,7 @@ const getComments = async (req: Request, res: Response, next: NextFunction): Pro
       throw new CustomError(400, 'Bad Request')
     }
     if (limitNumber >= 51) throw new CustomError(400, 'limit should not be more than 50')
+    if (id <= 0 || Number.isNaN(id)) throw new CustomError(400, 'postId is Invalid!')
 
     const comments = await getCommentsQuery(id, pageNumber, limitNumber)
     res.json({
