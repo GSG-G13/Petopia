@@ -80,8 +80,8 @@ interface IUser extends Model<InferAttributes<IUser>, InferCreationAttributes<IU
   phone?: string
   userType?: string
   status?: string
-  followerCount: number
-  followingCount: number
+  followerCount?: number
+  followingCount?: number
 }
 
 export type { ICategory, IComment, IFollower, ILike, IPet, IPetType, IPost, IPostImage, IProduct, IUser }

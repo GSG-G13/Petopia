@@ -4,7 +4,7 @@ import { type IFollower } from '../../interfaces/models'
 import sequelize from '../../database/config'
 import CustomError from '../../helpers/CustomError'
 
-const addFollow = async (
+const createFollowQuery = async (
   followerId: number,
   followingId: number
 ): Promise<IFollower | null> => {
@@ -53,4 +53,4 @@ const addFollow = async (
   }
 }
 
-export default addFollow
+export default createFollowQuery

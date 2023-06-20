@@ -1,7 +1,7 @@
 
-import { createFollow } from '../follow/add'
-import { unFollow } from '../follow/delete'
-import { showUserFollowing } from './userFollowing'
-import { showUserFollowers } from './userFollowers'
+import createFollow from './createFollow'
+import unfollowUser from './unFollowUser'
+import showUserFollowers from './showUserFollowers'
+import showUserFollowing from './showUserFollowing'
 
-export { createFollow, unFollow, showUserFollowing, showUserFollowers }
+export { createFollow, unfollowUser, showUserFollowers, showUserFollowing }

@@ -1,5 +1,5 @@
 import { type Response, type NextFunction } from 'express'
-import { getUserFollowing } from '../../queries/follow/showUserFollowing'
+import { showUserFollowingQuery } from '../../queries/follow/'
 import CustomError from '../../helpers/CustomError'
 import { type CustomRequest } from '../../interfaces/iAuth'
 import { validateFollowerId } from '../../validation/follow'
@@ -12,7 +12,7 @@ const showUserFollowing = async (req: CustomRequest, res: Response, next: NextFu
       throw new CustomError(400, 'User ID not found')
     }
 
-    const followers = await getUserFollowing(followerId)
+    const followers = await showUserFollowingQuery(followerId)
 
     if (followers.length > 0) {
       res.json({
@@ -26,4 +26,4 @@ const showUserFollowing = async (req: CustomRequest, res: Response, next: NextFu
   }
 }
 
-export { showUserFollowing }
+export default showUserFollowing

@@ -1,8 +1,8 @@
 import Follower from '../../models/Follower'
 import { type IFollower } from '../../interfaces/models'
-import { User } from '../../models/'
+import { User } from '../../models'
 
-const getUserFollowers = async (followingId: number): Promise<IFollower[]> => {
+const showUserFollowersQuery = async (followingId: number): Promise<IFollower[]> => {
   const userFollowers = await Follower.findAll({
     where: { followingId },
     include: [
@@ -18,4 +18,4 @@ const getUserFollowers = async (followingId: number): Promise<IFollower[]> => {
   return userFollowers
 }
 
-export { getUserFollowers }
+export default showUserFollowersQuery

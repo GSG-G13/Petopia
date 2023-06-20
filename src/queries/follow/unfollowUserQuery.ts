@@ -3,7 +3,7 @@ import User from '../../models/User'
 import sequelize from '../../database/config'
 import CustomError from '../../helpers/CustomError'
 
-const unFollowUser = async (
+const unfollowUserQuery = async (
   followerId: number,
   followingId: number
 ): Promise<void> => {
@@ -40,4 +40,4 @@ const unFollowUser = async (
   }
 }
 
-export default unFollowUser
+export default unfollowUserQuery

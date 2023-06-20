@@ -52,6 +52,7 @@ const fakeData: {
       profileImage: 'https://Mohammed.com/profile2.jpg',
       address: '456 Elm St, Khaniones',
       phone: '987-654-3210',
+      userType: 'regular',
       status: 'active',
       followerCount: 0,
       followingCount: 0

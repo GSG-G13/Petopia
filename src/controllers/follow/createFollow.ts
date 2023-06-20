@@ -1,7 +1,7 @@
 import { type Response, type NextFunction } from 'express'
-import addFollow from '../../queries/follow/add'
+import { createFollowQuery } from '../../queries/follow/'
 import { type IFollower } from '../../interfaces/fakeDataTypes'
-import { validateFollowNum } from '../../validation/follow/'
+import { validateFollowNum } from '../../validation/follow'
 import { type CustomRequest } from '../../interfaces/iAuth'
 
 const createFollow = async (req: CustomRequest, res: Response, next: NextFunction): Promise<void> => {
@@ -15,7 +15,7 @@ const createFollow = async (req: CustomRequest, res: Response, next: NextFunctio
       followerId: req.user?.userId
     }, { abortEarly: false })
 
-    const newFollow = await addFollow(followerId, followingId)
+    const newFollow = await createFollowQuery(followerId, followingId)
 
     res.status(201).json({
       message: 'Follow Created Successfully',
@@ -26,4 +26,4 @@ const createFollow = async (req: CustomRequest, res: Response, next: NextFunctio
   }
 }
 
-export { createFollow }
+export default createFollow
