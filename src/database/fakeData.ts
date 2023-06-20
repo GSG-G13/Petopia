@@ -33,7 +33,7 @@ const fakeData: {
     {
       fullName: 'Mohammed Sallout',
       email: 'Mohammed@example.com',
-      password: '$2b$10$J2ZP4xc/Yug8q1Gs7F8vL.rZbskXD2FyRf7iidzdDqD9ewYW4sLFG',
+      password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
       userImage: 'https://Mohammed.com/user2.jpg',
       profileImage: 'https://Mohammed.com/profile2.jpg',
       address: '456 Elm St, Khaniones',
