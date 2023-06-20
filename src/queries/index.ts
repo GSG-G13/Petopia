@@ -17,7 +17,7 @@ import {
 } from './comment'
 
 import { createLikeQuery, unLikeQuery, getPostLikersQuery } from './likes'
-import { getUserQuery, getAllUsersQuery } from './user'
+import { getUserQuery, getAllUsersQuery, userStatusQuery } from './user'
 
 import { loginQuery, createUser } from './auth'
 
@@ -44,7 +44,7 @@ export {
   getCommentQuery, deleteCommentQuery, addCommentQuery,
   createLikeQuery, unLikeQuery, getPostLikersQuery,
 
-  getUserQuery, getAllUsersQuery,
+  getUserQuery, getAllUsersQuery, userStatusQuery,
 
   loginQuery, createUser,
 
