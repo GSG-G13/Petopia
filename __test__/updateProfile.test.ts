@@ -66,12 +66,12 @@ describe('Test updateProfile controller', () => {
 describe('validateEditUser', () => {
   test('valid data should pass validation', async () => {
     const validData = {
-      fullName: 'John Doe',
-      email: 'johndoe@example.com',
-      password: 'password123',
+      fullName: 'Abdallah Jazara',
+      email: 'Jazara@example.com',
+      password: 'JazaraJazara',
       userImage: 'image.jpg',
       profileImage: 'profile.jpg',
-      address: '123 Street',
+      address: '123 Jazara',
       phone: '1234567890',
     };
 
