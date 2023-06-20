@@ -1,3 +1,11 @@
+import { getPostQuery, addPostQuery, deletePostQuery, updatePostQuery, getExplorePostsQuery } from './post'
+
+import { addProductQuery, updateProductQuery } from './product'
+
+import { addPetQuery, updatePetQuery } from './pet'
+
+import { addImageQuery, deleteImageQuery } from './image'
+
 import {
   addCategoryQuery, deleteCategoryQuery, editCategoryQuery,
   getAllCategoriesQuery, getSpecificCategoryQuery
@@ -19,6 +27,16 @@ import {
 } from './petType'
 
 export {
+  getPostQuery, addPostQuery,
+  deletePostQuery, updatePostQuery,
+  getExplorePostsQuery,
+
+  addProductQuery, updateProductQuery,
+
+  addPetQuery, updatePetQuery,
+
+  addImageQuery, deleteImageQuery,
+
   addCategoryQuery, deleteCategoryQuery, editCategoryQuery,
   getAllCategoriesQuery, getSpecificCategoryQuery,
 

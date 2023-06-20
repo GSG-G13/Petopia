@@ -31,7 +31,7 @@ interface IPet extends Model<InferAttributes<IPet>, InferCreationAttributes<IPet
   petId: CreationOptional<number>
   postId: ForeignKey<number>
   petName: string
-  petType: ForeignKey<number>
+  type: ForeignKey<number>
   age: number
   gender: string
   healthStatus: string
@@ -65,8 +65,8 @@ interface IProduct extends Model<InferAttributes<IProduct>, InferCreationAttribu
   postId: ForeignKey<number>
   title: string
   price: number
-  details: string
-  rating: number
+  details?: string
+  rating?: number
 }
 
 interface IUser extends Model<InferAttributes<IUser>, InferCreationAttributes<IUser>> {
