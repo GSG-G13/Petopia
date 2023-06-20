@@ -1,4 +1,7 @@
-import { getPostQuery, addPostQuery, deletePostQuery, updatePostQuery, getExplorePostsQuery } from './post'
+import {
+  getPostQuery, addPostQuery, deletePostQuery,
+  updatePostQuery, getExplorePostsQuery, getFeedPostsQuery
+} from './post'
 
 import { addProductQuery, updateProductQuery } from './product'
 
@@ -29,7 +32,7 @@ import {
 export {
   getPostQuery, addPostQuery,
   deletePostQuery, updatePostQuery,
-  getExplorePostsQuery,
+  getExplorePostsQuery, getFeedPostsQuery,
 
   addProductQuery, updateProductQuery,
 
