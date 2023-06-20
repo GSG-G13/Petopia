@@ -12,11 +12,30 @@ const updateStatus = async (req: Request, res: Response, next: NextFunction): Pr
 
     const { userId } = await validateUserId.validate(req.params)
 
-    const updatedStatus: IUser | null = await userStatusQuery(Number(userId), status)
+    const {
+      fullName,
+      email,
+      userImage,
+      profileImage,
+      address,
+      phone,
+      userType
+    }: IUser =
+    await userStatusQuery(Number(userId), status)
 
     res.json({
       message: 'Status Updated Successfully',
-      data: updatedStatus
+      data: {
+        userId,
+        fullName,
+        email,
+        userImage,
+        profileImage,
+        address,
+        phone,
+        userType,
+        status
+      }
     })
   } catch (err: unknown) {
     next(err)
