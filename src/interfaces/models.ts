@@ -49,6 +49,9 @@ interface IPost extends Model<InferAttributes<IPost>, InferCreationAttributes<IP
   categoryId: number
   postContent: string
   isHaveImg: boolean
+  likesCount: number
+  commentsCount: number
+
 }
 
 interface IPostImage extends Model<InferAttributes<IPostImage>, InferCreationAttributes<IPostImage>> {

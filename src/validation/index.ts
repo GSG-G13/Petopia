@@ -1,7 +1,11 @@
 import { validateCategoryId, validateTitle } from './category'
+import { validateTypeId } from './pettype'
+
 import { validateCommentId, commentSchema } from './comment'
+import { validateUserId } from './user'
 
 export {
-  validateCategoryId, validateTitle,
-  validateCommentId, commentSchema
+  validateCommentId, validateUserId,
+  validateCategoryId, validateTitle, validateTypeId,
+  commentSchema
 }
