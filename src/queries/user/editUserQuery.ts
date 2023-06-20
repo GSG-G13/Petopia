@@ -13,5 +13,5 @@ const editUserQuery = async (userId: number, userData: IUser): Promise<IUser | n
     return null
   }
   return updatedUser
-}
+} 
 export default editUserQuery
