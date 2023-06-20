@@ -62,7 +62,7 @@ const updatePost = async (req: CustomRequest, res: Response, next: NextFunction)
     const postData: IPost = { userId, categoryId, postContent, isHaveImg, commentsCount, likesCount }
     const validatePost = await validateAddPost(postData)
     const categories = await getAllCategoriesQuery()
-    const isCategory = categories.filter((category: ICategory) => category.categoryId === categoryId).length === 0
+    const isCategory = categories.filter((category: ICategory) => category.categoryId === +categoryId).length === 0
     if (isCategory) {
       throw new CustomError(400, 'Bad Request')
     }
@@ -84,9 +84,9 @@ const updatePost = async (req: CustomRequest, res: Response, next: NextFunction)
     }
     const updatedPost = await updatePostQuery(postId, validatePost)
 
-    if (isHaveImg) {
+    if (validatePost.isHaveImg) {
       if (imagesUrl === undefined || imagesUrl.length === 0) {
-        throw new CustomError(400, 'Images is required.')
+        throw new CustomError(400, 'Images are required')
       }
       if (post.postImages) {
         await deleteImageQuery(postId)
@@ -101,7 +101,7 @@ const updatePost = async (req: CustomRequest, res: Response, next: NextFunction)
       })
     }
     // it will be edited
-    if (categoryId === 1) { // should be : category.title === "Adoption"
+    if (+categoryId === 1) { // should be : category.title === "Adoption"
       const validatedPet = await addPetValidation({
         petName,
         type,
@@ -112,7 +112,7 @@ const updatePost = async (req: CustomRequest, res: Response, next: NextFunction)
         postId
       })
       updatedPet = await updatePetQuery(postId, validatedPet)
-    } else if (categoryId === 4) { // should be : category.title === "Sell"
+    } else if (+categoryId === 4) { // should be : category.title === "Sell"
       const validatedProduct = await validateAddProduct({
         postId,
         title,
@@ -122,7 +122,7 @@ const updatePost = async (req: CustomRequest, res: Response, next: NextFunction)
       })
       updatedProduct = await updateProductQuery(postId, validatedProduct)
     }
-    res.status(200).json({
+    res.json({
       message: 'Post updated successfully',
       data: {
         post: updatedPost,
