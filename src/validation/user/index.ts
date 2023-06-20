@@ -1,4 +1,4 @@
 import validateUserId from './validateUserId'
-import validateStatus from './validateStatus'
+import { validateStatus, validateFullName } from './validateStatus'
 
-export { validateUserId, validateStatus }
+export { validateUserId, validateStatus, validateFullName }
