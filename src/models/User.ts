@@ -34,7 +34,7 @@ const User = sequelize.define<IUser>('user', {
     type: DataTypes.STRING
   },
   userType: {
-    type: DataTypes.STRING,
+    type: DataTypes.ENUM('regular', 'admin'),
     defaultValue: 'regular',
     allowNull: false
   },
