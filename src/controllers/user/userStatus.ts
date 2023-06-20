@@ -1,14 +1,11 @@
 import { type Request, type Response, type NextFunction } from 'express'
 import { userStatusQuery } from '../../queries'
 import { type IUser } from '../../interfaces/models'
-import CustomError from '../../helpers/CustomError'
-import { validateUserId } from '../../validation'
+import { validateStatus, validateUserId } from '../../validation'
 
 const updateStatus = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const { status }: { status: string } = req.body
-
-    if (status !== 'active' && status !== 'deactive') throw new CustomError(400, 'Validation Error')
+    const { status }: { status: string } = await validateStatus.validate(req.body)
 
     const { userId } = await validateUserId.validate(req.params)
 
