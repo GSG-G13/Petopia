@@ -7,7 +7,7 @@ const addPetValidation = async (data: IPet): Promise<IPet> => {
     petName: Yup.string().required('Pet name is required'),
     type: Yup.number().required('Pet type is required'),
     age: Yup.number().required('Age is required'),
-    gender: Yup.string().required('Gender is required'),
+    gender: Yup.string().oneOf(['male', 'female']).required('Gender is required'),
     healthStatus: Yup.string().required('Health status is required'),
     adoptionStatus: Yup.string().required('Adoption status is required')
   })

@@ -57,7 +57,7 @@ const addPost = async (req: CustomRequest, res: Response, next: NextFunction): P
 
     const categories = await getAllCategoriesQuery()
     const validatedPost = await validateAddPost(postData)
-    const isCategory = categories.filter((category: ICategory) => category.categoryId === categoryId).length === 0
+    const isCategory = categories.filter((category: ICategory) => category.categoryId === +categoryId).length === 0
     if (isCategory) {
       throw new CustomError(400, 'Bad Request')
     }
@@ -69,9 +69,9 @@ const addPost = async (req: CustomRequest, res: Response, next: NextFunction): P
     if (postId === null) {
       throw new CustomError(400, 'Can\'t add new post.')
     } else {
-      if (isHaveImg) {
+      if (validatedPost.isHaveImg) {
         if (imagesUrl === undefined || imagesUrl.length === 0) {
-          throw new CustomError(400, 'Images is required.')
+          throw new CustomError(400, 'Images are required')
         }
         imagesUrl.forEach(async (imageUrl: string) => {
           const validatedImage = await validateAddImage({ postId, imageUrl })
@@ -79,7 +79,7 @@ const addPost = async (req: CustomRequest, res: Response, next: NextFunction): P
           addedImages.push(await addedImage)
         })
       }
-      if (categoryId === 1) { // should be : category.title === "Adoption"
+      if (+categoryId === 1) { // should be : category.title === "Adoption"
         const validatedPet = await addPetValidation({
           petName,
           type,
@@ -90,7 +90,7 @@ const addPost = async (req: CustomRequest, res: Response, next: NextFunction): P
           postId
         })
         addedPet = await addPetQuery(validatedPet)
-      } else if (categoryId === 4) { // should be : category.title === "Sell"
+      } else if (+categoryId === 4) { // should be : category.title === "Sell"
         const validatedProduct = await validateAddProduct({
           postId,
           title,
@@ -101,7 +101,7 @@ const addPost = async (req: CustomRequest, res: Response, next: NextFunction): P
         addedProduct = await addProductQuery(validatedProduct)
       }
       res.status(201).json({
-        message: `Post created successfully with ID: ${postId}`,
+        message: `Post created successfully with ID: ${postId as number}`,
         data: {
           post: postData,
           pet: addedPet,
