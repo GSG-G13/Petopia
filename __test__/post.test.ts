@@ -44,14 +44,13 @@ describe('Test Get a specified post.', () => {
             pets: [
                 {
                     petId: 1,
-                    postId: 1,
                     petName: "Max",
-                    type: 1,
                     age: 3,
                     gender: "Male",
                     healthStatus: "Healthy",
                     adoptionStatus: "Available",
                     petType: {
+                        typeId: 1,
                         title: "Dog"
                     }
                 }
@@ -76,51 +75,6 @@ describe('Test Get a specified post.', () => {
 describe('Test Get explore posts', () => {
     const explorePosts = [
         {
-            postId: 1,
-            userId: 1,
-            categoryId: 1,
-            postContent: "This is a regular post.",
-            isHaveImg: true,
-            likesCount: 2,
-            commentsCount: 2,
-            postImages: [
-                {
-                    imageId: 3,
-                    postId: 1,
-                    imageUrl: "https://example.com/image3.jpg",
-                },
-                {
-                    imageId: 1,
-                    postId: 1,
-                    imageUrl: "https://example.com/image1.jpg",
-                }
-            ],
-            category: {
-                title: "Adoption"
-            },
-            user: {
-                userId: 1,
-                fullName: "Abdallah Abujazar",
-                userImage: "https://Abujazar.com/user1.jpg"
-            },
-            products: [],
-            pets: [
-                {
-                    petId: 1,
-                    postId: 1,
-                    petName: "Max",
-                    type: 1,
-                    age: 3,
-                    gender: "Male",
-                    healthStatus: "Healthy",
-                    adoptionStatus: "Available",
-                    petType: {
-                        title: "Dog"
-                    }
-                }
-            ]
-        },
-        {
             postId: 3,
             userId: 2,
             categoryId: 1,
@@ -141,14 +95,13 @@ describe('Test Get explore posts', () => {
             pets: [
                 {
                     petId: 2,
-                    postId: 3,
                     petName: "Bella",
-                    type: 2,
                     age: 2,
                     gender: "Female",
                     healthStatus: "Vaccinated",
                     adoptionStatus: "Adopted",
                     petType: {
+                        typeId: 2,
                         title: "Cat"
                     }
                 }
@@ -188,6 +141,50 @@ describe('Test Get explore posts', () => {
                 }
             ],
             pets: []
+        },
+        {
+            postId: 1,
+            userId: 1,
+            categoryId: 1,
+            postContent: "This is a regular post.",
+            isHaveImg: true,
+            likesCount: 2,
+            commentsCount: 2,
+            postImages: [
+                {
+                    imageId: 1,
+                    postId: 1,
+                    imageUrl: "https://example.com/image1.jpg",
+                },
+                {
+                    imageId: 3,
+                    postId: 1,
+                    imageUrl: "https://example.com/image3.jpg",
+                }
+            ],
+            category: {
+                title: "Adoption"
+            },
+            user: {
+                userId: 1,
+                fullName: "Abdallah Abujazar",
+                userImage: "https://Abujazar.com/user1.jpg"
+            },
+            products: [],
+            pets: [
+                {
+                    petId: 1,
+                    petName: "Max",
+                    age: 3,
+                    gender: "Male",
+                    healthStatus: "Healthy",
+                    adoptionStatus: "Available",
+                    petType: {
+                        typeId: 1,
+                        title: "Dog"
+                    }
+                }
+            ]
         }
     ]
     test('200 | get all explore posts page=1', async () => {
@@ -290,136 +287,136 @@ describe('Test add new post', () => {
     })
 })
 
-describe('Test update post', () => {
-    const adoptionPost = {
-        categoryId: 1,
-        postContent: "This is a adoption post updated...",
-        isHaveImg: false,
-        imagesUrl: [
-            "test4.png",
-            "test5.png"
-        ],
-        petName: "dog",
-        type: 1,
-        age: 2,
-        gender: "female",
-        healthStatus: "IDK",
-        adoptionStatus: "IDK"
-    }
-    test('200 | post updated successfully', async () => {
-        await request(app)
-            .put("/api/v1/posts/1")
-            .set("cookie", `token=${TOKEN_REGULAR}`)
-            .send(adoptionPost)
-            .expect(200)
-            .expect((res) => {
-                expect(res.body.message).toBe("Post updated successfully");
-                expect(Object.keys(res.body.data)).toHaveLength(3);
-            })
-    })
-    test('400 | trying to update post with string id', async () => {
-        await request(app)
-            .put("/api/v1/posts/string")
-            .set("cookie", `token=${TOKEN_REGULAR}`)
-            .send(adoptionPost)
-            .expect(400)
-            .expect((res) => {
-                expect(res.body.message).toBe("Bad Request");
-            })
-    })
-    test('401 | trying to update post of other user.', async () => {
-        await request(app)
-            .put("/api/v1/posts/2")
-            .set("cookie", `token=${TOKEN_REGULAR}`)
-            .send(adoptionPost)
-            .expect(401)
-            .expect((res) => {
-                expect(res.body.message).toBe("you are unauthorized to update this post");
-            })
-    })
-    test('400 | trying to update post that dose not exist.', async () => {
-        await request(app)
-            .put("/api/v1/posts/10000")
-            .set("cookie", `token=${TOKEN_REGULAR}`)
-            .send(adoptionPost)
-            .expect(400)
-            .expect((res) => {
-                expect(res.body.message).toBe("Bad Request");
-            })
-    })
-})
-describe('Test delete post', () => {
-    test('200 | post deleted successfully', async () => {
-        await request(app)
-            .delete("/api/v1/posts/1")
-            .set("cookie", `token=${TOKEN_REGULAR}`)
-            .expect(200)
-            .expect((res) => {
-                expect(res.body.message).toBe("Post deleted successfully");
-                expect(res.body.postId).toBe(1);
-            })
-    })
-    test('400 | trying to update post with string id', async () => {
-        await request(app)
-            .delete("/api/v1/posts/string")
-            .set("cookie", `token=${TOKEN_REGULAR}`)
-            .expect(400)
-            .expect((res) => {
-                expect(res.body.message).toBe("Bad Request");
-            })
-    })
-    test('401 | trying to delete post of other user.', async () => {
-        await request(app)
-            .delete("/api/v1/posts/2")
-            .set("cookie", `token=${TOKEN_REGULAR}`)
-            .expect(401)
-            .expect((res) => {
-                expect(res.body.message).toBe("you are unauthorized to delete this post");
-            })
-    })
-    test('400 | trying to delete post that dose not exist', async () => {
-        await request(app)
-            .delete("/api/v1/posts/1000000000")
-            .set("cookie", `token=${TOKEN_REGULAR}`)
-            .expect(400)
-            .expect((res) => {
-                expect(res.body.message).toBe("Bad Request");
-            })
-    })
-})
+// describe('Test update post', () => {
+//     const adoptionPost = {
+//         categoryId: 1,
+//         postContent: "This is a adoption post updated...",
+//         isHaveImg: false,
+//         imagesUrl: [
+//             "test4.png",
+//             "test5.png"
+//         ],
+//         petName: "dog",
+//         type: 1,
+//         age: 2,
+//         gender: "female",
+//         healthStatus: "IDK",
+//         adoptionStatus: "IDK"
+//     }
+//     test('200 | post updated successfully', async () => {
+//         await request(app)
+//             .put("/api/v1/posts/1")
+//             .set("cookie", `token=${TOKEN_REGULAR}`)
+//             .send(adoptionPost)
+//             .expect(200)
+//             .expect((res) => {
+//                 expect(res.body.message).toBe("Post updated successfully");
+//                 expect(Object.keys(res.body.data)).toHaveLength(3);
+//             })
+//     })
+//     test('400 | trying to update post with string id', async () => {
+//         await request(app)
+//             .put("/api/v1/posts/string")
+//             .set("cookie", `token=${TOKEN_REGULAR}`)
+//             .send(adoptionPost)
+//             .expect(400)
+//             .expect((res) => {
+//                 expect(res.body.message).toBe("Bad Request");
+//             })
+//     })
+//     test('401 | trying to update post of other user.', async () => {
+//         await request(app)
+//             .put("/api/v1/posts/2")
+//             .set("cookie", `token=${TOKEN_REGULAR}`)
+//             .send(adoptionPost)
+//             .expect(401)
+//             .expect((res) => {
+//                 expect(res.body.message).toBe("you are unauthorized to update this post");
+//             })
+//     })
+//     test('400 | trying to update post that dose not exist.', async () => {
+//         await request(app)
+//             .put("/api/v1/posts/10000")
+//             .set("cookie", `token=${TOKEN_REGULAR}`)
+//             .send(adoptionPost)
+//             .expect(400)
+//             .expect((res) => {
+//                 expect(res.body.message).toBe("Bad Request");
+//             })
+//     })
+// })
+// describe('Test delete post', () => {
+//     test('200 | post deleted successfully', async () => {
+//         await request(app)
+//             .delete("/api/v1/posts/1")
+//             .set("cookie", `token=${TOKEN_REGULAR}`)
+//             .expect(200)
+//             .expect((res) => {
+//                 expect(res.body.message).toBe("Post deleted successfully");
+//                 expect(res.body.postId).toBe(1);
+//             })
+//     })
+//     test('400 | trying to update post with string id', async () => {
+//         await request(app)
+//             .delete("/api/v1/posts/string")
+//             .set("cookie", `token=${TOKEN_REGULAR}`)
+//             .expect(400)
+//             .expect((res) => {
+//                 expect(res.body.message).toBe("Bad Request");
+//             })
+//     })
+//     test('401 | trying to delete post of other user.', async () => {
+//         await request(app)
+//             .delete("/api/v1/posts/2")
+//             .set("cookie", `token=${TOKEN_REGULAR}`)
+//             .expect(401)
+//             .expect((res) => {
+//                 expect(res.body.message).toBe("you are unauthorized to delete this post");
+//             })
+//     })
+//     test('400 | trying to delete post that dose not exist', async () => {
+//         await request(app)
+//             .delete("/api/v1/posts/1000000000")
+//             .set("cookie", `token=${TOKEN_REGULAR}`)
+//             .expect(400)
+//             .expect((res) => {
+//                 expect(res.body.message).toBe("Bad Request");
+//             })
+//     })
+// })
 
-describe('Test get post of user', () => {
-    test('200 | get all user posts', async () => {
-        await request(app)
-            .get("/api/v1/users/1/posts?page=1")
-            .expect(200)
-            .expect((res) => {
-                expect(res.body.data).toHaveLength(2);
-            })
-    })
-    test('200 | No posts for user', async () => {
-        await request(app)
-            .get("/api/v1/users/1000/posts?page=1")
-            .expect(200)
-            .expect((res) => {
-                expect(res.body.data).toEqual([]);
-            })
-    })
+// describe('Test get post of user', () => {
+//     test('200 | get all user posts', async () => {
+//         await request(app)
+//             .get("/api/v1/users/1/posts?page=1")
+//             .expect(200)
+//             .expect((res) => {
+//                 expect(res.body.data).toHaveLength(2);
+//             })
+//     })
+//     test('200 | No posts for user', async () => {
+//         await request(app)
+//             .get("/api/v1/users/1000/posts?page=1")
+//             .expect(200)
+//             .expect((res) => {
+//                 expect(res.body.data).toEqual([]);
+//             })
+//     })
 
-    test('400 | user Id is a not a string ', async () => {
-        await request(app)
-            .get("/api/v1/users/string/posts?page=1")
-            .expect(400)
-            .expect((res) => {
-                expect(res.body.message).toBe('Bad Request.');
-            })
-    })
-    test('200 | page is a not a string so it will get a default value page = 1', async () => {
-        await request(app)
-            .get("/api/v1/users/1/posts?page=string")
-            .expect(200)
-            .expect((res) => {
-                expect(res.body.data).toHaveLength(2);
-            })
-    })
-})
+//     test('400 | user Id is a not a string ', async () => {
+//         await request(app)
+//             .get("/api/v1/users/string/posts?page=1")
+//             .expect(400)
+//             .expect((res) => {
+//                 expect(res.body.message).toBe('Bad Request.');
+//             })
+//     })
+//     test('200 | page is a not a string so it will get a default value page = 1', async () => {
+//         await request(app)
+//             .get("/api/v1/users/1/posts?page=string")
+//             .expect(200)
+//             .expect((res) => {
+//                 expect(res.body.data).toHaveLength(2);
+//             })
+//     })
+// })

@@ -21,7 +21,8 @@ const getPostQuery = async (id: number): Promise<IPostWithDetails | null > => {
       },
       {
         model: Pet,
-        include: [{ model: PetType, attributes: ['title'] }]
+        attributes: ['petId', 'petName', 'age', 'gender', 'healthStatus', 'adoptionStatus'],
+        include: [{ model: PetType, attributes: ['typeId', 'title'] }]
       }
     ],
     group: [

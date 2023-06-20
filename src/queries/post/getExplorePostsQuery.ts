@@ -21,7 +21,8 @@ const getExplorePostsQuery = async (page: number, limit: number): Promise<IPostW
       },
       {
         model: Pet,
-        include: [{ model: PetType, attributes: ['title'] }]
+        attributes: ['petId', 'petName', 'age', 'gender', 'healthStatus', 'adoptionStatus'],
+        include: [{ model: PetType, attributes: ['typeId', 'title'] }]
       }
     ],
     group: [
@@ -33,7 +34,7 @@ const getExplorePostsQuery = async (page: number, limit: number): Promise<IPostW
       'pets.petId',
       'pets->petType.typeId'
     ],
-    order: [['createdAt', 'DESC']],
+    order: [['postId', 'DESC']],
     limit,
     offset,
     subQuery: false
