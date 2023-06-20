@@ -15,8 +15,8 @@ const unfollowUser = async (req: CustomRequest, res: Response, next: NextFunctio
 
     await unfollowUserQuery(Number(followerId), Number(followingId))
 
-    res.json({
-      message: 'Follow Deleted Successfully',
+    res.status(200).json({
+      message: 'User Unfollowed Successfully',
       data: null
     })
   } catch (err: unknown) {
