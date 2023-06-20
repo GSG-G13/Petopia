@@ -34,12 +34,21 @@ describe('Test search result controller', () => {
       });
   });
 
-  test('404 | when  fullname  is empty', async () => {
+  test('400 | when  fullname  is empty', async () => {
     await request(app)
       .get('/api/v1/users/search?fullName=&page=1&limit=10')
       .expect(400)
       .expect((res) => {
         expect(res.body.data.errors[0]).toEqual('Full Name is required');
+      });
+  });
+
+  test('400 | limit should not be more than 100', async () => {
+    await request(app)
+      .get('/api/v1/users/search?fullName=a&page=1&limit=101')
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.message).toEqual('limit should not be more than 100');
       });
   });
 
