@@ -28,7 +28,6 @@ export interface IPost {
   isHaveImg: boolean
   likesCount: number
   commentsCount: number
-
 }
 
 export interface IPostImage {
@@ -57,14 +56,14 @@ export interface IProduct {
   postId: number
   title: string
   price: number
-  details: string
-  rating: number
+  details?: string
+  rating?: number
 }
 
 export interface IPet {
   postId: number
   petName: string
-  petType: number
+  type: number
   age: number
   gender: string
   healthStatus: string

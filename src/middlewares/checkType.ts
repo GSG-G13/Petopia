@@ -3,7 +3,7 @@ import { config } from 'dotenv'
 
 import CustomError from '../helpers/CustomError'
 import { type CustomRequest } from '../interfaces/iAuth'
-import { getUserQuery } from '../queries/user'
+import { getUserQuery } from '../queries'
 
 config()
 
@@ -17,6 +17,7 @@ const checkType = (authorizedTypes: userTypes[]) => async (req: CustomRequest, _
     throw new CustomError(401, 'Unauthorized')
   }
   const { userId } = req.user
+
   const user = await getUserQuery(userId)
 
   if (user === null) {
