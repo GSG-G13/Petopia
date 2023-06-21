@@ -2,12 +2,15 @@ export interface IUser {
   fullName: string
   email: string
   password: string
+  phone?: string
   userImage?: string
   profileImage?: string
   address?: string
-  phone?: string
   userType?: string
   status?: string
+  followerCount?: number
+  followingCount?: number
+
 }
 
 export interface ICategory {
@@ -46,6 +49,7 @@ export interface ILike {
 export interface IFollower {
   followerId: number
   followingId: number
+
 }
 
 export interface IProduct {
