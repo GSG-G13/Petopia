@@ -1,8 +1,8 @@
 import sequelize from '../database/config'
 import { DataTypes } from 'sequelize'
-import { type IPost } from '../interfaces/models'
+import { type IPostWithDetails } from '../interfaces/iPosts'
 
-const Post = sequelize.define<IPost>('post', {
+const Post = sequelize.define<IPostWithDetails>('post', {
   postId: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -19,6 +19,14 @@ const Post = sequelize.define<IPost>('post', {
   },
   isHaveImg: {
     type: DataTypes.BOOLEAN
+  },
+  likesCount: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0
+  },
+  commentsCount: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0
   }
 })
 

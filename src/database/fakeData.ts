@@ -108,16 +108,16 @@ const fakeData: {
     {
       postId: 1,
       petName: 'Max',
-      petType: 1,
+      type: 1,
       age: 3,
       gender: 'Male',
       healthStatus: 'Healthy',
       adoptionStatus: 'Available'
     },
     {
-      postId: 2,
+      postId: 3,
       petName: 'Bella',
-      petType: 2,
+      type: 2,
       age: 2,
       gender: 'Female',
       healthStatus: 'Vaccinated',
@@ -140,19 +140,28 @@ const fakeData: {
       userId: 1,
       categoryId: 1,
       postContent: 'This is a regular post.',
-      isHaveImg: true
+      isHaveImg: true,
+      likesCount: 2,
+      commentsCount: 2
+
     },
     {
       userId: 2,
-      categoryId: 2,
+      categoryId: 4,
       postContent: 'Check out this product Im selling!',
-      isHaveImg: true
+      isHaveImg: true,
+      likesCount: 1,
+      commentsCount: 1
+
     },
     {
       userId: 2,
       categoryId: 1,
       postContent: 'Looking to adopt a pet.',
-      isHaveImg: false
+      isHaveImg: false,
+      likesCount: 0,
+      commentsCount: 0
+
     }
   ],
   postImages: [
@@ -171,25 +180,11 @@ const fakeData: {
   ],
   products: [
     {
-      postId: 1,
-      title: 'Product A',
-      price: 9.99,
-      details: 'This is product A.',
-      rating: 4.5
-    },
-    {
       postId: 2,
       title: 'Product B',
       price: 14.99,
       details: 'Check out product B.',
       rating: 3.8
-    },
-    {
-      postId: 3,
-      title: 'Product C',
-      price: 19.99,
-      details: 'Introducing product C.',
-      rating: 4.2
     }
   ]
 
