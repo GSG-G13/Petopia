@@ -25,16 +25,10 @@ const searchAboutUser = async (req: Request, res: Response, next: NextFunction):
 
     const users = await searchAboutUserQuery(pageNumber, limitNumber, fullNameStr)
 
-    if (users.length === 0) {
-      res.status(404).json({
-        message: 'No users found'
-      })
-    } else {
-      res.json({
-        message: 'Users Retrieved Successfully',
-        data: users
-      })
-    }
+    res.json({
+      message: 'Data Retrieved Successfully',
+      data: users
+    })
   } catch (err) {
     next(err)
   }

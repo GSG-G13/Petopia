@@ -12,7 +12,7 @@ describe('Test search result controller', () => {
       .get('/api/v1/users/search?fullName=jaza&page=1&limit=10')
       .expect(200)
       .expect((res) => {
-        expect(res.body.message).toEqual('Users Retrieved Successfully');
+        expect(res.body.message).toEqual('Data Retrieved Successfully');
         expect(res.body.data).toMatchObject(
             [{
             fullName: "Abdallah Abujazar",
@@ -25,12 +25,13 @@ describe('Test search result controller', () => {
       });
   });
 
-  test('404 | when  user is not found', async () => {
+  test('200 | when  user is not found', async () => {
     await request(app)
       .get('/api/v1/users/search?fullName=10mm&page=1&limit=10')
-      .expect(404)
+      .expect(200)
       .expect((res) => {
-        expect(res.body.message).toEqual('No users found');
+        expect(res.body.message).toEqual('Data Retrieved Successfully');
+        expect(res.body.data).toEqual([]);
       });
   });
 
