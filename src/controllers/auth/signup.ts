@@ -54,7 +54,9 @@ const signup = async (req: Request, res: Response, next: NextFunction): Promise<
       profileImage,
       address,
       userType,
-      status
+      status,
+      followerCount: 0, // added
+      followingCount: 0 // added
     })
 
     const token = signToken({ userId: newUser.userId, email: newUser.email })
