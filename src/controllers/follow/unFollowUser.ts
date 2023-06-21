@@ -9,15 +9,14 @@ export type { IFollower }
 const unfollowUser = async (req: CustomRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { followerId, followingId }: IFollower = await validateFollowNum.validate({
-      ...req.body,
-      followerId: req.user?.userId
+      ...req.params,
+      followingId: req.user?.userId
     }, { abortEarly: false })
 
     await unfollowUserQuery(Number(followerId), Number(followingId))
 
-    res.status(200).json({
-      message: 'User Unfollowed Successfully',
-      data: null
+    res.json({
+      message: 'User Unfollowed Successfully'
     })
   } catch (err: unknown) {
     next(err)

@@ -19,7 +19,7 @@ const createFollowQuery = async (
 
   if (existingFollow) {
     // Relationship already exists, no need to create a new record
-    return null
+    throw new CustomError(400, 'You already Following this user')
   }
 
   const transaction = await sequelize.transaction()

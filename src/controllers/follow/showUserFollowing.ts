@@ -15,7 +15,7 @@ const showUserFollowing = async (req: CustomRequest, res: Response, next: NextFu
     const followers = await showUserFollowingQuery(followerId)
 
     if (followers.length > 0) {
-      res.status(200).json({
+      res.json({
         data: followers
       })
     } else {

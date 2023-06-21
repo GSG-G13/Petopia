@@ -6,13 +6,9 @@ import { type CustomRequest } from '../../interfaces/iAuth'
 
 const createFollow = async (req: CustomRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const {
-      followerId,
-      followingId
-
-    }: IFollower = await validateFollowNum.validate({
-      ...req.body,
-      followerId: req.user?.userId
+    const { followerId, followingId }: IFollower = await validateFollowNum.validate({
+      ...req.params,
+      followingId: req.user?.userId
     }, { abortEarly: false })
 
     const newFollow = await createFollowQuery(followerId, followingId)

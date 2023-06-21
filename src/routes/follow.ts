@@ -6,13 +6,13 @@ import {
 import authUser from '../middlewares/auth'
 import checkType, { userTypes } from '../middlewares/checkType'
 
-const { REGULAR } = userTypes
+const { REGULAR, ADMIN } = userTypes
 
 const followRouter = express.Router()
 
-followRouter.post('/', authUser, checkType([REGULAR]), createFollow)
-followRouter.delete('/', authUser, checkType([REGULAR]), unfollowUser)
-followRouter.get('/followings/:followerId', authUser, checkType([REGULAR]), showUserFollowing)
-followRouter.get('/followers/:followingId', authUser, checkType([REGULAR]), showUserFollowers)
+followRouter.post('/followers/:followerId', authUser, checkType([REGULAR]), createFollow)
+followRouter.delete('/followings/:followerId', authUser, checkType([REGULAR]), unfollowUser)
+followRouter.get('/followings/:followerId', authUser, checkType([REGULAR, ADMIN]), showUserFollowing)
+followRouter.get('/followers/:followingId', authUser, checkType([REGULAR, ADMIN]), showUserFollowers)
 
 export default followRouter

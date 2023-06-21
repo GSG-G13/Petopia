@@ -45,11 +45,13 @@ const User = sequelize.define<IUser>('user', {
   },
   followerCount: {
     type: DataTypes.INTEGER,
-    defaultValue: 0
+    defaultValue: 0,
+    allowNull: false
   },
   followingCount: {
     type: DataTypes.INTEGER,
-    defaultValue: 0
+    defaultValue: 0,
+    allowNull: false
   }
 
 })

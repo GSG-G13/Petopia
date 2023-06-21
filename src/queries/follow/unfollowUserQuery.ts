@@ -13,7 +13,7 @@ const unfollowUserQuery = async (
 
   if (!existingFollow) {
     //  if does not exist
-    return
+    throw new CustomError(400, 'You are not following this user')
   }
 
   const transaction = await sequelize.transaction()

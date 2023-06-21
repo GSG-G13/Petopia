@@ -19,14 +19,14 @@ describe("Test getAllUsers controller", () => {
       {
         fullName: "Mohammed Sallout",
         email: "Mohammed@example.com",
-        address: "456 Elm St, Khaniones",
+        address: "456 Elm St, Khan Younis",
         phone: "987-654-3210",
         userType: 'admin',
       },
       {
         fullName: "Muhammad Abdulhadi",
         email: "mu7ammadabed@gmail.com",
-        address: "456 Elm St, Khaniones",
+        address: "456 Elm St, Khan Younis",
         phone: "987-654-3210",
         userType: 'regular',
       },
@@ -45,7 +45,7 @@ describe("Test getAllUsers controller", () => {
       {
         fullName: "Mohammed Sallout",
         email: "Mohammed@example.com",
-        address: "456 Elm St, Khaniones",
+        address: "456 Elm St, Khan Younis",
         phone: "987-654-3210",
       },
     ];
@@ -73,7 +73,7 @@ describe("Test getUserById controller", () => {
     const user = {
       fullName: "Mohammed Sallout",
       email: "Mohammed@example.com",
-      address: "456 Elm St, Khaniones",
+      address: "456 Elm St, Khan Younis",
       phone: "987-654-3210",
     };
 
@@ -112,7 +112,6 @@ describe("Test updateStatus controller", () => {
       .send({ status: "deactive" })
       .expect(200)
       .expect((res) => {
-        console.log(res.body.data)
         expect(res.body.message).toEqual("Status Updated Successfully");
         expect(res.body.data).toMatchObject(updatedUser);
       });
