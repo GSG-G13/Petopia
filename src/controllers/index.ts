@@ -1,7 +1,7 @@
 import { addComment, deleteComment, getSpecificComment, getComments, updateComment } from './comment'
 import { createCategory, deleteCategory, updateCategory, showAllCategories, showCategoryById } from './category'
 import { signup, login, logout } from './auth'
-import { getUser, getAllUsers, updateUser, getUserPosts, updateStatus } from './user'
+import { getUser, getAllUsers, getUserPosts, updateUser, updateStatus, searchAboutUser } from './user'
 
 import { createPetType, deletePetType, editPetType, getAllPetTypes, getPetTypeById } from './petType'
 import { createLike, unLike, getPostLikers } from './likes'
@@ -12,7 +12,7 @@ export {
   addComment, deleteComment, getSpecificComment, getComments, updateComment,
   createCategory, deleteCategory, updateCategory, showAllCategories, showCategoryById,
   signup, login, logout,
-  updateUser,
+  searchAboutUser, updateUser,
 
   getUser, getAllUsers, updateStatus, getUserPosts,
   createPetType, deletePetType, editPetType, getAllPetTypes, getPetTypeById,
