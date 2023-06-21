@@ -19,7 +19,7 @@ const showUserFollowing = async (req: CustomRequest, res: Response, next: NextFu
         data: followers
       })
     } else {
-      next(new CustomError(404, 'The User Doesn\'t Have Any Followers'))
+      throw new CustomError(404, 'The User Doesn\'t Have Any Followers')
     }
   } catch (err: unknown) {
     next(err)
