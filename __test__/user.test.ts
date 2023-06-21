@@ -14,18 +14,21 @@ describe("Test getAllUsers controller", () => {
         email: "Abujazar@example.com",
         address: "123 Main St, Gaza",
         phone: "123-456-7890",
+        userType: 'regular',
       },
       {
         fullName: "Mohammed Sallout",
         email: "Mohammed@example.com",
-        address: "456 Elm St, Khaniones",
+        address: "456 Elm St, Khan Younis",
         phone: "987-654-3210",
+        userType: 'admin',
       },
       {
         fullName: "Muhammad Abdulhadi",
         email: "mu7ammadabed@gmail.com",
-        address: "456 Elm St, Khaniones",
+        address: "456 Elm St, Khan Younis",
         phone: "987-654-3210",
+        userType: 'regular',
       },
     ];
 
@@ -42,7 +45,7 @@ describe("Test getAllUsers controller", () => {
       {
         fullName: "Mohammed Sallout",
         email: "Mohammed@example.com",
-        address: "456 Elm St, Khaniones",
+        address: "456 Elm St, Khan Younis",
         phone: "987-654-3210",
       },
     ];
@@ -70,7 +73,7 @@ describe("Test getUserById controller", () => {
     const user = {
       fullName: "Mohammed Sallout",
       email: "Mohammed@example.com",
-      address: "456 Elm St, Khaniones",
+      address: "456 Elm St, Khan Younis",
       phone: "987-654-3210",
     };
 
@@ -113,7 +116,7 @@ describe("Test updateStatus controller", () => {
         expect(res.body.data).toMatchObject(updatedUser);
       });
   });
-  test("404 | when  user is not admin", async () => {
+  test("403 | when  user is not admin", async () => {
     await request(app)
       .patch("/api/v1/users/1")
       .set("Cookie", `token=${process.env.TOKEN_REGULAR}`)

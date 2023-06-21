@@ -5,6 +5,7 @@ import { getUser, getAllUsers, updateUser, getUserPosts, updateStatus } from './
 
 import { createPetType, deletePetType, editPetType, getAllPetTypes, getPetTypeById } from './petType'
 import { createLike, unLike, getPostLikers } from './likes'
+import { createFollow, unfollowUser, showUserFollowers, showUserFollowing } from './follow'
 import { getPost, addPost, updatePost, deletePost, getExplorePosts } from './post'
 export {
   getPost, addPost, updatePost, deletePost, getExplorePosts,
@@ -15,5 +16,6 @@ export {
 
   getUser, getAllUsers, updateStatus, getUserPosts,
   createPetType, deletePetType, editPetType, getAllPetTypes, getPetTypeById,
-  createLike, unLike, getPostLikers
+  createLike, unLike, getPostLikers,
+  createFollow, unfollowUser, showUserFollowers, showUserFollowing
 }
