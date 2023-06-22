@@ -2,17 +2,16 @@ import Follower from '../../models/Follower'
 import { type IFollower } from '../../interfaces/models'
 import { User } from '../../models'
 
-const showUserFollowersQuery = async (followingId: number): Promise<IFollower[]> => {
+const showUserFollowersQuery = async (followerId: number): Promise<IFollower[]> => {
   const userFollowers = await Follower.findAll({
-    where: { followingId },
+    where: { followerId },
     include: [
       {
         model: User,
-        as: 'followingUser',
+        as: 'followerUser',
         attributes: ['fullName', 'userImage']
       }
-    ],
-    raw: true
+    ]
   })
 
   return userFollowers

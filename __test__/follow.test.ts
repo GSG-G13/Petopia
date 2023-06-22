@@ -19,20 +19,30 @@ describe("Test User follower controller", () => {
   });
 });
 
+
 describe("Test addFollow controller", () => {
-    test("201 | when user enters valid req", async () => {
-      const newFollow = {
-        followingId: 1,
-        followerId: 3,
-      };
-  
-      const response = await request(app)
-        .post("/api/v1/follow/followers/3")
-        .set("Cookie", `token=${process.env.TOKEN_REGULAR}`)
-        .expect(201);
-      expect(response.body.message).toBe("Follow Created Successfully");
-      expect(response.body.data).toMatchObject(newFollow);
-    });
+  test("201 | when user enters valid req", async () => {
+    const newFollow = {
+      followingId: 1,
+      followerId: 3,
+    };
+
+    const response = await request(app)
+      .post("/api/v1/follow/followers/3")
+      .set("Cookie", `token=${process.env.TOKEN_REGULAR}`)
+      .expect(201);
+    expect(response.body.message).toBe("Follow Created Successfully");
+    expect(response.body.data).toMatchObject(newFollow);
+  });
+
+  test("400 | when user try to follow himself", async () => {
+    const response = await request(app)
+      .post("/api/v1/follow/followers/1")
+      .set("Cookie", `token=${process.env.TOKEN_REGULAR}`)
+      .expect(400);
+    expect(response.body.message).toBe("You Cannot follow yourself");
+  });
+    
 
     test("400 | when user already follows the user", async () => {
       const response = await request(app)
