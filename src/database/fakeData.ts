@@ -40,8 +40,8 @@ const fakeData: {
       phone: '987-654-3210',
       userType: 'admin',
       status: 'active',
-      followerCount: 2,
-      followingCount: 2
+      followerCount: 0,
+      followingCount: 0
 
     },
     {
@@ -91,23 +91,6 @@ const fakeData: {
     }
   ],
   followers: [
-    {
-      followerId: 1,
-      followingId: 2
-
-    },
-    {
-      followerId: 3,
-      followingId: 2
-    },
-    {
-      followerId: 2,
-      followingId: 1
-    },
-    {
-      followerId: 2,
-      followingId: 3
-    }
   ],
   likes: [
     {

@@ -2,16 +2,16 @@ import { type Response, type NextFunction } from 'express'
 import { showUserFollowersQuery } from '../../queries/follow/'
 import CustomError from '../../helpers/CustomError'
 import { type CustomRequest } from '../../interfaces/iAuth'
-import { validateFollowingId } from '../../validation/follow'
+import { validateFollowerId } from '../../validation/follow'
 const showUserFollowers = async (req: CustomRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const { followingId }: { followingId: number } = await validateFollowingId.validate(req.params)
+    const { followerId }: { followerId: number } = await validateFollowerId.validate(req.params)
 
-    if (!followingId) {
+    if (!followerId) {
       throw new CustomError(400, 'User ID not found')
     }
 
-    const followers = await showUserFollowersQuery(followingId)
+    const followers = await showUserFollowersQuery(followerId)
     if (followers.length > 0) {
       res.json({
         data: followers
@@ -20,6 +20,7 @@ const showUserFollowers = async (req: CustomRequest, res: Response, next: NextFu
       throw new CustomError(404, 'The User Doesn\'t Have Any Followers')
     }
   } catch (err: unknown) {
+    console.log(err)
     next(err)
   }
 }
