@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro');
+.card{
+    width: 582px;
+    font-family: 'Readex Pro';
+    border-radius: 8px;
+    border: 1px solid #F0F0F5;
+}
+.carousel{
+    margin-top: 10px;
+}
+.img {
+    margin: 0;
+    height: 315px;
+    width: 532px;
+    line-height: 160px;
+    text-align: center;
+    border-radius: 20px;
+    object-fit: contain
+}
+.post-header{
+    display: inline-flex;
+    align-items: center;
+    justify-content:space-between ;
+    width: 107%;
+    gap: 7px
+}
+.user-post-container{
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    width: 120px;
+}
+.user-post-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1;
+    font-size: 12px;
+    font-family: 'Readex Pro';
+}
+
+.username {
+    margin: 0;
+    font-size: 14px;
+    color: #0D161D;
+    font-weight:600
+}
+.date{
+    margin: 0;
+    color: #9EA2A5;
+    font-weight:300
+}
+.post-buttons{
+    display: flex;
+    width: 535px;
+    justify-content: space-between;
+    align-items: center;
+}
+.item{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+}
+.icon{
+    font-size: 20px;
+    cursor: pointer;
+}
+.label{
+    display: inline-flex;
+    align-self: end;
+    height: 35px;
+    padding: 0px 15px;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 8px 0px 0px 8px;
+    background: #EFEDFF;
+    position: relative;
+}
+
+.top-label{
+    width: 17.015px;
+    height: 10.894px;
+    flex-shrink: 0;
+    position: absolute;
+    top: -7px;
+    right: 1.5px;
+    transform: rotate(45deg);
+    z-index: -1;
+    background-color:#C9C2FF;
+}
+.down-label{
+    width: 17.015px;
+    height: 10.894px;
+    flex-shrink: 0;
+    position: absolute;
+    bottom: -7px;
+    right: 1.5px;
+    transform: rotate(-45deg);
+    z-index: -1;
+    background-color: #C9C2FF;
+}
+.label-content{
+    color: #394349;
+    text-align: center;
+    font-size: 14px;
+    font-family: 'Readex Pro';
+    font-weight: 300;
+}
+.post-content{
+    font-weight: 300;
+}
+.collapse-details{
+    font-family: 'Readex Pro';
+    font-size: 14px;
+    margin: 0;
+}
+.contact-owner{
+    display: flex;
+    height: 35px;
+    padding: 0px 10px;
+    align-items: center;
+    border-radius: 8px;
+    background: #FBF2DC;
+    color: #F37F29;
+    cursor: pointer;
+}
+.contact-pop{
+    font-family: 'Readex Pro';
+    font-size: 14px;
+    margin: 0;
+    display: inline-flex;
+    gap: 3px;
+}
+.content-pop{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+a{
+  color: #F37F29;  
+}
+a:hover{
+    color:#f8cb5c
+}
+.comment{
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 7px;
+    margin-top: 15px;
+    position: relative;
+}
+.user-img{
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    object-fit: cover;
+}
+.comment-field{
+    width: 427.085px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 50px;
+    border: 1px solid #F0F0F5;
+    font-size: 14px;
+    font-family: Readex Pro;
+    font-weight: 300;
+    outline: none;
+    padding-left: 10px;
+    padding-right: 3rem;
+}
+
+.comment-field:hover    {
+    border: 1px solid #f8cc5d;
+}
+.comment-field:focus {
+    border: 2px solid #f8cb5d; /* Border style when input is focused */
+  }
+  .send {
+    position: absolute;
+    right: 0;
+    transform: translate(-48%,10px);
+  }
+  .hr{
+    width: 524px;
+    height: 1px;
+    background: #F0F0F5;
+    margin: 10px;
+  }
