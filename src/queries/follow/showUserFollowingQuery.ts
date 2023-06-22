@@ -1,14 +1,17 @@
-import sequelize from '../../database/config'
+import Follower from '../../models/Follower'
+import { type IFollower } from '../../interfaces/models'
+import { User } from '../../models'
 
-const showUserFollowingQuery = async (followingId: number): Promise<unknown[]> => {
-  const [userFollowing] =
-  await sequelize.query(`SELECT followers."followerId", followers."followingId", 
-  users."userImage" AS "user.userImage", users."fullName"  AS "user.fullName"
-  FROM followers 
-  INNER JOIN users ON followers."followerId" = users."userId" 
-  WHERE followers."followingId"
-   = :followingId`, {
-    replacements: { followingId }
+const showUserFollowingQuery = async (followingId: number): Promise<IFollower[]> => {
+  const userFollowing = await Follower.findAll({
+    where: { followingId },
+    include: [
+      {
+        model: User,
+        as: 'followingUser',
+        attributes: ['fullName', 'userImage']
+      }
+    ]
   })
   return userFollowing
 }

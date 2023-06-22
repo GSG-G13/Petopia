@@ -3,8 +3,8 @@ import { type IPostWithDetails } from '../../interfaces/iPosts'
 
 const getFeedPostsQuery = async (page: number, limit: number, userId: number): Promise<IPostWithDetails[]> => {
   const offset = (page - 1) * limit
-  const follows = await Follower.findAll({ where: { followerId: userId } })
-  const followingIds = follows.map((follow) => follow.followingId)
+  const follows = await Follower.findAll({ where: { followingId: userId } })
+  const followersIds = follows.map((follow) => follow.followerId)
 
   const posts = await Post.findAll({
     include: [
@@ -18,7 +18,7 @@ const getFeedPostsQuery = async (page: number, limit: number, userId: number): P
       {
         model: User,
         attributes: ['userId', 'fullName', 'userImage'],
-        where: { userId: followingIds }
+        where: { userId: followersIds }
       },
       {
         model: Product

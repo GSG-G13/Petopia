@@ -26,8 +26,8 @@ const fakeData: {
       phone: '123-456-7890',
       userType: 'regular',
       status: 'active',
-      followerCount: 0,
-      followingCount: 0
+      followerCount: 1,
+      followingCount: 1
 
     },
     {
@@ -40,8 +40,8 @@ const fakeData: {
       phone: '987-654-3210',
       userType: 'admin',
       status: 'active',
-      followerCount: 0,
-      followingCount: 0
+      followerCount: 2,
+      followingCount: 2
 
     },
     {
@@ -54,8 +54,8 @@ const fakeData: {
       phone: '987-654-3210',
       userType: 'regular',
       status: 'active',
-      followerCount: 0,
-      followingCount: 0
+      followerCount: 1,
+      followingCount: 1
 
     }
   ],
@@ -91,6 +91,23 @@ const fakeData: {
     }
   ],
   followers: [
+    {
+      followingId: 1,
+      followerId: 2
+
+    },
+    {
+      followingId: 3,
+      followerId: 2
+    },
+    {
+      followingId: 2,
+      followerId: 1
+    },
+    {
+      followingId: 2,
+      followerId: 3
+    }
   ],
   likes: [
     {

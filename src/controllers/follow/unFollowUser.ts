@@ -11,7 +11,7 @@ const unfollowUser = async (req: CustomRequest, res: Response, next: NextFunctio
   try {
     const { followerId, followingId }: IFollower = await validateFollowNum.validate({
       ...req.params,
-      followerId: req.user?.userId
+      followingId: req.user?.userId
     }, { abortEarly: false })
 
     if (followerId === followingId) throw new CustomError(400, 'You Cannot unfollow yourself')
