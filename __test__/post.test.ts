@@ -420,3 +420,104 @@ describe('Test get post of user', () => {
             })
     })
 })
+
+describe('Test Get feed posts for userId = 1 which is following userId = 2', () => {
+    const feedPosts = [
+        {
+            postId: 3,
+            userId: 2,
+            categoryId: 1,
+            postContent: "Looking to adopt a pet.",
+            isHaveImg: false,
+            likesCount: 0,
+            commentsCount: 0,
+            postImages: [],
+            category: {
+                title: "Adoption"
+            },
+            user: {
+                userId: 2,
+                fullName: "Mohammed Sallout",
+                userImage: "https://Mohammed.com/user2.jpg"
+            },
+            products: [],
+            pets: [
+                {
+                    petId: 2,
+                    petName: "Bella",
+                    age: 2,
+                    gender: "Female",
+                    healthStatus: "Vaccinated",
+                    adoptionStatus: "Adopted",
+                    petType: {
+                        typeId: 2,
+                        title: "Cat"
+                    }
+                }
+            ]
+        },
+        {
+            postId: 2,
+            userId: 2,
+            categoryId: 4,
+            postContent: "Check out this product Im selling!",
+            isHaveImg: true,
+            likesCount: 1,
+            commentsCount: 1,
+            postImages: [
+                {
+                    imageId: 2,
+                    postId: 2,
+                    imageUrl: "https://example.com/image2.jpg",
+                }
+            ],
+            category: {
+                title: "Sell"
+            },
+            user: {
+                userId: 2,
+                fullName: "Mohammed Sallout",
+                userImage: "https://Mohammed.com/user2.jpg"
+            },
+            products: [
+                {
+                    productId: 1,
+                    postId: 2,
+                    title: "Product B",
+                    price: 14.99,
+                    details: "Check out product B.",
+                    rating: 3.8,
+                }
+            ],
+            pets: []
+        }
+    ]
+    test('200 | get all explore posts page=1', async () => {
+        await request(app)
+            .get('/api/v1/posts/feed?page=1')
+            .set("cookie", `token=${TOKEN_REGULAR}`)
+            .expect(200)
+            .expect((res) => {
+                expect(res.body.data).toMatchObject(feedPosts)
+                expect(res.body.data).toHaveLength(2)
+            })
+    })
+    test('200 | get all feed posts page=2 that don\'t have posts ', async () => {
+        await request(app)
+            .get('/api/v1/posts/feed?page=2')
+            .set("cookie", `token=${TOKEN_REGULAR}`)
+            .expect(200)
+            .expect((res) => {
+                expect(res.body.data).toEqual([]);
+            })
+    })
+    test('200 | get all feed posts page=ds, It will give default page =1.', async () => {
+        await request(app)
+            .get('/api/v1/posts/feed?page=ds')
+            .set("cookie", `token=${TOKEN_REGULAR}`)
+            .expect(200)
+            .expect((res) => {
+                expect(res.body.data).toHaveLength(2)
+            })
+    })
+})

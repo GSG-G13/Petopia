@@ -29,10 +29,10 @@ Post.hasMany(Like, { foreignKey: 'postId', onDelete: 'CASCADE', onUpdate: 'CASCA
 Like.belongsTo(Post, { foreignKey: 'postId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
 
 User.hasMany(Follower, { foreignKey: 'followerId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
-Follower.belongsTo(User, { foreignKey: 'followerId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+Follower.belongsTo(User, { as: 'followingUser', foreignKey: 'followerId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
 
 User.hasMany(Follower, { foreignKey: 'followingId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
-Follower.belongsTo(User, { foreignKey: 'followingId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+Follower.belongsTo(User, { as: 'followerUser', foreignKey: 'followingId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
 
 Post.hasMany(Product, { foreignKey: 'postId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
 Product.belongsTo(Post, { foreignKey: 'postId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })

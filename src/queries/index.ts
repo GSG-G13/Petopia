@@ -1,4 +1,7 @@
-import { getPostQuery, addPostQuery, deletePostQuery, updatePostQuery, getExplorePostsQuery } from './post'
+import {
+  getPostQuery, addPostQuery, deletePostQuery,
+  updatePostQuery, getExplorePostsQuery, getFeedPostsQuery
+} from './post'
 
 import { addProductQuery, updateProductQuery } from './product'
 
@@ -17,7 +20,7 @@ import {
 } from './comment'
 
 import { createLikeQuery, unLikeQuery, getPostLikersQuery } from './likes'
-import { getUserQuery, getAllUsersQuery, userStatusQuery } from './user'
+import { getUserQuery, getAllUsersQuery, userStatusQuery, searchAboutUserQuery } from './user'
 
 import { loginQuery, createUser } from './auth'
 
@@ -29,7 +32,7 @@ import {
 export {
   getPostQuery, addPostQuery,
   deletePostQuery, updatePostQuery,
-  getExplorePostsQuery,
+  getExplorePostsQuery, getFeedPostsQuery,
 
   addProductQuery, updateProductQuery,
 
@@ -44,7 +47,7 @@ export {
   getCommentQuery, deleteCommentQuery, addCommentQuery,
   createLikeQuery, unLikeQuery, getPostLikersQuery,
 
-  getUserQuery, getAllUsersQuery, userStatusQuery,
+  getUserQuery, getAllUsersQuery, userStatusQuery, searchAboutUserQuery,
 
   loginQuery, createUser,
 
