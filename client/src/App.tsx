@@ -1,10 +1,9 @@
 function App() {
-
   return (
-    <>
-      <h1>Petopia</h1>
-    </>
-  )
+    <div className="App">
+      
+    </div>
+  );
 }
 
-export default App
+export default App;
