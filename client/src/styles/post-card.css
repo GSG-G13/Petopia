@@ -5,13 +5,9 @@
     border-radius: 8px;
     border: 1px solid #F0F0F5;
 }
-.carousel{
-    margin-top: 10px;
-}
+
 .img {
     margin: 0;
-    height: 315px;
-    width: 532px;
     line-height: 160px;
     text-align: center;
     border-radius: 20px;
@@ -28,7 +24,8 @@
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    width: 120px;
+    width: 100%;
+    margin-bottom: 15px;
 }
 .user-post-info {
     display: flex;
@@ -37,6 +34,7 @@
     gap: 1;
     font-size: 12px;
     font-family: 'Readex Pro';
+    width: 100%;
 }
 
 .username {
@@ -46,9 +44,11 @@
     font-weight:600
 }
 .date{
-    margin: 0;
+    margin-bottom: 0 !important;
     color: #9EA2A5;
-    font-weight:300
+    font-weight:300;
+    font-size: 12px;
+    font-family: 'Readex Pro';
 }
 .post-buttons{
     display: flex;
@@ -76,6 +76,7 @@
     border-radius: 8px 0px 0px 8px;
     background: #EFEDFF;
     position: relative;
+    margin-bottom: 15px;
 }
 
 .top-label{
@@ -109,7 +110,9 @@
 }
 .post-content{
     font-weight: 300;
+    font-family: 'Readex Pro';
 }
+
 .collapse-details{
     font-family: 'Readex Pro';
     font-size: 14px;
@@ -157,7 +160,7 @@ a:hover{
     object-fit: cover;
 }
 .comment-field{
-    width: 427.085px;
+    width:  485.085px;
     height: 40px;
     flex-shrink: 0;
     border-radius: 50px;
@@ -173,17 +176,111 @@ a:hover{
 .comment-field:hover    {
     border: 1px solid #f8cc5d;
 }
+
 .comment-field:focus {
-    border: 2px solid #f8cb5d; /* Border style when input is focused */
+    border: 2px solid #f8cb5d;
   }
+
   .send {
     position: absolute;
     right: 0;
-    transform: translate(-48%,10px);
+    transform: translate(-87%,-12px);
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    color: #F37F29;
   }
+
+  .send-icon:hover,.send-icon:focus{
+    color: #f8cc5d;
+  }
+
   .hr{
-    width: 524px;
+    width: 515px;
     height: 1px;
     background: #F0F0F5;
     margin: 10px;
   }
+
+  @keyframes fade-in {
+    from {
+    height: 0;
+    }
+    to {
+    max-height: 300px;
+    }
+  }
+
+  @keyframes fade-out {
+    
+    from {
+        height: 300px;
+    }
+    to {
+        height: 0;
+    }
+  }
+
+.open-comments{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 12px;
+    padding: 12px;
+    border-radius: 10px;
+    transition: all 1s;
+    animation-name: fade-in;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    overflow-y: auto;
+}
+.close-comments{
+    transition: all 1s;
+    animation-name: fade-out;
+    animation-duration: 75ms;
+    animation-fill-mode: forwards;
+}
+
+.open-comments::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .open-comments::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    border-radius: 10px;
+  }
+  
+  .open-comments::-webkit-scrollbar-thumb {
+    background-color: #F37F29;
+    border-radius: 10px;
+  }
+  
+.comment-div{
+    display: flex;
+    gap: 7px;
+}
+.comment-content{
+    display: flex;
+    flex-direction: column;
+    background-color: #F0F0F5;
+    border-radius: 10px;
+    padding: 10px;
+}
+.copy-icon{
+    color: #F37F29;
+    cursor: pointer;
+}
+.copy-icon:hover{
+    color: #f8cb5c;
+}
+.copy-field{
+    border-radius: 5px;
+    padding-left:7px;
+    border: 1px solid #d3d3d9;
+    height: 25px;
+    font-family: 'Readex Pro';
+}
+.copy-field:focus{
+    outline: none !important;
+    border: 1px solid #f8cb5c;
+}
