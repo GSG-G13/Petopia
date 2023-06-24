@@ -5,10 +5,10 @@ import { getUser, getAllUsers, getUserPosts, updateUser, updateStatus, searchAbo
 
 import { createPetType, deletePetType, editPetType, getAllPetTypes, getPetTypeById } from './petType'
 import { createLike, unLike, getPostLikers } from './likes'
+import { getPost, addPost, updatePost, deletePost, getExplorePosts, getFeedPosts } from './post'
 import { createFollow, unfollowUser, showUserFollowers, showUserFollowing } from './follow'
-import { getPost, addPost, updatePost, deletePost, getExplorePosts } from './post'
 export {
-  getPost, addPost, updatePost, deletePost, getExplorePosts,
+  getPost, addPost, updatePost, deletePost, getExplorePosts, getFeedPosts,
   addComment, deleteComment, getSpecificComment, getComments, updateComment,
   createCategory, deleteCategory, updateCategory, showAllCategories, showCategoryById,
   signup, login, logout,
