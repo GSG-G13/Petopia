@@ -1,5 +1,6 @@
-import { Card, Typography, Divider, Dropdown } from 'antd';
+import { Card, Typography, Divider, Dropdown, Button } from 'antd';
 import { Menu } from 'antd';
+import {MessageAdd1} from 'iconsax-react'
 import {
   HomeOutlined,
   SearchOutlined,
@@ -10,6 +11,9 @@ import {
   DownOutlined,
 } from '@ant-design/icons';
 
+
+import './style.css'
+import { bool } from 'yup';
 const { Item } = Menu;
 
 const LeftSide = () => {
@@ -67,8 +71,13 @@ const LeftSide = () => {
           <Item key="products" icon={<DownOutlined />}>Products</Item>
           <Item key="profile" icon={<UserOutlined />}>Profile</Item>
         </Menu>
-        <Dropdown.Button menu={{ items}} size='large' className='reatePost'>Create Post</Dropdown.Button>
-      </Card>
+        <Dropdown menu={{ items}} >
+      <Button type="primary" size={'large'}style={{ borderRadius: "150px",backgroundColor: '#F37F29', fontSize: '16px',width: 207.386 }}>
+      <MessageAdd1 size="20"color="#fff" />  
+      <span style={{  marginLeft: '16px', borderRight: "2px solid #fff", paddingRight: "10px"}}>Create Post</span>  
+      <DownOutlined style={{fontWeight: 'bold'}}/>
+      </Button>
+    </Dropdown>      </Card>
     </>
   );
 };
