@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+/* Start Global Roles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* CSS Variables */
+:root {
+  --primary: #f37f29;
+  --background: #f3f7fb;
+  --heading-font: #0d161d;
+  --sub-heading: #61696d;
+  --body-font: #9ea2a5;
+  --light-border: #f3f7fb;
+  --dark-border: #d9dde1;
+  --main-duration: 0.5s;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+}
+a {
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
+/* End Global Roles */
+
+.Register {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Register .left {
+  width: 50%;
+  margin-left: 10%;
+}
+
+.Register .left h2 {
+  font-weight: 500;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+.Register .left form .form-submit .button {
+  width: 100%;
+  font-weight: 700;
+  font-size: 15px;
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.Register .left form .form-input label {
+  width: 136px;
+  justify-content: start;
+  flex-direction: row-reverse;
+}
+
+.Register .left form .form-submit .button:hover {
+  border: none;
+  border: 1px solid var(--primary);
+  background-color: #f39247;
+}
+
+.Register .left p {
+  margin-top: 30px;
+  font-weight: 500;
+}
+
+.Register .right {
+  width: 40%;
+  height: 100vh;
+  background-image: url("../assets/Rectangle.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  border-radius: 30px 0 0 30px;
+}
+
+@media (max-width: 991px) {
+  .Register {
+    justify-content: center;
+    padding: 40px 0;
+  }
+  .Register .right {
+    display: none;
+  }
+  .Register .left {
+    width: 80%;
+  }
+}
+
+@media (max-width: 767px) {
+  .Register .left {
+    margin-left: 0;
+  }
+  .Register .left h2 {
+    font-size: 24px;
+  }
+  .Register .left form .form-submit .button {
+    margin-left: 0;
+  }
+  .Register .left form .form-submit p {
+    margin-left: 0;
+  }
+}
