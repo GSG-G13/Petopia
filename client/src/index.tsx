@@ -49,7 +49,7 @@ const post = {
         "userId": 1,
         "fullName": "Haitham Abu Lamdi",
         "userImage": "https://cdn.discordapp.com/attachments/1113720733860888597/1121405281147027526/IMG_20201207_144829.jpg",
-        "phoneNumber": 599888888
+        "phone": 599888888
     },
     "products": [],
     "pets": [

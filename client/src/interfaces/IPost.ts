@@ -22,7 +22,7 @@ interface IPost {
         userId: number
         fullName: string
         userImage: string
-        phoneNumber: number
+        phone: number
     }
     products: {
         productId: number

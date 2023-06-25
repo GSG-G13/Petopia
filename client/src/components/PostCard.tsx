@@ -76,7 +76,7 @@ const PostCard: React.FC<Props> = ({ post }) => {
             {(post.postImages !== null && post.postImages !== undefined) ? <Carousel images={post.postImages} /> : <></>}
 
             {post.postContent !== null && post.postContent !== undefined ? <Paragraph className='post-content'>{post.postContent}</Paragraph> : <></>}
-            
+
             {(post.pets !== undefined || post.products !== undefined)
                 ? <PostDetails petDetails={post.pets[0]} productDetails={post.products[0]} /> : <></>}
             <PostButtons
@@ -84,7 +84,7 @@ const PostCard: React.FC<Props> = ({ post }) => {
                 setShowLike={setShowLike}
                 showComments={showComments}
                 setShowComments={setShowComments}
-                phoneNumber={post.user.phoneNumber}
+                phoneNumber={post.user.phone}
                 postID={post.postId}
                 likesCount={post.likesCount}
                 commentsCount={post.commentsCount}
