@@ -16,7 +16,7 @@ const getUserPostsQuery = async (userId: number, page: number, limit: number): P
       },
       {
         model: User,
-        attributes: ['userId', 'fullName', 'userImage']
+        attributes: ['userId', 'fullName', 'userImage', 'phone']
       },
       {
         model: Product
