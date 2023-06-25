@@ -11,6 +11,9 @@ import PostDetails from './PostDetails';
 import formatTime from '../helpers/timeFormater';
 import { IPost } from '../interfaces';
 
+import fakeData from '../helpers/fakeData.json'
+import Label from './Label';
+
 const { Paragraph } = Typography;
 interface Props {
     post: IPost
@@ -18,60 +21,26 @@ interface Props {
 const PostCard: React.FC<Props> = ({ post }) => {
     const [showComments, setShowComments] = useState(false);
     const [showLike, setShowLike] = useState(false);
-    const comments = [
-        {
-            "commentId": 1,
-            "userId": 1,
-            "postId": 1,
-            "commentText": "Great post!",
-            "createdAt": "2023-06-24T12:51:15.227Z",
-            "updatedAt": "2023-06-24T12:51:15.227Z",
-            "user": {
-                fullName: "Abdallah Abujazar",
-                userImage: "https://i.imgur.com/KcYHnFr.jpg"
-            }
-        },
-        {
-            "commentId": 2,
-            "userId": 2,
-            "postId": 1,
-            "commentText": "Nice work!",
-            "createdAt": "2023-06-24T12:51:15.227Z",
-            "updatedAt": "2023-06-24T12:51:15.227Z",
-            "user": {
-                fullName: "Mohammed Sallout",
-                userImage: "https://i.imgur.com/v2v02Ge.jpg"
-            }
-        },
-        {
-            "commentId": 4,
-            "userId": 1,
-            "postId": 1,
-            "commentText": "test for this post.",
-            "createdAt": "2023-06-24T12:54:26.385Z",
-            "updatedAt": "2023-06-24T12:54:26.385Z",
-            "user": {
-                "fullName": "Abdallah Abujazar",
-                "userImage": "https://i.imgur.com/KcYHnFr.jpg"
-            }
-        }
-    ]
+
+    const comments = fakeData.comments;
+
     return <Space direction="vertical" size={16}>
         <Card className='card'>
             <div className='post-header'>
                 <div className='user-post-container'>
                     <Image src={"https://cdn.discordapp.com/attachments/1113720733860888597/1121405281147027526/IMG_20201207_144829.jpg"}
-                        height="40px" width="40px" className='user-img' />
+                        height="40px" width="40px" className='user-img' alt='user avatar' />
                     <div className='user-post-info'>
                         <Link to={'user/' + post.userId} className='username'>{post.user.fullName}</Link>
                         <Paragraph className='date'>{formatTime(post.createdAt)}</Paragraph>
                     </div>
                 </div>
-                <div className='label'>
-                    <div className='top-label'></div>
+                {/* <div className='label'>
+                    <div className='top-label' style={{backgroundColor:}}></div>
                     <p className='label-content'>{post.category.title}</p>
                     <div className='down-label'></div>
-                </div>
+                </div> */}
+                <Label title={post.category.title} />
             </div>
             {(post.postImages !== null && post.postImages !== undefined) ? <Carousel images={post.postImages} /> : <></>}
 

@@ -13,7 +13,7 @@ const CommentForm: React.FC<Props> = ({ userImage }) => {
             form={form}
             name="comment-form">
             <div className='comment'>
-                <Image src={userImage} height="40px" width="40px" className='user-img' />
+                <Image src={userImage} height="40px" width="40px" className='user-img' alt="user avatar" />
                 <Form.Item
                     name="commentText"
                     rules={[{ required: true, message: 'Comment can\'t be empty' }]}

@@ -23,7 +23,7 @@ const { Paragraph } = Typography;
 const Comment: React.FC<Props> = ({ showComments, comment }) => {
     return (
         <div style={{ display: showComments ? 'flex' : 'none', transitionDelay: 'display 5s' }} className='comment-div'>
-            <Image src={comment.user.userImage} height="40px" width="40px" className='user-img' />
+            <Image src={comment.user.userImage} height="40px" width="40px" className='user-img' alt="user avatar" />
             <div className='comment-content'>
                 <div className='comment-div'>
                     <Link to={'userId:' + comment.userId} className='username'>{comment.user.fullName}</Link>

@@ -1,7 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Readex+Pro');
+:root {
+    --primary-color: #F37F29;
+    --background: #F3F7FB;
+    --Heading: #0D161D;
+    --sub: #61696D;
+    --body-font-color: #9EA2A5;
+    --Light-border: #F3F7FB;
+    --Dark-border: #D9DDE1;
+    --main-font: 'Readex Pro', sans-serif;
+    --adoption-color: #EFEDFF;
+    --adoption-side-color:#C9C2FF;
+    --product-color: #F8F0FE;
+    --discuss-color: #FBF2DC;
+    --discuss-side-color: #F6E2B1;
+    --sell-color: #FBDCE7;
+    --sell-side-color: #f59ebd;
+    --help-color: #F3FBDC;
+    --help-side-color: #eaf7c3;
+    --input-border: #a2c0d4;
+  }
+  
+  body {
+    font-family: var(--main-font);
+  }
+
+
 .card{
     width: 582px;
-    font-family: 'Readex Pro';
+    font-family: var(--main-font);
     border-radius: 8px;
     border: 1px solid #F0F0F5;
 }
@@ -33,7 +59,7 @@
     justify-content: flex-start;
     gap: 1;
     font-size: 12px;
-    font-family: 'Readex Pro';
+    font-family: var(--main-font);
     width: 100%;
 }
 
@@ -48,7 +74,7 @@
     color: #9EA2A5;
     font-weight:300;
     font-size: 12px;
-    font-family: 'Readex Pro';
+    font-family: var(--main-font);
 }
 .post-buttons{
     display: flex;
@@ -70,11 +96,11 @@
     display: inline-flex;
     align-self: end;
     height: 35px;
+    width: 62px;
     padding: 0px 15px;
     align-items: center;
     flex-shrink: 0;
     border-radius: 8px 0px 0px 8px;
-    background: #EFEDFF;
     position: relative;
     margin-bottom: 15px;
 }
@@ -88,7 +114,6 @@
     right: 1.5px;
     transform: rotate(45deg);
     z-index: -1;
-    background-color:#C9C2FF;
 }
 .down-label{
     width: 17.015px;
@@ -99,22 +124,22 @@
     right: 1.5px;
     transform: rotate(-45deg);
     z-index: -1;
-    background-color: #C9C2FF;
 }
+
 .label-content{
     color: #394349;
     text-align: center;
     font-size: 14px;
-    font-family: 'Readex Pro';
+    font-family: var(--main-font);
     font-weight: 300;
 }
 .post-content{
     font-weight: 300;
-    font-family: 'Readex Pro';
+    font-family: var(--main-font);
 }
 
 .collapse-details{
-    font-family: 'Readex Pro';
+    font-family: var(--main-font);
     font-size: 14px;
     margin: 0;
 }
@@ -129,7 +154,7 @@
     cursor: pointer;
 }
 .contact-pop{
-    font-family: 'Readex Pro';
+    font-family: var(--main-font);
     font-size: 14px;
     margin: 0;
     display: inline-flex;
@@ -278,9 +303,17 @@ a:hover{
     padding-left:7px;
     border: 1px solid #d3d3d9;
     height: 25px;
-    font-family: 'Readex Pro';
+    font-family: var(--main-font);
 }
 .copy-field:focus{
     outline: none !important;
     border: 1px solid #f8cb5c;
+}
+.carousel{
+    margin-bottom: 30px;
+}
+.slick-next:before {
+    content: '→';
+    color: #F37F29;
+    margin-right: 10px;
 }

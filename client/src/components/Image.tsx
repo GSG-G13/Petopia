@@ -5,19 +5,15 @@ interface Props {
     width: string
     height: string
     className: string
+    alt: string
 }
-const ImageComponent: React.FC<Props> = ({ src, width, height, className }) => {
+const ImageComponent: React.FC<Props> = (props) => {
 
     return (
-        <div>
-            <Image
-                className={className}
-                width={width}
-                height={height}
-                preview={false}
-                src={src}
-            />
-        </div>
+        <Image
+            preview={false}
+            {...props}
+        />
     )
 }
 export default ImageComponent

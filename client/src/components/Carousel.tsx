@@ -1,4 +1,8 @@
-import { Carousel } from "antd"
+// import { Carousel } from "antd"
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 import Image from "./Image"
 interface Props {
     images: {
@@ -10,13 +14,20 @@ interface Props {
     }[]
 }
 const CarouselComponent: React.FC<Props> = ({ images }) => {
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    };
 
     const Images = (images !== null && images !== undefined) ? images.map(
-        (image, index) => <Image key={index} src={image.imageUrl} height={'315px'} width={'532px'} className="img" />) : []
+        (image, index) => <div><Image key={index} src={image.imageUrl} height={'315px'} width={'532px'} className="img" alt={'postImage' + index} /></div>) : []
     return (
-        <Carousel className='carousel' >
+        <Slider {...settings} className='carousel' >
             {Images}
-        </Carousel>
+        </Slider>
     )
 }
 export default CarouselComponent

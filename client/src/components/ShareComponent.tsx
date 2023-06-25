@@ -10,13 +10,11 @@ const CopyLink: React.FC<Props> = ({ postID }) => {
 
     const handleCopy = async () => {
         if (inputRef.current) {
-            console.log(inputRef.current.value);
             inputRef.current.select();
             try {
                 await navigator.clipboard.writeText(inputRef.current.value);
                 message.success("Link copied to clipboard");
             } catch (error) {
-                console.error("Failed to copy link to clipboard:", error);
                 message.error("Failed to copy link to clipboard");
             }
         }
