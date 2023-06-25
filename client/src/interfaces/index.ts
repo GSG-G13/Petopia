@@ -1,2 +1,3 @@
-import IPost from "./IPost";
-export type { IPost }
+import IPost from './IPost';
+
+export default IPost;

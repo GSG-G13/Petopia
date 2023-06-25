@@ -293,3 +293,6 @@ a:hover{
 .pointer{
     cursor: pointer;
 }
+:focus-visible {
+    outline: -webkit-focus-ring-color none
+}

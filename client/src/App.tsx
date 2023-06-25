@@ -1,12 +1,9 @@
-import Box from "./components/commons/Box"
+import Box from './components/commons/Box';
 
-function App() {
+const App = () => (
+  <Box className="hello" style={{ fontSize: '100px' }}>
+    <h1>Petopia</h1>
+  </Box>
+);
 
-  return (
-    <Box className="hello" style={{ fontSize: '100px' }}>
-      <h1>Petopia</h1>
-    </Box>
-  )
-}
-
-export default App
+export default App;
