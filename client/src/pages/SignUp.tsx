@@ -1,40 +1,33 @@
-import { Input, Checkbox, Button, Form, Alert } from "antd";
+import { Input, Checkbox, Button, Form, message } from "antd";
 import "../styles/Register.css";
 import { Link } from "react-router-dom";
-import { FormEvent, useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 function SignUp() {
-  const [showAlert, setShowAlert] = useState(false);
-
   const [user, setUser] = useState({
     fullName: "",
     email: "",
     password: "",
-    msg: "",
   });
 
-  useEffect(() => {
-    if (user.msg !== "") {
-      setShowAlert(true);
-      setTimeout(() => {
-        setShowAlert(false);
-      }, 3000);
-    }
-  }, [user.msg]);
-
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async () => {
     try {
-      e.preventDefault();
-      setUser({ ...user, msg: "" });
-      if (user.fullName !== "" && user.email !== "" && user.password !== "") {
-        const res = await axios.post("/api/v1/auth/signup", user);
-        if (res.data.message) {
-          setUser({ ...user, msg: res.data.message });
-        }
+      const res = await axios.post("/api/v1/auth/signup", user);
+      console.log(res);
+
+      if (res.data.message) {
+        message.open({
+          type: "success",
+          content: res.data.message,
+        });
       }
-    } catch (err) {
-      setUser({ ...user, msg: "This email already exists!" });
+    } catch (err: any) {
+      message.open({
+        type: "error",
+        content: err.response.data.message,
+      });
+
       console.log("Error", err);
     }
   };
@@ -43,14 +36,8 @@ function SignUp() {
     <div className="Register">
       <div className="left">
         <h2>Get Started Now</h2>
-        {showAlert &&
-          (user.msg !== "This email already exists!" ? (
-            <Alert message={user.msg} type="success" className="alert-msg" />
-          ) : (
-            <Alert message={user.msg} type="error" className="alert-msg" />
-          ))}
         <Form
-          onSubmitCapture={handleSubmit}
+          onFinish={handleSubmit}
           name="basic"
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
@@ -168,23 +155,23 @@ function SignUp() {
             <Form.Item
               name="remember"
               valuePropName="checked"
-              wrapperCol={{ offset: 8, span: 16 }}
+              wrapperCol={{ offset: 2, span: 16 }}
             >
-              <Checkbox>I agree to the terms & policy</Checkbox>
+              <Checkbox className="check">I agree to the terms & policy</Checkbox>
             </Form.Item>
           </div>
 
           <div className="form-submit">
-            <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+            <Form.Item>
               <Button htmlType="submit" className="button">
                 SignUp
               </Button>
+              <p>
+                Have an account? <Link to="/login">Login</Link>
+              </p>
             </Form.Item>
           </div>
         </Form>
-        <p>
-          Have an account? <Link to="/login">Login</Link>
-        </p>
       </div>
       <div className="right"></div>
     </div>

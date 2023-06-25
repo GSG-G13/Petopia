@@ -33,21 +33,14 @@ ul {
 }
 /* End Global Roles */
 
-.Register {
+ .Register {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.alert-msg {
-  position: absolute;
-  top: 5%;
-  left: 25%;
-  transform: translateX(-20%);
-}
-
 .Register .left {
-  width: 40%;
+  width: 50%;
   margin-left: 80px;
 }
 
@@ -64,6 +57,11 @@ ul {
   font-size: 15px;
   background-color: var(--primary);
   color: #fff;
+  margin-left: 45px;
+}
+
+.Register .left form .form-submit p {
+  margin-left: 45px;
 }
 
 .Register .left form .form-input label {
@@ -79,7 +77,6 @@ ul {
 .Register .left p {
   margin-top: 30px;
   font-weight: 500;
-  margin-left: 45px;
 }
 
 .Register .right {
@@ -100,25 +97,32 @@ ul {
   top: 0;
   left: 0;
   background-color: rgba(255, 255, 255, 0.2);
-}
+} 
 
-@media (max-width: 991px) {
-  .SignUp-Page .right {
+@media(max-width: 991px) {
+  .Register {
+    justify-content: center;
+    padding: 40px 0;
+  }
+  .Register .right {
     display: none;
   }
-  .SignUp-Page .left {
+  .Register .left {
     width: 80%;
   }
 }
 
-@media (max-width: 767px) {
-  .SignUp-Page {
-    justify-content: center;
-  }
-  .SignUp-Page .left {
+@media(max-width: 767px) {
+  .Register .left {
     margin-left: 0;
   }
-  .SignUp-Page .left h2 {
-    font-size: 26px;
+  .Register .left h2 {
+    font-size: 24px;
+  }
+  .Register .left form .form-submit .button {
+    margin-left: 0;
+  }
+  .Register .left form .form-submit p {
+    margin-left: 0;
   }
 }
