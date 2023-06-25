@@ -23,7 +23,7 @@ const CarouselComponent: React.FC<Props> = ({ images }) => {
     };
 
     const Images = (images !== null && images !== undefined) ? images.map(
-        (image, index) => <div><Image key={index} src={image.imageUrl} height={'315px'} width={'532px'} className="img" alt={'postImage' + index} /></div>) : []
+        (image, index) => <Image key={index} src={image.imageUrl} height={'315px'} width={'532px'} className="img" alt={'postImage' + index} />) : []
     return (
         <Slider {...settings} className='carousel' >
             {Images}

@@ -1,6 +1,7 @@
 import { Button, Form, Input } from "antd"
 import { Send } from "iconsax-react"
-import Image from "./Image"
+import Image from "../commons/Image"
+import Box from "../commons/Box"
 
 interface Props {
     userImage: string
@@ -12,7 +13,7 @@ const CommentForm: React.FC<Props> = ({ userImage }) => {
         <Form
             form={form}
             name="comment-form">
-            <div className='comment'>
+            <Box className='comment'>
                 <Image src={userImage} height="40px" width="40px" className='user-img' alt="user avatar" />
                 <Form.Item
                     name="commentText"
@@ -23,7 +24,7 @@ const CommentForm: React.FC<Props> = ({ userImage }) => {
                 <Form.Item>
                     <Button className='send' type="link" icon={<Send className='send-icon' />} htmlType="submit"></Button>
                 </Form.Item>
-            </div>
+            </Box>
         </Form>
     )
 }

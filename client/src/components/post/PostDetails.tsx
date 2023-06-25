@@ -1,5 +1,6 @@
-import { Col, Collapse, CollapseProps, Row, Typography } from "antd"
+import { Col, Collapse, CollapseProps, Row } from "antd"
 import { Box1, Pet } from "iconsax-react"
+import Paragraph from "../commons/Paragraph"
 
 interface Props {
     petDetails?: {
@@ -23,7 +24,7 @@ interface Props {
         rating: number
     }
 }
-const { Paragraph } = Typography;
+
 const PostDetails: React.FC<Props> = ({ petDetails, productDetails }) => {
 
     const details = (

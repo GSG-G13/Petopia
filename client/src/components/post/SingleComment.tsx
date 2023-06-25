@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom"
-import Image from "./Image"
+import Image from "../commons/Image"
 import { Typography } from "antd"
-import formatTime from "../helpers/timeFormater"
+import formatTime from "../../helpers/timeFormater"
+import Box from "../commons/Box"
 
 interface Props {
     showComments: boolean
@@ -22,16 +23,16 @@ const { Paragraph } = Typography;
 
 const Comment: React.FC<Props> = ({ showComments, comment }) => {
     return (
-        <div style={{ display: showComments ? 'flex' : 'none', transitionDelay: 'display 5s' }} className='comment-div'>
+        <Box style={{ display: showComments ? 'flex' : 'none', transitionDelay: 'display 5s' }} className='comment-div'>
             <Image src={comment.user.userImage} height="40px" width="40px" className='user-img' alt="user avatar" />
-            <div className='comment-content'>
-                <div className='comment-div'>
+            <Box className='comment-content'>
+                <Box className='comment-div'>
                     <Link to={'userId:' + comment.userId} className='username'>{comment.user.fullName}</Link>
                     <Paragraph className='date'>{formatTime(comment.createdAt)}</Paragraph>
-                </div>
+                </Box>
                 <Paragraph className='post-content'>{comment.commentText}</Paragraph>
-            </div>
-        </div>
+            </Box>
+        </Box>
     )
 }
 export default Comment  

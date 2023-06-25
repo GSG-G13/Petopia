@@ -1,3 +1,6 @@
+import Box from "../commons/Box"
+import Paragraph from "../commons/Paragraph"
+
 interface Props {
     title: string
 }
@@ -28,11 +31,11 @@ const Label: React.FC<Props> = ({ title }) => {
             colors.side = 'white'
     }
     return (
-        <div className='label' style={{ backgroundColor: colors.main }}>
-            <div className='top-label' style={{ backgroundColor: colors.side }}></div>
-            <p className='label-content' >{title}</p>
-            <div className='down-label' style={{ backgroundColor: colors.side }}></div>
-        </div>
+        <Box className='label' style={{ backgroundColor: colors.main }}>
+            <Box className='top-label' style={{ backgroundColor: colors.side }}></Box>
+            <Paragraph className='label-content' >{title}</Paragraph>
+            <Box className='down-label' style={{ backgroundColor: colors.side }}></Box>
+        </Box>
     )
 }
 export default Label
