@@ -14,7 +14,7 @@ const getExplorePostsQuery = async (page: number, limit: number): Promise<IPostW
       },
       {
         model: User,
-        attributes: ['userId', 'fullName', 'userImage']
+        attributes: ['userId', 'fullName', 'userImage', 'phone']
       },
       {
         model: Product

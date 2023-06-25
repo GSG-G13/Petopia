@@ -17,7 +17,7 @@ const getFeedPostsQuery = async (page: number, limit: number, userId: number): P
       },
       {
         model: User,
-        attributes: ['userId', 'fullName', 'userImage'],
+        attributes: ['userId', 'fullName', 'userImage', 'phone'],
         where: { userId: followersIds }
       },
       {

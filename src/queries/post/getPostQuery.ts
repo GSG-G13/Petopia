@@ -1,7 +1,7 @@
 import { Category, Pet, PetType, Post, PostImage, Product, User } from '../../models'
 import { type IPostWithDetails } from '../../interfaces/iPosts'
 
-const getPostQuery = async (id: number): Promise<IPostWithDetails | null > => {
+const getPostQuery = async (id: number): Promise<IPostWithDetails | null> => {
   const post = await Post.findOne({
     where: { postId: id },
     include: [
@@ -14,7 +14,7 @@ const getPostQuery = async (id: number): Promise<IPostWithDetails | null > => {
       },
       {
         model: User,
-        attributes: ['userId', 'fullName', 'userImage']
+        attributes: ['userId', 'fullName', 'userImage', 'phone']
       },
       {
         model: Product
