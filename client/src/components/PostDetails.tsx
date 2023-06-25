@@ -80,11 +80,14 @@ const PostDetails: React.FC<Props> = ({ petDetails, productDetails }) => {
             children: <>{details}</>,
         }
     ];
+
     return (
-        <Collapse defaultActiveKey={['0']}
-            ghost
-            expandIcon={({ isActive }) => petDetails !== undefined ? <Pet rotate={isActive ? 180 : 0} size="20" /> : <Box1 size="20" />}
-            items={items} />
+        petDetails !== undefined || productDetails !== undefined ?
+            < Collapse defaultActiveKey={['0']}
+                ghost
+                expandIcon={({ isActive }) => petDetails !== undefined ? <Pet rotate={isActive ? 180 : 0} size="20" /> : productDetails !== undefined ? <Box1 size="20" /> : <></>}
+                items={items} /> : <></>
+
     )
 }
 export default PostDetails
