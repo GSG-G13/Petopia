@@ -12,8 +12,6 @@ import {
 } from '@ant-design/icons';
 
 
-import './style.css'
-import { bool } from 'yup';
 const { Item } = Menu;
 
 const LeftSide = () => {
