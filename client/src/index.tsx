@@ -19,9 +19,8 @@ const router = createBrowserRouter([
   {
     path: '/post',
     element: <PostCard post={post} />,
-  }
+  },
 ]);
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <RouterProvider router={router} />,
 );
-
