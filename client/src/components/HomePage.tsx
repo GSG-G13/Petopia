@@ -1,14 +1,32 @@
 import React, { useState } from 'react';
-import { Layout, Row, Col, Drawer, Button } from 'antd';
-import { MenuOutlined } from '@ant-design/icons';
+import { Layout, Row, Col, Drawer, Button, Space, Badge } from 'antd';
+import { MenuOutlined , BellOutlined} from '@ant-design/icons';
 import RightSide from './sideBars/RightSide';
 import LeftSideBox from './sideBars/LeftSideBox';
 import UserProfile from './userProfile/UserProfile';
 import useWindowSize from './useWindowSize';
 
-const { Content } = Layout;
+const { Header, Content } = Layout;
 
 const HomePage = () => {
+
+    const iconWrapperStyle = {
+        width: '50px',
+        height: '50px',
+        flexShrink: 0,
+        borderRadius: '50px',
+        border: '1px solid #F0F0F5',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: '20px',
+      };
+    
+      const iconStyle = {
+        fontSize: '24px', 
+        color: '#0D161D',
+      };
+
   const [visibleLeft, setVisibleLeft] = useState(false);
   const [visibleRight, setVisibleRight] = useState(false);
   const size = useWindowSize();
@@ -38,56 +56,76 @@ const HomePage = () => {
   };
 
   return (
-    <Layout style={{ backgroundColor: '#f3f7fb' }}>
-      <Row justify="center" align="top" style={{ minHeight: '100vh' }}>
-        {size.width > 900 ? (
-          <Col span={6}>
-            <LeftSideBox />
-          </Col>
-        ) : (
-          <Button type="primary" onClick={showDrawerLeft}>
-            <MenuOutlined />
-          </Button>
+    <Layout style={{ backgroundColor: '#fff' }}>
+        {size.width <= 1000 && !visibleLeft && (
+        <Header style={{ backgroundColor: '#fff', position: 'fixed', zIndex: 1, width: '95%', display: 'flex', justifyContent: 'space-between' }}>
+
+          
+          <Space  onClick={showDrawerLeft}>
+              <Badge dot offset={[-10,10]}>
+              <div style={iconWrapperStyle}>
+        <MenuOutlined style={iconStyle}  />
+      </div>              
+      </Badge>
+            </Space>
+
+
+            <Space  onClick={showDrawerRight}>
+              <Badge dot offset={[-10,10]}>
+              <div style={iconWrapperStyle}>
+        <MenuOutlined style={iconStyle}  />
+      </div>              
+      </Badge>
+            </Space>
+
+        </Header>
+
         )}
 
-        <Drawer
-          title="Menu"
-          placement="left"
-          closable={false}
-          onClose={onCloseLeft}
-          visible={visibleLeft}
-          getContainer={false}
-          style={{ position: 'absolute' }}
-        >
-          <LeftSideBox />
-        </Drawer>
 
-        <Col span={getProfileSpan()}>
-          <UserProfile />
-        </Col>
+      <Content >
+        <Row justify="center" align="top" style={{ minHeight: '100vh' }}>
+          {size.width > 1000 ? (
+            <Col span={6}>
+              <LeftSideBox />
+            </Col>
+          ) : (
+            <Drawer
+              title="Menu"
+              placement="left"
+              closable={false}
+              onClose={onCloseLeft}
+              visible={visibleLeft}
+              getContainer={false}
+              style={{ position: 'absolute' }}
+            >
+              <LeftSideBox />
+            </Drawer>
+          )}
 
-        {size.width > 1450 ? (
-          <Col span={6}>
-            <RightSide />
+          <Col span={getProfileSpan()}>
+            <UserProfile />
           </Col>
-        ) : (
-          <Button type="primary" onClick={showDrawerRight}>
-            <MenuOutlined />
-          </Button>
-        )}
 
-        <Drawer
-          title="Menu"
-          placement="right"
-          closable={false}
-          onClose={onCloseRight}
-          visible={visibleRight}
-          getContainer={false}
-          style={{ position: 'absolute' }}
-        >
-          <RightSide />
-        </Drawer>
-      </Row>
+          {size.width > 1450 ? (
+            <Col span={6}>
+              <RightSide />
+            </Col>
+          ) : (
+            <Drawer
+              title="Menu"
+              placement="right"
+              closable={false}
+              onClose={onCloseRight}
+              visible={visibleRight}
+              getContainer={false}
+              style={{ position: 'absolute' }}
+            >
+              <RightSide />
+            </Drawer>
+          )}
+        </Row>
+      </Content>
     </Layout>
   );
 };
