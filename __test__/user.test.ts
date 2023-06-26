@@ -75,6 +75,8 @@ describe("Test getUserById controller", () => {
       email: "Mohammed@example.com",
       address: "456 Elm St, Khan Younis",
       phone: "987-654-3210",
+      followerCount: 2,
+      followingCount: 2
     };
 
     await request(app)
