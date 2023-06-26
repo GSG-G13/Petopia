@@ -10,6 +10,9 @@ import {
   UserOutlined,
   DownOutlined,
 } from '@ant-design/icons';
+import UsersModal from './UsersModal';
+import { useState } from 'react';
+
 
 
 const { Item } = Menu;
@@ -17,6 +20,15 @@ const { Item } = Menu;
 const LeftSide = () => {
   const { Title, Text } = Typography;
 
+  const [normalPostModal, setNormalPostModal] = useState(false);
+
+  const showNormalPostModal = () => {
+    setNormalPostModal(true);
+  };
+
+  const hideNormalPostModal = () => {
+    setNormalPostModal(false);
+  };
 
   const items = [
     {
@@ -35,7 +47,9 @@ const LeftSide = () => {
 
   return (
     <>
-      <Card style={{ width: 300, marginTop: 16 }} loading={false}>
+      <UsersModal visible={normalPostModal} onClose={hideNormalPostModal} />
+
+      <Card style={{ width: 300, marginTop: 16, top:0 }} loading={false}>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '15px'}}>
           <img src='https://media.discordapp.net/attachments/1112051630985187378/1122311524611014697/b0024e89-4665-4146-970c-cb2d4eccdea2.png?width=370&height=375' style={{height: 80, width: 80}}/>
         </div>
@@ -48,7 +62,7 @@ const LeftSide = () => {
           </div>
           <Divider type="vertical" style={{ height: '60px'}} />
           <div>
-            <Title level={4}>15.4K</Title>
+            <Title level={4}  onClick={showNormalPostModal}>15.4K</Title>
             <Text type="secondary">Followers</Text>
           </div>
           <Divider type="vertical" style={{ height: '60px'}} />

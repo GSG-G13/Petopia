@@ -23,7 +23,6 @@ const RightSide = (): JSX.Element => {
       borderColor: '#efeff4',
       borderLeftStyle: 'solid',
       borderLeftWidth: '1px',
-      position: 'fixed',
       width: '337px',
     };
   
