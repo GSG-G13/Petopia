@@ -1,5 +1,6 @@
-import Box from './Box';
 import Image from './Image';
+import Box from './Box';
+
 const Loading: React.FC = () => {
     return (
         <Box className='loading-container'>
