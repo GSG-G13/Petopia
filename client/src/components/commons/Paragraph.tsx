@@ -6,12 +6,10 @@ interface Props {
   style?: object
   width?: string
   height?: string
-  onClick?: () => void
 }
-const Box: React.FC<Props> = (props) => (
-  <div {...props}>
+const Paragraph: React.FC<Props> = (props) => (
+  <p {...props}>
     {props.children}
-  </div>
+  </p>
 );
-export default Box;
-
+export default Paragraph;
