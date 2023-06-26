@@ -71,6 +71,7 @@ describe("Test getAllUsers controller", () => {
 describe("Test getUserById controller", () => {
   test("200 | when user is retrieved successfully", async () => {
     const user = {
+      userId: 2,
       fullName: "Mohammed Sallout",
       email: "Mohammed@example.com",
       address: "456 Elm St, Khan Younis",
