@@ -1,6 +1,5 @@
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import App from './App';
 import PostCard from './components/post/PostCard';
@@ -16,10 +15,6 @@ const router = createBrowserRouter([
   {
     path: '/post',
     element: <PostCard post={post} />,
-  },
-  {
-    path: 'signup',
-    element: <SignUp />,
   },
   {
     path: 'login',
