@@ -1,10 +1,5 @@
-function App() {
+const App = () => (
+  <h1>Petopia</h1>
+);
 
-  return (
-    <>
-      <h1>Petopia</h1>
-    </>
-  )
-}
-
-export default App
+export default App;

@@ -1,34 +1,33 @@
-import { Input, Checkbox, Button, Form, message } from "antd";
-import "../styles/Register.css";
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import axios from "axios";
+import {
+  Input, Checkbox, Button, Form, message,
+} from 'antd';
+import '../styles/Register.css';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import axios from 'axios';
 
-function SignUp() {
+const SignUp = () => {
   const [user, setUser] = useState({
-    fullName: "",
-    email: "",
-    password: "",
+    fullName: '',
+    email: '',
+    password: '',
   });
 
   const handleSubmit = async () => {
     try {
-      const res = await axios.post("/api/v1/auth/signup", user);
-      console.log(res);
+      const res = await axios.post('/api/v1/auth/signup', user);
 
       if (res.data.message) {
         message.open({
-          type: "success",
+          type: 'success',
           content: res.data.message,
         });
       }
     } catch (err: any) {
       message.open({
-        type: "error",
+        type: 'error',
         content: err.response.data.message,
       });
-
-      console.log("Error", err);
     }
   };
 
@@ -52,12 +51,12 @@ function SignUp() {
               name="fullName"
               rules={[
                 {
-                  type: "string",
+                  type: 'string',
                   min: 3,
                 },
                 {
                   required: true,
-                  message: "Please input your fullName!",
+                  message: 'Please input your fullName!',
                 },
               ]}
               hasFeedback
@@ -77,12 +76,12 @@ function SignUp() {
               name="email"
               rules={[
                 {
-                  type: "email",
-                  message: "The input is not valid E-mail!",
+                  type: 'email',
+                  message: 'The input is not valid E-mail!',
                 },
                 {
                   required: true,
-                  message: "Please input your E-mail!",
+                  message: 'Please input your E-mail!',
                 },
               ]}
               hasFeedback
@@ -103,12 +102,12 @@ function SignUp() {
               name="password"
               rules={[
                 {
-                  type: "string",
+                  type: 'string',
                   min: 8,
                 },
                 {
                   required: true,
-                  message: "Please input your Password!",
+                  message: 'Please input your Password!',
                 },
               ]}
               hasFeedback
@@ -127,22 +126,22 @@ function SignUp() {
             <Form.Item
               name="confirm"
               label="Confirm Password"
-              dependencies={["password"]}
+              dependencies={['password']}
               hasFeedback
               rules={[
                 {
                   required: true,
-                  message: "Please confirm your password!",
+                  message: 'Please confirm your password!',
                 },
                 ({ getFieldValue }) => ({
                   validator(_, value) {
-                    if (!value || getFieldValue("password") === value) {
+                    if (!value || getFieldValue('password') === value) {
                       return Promise.resolve();
                     }
                     return Promise.reject(
                       new Error(
-                        "The new password that you entered do not match!"
-                      )
+                        'The new password that you entered do not match!',
+                      ),
                     );
                   },
                 }),
@@ -168,15 +167,16 @@ function SignUp() {
                 SignUp
               </Button>
               <p>
-                Have an account? <Link to="/login">Login</Link>
+                Have an account?
+                <Link to="/login">Login</Link>
               </p>
             </Form.Item>
           </div>
         </Form>
       </div>
-      <div className="right"></div>
+      <div className="right" />
     </div>
   );
-}
+};
 
 export default SignUp;

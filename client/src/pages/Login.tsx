@@ -1,33 +1,32 @@
-import { Input, Checkbox, Button, Form, message } from "antd";
-import "../styles/Register.css";
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import axios from "axios";
+import {
+  Input, Checkbox, Button, Form, message,
+} from 'antd';
+import '../styles/Register.css';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import axios from 'axios';
 
-function Login() {
+const Login = () => {
   const [user, setUser] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   const handleSubmit = async () => {
     try {
-      const res = await axios.post("/api/v1/auth/login", user);
-      console.log(res);
+      const res = await axios.post('/api/v1/auth/login', user);
 
       if (res.data.message) {
         message.open({
-          type: "success",
+          type: 'success',
           content: res.data.message,
         });
       }
     } catch (err: any) {
       message.open({
-        type: "error",
+        type: 'error',
         content: err.response.data.message,
       });
-
-      console.log("Error", err);
     }
   };
 
@@ -51,12 +50,12 @@ function Login() {
               name="email"
               rules={[
                 {
-                  type: "email",
-                  message: "The input is not valid E-mail!",
+                  type: 'email',
+                  message: 'The input is not valid E-mail!',
                 },
                 {
                   required: true,
-                  message: "Please input your E-mail!",
+                  message: 'Please input your E-mail!',
                 },
               ]}
               hasFeedback
@@ -77,12 +76,12 @@ function Login() {
               name="password"
               rules={[
                 {
-                  type: "string",
+                  type: 'string',
                   min: 8,
                 },
                 {
                   required: true,
-                  message: "Please input your Password!",
+                  message: 'Please input your Password!',
                 },
               ]}
               hasFeedback
@@ -113,15 +112,16 @@ function Login() {
                 Login
               </Button>
               <p>
-                Don't have an account? <Link to="/signup">SignUp</Link>
+                Dont have an account?
+                <Link to="/signup">SignUp</Link>
               </p>
             </Form.Item>
           </div>
         </Form>
       </div>
-      <div className="right"></div>
+      <div className="right" />
     </div>
   );
-}
+};
 
 export default Login;
