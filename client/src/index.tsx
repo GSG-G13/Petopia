@@ -1,6 +1,6 @@
-import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import SignUp from './pages/SignUp'
+import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import SignUp from './pages/SignUp';
 import App from './App';
 import PostCard from './components/post/PostCard';
 import fakeData from './helpers/fakeData.json';
@@ -17,15 +17,10 @@ const router = createBrowserRouter([
     element: <PostCard post={post} />,
   },
   {
-    path: "signup",
-    element: <SignUp />
+    path: 'signup',
+    element: <SignUp />,
   },
-  {
-    path: "login",
-    element: <h1>Login</h1>
-  }
-])
-
+]);
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <RouterProvider router={router} />,
 );

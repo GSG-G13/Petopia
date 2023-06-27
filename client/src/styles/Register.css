@@ -33,22 +33,21 @@ ul {
 }
 /* End Global Roles */
 
- .Register {
+.Register {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .Register .left {
-  width: 50%;
-  margin-left: 80px;
+  width: 40%;
+  margin-left: 10%;
 }
 
 .Register .left h2 {
   font-weight: 500;
   font-size: 32px;
   margin-bottom: 40px;
-  margin-left: 45px;
 }
 
 .Register .left form .form-submit .button {
@@ -57,15 +56,12 @@ ul {
   font-size: 15px;
   background-color: var(--primary);
   color: #fff;
-  margin-left: 45px;
-}
-
-.Register .left form .form-submit p {
-  margin-left: 45px;
 }
 
 .Register .left form .form-input label {
   width: 136px;
+  justify-content: start;
+  flex-direction: row-reverse;
 }
 
 .Register .left form .form-submit .button:hover {
@@ -80,26 +76,15 @@ ul {
 }
 
 .Register .right {
-  width: 40%;
+  width: 50%;
   height: 100vh;
-  background-image: url("../assets/Rectangle.png");
+  background-image: url("../assets/pet.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  position: relative;
-  border-radius: 30px 0 0 30px;
 }
-.Register .right::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: rgba(255, 255, 255, 0.2);
-} 
 
-@media(max-width: 991px) {
+@media (max-width: 991px) {
   .Register {
     justify-content: center;
     padding: 40px 0;
@@ -112,7 +97,7 @@ ul {
   }
 }
 
-@media(max-width: 767px) {
+@media (max-width: 767px) {
   .Register .left {
     margin-left: 0;
   }
