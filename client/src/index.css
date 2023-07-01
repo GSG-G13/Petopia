@@ -16,10 +16,24 @@
     --sell-color: #FBDCE7;
     --sell-side-color: #f59ebd;
     --help-color: #F3FBDC;
+    --breed-color: #c2baff;
+    --breed-side-color:#978de3;
     --help-side-color: #eaf7c3;
     --input-border: #a2c0d4;
   }
   
   body {
     font-family: var(--main-font);
+    margin: 0;
+    background-color: var(--background);
+    overflow: hidden;
+  }
+  .posts-container{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    overflow: auto;
+    max-height: 100vh;
   }
