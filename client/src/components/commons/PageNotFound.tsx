@@ -2,6 +2,7 @@ import { Typography, Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import Box from './Box';
 import Image from './Image';
+import '../../styles/error.css';
 
 const PageNotFound: React.FC = () => {
   const { Title } = Typography;

@@ -1,5 +1,6 @@
 import Box from './Box';
 import Image from './Image';
+import '../../styles/loading.css';
 
 const Loading: React.FC = () => (
   <Box className="loading-container">
