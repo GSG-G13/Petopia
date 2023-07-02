@@ -1,9 +1,18 @@
-import Box from './components/commons/Box';
+import { useEffect, useState } from 'react';
+import Loading from './components/commons/LoadingComponent';
 
-const App = () => (
-  <Box className="hello" style={{ fontSize: '100px' }}>
+const App = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 2000);
+  }, []);
+
+  return loading === false ? (
     <h1>Petopia</h1>
-  </Box>
-);
+  ) : (
+    <Loading />
+  );
+};
 
 export default App;

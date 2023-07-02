@@ -21,6 +21,7 @@ const router = createBrowserRouter([
     element: <Login />,
   },
 ]);
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <RouterProvider router={router} />,
 );
