@@ -21,6 +21,7 @@ const router = createBrowserRouter([
     element: <SignUp />,
   },
 ]);
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <RouterProvider router={router} />,
 );
