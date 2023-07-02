@@ -19,7 +19,9 @@
     --help-side-color: #eaf7c3;
     --input-border: #a2c0d4;
   }
-  
+
   body {
     font-family: var(--main-font);
+    margin: 0;
   }
+

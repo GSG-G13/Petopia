@@ -1,12 +1,19 @@
 import { message } from 'antd';
 import { Copy } from 'iconsax-react';
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 interface Props {
-  postID: number
+  postID: number;
 }
+
 const CopyLink: React.FC<Props> = ({ postID }: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
+  const [URL, setCurrentURL] = useState('');
+
+  useEffect(() => {
+    const currentURL = window.location.host;
+    setCurrentURL(currentURL);
+  }, []);
 
   const handleCopy = async () => {
     if (inputRef.current) {
@@ -21,7 +28,12 @@ const CopyLink: React.FC<Props> = ({ postID }: Props) => {
   };
   return (
     <div className="comment">
-      <input ref={inputRef} defaultValue={`https://petopia/post/${postID}`} readOnly className="copy-field" />
+      <input
+        ref={inputRef}
+        value={`${URL}/post/${postID}`}
+        readOnly
+        className="copy-field"
+      />
       <Copy size="28" variant="Outline" onClick={handleCopy} className="copy-icon" />
     </div>
   );
