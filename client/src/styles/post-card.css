@@ -170,12 +170,25 @@ a:hover{
     padding-left: 10px;
     padding-right: 3rem;
 }
+.comment-edit-field{
+    width:  285.085px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 50px;
+    border: 1px solid #F0F0F5;
+    font-size: 14px;
+    font-family: Readex Pro;
+    font-weight: 300;
+    outline: none;
+    padding-left: 10px;
+    padding-right: 3rem;
+}
 
-.comment-field:hover    {
+.comment-field:hover , .comment-edit-field:hover  {
     border: 1px solid #f8cc5d;
 }
 
-.comment-field:focus {
+.comment-field:focus, .comment-edit-field:focus {
     border: 2px solid #f8cb5d;
   }
 
@@ -257,12 +270,18 @@ a:hover{
     display: flex;
     gap: 7px;
 }
+.comment-div-1{
+    display: flex;
+    gap: 7px;
+    justify-content: space-between;
+}
 .comment-content{
     display: flex;
     flex-direction: column;
     background-color: #F0F0F5;
     border-radius: 10px;
     padding: 10px;
+    max-width: 415px;
 }
 .copy-icon{
     color: #F37F29;

@@ -28,14 +28,5 @@
     background-color: var(--background);
     overflow: hidden;
   }
-  .posts-container{
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding: 15px;
-    overflow: auto;
-    max-height: 100vh;
-  }
 
 

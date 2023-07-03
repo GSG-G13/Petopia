@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Card, Space } from 'antd';
 import { Link } from 'react-router-dom';
 import Image from '../commons/Image';
@@ -6,24 +6,24 @@ import '../../styles/post-card.css';
 import Carousel from '../commons/Carousel';
 import PostButtons from './PostButtons';
 import PostComments from './PostComment';
-import CommentForm from './CommentForm';
 import PostDetails from './PostDetails';
 import formatTime from '../../helpers/timeFormatter';
-import IPost from '../../interfaces';
-import fakeData from '../../helpers/fakeData.json';
+import { IComment, IPost } from '../../interfaces';
 import Label from './Label';
 import Box from '../commons/Box';
 import Paragraph from '../commons/Paragraph';
+import CommentForm from './CommentForm';
+import { AuthContext } from '../context/AuthContext';
 
 interface Props {
   post: IPost
 }
 const PostCard: React.FC<Props> = ({ post }) => {
   const [showComments, setShowComments] = useState(false);
-  const [showLike, setShowLike] = useState(false);
-
-  const { comments } = fakeData;
-
+  // const [showLike, setShowLike] = useState(false);
+  const [comments, setComments] = useState<IComment[]>([]);
+  const [commentsCounts, setCommentsCounts] = useState(post.commentsCount);
+  const { userData } = useContext(AuthContext);
   return (
     <Space direction="vertical" size={16}>
       <Card className="card">
@@ -54,19 +54,26 @@ const PostCard: React.FC<Props> = ({ post }) => {
         {(post.pets !== undefined || post.products !== undefined)
           ? <PostDetails petDetails={post.pets[0]} productDetails={post.products[0]} /> : null}
         <PostButtons
-          showLike={showLike}
-          setShowLike={setShowLike}
+          // showLike={showLike}
+          // setShowLike={setShowLike}
           showComments={showComments}
           setShowComments={setShowComments}
           phoneNumber={post.user.phone}
-          postID={post.postId}
+          postId={post.postId}
           likesCount={post.likesCount}
-          commentsCount={post.commentsCount}
+          commentsCount={commentsCounts}
           adoption={post.pets !== undefined && post.pets.length !== 0}
           product={post.products !== undefined && post.products.length !== 0}
         />
-        <PostComments showComments={showComments} comments={comments} />
-        <CommentForm userImage={post.user.userImage} />
+        <PostComments
+          showComments={showComments}
+          postId={post.postId}
+          setComments={setComments}
+          comments={comments}
+          setCommentsCounts={setCommentsCounts}
+        />
+        {userData.userId !== 0
+          ? <CommentForm postId={post.postId} setComments={setComments} setCommentsCounts={setCommentsCounts} /> : null}
       </Card>
     </Space>
   );

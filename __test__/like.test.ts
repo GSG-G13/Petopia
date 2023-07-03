@@ -12,14 +12,14 @@ describe("Test Post Likers controller", () => {
       "userId": 1,
       "postId": 1,
       "user.fullName": "Abdallah Abujazar",
-      "user.userImage": "https://Abujazar.com/user1.jpg"
+      "user.userImage": "https://i.imgur.com/KcYHnFr.jpg"
   },
   {
       "likeId": 2,
       "userId": 2,
       "postId": 1,
       "user.fullName": "Mohammed Sallout",
-      "user.userImage": "https://Mohammed.com/user2.jpg"
+      "user.userImage": "https://i.imgur.com/v2v02Ge.jpg"
   } ]
 
     await request(app)

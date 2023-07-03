@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { message } from 'antd';
 import PostCard from './post/PostCard';
-import IPost from '../interfaces';
+import { IPost } from '../interfaces';
 import Box from './commons/Box';
+import '../styles/posts.css';
 
 const ExplorePosts: React.FC = () => {
   const [explorePosts, setPosts] = useState<IPost[]>([]);
@@ -27,7 +28,6 @@ const ExplorePosts: React.FC = () => {
     const { scrollTop, scrollHeight, clientHeight } = event.currentTarget as HTMLDivElement;
     if (scrollTop + clientHeight === scrollHeight) {
       setPage((prevPage) => prevPage + 1);
-      console.log(page);
     }
   };
 

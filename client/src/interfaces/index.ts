@@ -1,3 +1,8 @@
 import IPost from './IPost';
+import IComment from './IComment';
+import IUser from './IUser';
+import ICategory from './ICategory';
 
-export default IPost;
+export type {
+  IPost, IComment, IUser, ICategory,
+};
