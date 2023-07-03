@@ -1,4 +1,4 @@
-.card{
+.card {
     width: 582px;
     font-family: var(--main-font);
     border-radius: 8px;
@@ -12,20 +12,23 @@
     border-radius: 20px;
     object-fit: contain
 }
-.post-header{
+
+.post-header {
     display: inline-flex;
     align-items: center;
-    justify-content:space-between ;
+    justify-content: space-between;
     width: 107%;
     gap: 7px
 }
-.user-post-container{
+
+.user-post-container {
     display: inline-flex;
     align-items: center;
     gap: 7px;
     width: 100%;
     margin-bottom: 15px;
 }
+
 .user-post-info {
     display: flex;
     flex-direction: column;
@@ -40,32 +43,38 @@
     margin: 0;
     font-size: 14px;
     color: #0D161D;
-    font-weight:600
+    font-weight: 600;
+    font-family : var(--main-font);
 }
-.date{
+
+.date {
     margin: 0 !important;
     color: #9EA2A5;
-    font-weight:300;
+    font-weight: 300;
     font-size: 12px;
     font-family: var(--main-font);
 }
-.post-buttons{
+
+.post-buttons {
     display: flex;
     width: 535px;
     justify-content: space-between;
     align-items: center;
 }
-.item{
+
+.item {
     display: flex;
     align-items: center;
     gap: 5px;
     font-size: 12px;
 }
-.icon{
+
+.icon {
     font-size: 20px;
     cursor: pointer;
 }
-.label{
+
+.label {
     display: inline-flex;
     align-self: end;
     height: 35px;
@@ -78,7 +87,7 @@
     margin-bottom: 15px;
 }
 
-.top-label{
+.top-label {
     width: 17.015px;
     height: 10.894px;
     flex-shrink: 0;
@@ -88,7 +97,8 @@
     transform: rotate(45deg);
     z-index: -1;
 }
-.down-label{
+
+.down-label {
     width: 17.015px;
     height: 10.894px;
     flex-shrink: 0;
@@ -99,24 +109,26 @@
     z-index: -1;
 }
 
-.label-content{
+.label-content {
     color: #394349;
     text-align: center;
     font-size: 14px;
     font-family: var(--main-font);
     font-weight: 300;
 }
-.post-content{
+
+.post-content {
     font-weight: 300;
     font-family: var(--main-font);
 }
 
-.collapse-details{
+.collapse-details {
     font-family: var(--main-font);
     font-size: 14px;
     margin: 0;
 }
-.contact-owner{
+
+.contact-owner {
     display: flex;
     height: 35px;
     padding: 0px 10px;
@@ -126,52 +138,46 @@
     color: #F37F29;
     cursor: pointer;
 }
-.contact-pop{
+
+.contact-pop {
     font-family: var(--main-font);
     font-size: 14px;
     margin: 0;
     display: inline-flex;
     gap: 3px;
 }
-.content-pop{
+
+.content-pop {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-a{
-  color: #F37F29;  
+
+a {
+    color: #F37F29;
 }
-a:hover{
-    color:#f8cb5c
+
+a:hover {
+    color: #f8cb5c
 }
-.comment{
+
+.comment {
     display: inline-flex;
     align-items: flex-start;
     gap: 7px;
     margin-top: 15px;
     position: relative;
 }
-.user-img{
+
+.user-img {
     width: 40px;
     height: 40px;
     border-radius: 40px;
     object-fit: cover;
 }
-.comment-field{
-    width:  485.085px;
-    height: 40px;
-    flex-shrink: 0;
-    border-radius: 50px;
-    border: 1px solid #F0F0F5;
-    font-size: 14px;
-    font-family: Readex Pro;
-    font-weight: 300;
-    outline: none;
-    padding-left: 10px;
-    padding-right: 3rem;
-}
-.comment-edit-field{
-    width:  285.085px;
+
+.comment-field {
+    width: 485.085px;
     height: 40px;
     flex-shrink: 0;
     border-radius: 50px;
@@ -184,55 +190,76 @@ a:hover{
     padding-right: 3rem;
 }
 
-.comment-field:hover , .comment-edit-field:hover  {
+.comment-edit-field {
+    width: 285.085px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 50px;
+    border: 1px solid #F0F0F5;
+    font-size: 14px;
+    font-family: Readex Pro;
+    font-weight: 300;
+    outline: none;
+    padding-left: 10px;
+    padding-right: 3rem;
+}
+
+.comment-field:hover,
+.comment-edit-field:hover {
     border: 1px solid #f8cc5d;
 }
 
-.comment-field:focus, .comment-edit-field:focus {
+.comment-field:focus,
+.comment-edit-field:focus {
     border: 2px solid #f8cb5d;
-  }
+}
 
-  .send {
+.send {
     position: absolute;
     right: 0;
-    transform: translate(-87%,-12px);
+    transform: translate(-87%, -12px);
     border: none;
     cursor: pointer;
     width: 30px;
-    color: #F37F29;
-  }
+    color: #F37F29 !important;
+}
 
-  .send-icon:hover,.send-icon:focus{
-    color: #f8cc5d;
-  }
+.send-icon:hover,
+.send-icon:focus,
+.send:hover,
+.send:focus {
+    color: #f8cc5d !important;
+}
 
-  .hr{
+.hr {
     width: 515px;
     height: 1px;
     background: #F0F0F5;
     margin: 10px;
-  }
+}
 
-  @keyframes fade-in {
+@keyframes fade-in {
     from {
-    height: 0;
+        height: 0;
     }
-    to {
-    max-height: 300px;
-    }
-  }
 
-  @keyframes fade-out {
-    
+    to {
+        max-height: 300px;
+    }
+}
+
+@keyframes fade-out {
+
     from {
         height: 300px;
     }
+
     to {
         height: 0;
     }
-  }
+}
 
-.open-comments{
+.open-comments {
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -245,7 +272,8 @@ a:hover{
     animation-fill-mode: forwards;
     overflow-y: auto;
 }
-.close-comments{
+
+.close-comments {
     transition: all 1s;
     animation-name: fade-out;
     animation-duration: 75ms;
@@ -254,28 +282,30 @@ a:hover{
 
 .open-comments::-webkit-scrollbar {
     width: 8px;
-  }
-  
-  .open-comments::-webkit-scrollbar-track {
+}
+
+.open-comments::-webkit-scrollbar-track {
     background-color: #f1f1f1;
     border-radius: 10px;
-  }
-  
-  .open-comments::-webkit-scrollbar-thumb {
+}
+
+.open-comments::-webkit-scrollbar-thumb {
     background-color: #F37F29;
     border-radius: 10px;
-  }
-  
-.comment-div{
+}
+
+.comment-div {
     display: flex;
     gap: 7px;
 }
-.comment-div-1{
+
+.comment-div-1 {
     display: flex;
     gap: 7px;
     justify-content: space-between;
 }
-.comment-content{
+
+.comment-content {
     display: flex;
     flex-direction: column;
     background-color: #F0F0F5;
@@ -283,35 +313,47 @@ a:hover{
     padding: 10px;
     max-width: 415px;
 }
-.copy-icon{
+
+.copy-icon {
     color: #F37F29;
     cursor: pointer;
 }
-.copy-icon:hover{
+
+.copy-icon:hover {
     color: #f8cb5c;
 }
-.copy-field{
+
+.copy-field {
     border-radius: 5px;
-    padding-left:7px;
+    padding-left: 7px;
     border: 1px solid #d3d3d9;
     height: 25px;
     font-family: var(--main-font);
 }
-.copy-field:focus{
+
+.copy-field:focus {
     outline: none !important;
     border: 1px solid #f8cb5c;
 }
-.carousel{
+
+.carousel {
     margin-bottom: 30px;
 }
+
 .slick-next:before {
     content: '→';
     color: #F37F29;
     margin-right: 10px;
 }
-.pointer{
+
+.pointer {
     cursor: pointer;
 }
+
 :focus-visible {
     outline: -webkit-focus-ring-color none
+}
+.follow-button:hover,.follow-button:focus{
+    color: #f8cc5d !important;
+    border-color: #f8cc5d !important;
 }

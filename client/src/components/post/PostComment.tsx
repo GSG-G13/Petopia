@@ -2,7 +2,7 @@ import {
   Dispatch, SetStateAction, useEffect, useState,
 } from 'react';
 import axios from 'axios';
-import { Empty, message } from 'antd';
+import { Empty, message, Skeleton } from 'antd';
 import Comment from './SingleComment';
 import Box from '../commons/Box';
 import { IComment } from '../../interfaces';
@@ -18,14 +18,18 @@ const PostComments: React.FC<Props> = ({
   showComments, postId, comments, setComments, setCommentsCounts,
 }) => {
   const [commentsPage, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
   const fetchData = async () => {
     try {
+      setLoading(true);
       const { data: { data } } = await axios.get(`/api/v1/comments/posts/${postId}/?page=${commentsPage}`);
       setComments((prevData) => [...prevData, ...data]);
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.status !== 401) {
         message.error('Something went wrong!');
       }
+    } finally {
+      setLoading(false);
     }
   };
   useEffect(() => {
@@ -38,22 +42,42 @@ const PostComments: React.FC<Props> = ({
       setPage((prevPage) => prevPage + 1);
     }
   };
-  const Comments = comments.length !== 0 ? comments.map((comment) => (
-    <Comment
-      key={comment.commentId}
-      showComments={showComments}
-      comment={comment}
-      comments={comments}
-      setComments={setComments}
-      setCommentsCounts={setCommentsCounts}
-    />
-  )) : (
-    <Empty
-      image={Empty.PRESENTED_IMAGE_SIMPLE}
-      description="there's no comments yet"
-      style={{ display: showComments ? 'flex' : 'none', transitionDelay: 'display 5s', justifyContent: 'center' }}
-    />
-  );
+  let Comments;
+
+  if (comments.length !== 0) {
+    Comments = comments.map((comment) => (
+      <Comment
+        key={comment.commentId}
+        showComments={showComments}
+        comment={comment}
+        comments={comments}
+        setComments={setComments}
+        setCommentsCounts={setCommentsCounts}
+      />
+    ));
+  } else if (loading) {
+    Comments = (
+      <Skeleton
+        active
+        avatar
+        paragraph={{ rows: 2 }}
+        style={{
+          display: showComments ? 'flex' : 'none',
+          transitionDelay: 'display 5s',
+          justifyContent: 'center',
+          maxWidth: '400px',
+        }}
+      />
+    );
+  } else {
+    Comments = (
+      <Empty
+        image={Empty.PRESENTED_IMAGE_SIMPLE}
+        description="There are no comments yet"
+        style={{ display: showComments ? 'flex' : 'none', transitionDelay: 'display 5s', justifyContent: 'center' }}
+      />
+    );
+  }
   return (
     <>
       <Box className="hr" />

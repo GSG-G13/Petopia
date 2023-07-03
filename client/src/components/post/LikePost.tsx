@@ -5,6 +5,7 @@ import { message } from 'antd';
 import Box from '../commons/Box';
 import Paragraph from '../commons/Paragraph';
 import { AuthContext } from '../context/AuthContext';
+import PostLikers from './PostLikers';
 
 interface Props {
   likesCount: number
@@ -14,6 +15,7 @@ const LikePost:React.FC<Props> = ({ likesCount, postId }:Props) => {
   const [Likes, SetLikes] = useState(likesCount);
   const [showLike, setShowLike] = useState(false);
   const { userData } = useContext(AuthContext);
+  const [showLikers, setShowLikers] = useState(false);
   const checkLikes = async (id:number) => {
     try {
       const { data: { data } } = await axios.get(`/api/v1/like/likers/${id}`);
@@ -74,11 +76,12 @@ const LikePost:React.FC<Props> = ({ likesCount, postId }:Props) => {
           />
         ) }
 
-      <Paragraph className="pointer">
+      <Paragraph className="pointer" onClick={() => { setShowLikers(true); }}>
         {Likes}
         {' '}
         Like
       </Paragraph>
+      {showLikers ? <PostLikers setShowLikers={setShowLikers} showLikers={showLikers} postId={postId} /> : null}
     </Box>
   );
 };

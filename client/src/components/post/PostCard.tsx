@@ -62,6 +62,7 @@ const PostCard: React.FC<Props> = ({ post }) => {
           adoption={post.pets !== undefined && post.pets.length !== 0}
           product={post.products !== undefined && post.products.length !== 0}
         />
+
         <PostComments
           showComments={showComments}
           postId={post.postId}
@@ -69,6 +70,7 @@ const PostCard: React.FC<Props> = ({ post }) => {
           comments={comments}
           setCommentsCounts={setCommentsCounts}
         />
+
         {userData.userId !== 0
           ? <CommentForm postId={post.postId} setComments={setComments} setCommentsCounts={setCommentsCounts} /> : null}
       </Card>
