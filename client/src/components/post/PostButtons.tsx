@@ -44,7 +44,6 @@ const PostButtons: React.FC<Props> = ({
       <CopyLink postID={postId} />
     </Box>
   );
-
   return (
 
     <Box className="post-buttons">

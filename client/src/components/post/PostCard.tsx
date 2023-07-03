@@ -20,7 +20,6 @@ interface Props {
 }
 const PostCard: React.FC<Props> = ({ post }) => {
   const [showComments, setShowComments] = useState(false);
-  // const [showLike, setShowLike] = useState(false);
   const [comments, setComments] = useState<IComment[]>([]);
   const [commentsCounts, setCommentsCounts] = useState(post.commentsCount);
   const { userData } = useContext(AuthContext);
@@ -54,8 +53,6 @@ const PostCard: React.FC<Props> = ({ post }) => {
         {(post.pets !== undefined || post.products !== undefined)
           ? <PostDetails petDetails={post.pets[0]} productDetails={post.products[0]} /> : null}
         <PostButtons
-          // showLike={showLike}
-          // setShowLike={setShowLike}
           showComments={showComments}
           setShowComments={setShowComments}
           phoneNumber={post.user.phone}

@@ -38,6 +38,8 @@ const LikePost:React.FC<Props> = ({ likesCount, postId }:Props) => {
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.status !== 401) {
         message.error('Something went wrong!');
+      } else {
+        message.error('You need to be logged in first');
       }
     }
   };
