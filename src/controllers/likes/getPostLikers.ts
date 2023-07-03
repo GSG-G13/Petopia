@@ -11,7 +11,7 @@ const getPostLikers = async (req: CustomRequest, res: Response, next: NextFuncti
       throw new CustomError(400, 'Post not found')
     }
     const likers = await getPostLikersQuery(postId)
-    res.status(201).json({
+    res.json({
       data: likers
     })
   } catch (err: unknown) {
