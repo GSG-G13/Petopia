@@ -18,7 +18,7 @@ const Product = sequelize.define<IProduct>('product', {
     type: DataTypes.FLOAT
   },
   details: {
-    type: DataTypes.STRING
+    type: DataTypes.TEXT
   },
   rating: {
     type: DataTypes.FLOAT
