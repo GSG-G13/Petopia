@@ -34,49 +34,63 @@ const PostDetails: React.FC<Props> = ({ petDetails, productDetails }) => {
       <>
         <Row>
           <Col span={12} className="collapse-details">
-            <Paragraph>
+            <Paragraph className="description-div">
               Name:
               {' '}
-              {petDetails.petName}
+
+              <Paragraph className="description">
+                {petDetails.petName}
+                {' '}
+              </Paragraph>
             </Paragraph>
           </Col>
           <Col span={12} className="collapse-details">
-            <Paragraph>
+            <Paragraph className="description-div">
               Age:
               {' '}
-              {petDetails.age}
+              <Paragraph className="description">
+                {petDetails.age}
+              </Paragraph>
             </Paragraph>
           </Col>
         </Row>
         <Row>
           <Col span={12} className="collapse-details">
-            <Paragraph>
+            <Paragraph className="description-div">
               Gender:
               {' '}
-              {petDetails.gender}
+              <Paragraph className="description">
+                {petDetails.gender}
+              </Paragraph>
             </Paragraph>
           </Col>
           <Col span={12} className="collapse-details">
-            <Paragraph>
-              PetType:
+            <Paragraph className="description-div">
+              Pet Type:
               {' '}
-              {petDetails.petType.title}
+              <Paragraph className="description">
+                {petDetails.petType.title}
+              </Paragraph>
             </Paragraph>
           </Col>
         </Row>
         <Row>
           <Col span={12} className="collapse-details">
-            <Paragraph>
-              HealthStatus:
+            <Paragraph className="description-div">
+              Health Status:
               {' '}
-              {petDetails.healthStatus}
+              <Paragraph className="description">
+                {petDetails.healthStatus}
+              </Paragraph>
             </Paragraph>
           </Col>
           <Col span={12} className="collapse-details">
-            <Paragraph>
-              AdoptionStatus:
+            <Paragraph className="description-div">
+              Adoption Status:
               {' '}
-              {petDetails.adoptionStatus}
+              <Paragraph className="description">
+                {petDetails.adoptionStatus}
+              </Paragraph>
             </Paragraph>
           </Col>
         </Row>
@@ -87,33 +101,41 @@ const PostDetails: React.FC<Props> = ({ petDetails, productDetails }) => {
       <>
         <Row>
           <Col span={12} className="collapse-details">
-            <Paragraph>
+            <Paragraph className="description-div">
               Name:
               {' '}
-              {productDetails?.title}
+              <Paragraph className="description">
+                {productDetails?.title}
+              </Paragraph>
             </Paragraph>
           </Col>
           <Col span={12} className="collapse-details">
-            <Paragraph>
+            <Paragraph className="description-div">
               Price:
               {' '}
-              {productDetails?.price}
+              <Paragraph className="description">
+                {productDetails?.price}
+              </Paragraph>
             </Paragraph>
           </Col>
         </Row>
         <Row>
           <Col span={12} className="collapse-details">
-            <Paragraph>
+            <Paragraph className="description-div">
               Details:
               {' '}
-              {productDetails?.details}
+              <Paragraph className="description">
+                {productDetails?.details}
+              </Paragraph>
             </Paragraph>
           </Col>
           <Col span={12} className="collapse-details">
-            <Paragraph>
+            <Paragraph className="description-div">
               Rating:
               {' '}
-              {productDetails?.rating}
+              <Paragraph className="description">
+                {productDetails?.rating}
+              </Paragraph>
             </Paragraph>
           </Col>
         </Row>

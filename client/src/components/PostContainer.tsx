@@ -7,14 +7,26 @@ import Box from './commons/Box';
 import '../styles/posts.css';
 import PostSkeleton from './post/PostSkeleton';
 
-const ExplorePosts: React.FC = () => {
+interface Props {
+  path: string
+}
+
+const PostContainer : React.FC<Props> = ({ path }: Props) => {
   const [explorePosts, setPosts] = useState<IPost[]>([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  let apiLink = `/api/v1/posts/feed?page=${page}`;
+  switch (path) {
+    case 'explore': apiLink = `/api/v1/posts?page=${page}`;
+      break;
+    case 'feed': apiLink = `/api/v1/posts/feed?page=${page}`;
+      break;
+    default: apiLink = `/api/v1/posts?page=${page}`;
+  }
   const fetchData = async () => {
     try {
       setLoading(true);
-      const { data: { data } } = await axios.get(`/api/v1/posts?page=${page}`);
+      const { data: { data } } = await axios.get(apiLink);
       setPosts((prevData) => [...prevData, ...data]);
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.status !== 401) {
@@ -71,4 +83,4 @@ const ExplorePosts: React.FC = () => {
 
   );
 };
-export default ExplorePosts;
+export default PostContainer;

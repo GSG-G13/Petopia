@@ -384,3 +384,12 @@ a:hover {
     display: flex;
     gap:15px;
 }
+.description-div{
+   display: flex;
+   gap: 5px;
+   
+}
+.description{
+    color: var(--body-font-color);
+    margin: 0;
+}
