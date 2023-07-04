@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { message } from 'antd';
+import { Empty, message } from 'antd';
 import PostCard from './post/PostCard';
 import { IPost } from '../interfaces';
 import Box from './commons/Box';
@@ -53,7 +53,19 @@ const ExplorePosts: React.FC = () => {
               posts={explorePosts}
               setPosts={setPosts}
             />
-          )) : [] }
+          )) : (
+            <Empty
+              image={Empty.PRESENTED_IMAGE_SIMPLE}
+              description="There are no posts yet"
+              style={{
+                display: 'flex',
+                transitionDelay: 'display 5s',
+                justifyContent: 'center',
+                width: '400px',
+                height: '400px',
+              }}
+            />
+          ) }
       </Box>
     )
 
