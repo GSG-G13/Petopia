@@ -1,5 +1,5 @@
 import {
-  Input, Checkbox, Button, Form, message,
+  Input, Button, Form, message,
 } from 'antd';
 import Title from 'antd/es/typography/Title';
 import '../styles/Register.css';
@@ -14,6 +14,7 @@ const SignUp = () => {
     fullName: '',
     email: '',
     password: '',
+    phone: '',
   });
 
   const handleSubmit = async () => {
@@ -127,40 +128,25 @@ const SignUp = () => {
 
           <Box className="form-input">
             <Form.Item
-              name="confirm"
-              label="Confirm Password"
-              dependencies={['password']}
-              hasFeedback
+              label="Phone Number"
+              name="phone"
               rules={[
                 {
-                  required: true,
-                  message: 'Please confirm your password!',
+                  type: 'string',
+                  min: 10,
                 },
-                ({ getFieldValue }) => ({
-                  validator(_, value) {
-                    if (!value || getFieldValue('password') === value) {
-                      return Promise.resolve();
-                    }
-                    return Promise.reject(
-                      new Error(
-                        'The new password that you entered do not match!',
-                      ),
-                    );
-                  },
-                }),
+                {
+                  required: false,
+                },
               ]}
             >
-              <Input.Password className="input" />
-            </Form.Item>
-          </Box>
-
-          <Box className="form-checkbox">
-            <Form.Item
-              name="remember"
-              valuePropName="checked"
-              wrapperCol={{ offset: 0, span: 16 }}
-            >
-              <Checkbox className="check">I agree to the terms & policy</Checkbox>
+              <Input
+                className="input"
+                value={user.phone}
+                onChange={(e) => {
+                  setUser({ ...user, phone: e.target.value });
+                }}
+              />
             </Form.Item>
           </Box>
 
