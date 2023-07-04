@@ -1,4 +1,6 @@
-import React, { useContext, useState } from 'react';
+import React, {
+  Dispatch, SetStateAction, useContext, useState,
+} from 'react';
 import { Card, Space } from 'antd';
 import { Link } from 'react-router-dom';
 import Image from '../commons/Image';
@@ -14,11 +16,14 @@ import Box from '../commons/Box';
 import Paragraph from '../commons/Paragraph';
 import CommentForm from './CommentForm';
 import { AuthContext } from '../context/AuthContext';
+import PostActions from './PostAction';
 
 interface Props {
   post: IPost
+  posts:IPost[]
+  setPosts:Dispatch<SetStateAction<IPost[]>>
 }
-const PostCard: React.FC<Props> = ({ post }) => {
+const PostCard: React.FC<Props> = ({ post, posts, setPosts }) => {
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState<IComment[]>([]);
   const [commentsCounts, setCommentsCounts] = useState(post.commentsCount);
@@ -26,21 +31,34 @@ const PostCard: React.FC<Props> = ({ post }) => {
   return (
     <Space direction="vertical" size={16}>
       <Card className="card">
+
         <Box className="post-header">
           <Box className="user-post-container">
             <Image
               src={post.user.userImage}
               height="40px"
-              width="40px"
+              width="45px"
               className="user-img"
               alt="user avatar"
             />
             <Box className="user-post-info">
-              <Link to={`user/${post.userId}`} className="username">{post.user.fullName}</Link>
+              <Box className="name-div">
+                <Link to={`user/${post.userId}`} className="username">{post.user.fullName}</Link>
+                <PostActions
+                  posts={posts}
+                  setPosts={setPosts}
+                  userId={userData.userId}
+                  userType={userData.userType}
+                  userPost={post.userId}
+                  postId={post.postId}
+                />
+              </Box>
               <Paragraph className="date">{formatTime(post.createdAt)}</Paragraph>
             </Box>
           </Box>
+
           <Label title={post.category.title} />
+
         </Box>
         {(post.postImages !== null && post.postImages !== undefined) ? <Carousel images={post.postImages} /> : null}
 

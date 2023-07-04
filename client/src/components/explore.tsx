@@ -37,16 +37,23 @@ const ExplorePosts: React.FC = () => {
   };
 
   return (loading ? (
-    <>
+    <Box className="posts-container">
       <PostSkeleton />
       <PostSkeleton />
       <PostSkeleton />
-    </>
+    </Box>
   )
     : (
       <Box className="posts-container" onScroll={handleScroll}>
         {explorePosts.length !== 0
-          ? explorePosts.map((post:IPost) => <PostCard key={post.postId} post={post} />) : [] }
+          ? explorePosts.map((post:IPost) => (
+            <PostCard
+              key={post.postId}
+              post={post}
+              posts={explorePosts}
+              setPosts={setPosts}
+            />
+          )) : [] }
       </Box>
     )
 

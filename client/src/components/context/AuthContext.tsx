@@ -18,6 +18,7 @@ export const AuthContext = createContext<AuthProps>({
     phone: '',
     followerCount: 0,
     followingCount: 0,
+    userType: 'regular',
   },
   categoriesData: [{ categoryId: 0, title: '' }],
 });
@@ -35,6 +36,7 @@ export const AuthContextProvider = ({ children } : IChildrenProps) => {
     phone: '',
     followerCount: 0,
     followingCount: 0,
+    userType: 'regular',
   });
   const [categoriesData, setCategories] = useState<ICategory[]>([{ categoryId: 0, title: '' }]);
 

@@ -376,3 +376,11 @@ a:hover {
     background-color: #F37F29;
     border-radius: 10px;
 }
+.post-action{
+    display: flex;
+    justify-content: end;
+}
+.name-div{
+    display: flex;
+    gap:15px;
+}

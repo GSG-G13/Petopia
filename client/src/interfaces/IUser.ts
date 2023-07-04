@@ -7,5 +7,6 @@ interface IUser {
   phone: string
   followerCount: number
   followingCount: number
+  userType: string
 }
 export default IUser;
