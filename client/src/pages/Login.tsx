@@ -1,10 +1,13 @@
 import {
-  Input, Checkbox, Button, Form, message,
+  Input, Button, Form, message,
 } from 'antd';
+import Title from 'antd/es/typography/Title';
 import '../styles/Register.css';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
+import Box from '../components/commons/Box';
+import Paragraph from '../components/commons/Paragraph';
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -31,9 +34,9 @@ const Login = () => {
   };
 
   return (
-    <div className="Register">
-      <div className="left">
-        <h2>Log In</h2>
+    <Box className="Register">
+      <Box className="left">
+        <Title level={2}>Log In</Title>
         <Form
           onFinish={handleSubmit}
           name="basic"
@@ -44,7 +47,7 @@ const Login = () => {
           initialValues={{ remember: true }}
           autoComplete="off"
         >
-          <div className="form-input">
+          <Box className="form-input">
             <Form.Item
               label="Email"
               name="email"
@@ -68,9 +71,9 @@ const Login = () => {
                 }}
               />
             </Form.Item>
-          </div>
+          </Box>
 
-          <div className="form-input">
+          <Box className="form-input">
             <Form.Item
               label="Password"
               name="password"
@@ -94,33 +97,23 @@ const Login = () => {
                 }}
               />
             </Form.Item>
-          </div>
+          </Box>
 
-          <div className="form-checkbox">
-            <Form.Item
-              name="remember"
-              valuePropName="checked"
-              wrapperCol={{ offset: 0, span: 16 }}
-            >
-              <Checkbox className="check">Remember Me</Checkbox>
-            </Form.Item>
-          </div>
-
-          <div className="form-submit">
+          <Box className="form-submit">
             <Form.Item>
               <Button htmlType="submit" className="button">
                 Login
               </Button>
-              <p>
+              <Paragraph>
                 Dont have an account?
                 <Link to="/signup">SignUp</Link>
-              </p>
+              </Paragraph>
             </Form.Item>
-          </div>
+          </Box>
         </Form>
-      </div>
-      <div className="right" />
-    </div>
+      </Box>
+      <Box className="right" />
+    </Box>
   );
 };
 
