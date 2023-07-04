@@ -1,0 +1,9 @@
+.dashboard {
+  display: flex;
+}
+
+.stats {
+  flex: 1;
+  padding: 20px;
+}
+
