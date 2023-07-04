@@ -1,5 +1,5 @@
 import {
-  Button, Row, Col, Modal, message,
+  Button, Row, Col, Modal, message, Empty,
 } from 'antd';
 import axios from 'axios';
 import {
@@ -65,7 +65,7 @@ const PostLikers:React.FC<Props> = ({ showLikers, setShowLikers, postId }:Props)
     try {
       const { data: { data } } = await axios.post(`/api/v1/follow/followers/${userId}`);
       setFollowings([...followings, data]);
-      setlabel('UnFollow');
+      setlabel('Following');
       message.success('Followed successfully.');
     } catch (error) {
       message.error('Something went wrong!');
@@ -96,7 +96,7 @@ const PostLikers:React.FC<Props> = ({ showLikers, setShowLikers, postId }:Props)
         footer={null}
         maskClosable={false}
       >
-        {likers.map((item) => (
+        {likers.length !== 0 ? likers.map((item) => (
           <Row key={item.userId} style={{ marginBottom: 16, alignItems: 'center' }} align="middle">
             <Col flex="auto">
               <Box className="user-post-container likers">
@@ -121,12 +121,18 @@ const PostLikers:React.FC<Props> = ({ showLikers, setShowLikers, postId }:Props)
                     checkIsFollowing(item.userId, followings) ? () => unfollow(item.userId) : () => follow(item.userId)
 }
                 >
-                  {checkIsFollowing(item.userId, followings) ? 'UnFollow' : 'Follow'}
+                  {checkIsFollowing(item.userId, followings) ? 'Following' : 'Follow'}
                 </Button>
               )}
             </Col>
           </Row>
-        ))}
+        )) : (
+          <Empty
+            image={Empty.PRESENTED_IMAGE_SIMPLE}
+            description="There are no likes yet"
+            style={{ display: 'flex', transitionDelay: 'display 5s', justifyContent: 'center' }}
+          />
+        ) }
       </Modal>
     </Box>
   );
