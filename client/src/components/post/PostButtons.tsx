@@ -10,8 +10,6 @@ import LikePost from './LikePost';
 interface Props {
   showComments: boolean
   setShowComments: (showComments: boolean) => void
-  // showLike: boolean
-  // setShowLike: (showLike: boolean) => void
   phoneNumber: number
   postId: number
   commentsCount: number
@@ -22,7 +20,6 @@ interface Props {
 const PostButtons: React.FC<Props> = ({
   showComments, setShowComments,
   phoneNumber,
-  // showLike, setShowLike,
   postId, likesCount, commentsCount, adoption, product,
 }) => {
   const contact = (
