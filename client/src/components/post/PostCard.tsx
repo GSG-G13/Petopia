@@ -56,17 +56,14 @@ const PostCard: React.FC<Props> = ({ post, posts, setPosts }) => {
               <Paragraph className="date">{formatTime(post.createdAt)}</Paragraph>
             </Box>
           </Box>
-
           <Label title={post.category.title} />
-
         </Box>
-        {(post.postImages !== null && post.postImages !== undefined) ? <Carousel images={post.postImages} /> : null}
-
-        {post.postContent !== null && post.postContent !== undefined ? (
-          <Paragraph className="post-content">
-            {post.postContent}
-          </Paragraph>
-        ) : null}
+        {post.postImages && <Carousel images={post.postImages} /> }
+        {post.postContent && (
+        <Paragraph className="post-content">
+          {post.postContent}
+        </Paragraph>
+        )}
 
         {(post.pets !== undefined || post.products !== undefined)
           ? <PostDetails petDetails={post.pets[0]} productDetails={post.products[0]} /> : null}

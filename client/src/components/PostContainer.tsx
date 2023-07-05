@@ -15,6 +15,7 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
   const [explorePosts, setPosts] = useState<IPost[]>([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [scrollLoading, setScrollLoading] = useState(false);
   let apiLink = `/api/v1/posts/feed?page=${page}`;
   switch (path) {
     case 'explore': apiLink = `/api/v1/posts?page=${page}`;
@@ -25,7 +26,9 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
   }
   const fetchData = async () => {
     try {
-      setLoading(true);
+      if (page === 1) {
+        setLoading(true);
+      }
       const { data: { data } } = await axios.get(apiLink);
       setPosts((prevData) => [...prevData, ...data]);
     } catch (error) {
@@ -33,6 +36,7 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
         message.error('Something went wrong!');
       }
     } finally {
+      setScrollLoading(false);
       setLoading(false);
     }
   };
@@ -44,6 +48,7 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
   const handleScroll = (event:React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = event.currentTarget as HTMLDivElement;
     if (scrollTop + clientHeight === scrollHeight) {
+      setScrollLoading(true);
       setPage((prevPage) => prevPage + 1);
     }
   };
@@ -78,6 +83,7 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
               }}
             />
           ) }
+        {scrollLoading && <PostSkeleton /> }
       </Box>
     )
 

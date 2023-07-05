@@ -393,3 +393,7 @@ a:hover {
     color: var(--body-font-color);
     margin: 0;
 }
+.collapse{
+    background-color: var(--discuss-side-color);
+    margin-bottom: 10px;
+}
