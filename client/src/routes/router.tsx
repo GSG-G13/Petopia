@@ -1,15 +1,14 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from '../App';
 import PageNotFound from '../components/commons/PageNotFound';
-import PostCard from '../components/post/PostCard';
-import fakeData from '../helpers/fakeData.json';
 import '../index.css';
 import Stats from '../components/dashboard/Stats';
 import DashBoard from '../components/dashboard/DashBoard';
 import Users from '../components/dashboard/Users';
 import Posts from '../components/dashboard/Posts';
+import PostContainer from '../components/PostContainer';
+import { AuthContextProvider } from '../components/context/AuthContext';
 
-const { post } = fakeData;
 const router = createBrowserRouter([
   {
     path: '/',
@@ -17,8 +16,17 @@ const router = createBrowserRouter([
     errorElement: <PageNotFound />,
   },
   {
-    path: '/post',
-    element: <PostCard post={post} />,
+    path: '/explore',
+    element:
+  <AuthContextProvider>
+    <PostContainer path="explore" />
+  </AuthContextProvider>,
+  }, {
+    path: '/feed',
+    element:
+  <AuthContextProvider>
+    <PostContainer path="feed" />
+  </AuthContextProvider>,
   },
   {
     path: '/dashboard',

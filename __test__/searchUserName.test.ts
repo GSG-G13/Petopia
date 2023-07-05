@@ -19,8 +19,8 @@ describe('Test search result controller', () => {
             email: "Abujazar@example.com",
             address: "123 Main St, Gaza",
             phone: "123-456-7890",
-            profileImage: "https://Abujazar.com/profile1.jpg",
-            userImage: "https://Abujazar.com/user1.jpg"
+            profileImage: "https://i.imgur.com/KcYHnFr.jpg",
+            userImage: "https://i.imgur.com/KcYHnFr.jpg"
         }]);
       });
   });

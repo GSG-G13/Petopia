@@ -24,12 +24,17 @@ describe('Test Get a specified post.', () => {
                 {
                     imageId: 1,
                     postId: 1,
-                    imageUrl: "https://example.com/image1.jpg",
+                    imageUrl: "https://cdn.discordapp.com/attachments/1113720733860888597/1121405281147027526/IMG_20201207_144829.jpg",
                 },
                 {
                     imageId: 3,
                     postId: 1,
-                    imageUrl: "https://example.com/image3.jpg",
+                    imageUrl: "https://i.imgur.com/KcYHnFr.jpg",
+                },
+                {
+                    imageId: 4,
+                    imageUrl: "https://i.imgur.com/KcYHnFr.jpg",
+                    postId: 1
                 }
             ],
             category: {
@@ -38,7 +43,7 @@ describe('Test Get a specified post.', () => {
             user: {
                 userId: 1,
                 fullName: "Abdallah Abujazar",
-                userImage: "https://Abujazar.com/user1.jpg"
+                userImage: "https://i.imgur.com/KcYHnFr.jpg"
             },
             products: [],
             pets: [
@@ -89,7 +94,7 @@ describe('Test Get explore posts', () => {
             user: {
                 userId: 2,
                 fullName: "Mohammed Sallout",
-                userImage: "https://Mohammed.com/user2.jpg"
+                userImage: "https://i.imgur.com/v2v02Ge.jpg"
             },
             products: [],
             pets: [
@@ -119,7 +124,7 @@ describe('Test Get explore posts', () => {
                 {
                     imageId: 2,
                     postId: 2,
-                    imageUrl: "https://example.com/image2.jpg",
+                    imageUrl: "https://m.media-amazon.com/images/I/715EiqpJ6XL._AC_SX569_.jpg",
                 }
             ],
             category: {
@@ -128,15 +133,15 @@ describe('Test Get explore posts', () => {
             user: {
                 userId: 2,
                 fullName: "Mohammed Sallout",
-                userImage: "https://Mohammed.com/user2.jpg"
+                userImage: "https://i.imgur.com/v2v02Ge.jpg"
             },
             products: [
                 {
                     productId: 1,
                     postId: 2,
-                    title: "Product B",
+                    title: "Cat toy",
                     price: 14.99,
-                    details: "Check out product B.",
+                    details: "Check out cat toy.",
                     rating: 3.8,
                 }
             ],
@@ -154,12 +159,17 @@ describe('Test Get explore posts', () => {
                 {
                     imageId: 1,
                     postId: 1,
-                    imageUrl: "https://example.com/image1.jpg",
+                    imageUrl: "https://cdn.discordapp.com/attachments/1113720733860888597/1121405281147027526/IMG_20201207_144829.jpg",
                 },
                 {
                     imageId: 3,
                     postId: 1,
-                    imageUrl: "https://example.com/image3.jpg",
+                    imageUrl: "https://i.imgur.com/KcYHnFr.jpg",
+                },
+                {
+                    imageId: 4,
+                    imageUrl: "https://i.imgur.com/KcYHnFr.jpg",
+                    postId: 1
                 }
             ],
             category: {
@@ -168,7 +178,7 @@ describe('Test Get explore posts', () => {
             user: {
                 userId: 1,
                 fullName: "Abdallah Abujazar",
-                userImage: "https://Abujazar.com/user1.jpg"
+                userImage: "https://i.imgur.com/KcYHnFr.jpg"
             },
             products: [],
             pets: [
@@ -438,7 +448,7 @@ describe('Test Get feed posts for userId = 1 which is following userId = 2', () 
             user: {
                 userId: 2,
                 fullName: "Mohammed Sallout",
-                userImage: "https://Mohammed.com/user2.jpg"
+                userImage: "https://i.imgur.com/v2v02Ge.jpg"
             },
             products: [],
             pets: [
@@ -468,7 +478,7 @@ describe('Test Get feed posts for userId = 1 which is following userId = 2', () 
                 {
                     imageId: 2,
                     postId: 2,
-                    imageUrl: "https://example.com/image2.jpg",
+                    imageUrl: "https://m.media-amazon.com/images/I/715EiqpJ6XL._AC_SX569_.jpg",
                 }
             ],
             category: {
@@ -477,15 +487,15 @@ describe('Test Get feed posts for userId = 1 which is following userId = 2', () 
             user: {
                 userId: 2,
                 fullName: "Mohammed Sallout",
-                userImage: "https://Mohammed.com/user2.jpg"
+                userImage: "https://i.imgur.com/v2v02Ge.jpg"
             },
             products: [
                 {
                     productId: 1,
                     postId: 2,
-                    title: "Product B",
+                    title: "Cat toy",
                     price: 14.99,
-                    details: "Check out product B.",
+                    details: "Check out cat toy.",
                     rating: 3.8,
                 }
             ],

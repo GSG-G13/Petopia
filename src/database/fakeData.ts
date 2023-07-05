@@ -20,8 +20,8 @@ const fakeData: {
       fullName: 'Abdallah Abujazar',
       email: 'Abujazar@example.com',
       password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
-      userImage: 'https://Abujazar.com/user1.jpg',
-      profileImage: 'https://Abujazar.com/profile1.jpg',
+      userImage: 'https://i.imgur.com/KcYHnFr.jpg',
+      profileImage: 'https://i.imgur.com/KcYHnFr.jpg',
       address: '123 Main St, Gaza',
       phone: '123-456-7890',
       userType: 'regular',
@@ -34,8 +34,8 @@ const fakeData: {
       fullName: 'Mohammed Sallout',
       email: 'Mohammed@example.com',
       password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
-      userImage: 'https://Mohammed.com/user2.jpg',
-      profileImage: 'https://Mohammed.com/profile2.jpg',
+      userImage: 'https://i.imgur.com/v2v02Ge.jpg',
+      profileImage: 'https://i.imgur.com/v2v02Ge.jpg',
       address: '456 Elm St, Khan Younis',
       phone: '987-654-3210',
       userType: 'admin',
@@ -48,134 +48,10 @@ const fakeData: {
       fullName: 'Muhammad Abdulhadi',
       email: 'mu7ammadabed@gmail.com',
       password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
-      userImage: 'https://Mohammed.com/user2.jpg',
-      profileImage: 'https://Mohammed.com/profile2.jpg',
-      address: '456 Elm St, Khan Younis',
-      phone: '987-654-3210',
-      userType: 'regular',
-      status: 'active',
-      followerCount: 1,
-      followingCount: 1
-
-    },
-    {
-      fullName: 'Abdallah Abujazar',
-      email: 'Abujazar2@example.com',
-      password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
-      userImage: 'https://Abujazar.com/user1.jpg',
-      profileImage: 'https://Abujazar.com/profile1.jpg',
-      address: '123 Main St, Gaza',
-      phone: '123-456-7890',
-      userType: 'regular',
-      status: 'active',
-      followerCount: 1,
-      followingCount: 1
-
-    },
-    {
-      fullName: 'Mohammed Sallout',
-      email: 'Mohammed2@example.com',
-      password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
-      userImage: 'https://Mohammed.com/user2.jpg',
-      profileImage: 'https://Mohammed.com/profile2.jpg',
-      address: '456 Elm St, Khan Younis',
-      phone: '987-654-3210',
-      userType: 'admin',
-      status: 'active',
-      followerCount: 2,
-      followingCount: 2
-
-    },
-    {
-      fullName: 'Muhammad Abdulhadi',
-      email: 'mu7ammadabed2@gmail.com',
-      password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
-      userImage: 'https://Mohammed.com/user2.jpg',
-      profileImage: 'https://Mohammed.com/profile2.jpg',
-      address: '456 Elm St, Khan Younis',
-      phone: '987-654-3210',
-      userType: 'regular',
-      status: 'active',
-      followerCount: 1,
-      followingCount: 1
-
-    },
-    {
-      fullName: 'Abdallah Abujazar',
-      email: 'Abujazar3@example.com',
-      password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
-      userImage: 'https://Abujazar.com/user1.jpg',
-      profileImage: 'https://Abujazar.com/profile1.jpg',
-      address: '123 Main St, Gaza',
-      phone: '123-456-7890',
-      userType: 'regular',
-      status: 'active',
-      followerCount: 1,
-      followingCount: 1
-
-    },
-    {
-      fullName: 'Mohammed Sallout',
-      email: 'Mohammed3@example.com',
-      password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
-      userImage: 'https://Mohammed.com/user2.jpg',
-      profileImage: 'https://Mohammed.com/profile2.jpg',
-      address: '456 Elm St, Khan Younis',
-      phone: '987-654-3210',
-      userType: 'admin',
-      status: 'active',
-      followerCount: 2,
-      followingCount: 2
-
-    },
-    {
-      fullName: 'Muhammad Abdulhadi',
-      email: 'mu7ammadabed3@gmail.com',
-      password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
-      userImage: 'https://Mohammed.com/user2.jpg',
-      profileImage: 'https://Mohammed.com/profile2.jpg',
-      address: '456 Elm St, Khan Younis',
-      phone: '987-654-3210',
-      userType: 'regular',
-      status: 'active',
-      followerCount: 1,
-      followingCount: 1
-
-    },
-    {
-      fullName: 'Abdallah Abujazar',
-      email: 'Abujazar4@example.com',
-      password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
-      userImage: 'https://Abujazar.com/user1.jpg',
-      profileImage: 'https://Abujazar.com/profile1.jpg',
-      address: '123 Main St, Gaza',
-      phone: '123-456-7890',
-      userType: 'regular',
-      status: 'active',
-      followerCount: 1,
-      followingCount: 1
-
-    },
-    {
-      fullName: 'Mohammed Sallout',
-      email: 'Mohammed4@example.com',
-      password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
-      userImage: 'https://Mohammed.com/user2.jpg',
-      profileImage: 'https://Mohammed.com/profile2.jpg',
-      address: '456 Elm St, Khan Younis',
-      phone: '987-654-3210',
-      userType: 'admin',
-      status: 'active',
-      followerCount: 2,
-      followingCount: 2
-
-    },
-    {
-      fullName: 'Muhammad Abdulhadi',
-      email: 'mu7ammadabed4@gmail.com',
-      password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
-      userImage: 'https://Mohammed.com/user2.jpg',
-      profileImage: 'https://Mohammed.com/profile2.jpg',
+      userImage:
+        'https://cdn.discordapp.com/attachments/1113720733860888597/1121405281147027526/IMG_20201207_144829.jpg',
+      profileImage:
+        'https://cdn.discordapp.com/attachments/1113720733860888597/1121405281147027526/IMG_20201207_144829.jpg',
       address: '456 Elm St, Khan Younis',
       phone: '987-654-3210',
       userType: 'regular',
@@ -307,127 +183,32 @@ const fakeData: {
       likesCount: 2,
       commentsCount: 2
 
-    },
-    {
-      userId: 1,
-      categoryId: 1,
-      postContent: 'This is a regular post.',
-      isHaveImg: true,
-      likesCount: 2,
-      commentsCount: 2
-
-    },
-    {
-      userId: 1,
-      categoryId: 1,
-      postContent: 'This is a regular post.',
-      isHaveImg: true,
-      likesCount: 2,
-      commentsCount: 2
-
-    },
-    {
-      userId: 1,
-      categoryId: 1,
-      postContent: 'This is a regular post.',
-      isHaveImg: true,
-      likesCount: 2,
-      commentsCount: 2
-
-    },
-    {
-      userId: 1,
-      categoryId: 1,
-      postContent: 'This is a regular post.',
-      isHaveImg: true,
-      likesCount: 2,
-      commentsCount: 2
-
-    },
-    {
-      userId: 1,
-      categoryId: 1,
-      postContent: 'This is a regular post.',
-      isHaveImg: true,
-      likesCount: 2,
-      commentsCount: 2
-
-    },
-    {
-      userId: 1,
-      categoryId: 1,
-      postContent: 'This is a regular post.',
-      isHaveImg: true,
-      likesCount: 2,
-      commentsCount: 2
-
-    },
-    {
-      userId: 1,
-      categoryId: 1,
-      postContent: 'This is a regular post.',
-      isHaveImg: true,
-      likesCount: 2,
-      commentsCount: 2
-
-    },
-    {
-      userId: 1,
-      categoryId: 1,
-      postContent: 'This is a regular post.',
-      isHaveImg: true,
-      likesCount: 2,
-      commentsCount: 2
-
-    },
-    {
-      userId: 1,
-      categoryId: 1,
-      postContent: 'This is a regular post.',
-      isHaveImg: true,
-      likesCount: 2,
-      commentsCount: 2
-
-    },
-    {
-      userId: 2,
-      categoryId: 4,
-      postContent: 'Check out this product Im selling!',
-      isHaveImg: true,
-      likesCount: 1,
-      commentsCount: 1
-
-    },
-    {
-      userId: 2,
-      categoryId: 1,
-      postContent: 'Looking to adopt a pet.',
-      isHaveImg: false,
-      likesCount: 0,
-      commentsCount: 0
-
     }
   ],
   postImages: [
     {
       postId: 1,
-      imageUrl: 'https://example.com/image1.jpg'
+      imageUrl: 'https://cdn.discordapp.com/attachments/1113720733860888597/1121405281147027526/IMG_20201207_144829.jpg'
     },
     {
       postId: 2,
-      imageUrl: 'https://example.com/image2.jpg'
+      imageUrl: 'https://m.media-amazon.com/images/I/715EiqpJ6XL._AC_SX569_.jpg'
     },
     {
       postId: 1,
-      imageUrl: 'https://example.com/image3.jpg'
+      imageUrl: 'https://i.imgur.com/KcYHnFr.jpg'
+    },
+    {
+      postId: 1,
+      imageUrl: 'https://i.imgur.com/KcYHnFr.jpg'
     }
   ],
   products: [
     {
       postId: 2,
-      title: 'Product B',
+      title: 'Cat toy',
       price: 14.99,
-      details: 'Check out product B.',
+      details: 'Check out cat toy.',
       rating: 3.8
     }
   ]
