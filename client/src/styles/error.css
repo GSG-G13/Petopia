@@ -1,19 +1,24 @@
-.error-404{
-    font-family: var(--main-font)!important;
-    position: absolute;
-    top:268px;
-  }
-  
-  .error-container{
-    display: flex !important;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  .button{
-    border-radius: 7px;
-    background-color: var(--primary-color);
-  }
-  .button:hover{
-    background-color:#fda25c !important;
-  }
+.error-404 {
+  font-family: var(--main-font) !important;
+  position: absolute;
+  top: 50%;
+}
+
+.error-container {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  height: 100vh;
+  width: 100vw;
+}
+
+.button {
+  border-radius: 7px;
+  background-color: var(--primary-color);
+}
+
+.button:hover {
+  background-color: #fda25c !important;
+}

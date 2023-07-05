@@ -11,10 +11,10 @@ describe("Test getComments controller", () => {
     const comments = [ {
         commentId: 1, userId: 1, postId: 1, commentText: 'Great post!', 
         user: {
-          fullName: 'Abdallah Abujazar', userImage: 'https://Abujazar.com/user1.jpg' } }, {
+          fullName: 'Abdallah Abujazar', userImage: 'https://i.imgur.com/KcYHnFr.jpg' } }, {
         commentId: 2, userId: 2, postId: 1, commentText: 'Nice work!',
         user: {
-          fullName: 'Mohammed Sallout', userImage: 'https://Mohammed.com/user2.jpg' } } ]
+          fullName: 'Mohammed Sallout', userImage: 'https://i.imgur.com/v2v02Ge.jpg' } } ]
 
     await request(app)
       .get("/api/v1/comments/posts/1")

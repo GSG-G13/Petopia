@@ -7,24 +7,24 @@ beforeAll(() => buildTables());
 afterAll(() => sequelize.close());
 
 describe("Test Post Likers controller", () => {
-  test("201 | when Post are retrieved ", async () => {
+  test("200 | when Post are retrieved ", async () => {
     const likes = [   {
       "userId": 1,
       "postId": 1,
       "user.fullName": "Abdallah Abujazar",
-      "user.userImage": "https://Abujazar.com/user1.jpg"
+      "user.userImage": "https://i.imgur.com/KcYHnFr.jpg"
   },
   {
       "likeId": 2,
       "userId": 2,
       "postId": 1,
       "user.fullName": "Mohammed Sallout",
-      "user.userImage": "https://Mohammed.com/user2.jpg"
+      "user.userImage": "https://i.imgur.com/v2v02Ge.jpg"
   } ]
 
     await request(app)
       .get("/api/v1/like/likers/1")
-      .expect(201)
+      .expect(200)
       .expect((res) => {
         expect(res.body.data).toMatchObject(likes);
       });
