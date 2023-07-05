@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Empty, message } from 'antd';
 import PostCard from './post/PostCard';
@@ -34,7 +34,7 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
         setLoading(true);
       }
       const { data: { data } } = await axios.get(apiLink);
-      setPosts((prevData) => [...prevData, ...data]);
+      setPosts(data);
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.status !== 401) {
         message.error('Something went wrong!');
@@ -47,7 +47,7 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
 
   useEffect(() => {
     fetchData();
-  }, [page]);
+  }, [path, id]);
 
   const handleScroll = (event:React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = event.currentTarget as HTMLDivElement;
@@ -66,6 +66,8 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
   )
     : (
       <Box className="posts-container" onScroll={handleScroll}>
+        <Link to="/explore">Explore</Link>
+        <Link to="/feed">Feed</Link>
         {explorePosts.length !== 0
           ? explorePosts.map((post:IPost) => (
             <PostCard
