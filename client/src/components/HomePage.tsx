@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
-  Layout, Row, Col, Drawer, Button, Space, Badge,
+  Layout, Row, Col, Drawer, Space, Badge,
 } from 'antd';
-import { MenuOutlined, BellOutlined } from '@ant-design/icons';
+import { MenuOutlined } from '@ant-design/icons';
 import RightSide from './sideBars/RightSide';
 import LeftSideBox from './sideBars/LeftSideBox';
 import UserProfile from './userProfile/UserProfile';
 import useWindowSize from './useWindowSize';
+import PostContainer from './PostContainer';
 
 const { Header, Content } = Layout;
 
@@ -56,7 +57,7 @@ const HomePage = () => {
   };
 
   return (
-    <Layout style={{ backgroundColor: '#fff' }}>
+    <Layout style={{ backgroundColor: 'transparent' }}>
       {size.width <= 1000 && !visibleLeft && (
         <Header style={{
           backgroundColor: '#fff',
@@ -89,7 +90,13 @@ const HomePage = () => {
       )}
 
       <Content>
-        <Row justify="center" align="top" style={{ minHeight: '100vh' }}>
+        <Row
+          justify="center"
+          align="top"
+          style={{
+            minHeight: '100vh', minWidth: '100vw', margin: 0,
+          }}
+        >
           {size.width > 1000 ? (
             <Col span={6}>
               <LeftSideBox />
@@ -110,6 +117,7 @@ const HomePage = () => {
 
           <Col span={getProfileSpan()}>
             <UserProfile />
+            {/* <PostContainer path="explore" /> */}
           </Col>
 
           {size.width > 1450 ? (

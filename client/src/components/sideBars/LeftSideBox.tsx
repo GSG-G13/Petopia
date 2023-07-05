@@ -1,5 +1,6 @@
 import { Layout, Card } from 'antd';
 import LeftSide from './LeftSide';
+import Box from '../commons/Box';
 
 const { Sider } = Layout;
 
@@ -22,20 +23,20 @@ const rectangleWrapperStyle: React.CSSProperties = {
 const rectangleStyle: React.CSSProperties = {
   backgroundColor: '#ffffff',
   borderColor: '#efeff4',
-  borderLeftStyle: 'solid',
-  borderLeftWidth: '1px',
+  // borderLeftStyle: 'solid',
+  // borderLeftWidth: '1px',
   width: '337px',
+ 
 };
 
 const LeftSideBox = () => (
-  <div style={boxStyle}>
-    <div style={rectangleWrapperStyle}>
+  <Box style={boxStyle}>
+    <Box style={rectangleWrapperStyle}>
       <Card style={rectangleStyle} bordered={false}>
         <LeftSide />
       </Card>
-
-    </div>
-  </div>
+    </Box>
+  </Box>
 
 );
 

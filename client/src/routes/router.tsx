@@ -16,7 +16,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/home',
-    element: <HomePage />,
+    element: <AuthContextProvider><HomePage /></AuthContextProvider>,
   },
   {
     path: '/explore',
@@ -30,6 +30,9 @@ const router = createBrowserRouter([
   <AuthContextProvider>
     <PostContainer path="feed" />
   </AuthContextProvider>,
+  }, {
+    path: '/profile/:id',
+    element: <PostContainer path="profile" />,
   },
 ]);
 export default router;
