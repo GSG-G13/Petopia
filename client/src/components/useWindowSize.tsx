@@ -12,7 +12,7 @@ function useWindowSize() {
     if (!isClient) {
       return;
     }
-    
+
     function handleResize() {
       setWindowSize({
         width: window.innerWidth,
@@ -20,12 +20,11 @@ function useWindowSize() {
       });
     }
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
     handleResize();
 
-    return () => window.removeEventListener("resize", handleResize);
-
-  }, []); 
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return windowSize;
 }

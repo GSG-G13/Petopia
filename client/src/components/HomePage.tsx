@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Layout, Row, Col, Drawer, Button, Space, Badge } from 'antd';
-import { MenuOutlined , BellOutlined} from '@ant-design/icons';
+import {
+  Layout, Row, Col, Drawer, Button, Space, Badge,
+} from 'antd';
+import { MenuOutlined, BellOutlined } from '@ant-design/icons';
 import RightSide from './sideBars/RightSide';
 import LeftSideBox from './sideBars/LeftSideBox';
 import UserProfile from './userProfile/UserProfile';
@@ -9,23 +11,22 @@ import useWindowSize from './useWindowSize';
 const { Header, Content } = Layout;
 
 const HomePage = () => {
+  const iconWrapperStyle = {
+    width: '50px',
+    height: '50px',
+    flexShrink: 0,
+    borderRadius: '50px',
+    border: '1px solid #F0F0F5',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: '20px',
+  };
 
-    const iconWrapperStyle = {
-        width: '50px',
-        height: '50px',
-        flexShrink: 0,
-        borderRadius: '50px',
-        border: '1px solid #F0F0F5',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginRight: '20px',
-      };
-    
-      const iconStyle = {
-        fontSize: '24px', 
-        color: '#0D161D',
-      };
+  const iconStyle = {
+    fontSize: '24px',
+    color: '#0D161D',
+  };
 
   const [visibleLeft, setVisibleLeft] = useState(false);
   const [visibleRight, setVisibleRight] = useState(false);
@@ -49,41 +50,45 @@ const HomePage = () => {
 
   const getProfileSpan = () => {
     if (size.width <= 1000) {
-      return 24; 
-    } else {
-      return 12; 
+      return 24;
     }
+    return 12;
   };
 
   return (
     <Layout style={{ backgroundColor: '#fff' }}>
-        {size.width <= 1000 && !visibleLeft && (
-        <Header style={{ backgroundColor: '#fff', position: 'fixed', zIndex: 1, width: '95%', display: 'flex', justifyContent: 'space-between' }}>
+      {size.width <= 1000 && !visibleLeft && (
+        <Header style={{
+          backgroundColor: '#fff',
+          position: 'fixed',
+          zIndex: 1,
+          width: '95%',
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
+        >
 
-          
-          <Space  onClick={showDrawerLeft}>
-              <Badge dot offset={[-10,10]}>
+          <Space onClick={showDrawerLeft}>
+            <Badge dot offset={[-10, 10]}>
               <div style={iconWrapperStyle}>
-        <MenuOutlined style={iconStyle}  />
-      </div>              
-      </Badge>
-            </Space>
+                <MenuOutlined style={iconStyle} />
+              </div>
+            </Badge>
+          </Space>
 
-
-            <Space  onClick={showDrawerRight}>
-              <Badge dot offset={[-10,10]}>
+          <Space onClick={showDrawerRight}>
+            <Badge dot offset={[-10, 10]}>
               <div style={iconWrapperStyle}>
-        <MenuOutlined style={iconStyle}  />
-      </div>              
-      </Badge>
-            </Space>
+                <MenuOutlined style={iconStyle} />
+              </div>
+            </Badge>
+          </Space>
 
         </Header>
 
-        )}
+      )}
 
-
-      <Content >
+      <Content>
         <Row justify="center" align="top" style={{ minHeight: '100vh' }}>
           {size.width > 1000 ? (
             <Col span={6}>

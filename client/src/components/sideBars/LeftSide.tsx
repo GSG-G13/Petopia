@@ -1,6 +1,8 @@
-import { Card, Typography, Divider, Dropdown, Button } from 'antd';
-import { Menu } from 'antd';
-import {MessageAdd1} from 'iconsax-react'
+import {
+  Card, Typography, Divider, Dropdown, Button,
+  Menu,
+} from 'antd';
+import { MessageAdd1 } from 'iconsax-react';
 import {
   HomeOutlined,
   SearchOutlined,
@@ -10,10 +12,8 @@ import {
   UserOutlined,
   DownOutlined,
 } from '@ant-design/icons';
-import UsersModal from './UsersModal';
 import { useState } from 'react';
-
-
+import UsersModal from './UsersModal';
 
 const { Item } = Menu;
 
@@ -49,23 +49,35 @@ const LeftSide = () => {
     <>
       <UsersModal visible={normalPostModal} onClose={hideNormalPostModal} />
 
-      <Card style={{ width: 300, marginTop: 16, top:0 }} loading={false}>
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '15px'}}>
-          <img src='https://media.discordapp.net/attachments/1112051630985187378/1122311524611014697/b0024e89-4665-4146-970c-cb2d4eccdea2.png?width=370&height=375' style={{height: 80, width: 80}}/>
+      <Card
+        style={{
+          width: 300, marginTop: 16, top: 0,
+        }}
+        loading={false}
+      >
+        <div style={{
+          display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '15px',
+        }}
+        >
+          <img
+            src="https://media.discordapp.net/attachments/1112051630985187378/1122311524611014697/b0024e89-4665-4146-970c-cb2d4eccdea2.png?width=370&height=375"
+            style={{ height: 80, width: 80 }}
+            alt="imgg"
+          />
         </div>
         <Title level={2} style={{ textAlign: 'center' }}>Mohammad</Title>
         <Divider />
-        <div style={{ display: 'flex', justifyContent: 'space-between'}}>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <div>
             <Title level={4}>586</Title>
             <Text type="secondary">Posts</Text>
           </div>
-          <Divider type="vertical" style={{ height: '60px'}} />
+          <Divider type="vertical" style={{ height: '60px' }} />
           <div>
-            <Title level={4}  onClick={showNormalPostModal}>15.4K</Title>
+            <Title level={4} onClick={showNormalPostModal}>15.4K</Title>
             <Text type="secondary">Followers</Text>
           </div>
-          <Divider type="vertical" style={{ height: '60px'}} />
+          <Divider type="vertical" style={{ height: '60px' }} />
           <div>
             <Title level={4}>648</Title>
             <Text type="secondary">Following</Text>
@@ -83,13 +95,22 @@ const LeftSide = () => {
           <Item key="products" icon={<DownOutlined />}>Products</Item>
           <Item key="profile" icon={<UserOutlined />}>Profile</Item>
         </Menu>
-        <Dropdown menu={{ items}} >
-      <Button type="primary" size={'large'}style={{ borderRadius: "150px",backgroundColor: '#F37F29', fontSize: '16px',width: 207.386 }}>
-      <MessageAdd1 size="20"color="#fff" />  
-      <span style={{  marginLeft: '16px', borderRight: "2px solid #fff", paddingRight: "10px"}}>Create Post</span>  
-      <DownOutlined style={{fontWeight: 'bold'}}/>
-      </Button>
-    </Dropdown>      </Card>
+        <Dropdown menu={{ items }}>
+          <Button
+            type="primary"
+            size="large"
+            style={{
+              borderRadius: '150px', backgroundColor: '#F37F29', fontSize: '16px', width: 207.386,
+            }}
+          >
+            <MessageAdd1 size="20" color="#fff" />
+            <span style={{ marginLeft: '16px', borderRight: '2px solid #fff', paddingRight: '10px' }}>Create Post</span>
+            <DownOutlined style={{ fontWeight: 'bold' }} />
+          </Button>
+        </Dropdown>
+        {' '}
+
+      </Card>
     </>
   );
 };
