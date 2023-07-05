@@ -26,6 +26,10 @@ const Label: React.FC<Props> = ({ title }: Props) => {
       colors.main = 'var(--help-color)';
       colors.side = 'var(--help-side-color)';
       break;
+    case 'Breed':
+      colors.main = 'var(--breed-color)';
+      colors.side = 'var(--breed-side-color)';
+      break;
     default:
       colors.main = 'white';
       colors.side = 'white';

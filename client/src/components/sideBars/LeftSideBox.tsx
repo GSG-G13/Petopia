@@ -10,6 +10,7 @@ const boxStyle: React.CSSProperties = {
   justifyContent: 'center',
   width: '100%',
   height: '100vh',
+  margin: 0,
 };
 
 const rectangleWrapperStyle: React.CSSProperties = {
