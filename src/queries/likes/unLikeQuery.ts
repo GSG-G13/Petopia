@@ -24,12 +24,6 @@ const unLikeQuery = async (
       transaction
     })
 
-    await Post.decrement('commentsCount', {
-      by: 1,
-      where: { postId },
-      transaction
-    })
-
     await existingLike.destroy({ transaction })
 
     await transaction.commit()

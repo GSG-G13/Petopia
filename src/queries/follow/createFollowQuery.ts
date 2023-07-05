@@ -28,14 +28,14 @@ const createFollowQuery = async (
     // Increment followingCount for the user
     await User.increment('followingCount', {
       by: 1,
-      where: { userId: followerId },
+      where: { userId: followingId },
       transaction
     })
 
     // Increment followerCount for another user
     await User.increment('followerCount', {
       by: 1,
-      where: { userId: followingId },
+      where: { userId: followerId },
       transaction
     })
 
