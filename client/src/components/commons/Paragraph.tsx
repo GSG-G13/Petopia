@@ -6,6 +6,7 @@ interface Props {
   style?: object
   width?: string
   height?: string
+  onClick?: () => void
 }
 const Paragraph: React.FC<Props> = (props) => (
   <p {...props}>

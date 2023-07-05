@@ -14,13 +14,9 @@ const showUserFollowing = async (req: CustomRequest, res: Response, next: NextFu
 
     const followers = await showUserFollowingQuery(followingId)
 
-    if (followers.length > 0) {
-      res.json({
-        data: followers
-      })
-    } else {
-      throw new CustomError(404, 'The User Doesn\'t Have Any Followers')
-    }
+    res.json({
+      data: followers
+    })
   } catch (err: unknown) {
     console.log(err)
     next(err)
