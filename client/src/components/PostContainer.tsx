@@ -46,9 +46,14 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
   };
 
   useEffect(() => {
-    fetchData();
+    if (path !== 'profile') { fetchData(); }
   }, [page]);
-
+  useEffect(() => {
+    if (path === 'profile') {
+      setPosts([]);
+      fetchData();
+    }
+  }, [id]);
   const handleScroll = (event:React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = event.currentTarget as HTMLDivElement;
     if (scrollTop + clientHeight === scrollHeight) {

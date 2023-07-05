@@ -107,7 +107,7 @@ const PostLikers:React.FC<Props> = ({ showLikers, setShowLikers, postId }:Props)
                   className="user-img"
                   alt="user avatar"
                 />
-                <Link to={`user/${item.userId}`} className="username">{item['user.fullName']}</Link>
+                <Link to={`/profile/${item.userId}`} className="username">{item['user.fullName']}</Link>
                 <Paragraph className="date">{formatTime(item.createdAt)}</Paragraph>
               </Box>
             </Col>

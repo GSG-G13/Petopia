@@ -25,7 +25,10 @@ const router = createBrowserRouter([
   </AuthContextProvider>,
   }, {
     path: '/profile/:id',
-    element: <PostContainer path="profile" />,
+    element:
+  <AuthContextProvider>
+    <PostContainer path="profile" />
+  </AuthContextProvider>,
   },
 ]);
 export default router;
