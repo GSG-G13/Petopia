@@ -57,6 +57,132 @@ const fakeData: {
       followerCount: 1,
       followingCount: 1
 
+    },
+    {
+      fullName: 'Abdallah Abujazar',
+      email: 'Abujazar2@example.com',
+      password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
+      userImage: 'https://Abujazar.com/user1.jpg',
+      profileImage: 'https://Abujazar.com/profile1.jpg',
+      address: '123 Main St, Gaza',
+      phone: '123-456-7890',
+      userType: 'regular',
+      status: 'active',
+      followerCount: 1,
+      followingCount: 1
+
+    },
+    {
+      fullName: 'Mohammed Sallout',
+      email: 'Mohammed2@example.com',
+      password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
+      userImage: 'https://Mohammed.com/user2.jpg',
+      profileImage: 'https://Mohammed.com/profile2.jpg',
+      address: '456 Elm St, Khan Younis',
+      phone: '987-654-3210',
+      userType: 'admin',
+      status: 'active',
+      followerCount: 2,
+      followingCount: 2
+
+    },
+    {
+      fullName: 'Muhammad Abdulhadi',
+      email: 'mu7ammadabed2@gmail.com',
+      password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
+      userImage: 'https://Mohammed.com/user2.jpg',
+      profileImage: 'https://Mohammed.com/profile2.jpg',
+      address: '456 Elm St, Khan Younis',
+      phone: '987-654-3210',
+      userType: 'regular',
+      status: 'active',
+      followerCount: 1,
+      followingCount: 1
+
+    },
+    {
+      fullName: 'Abdallah Abujazar',
+      email: 'Abujazar3@example.com',
+      password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
+      userImage: 'https://Abujazar.com/user1.jpg',
+      profileImage: 'https://Abujazar.com/profile1.jpg',
+      address: '123 Main St, Gaza',
+      phone: '123-456-7890',
+      userType: 'regular',
+      status: 'active',
+      followerCount: 1,
+      followingCount: 1
+
+    },
+    {
+      fullName: 'Mohammed Sallout',
+      email: 'Mohammed3@example.com',
+      password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
+      userImage: 'https://Mohammed.com/user2.jpg',
+      profileImage: 'https://Mohammed.com/profile2.jpg',
+      address: '456 Elm St, Khan Younis',
+      phone: '987-654-3210',
+      userType: 'admin',
+      status: 'active',
+      followerCount: 2,
+      followingCount: 2
+
+    },
+    {
+      fullName: 'Muhammad Abdulhadi',
+      email: 'mu7ammadabed3@gmail.com',
+      password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
+      userImage: 'https://Mohammed.com/user2.jpg',
+      profileImage: 'https://Mohammed.com/profile2.jpg',
+      address: '456 Elm St, Khan Younis',
+      phone: '987-654-3210',
+      userType: 'regular',
+      status: 'active',
+      followerCount: 1,
+      followingCount: 1
+
+    },
+    {
+      fullName: 'Abdallah Abujazar',
+      email: 'Abujazar4@example.com',
+      password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
+      userImage: 'https://Abujazar.com/user1.jpg',
+      profileImage: 'https://Abujazar.com/profile1.jpg',
+      address: '123 Main St, Gaza',
+      phone: '123-456-7890',
+      userType: 'regular',
+      status: 'active',
+      followerCount: 1,
+      followingCount: 1
+
+    },
+    {
+      fullName: 'Mohammed Sallout',
+      email: 'Mohammed4@example.com',
+      password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
+      userImage: 'https://Mohammed.com/user2.jpg',
+      profileImage: 'https://Mohammed.com/profile2.jpg',
+      address: '456 Elm St, Khan Younis',
+      phone: '987-654-3210',
+      userType: 'admin',
+      status: 'active',
+      followerCount: 2,
+      followingCount: 2
+
+    },
+    {
+      fullName: 'Muhammad Abdulhadi',
+      email: 'mu7ammadabed4@gmail.com',
+      password: '$2b$10$ruj2Uulvp9I.odC0wsV2wONgt2Nq4mHsAethBzuAcJpOdpVspM/BO',
+      userImage: 'https://Mohammed.com/user2.jpg',
+      profileImage: 'https://Mohammed.com/profile2.jpg',
+      address: '456 Elm St, Khan Younis',
+      phone: '987-654-3210',
+      userType: 'regular',
+      status: 'active',
+      followerCount: 1,
+      followingCount: 1
+
     }
   ],
   categories: [
@@ -155,6 +281,105 @@ const fakeData: {
     }
   ],
   posts: [
+    {
+      userId: 1,
+      categoryId: 1,
+      postContent: 'This is a regular post.',
+      isHaveImg: true,
+      likesCount: 2,
+      commentsCount: 2
+
+    },
+    {
+      userId: 1,
+      categoryId: 1,
+      postContent: 'This is a regular post.',
+      isHaveImg: true,
+      likesCount: 2,
+      commentsCount: 2
+
+    },
+    {
+      userId: 1,
+      categoryId: 1,
+      postContent: 'This is a regular post.',
+      isHaveImg: true,
+      likesCount: 2,
+      commentsCount: 2
+
+    },
+    {
+      userId: 1,
+      categoryId: 1,
+      postContent: 'This is a regular post.',
+      isHaveImg: true,
+      likesCount: 2,
+      commentsCount: 2
+
+    },
+    {
+      userId: 1,
+      categoryId: 1,
+      postContent: 'This is a regular post.',
+      isHaveImg: true,
+      likesCount: 2,
+      commentsCount: 2
+
+    },
+    {
+      userId: 1,
+      categoryId: 1,
+      postContent: 'This is a regular post.',
+      isHaveImg: true,
+      likesCount: 2,
+      commentsCount: 2
+
+    },
+    {
+      userId: 1,
+      categoryId: 1,
+      postContent: 'This is a regular post.',
+      isHaveImg: true,
+      likesCount: 2,
+      commentsCount: 2
+
+    },
+    {
+      userId: 1,
+      categoryId: 1,
+      postContent: 'This is a regular post.',
+      isHaveImg: true,
+      likesCount: 2,
+      commentsCount: 2
+
+    },
+    {
+      userId: 1,
+      categoryId: 1,
+      postContent: 'This is a regular post.',
+      isHaveImg: true,
+      likesCount: 2,
+      commentsCount: 2
+
+    },
+    {
+      userId: 1,
+      categoryId: 1,
+      postContent: 'This is a regular post.',
+      isHaveImg: true,
+      likesCount: 2,
+      commentsCount: 2
+
+    },
+    {
+      userId: 1,
+      categoryId: 1,
+      postContent: 'This is a regular post.',
+      isHaveImg: true,
+      likesCount: 2,
+      commentsCount: 2
+
+    },
     {
       userId: 1,
       categoryId: 1,
