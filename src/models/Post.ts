@@ -15,7 +15,7 @@ const Post = sequelize.define<IPostWithDetails>('post', {
     type: DataTypes.INTEGER
   },
   postContent: {
-    type: DataTypes.STRING
+    type: DataTypes.TEXT
   },
   isHaveImg: {
     type: DataTypes.BOOLEAN

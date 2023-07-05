@@ -8,18 +8,12 @@ const getPostLikers = async (req: CustomRequest, res: Response, next: NextFuncti
     const { postId }: { postId: number } = await validatePostId.validate(req.params)
 
     if (!postId) {
-      throw new CustomError(400, 'User ID not found')
+      throw new CustomError(400, 'Post not found')
     }
-
     const likers = await getPostLikersQuery(postId)
-
-    if (likers.length > 0) {
-      res.status(201).json({
-        data: likers
-      })
-    } else {
-      next(new CustomError(404, 'The Post Doesn\'t Have Any Likers'))
-    }
+    res.json({
+      data: likers
+    })
   } catch (err: unknown) {
     next(err)
   }
