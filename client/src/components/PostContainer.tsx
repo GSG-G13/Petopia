@@ -45,9 +45,31 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
     }
   };
 
+  const fetchPagesData = async () => {
+    try {
+      const { data: { data } } = await axios.get(apiLink);
+      setPosts((prevData) => [...prevData, ...data]);
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response?.status !== 401) {
+        message.error('Something went wrong!');
+      }
+    } finally {
+      setScrollLoading(false);
+    }
+  };
+
   useEffect(() => {
+    setPage(1);
     fetchData();
   }, [path, id]);
+
+  useEffect(() => {
+    if (page === 1) {
+      fetchData();
+    } else if (page > 1) {
+      fetchPagesData();
+    }
+  }, [page]);
 
   const handleScroll = (event:React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = event.currentTarget as HTMLDivElement;
