@@ -74,8 +74,6 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
   )
     : (
       <Box className="posts-container" onScroll={handleScroll}>
-        <Link to="/explore">Explore</Link>
-        <Link to="/feed">Feed</Link>
         {explorePosts.length !== 0
           ? explorePosts.map((post:IPost) => (
             <PostCard
