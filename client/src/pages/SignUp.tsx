@@ -1,33 +1,38 @@
+import { useState } from 'react';
 import {
   Input, Button, Form, message,
 } from 'antd';
 import Title from 'antd/es/typography/Title';
 import '../styles/Register.css';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Box from '../components/commons/Box';
 import Paragraph from '../components/commons/Paragraph';
 
 const SignUp = () => {
-  const [user, setUser] = useState({
-    fullName: '',
-    email: '',
-    password: '',
-    phone: '',
-  });
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [phone, setPhone] = useState('');
+  const [avatar, setAvatar] = useState('');
+
+  const navigate = useNavigate();
+
+  const defaultAvatr = 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png';
 
   const handleSubmit = async () => {
     try {
-      const res = await axios.post('/api/v1/auth/signup', user);
-
+      const res = await axios.post('/api/v1/auth/signup', {
+        fullName, email, password, phone, userImage: avatar || defaultAvatr,
+      });
       if (res.data.message) {
         message.open({
           type: 'success',
           content: res.data.message,
         });
+        navigate('/explore');
       }
-    } catch (err: any) {
+    } catch (err) {
       message.open({
         type: 'error',
         content: err.response.data.message,
@@ -56,20 +61,21 @@ const SignUp = () => {
               rules={[
                 {
                   type: 'string',
-                  min: 3,
+                  min: 10,
+                  message: 'Full Name must be at least 10 Characters!',
                 },
                 {
                   required: true,
-                  message: 'Please input your fullName!',
+                  message: 'Please Enter your FullName!',
                 },
               ]}
               hasFeedback
             >
               <Input
                 className="input"
-                value={user.fullName}
+                value={fullName}
                 onChange={(e) => {
-                  setUser({ ...user, fullName: e.target.value });
+                  setFullName(e.target.value);
                 }}
               />
             </Form.Item>
@@ -81,20 +87,20 @@ const SignUp = () => {
               rules={[
                 {
                   type: 'email',
-                  message: 'The input is not valid E-mail!',
+                  message: 'The Input Is Not A Valid Email!',
                 },
                 {
                   required: true,
-                  message: 'Please input your E-mail!',
+                  message: 'Please Enter Your Email!',
                 },
               ]}
               hasFeedback
             >
               <Input
                 className="input"
-                value={user.email}
+                value={email}
                 onChange={(e) => {
-                  setUser({ ...user, email: e.target.value });
+                  setEmail(e.target.value);
                 }}
               />
             </Form.Item>
@@ -108,19 +114,20 @@ const SignUp = () => {
                 {
                   type: 'string',
                   min: 8,
+                  message: 'The Password Must Be At Least 8 Characters',
                 },
                 {
                   required: true,
-                  message: 'Please input your Password!',
+                  message: 'Please Enter Your Password!',
                 },
               ]}
               hasFeedback
             >
               <Input.Password
                 className="input"
-                value={user.password}
+                value={password}
                 onChange={(e) => {
-                  setUser({ ...user, password: e.target.value });
+                  setPassword(e.target.value);
                 }}
               />
             </Form.Item>
@@ -135,16 +142,34 @@ const SignUp = () => {
                   type: 'string',
                   min: 10,
                 },
+              ]}
+            >
+              <Input
+                className="input"
+                value={phone}
+                onChange={(e) => {
+                  setPhone(e.target.value);
+                }}
+              />
+            </Form.Item>
+          </Box>
+
+          <Box className="form-input">
+            <Form.Item
+              label="Avatar"
+              name="avatar"
+              rules={[
                 {
-                  required: false,
+                  type: 'url',
+                  message: 'Please Enter A Valid URL Image!',
                 },
               ]}
             >
               <Input
                 className="input"
-                value={user.phone}
+                value={avatar}
                 onChange={(e) => {
-                  setUser({ ...user, phone: e.target.value });
+                  setAvatar(e.target.value);
                 }}
               />
             </Form.Item>
