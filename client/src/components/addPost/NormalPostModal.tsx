@@ -42,7 +42,7 @@ const NormalPostModal = ({ visible, onClose }: { visible: boolean, onClose: () =
       okText="Add Post"
       width={650}
       style={{ top: 20 }}
-      className="addPostModal"
+      className="addPost--addPostModal"
     >
       <Form
         labelCol={{ span: 4 }}
@@ -53,27 +53,27 @@ const NormalPostModal = ({ visible, onClose }: { visible: boolean, onClose: () =
         size={componentSize}
         style={{ maxWidth: 600, display: 'flex', flexDirection: 'column' }}
       >
-        <Card className="modalCard">
+        <Card className="addPost--modalCard">
           <Box className="addPost">
             <ImageComponent
               src="https://cdn.discordapp.com/attachments/1113720733860888597/1121405281147027526/IMG_20201207_144829.jpg"
               alt="image"
-              className="user-img"
+              className="addPost--user-img"
               width="40px"
               height="40px"
             />
             <TextArea
-              className="post-field"
+              className="addPost--post-field"
               style={{ height: 90, width: 490 }}
               placeholder="What's in your mind, Mohammed?"
             />
             <MessageAdd1 className="add" />
           </Box>
 
-          <Form.Item className="uploadField">
+          <Form.Item className="addPost--uploadField">
             <Form.Item name="dragger" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
               <Upload.Dragger name="files" action="/upload.do" listType="picture" multiple>
-                <Paragraph className="ant-upload-drag-icon">
+                <Paragraph className="addPost--ant-upload-drag-icon">
                   <DirectInbox />
                 </Paragraph>
                 <Paragraph>Click or drag Images to this area to upload</Paragraph>

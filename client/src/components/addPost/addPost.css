@@ -3,14 +3,14 @@ body{
     font-family: 'Readex Pro';
 
 }
-.welcome{
+.addPost--welcome{
     color: #0D161D;
     font-size: 18px;
     font-family: Readex Pro;
     font-weight: 500;
     margin-top: 40px;
 }
-.petInformationTitle{
+.addPost--petInformationTitle{
     color: #0D161D;
     font-size: 18px;
     font-family: Readex Pro;
@@ -18,10 +18,10 @@ body{
     margin-bottom: 40px;
 
 }
-.uploadField{
+.addPost--uploadField{
     margin-top: 20px;
 }
-.card{
+.addPost--card{
     width: 582px;
     font-family: 'Readex Pro';
     border-radius: 8px;
@@ -30,7 +30,7 @@ body{
     flex-shrink: 0;
     background: #FFF;
 }
-.modalCard{
+.addPost--modalCard{
     width: 582px;
     font-family: 'Readex Pro';
     border-radius: 8px;
@@ -39,15 +39,15 @@ body{
     background: #FFF;
 
 }
-.postButtons{
+.addPost--postButtons{
     margin-top: 10px;
     margin-bottom: 10px;
     border: 0px;
 }
-.postButton:hover{
+.addPost--postButton:hover{
     background-color: #e9e8ec;
 }
-.postButton{
+.addPost--postButton{
     color: #0D161D;
     text-align: center;
     font-size: 14px;
@@ -57,22 +57,22 @@ body{
     border-radius: 8px;
     margin-right: 10px;
 }
-.adoptionButton{
+.addPost--adoptionButton{
     background: #EFEDFF;
 }
-.productButton{
+.addPost--productButton{
     background: #F8F0FE;
 }
-.discussButton{
+.addPost--discussButton{
     background: #FBF2DC;
 }
-.saleButton{
+.addPost--saleButton{
     background: #FBDCE7;
 }
-.helpButton{
+.addPost--helpButton{
     background: #F3FBDC;
 }
-.post-header{
+.addPost--post-header{
     display: inline-flex;
     align-items: center;
     justify-content:space-between ;
@@ -85,7 +85,7 @@ body{
     transform: translate(-48%,10px);
     color: #9EA2A5;
   }
-.post-field{
+.addPost--post-field{
     width: 427.085px;
     height: 40px;
     flex-shrink: 0;
@@ -105,30 +105,30 @@ body{
     gap: 7px;
     position: relative;
 }
-.addPostModal{
+.addPost--addPostModal{
     margin: auto;
     width: 500px;
     height: 1000px;
 }
 
 
-.post-buttons{
+.addPost--post-buttons{
     display: flex;
     width: 535px;
     justify-content: space-between;
     align-items: center;
 }
-.item{
+.addPost--item{
     display: flex;
     align-items: center;
     gap: 5px;
     font-size: 12px;
 }
-.icon{
+.addPost--icon{
     font-size: 20px;
     cursor: pointer;
 }
-.label{
+.addPost--label{
     display: inline-flex;
     align-self: end;
     height: 35px;
@@ -141,7 +141,7 @@ body{
 }
 
 
-.user-img{
+.addPost--user-img{
     width: 40px;
     height: 40px;
     border-radius: 40px;
