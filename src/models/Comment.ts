@@ -15,7 +15,7 @@ const Comment = sequelize.define<IComment>('comment', {
     type: DataTypes.INTEGER
   },
   commentText: {
-    type: DataTypes.STRING
+    type: DataTypes.TEXT
   }
 })
 

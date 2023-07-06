@@ -7,6 +7,7 @@ interface Props {
   width?: string
   height?: string
   onClick?: () => void
+  onScroll?: (event: React.UIEvent<HTMLDivElement>) => void
 }
 const Box: React.FC<Props> = (props) => (
   <div {...props}>

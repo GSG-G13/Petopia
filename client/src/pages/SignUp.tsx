@@ -1,16 +1,20 @@
 import {
-  Input, Checkbox, Button, Form, message,
+  Input, Button, Form, message,
 } from 'antd';
+import Title from 'antd/es/typography/Title';
 import '../styles/Register.css';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
+import Box from '../components/commons/Box';
+import Paragraph from '../components/commons/Paragraph';
 
 const SignUp = () => {
   const [user, setUser] = useState({
     fullName: '',
     email: '',
     password: '',
+    phone: '',
   });
 
   const handleSubmit = async () => {
@@ -32,9 +36,9 @@ const SignUp = () => {
   };
 
   return (
-    <div className="Register">
-      <div className="left">
-        <h2>Get Started Now</h2>
+    <Box className="Register">
+      <Box className="left">
+        <Title level={2}>Get Started Now</Title>
         <Form
           onFinish={handleSubmit}
           name="basic"
@@ -45,7 +49,7 @@ const SignUp = () => {
           initialValues={{ remember: true }}
           autoComplete="off"
         >
-          <div className="form-input">
+          <Box className="form-input">
             <Form.Item
               label="Full Name"
               name="fullName"
@@ -69,8 +73,8 @@ const SignUp = () => {
                 }}
               />
             </Form.Item>
-          </div>
-          <div className="form-input">
+          </Box>
+          <Box className="form-input">
             <Form.Item
               label="Email"
               name="email"
@@ -94,9 +98,9 @@ const SignUp = () => {
                 }}
               />
             </Form.Item>
-          </div>
+          </Box>
 
-          <div className="form-input">
+          <Box className="form-input">
             <Form.Item
               label="Password"
               name="password"
@@ -120,62 +124,47 @@ const SignUp = () => {
                 }}
               />
             </Form.Item>
-          </div>
+          </Box>
 
-          <div className="form-input">
+          <Box className="form-input">
             <Form.Item
-              name="confirm"
-              label="Confirm Password"
-              dependencies={['password']}
-              hasFeedback
+              label="Phone Number"
+              name="phone"
               rules={[
                 {
-                  required: true,
-                  message: 'Please confirm your password!',
+                  type: 'string',
+                  min: 10,
                 },
-                ({ getFieldValue }) => ({
-                  validator(_, value) {
-                    if (!value || getFieldValue('password') === value) {
-                      return Promise.resolve();
-                    }
-                    return Promise.reject(
-                      new Error(
-                        'The new password that you entered do not match!',
-                      ),
-                    );
-                  },
-                }),
+                {
+                  required: false,
+                },
               ]}
             >
-              <Input.Password className="input" />
+              <Input
+                className="input"
+                value={user.phone}
+                onChange={(e) => {
+                  setUser({ ...user, phone: e.target.value });
+                }}
+              />
             </Form.Item>
-          </div>
+          </Box>
 
-          <div className="form-checkbox">
-            <Form.Item
-              name="remember"
-              valuePropName="checked"
-              wrapperCol={{ offset: 0, span: 16 }}
-            >
-              <Checkbox className="check">I agree to the terms & policy</Checkbox>
-            </Form.Item>
-          </div>
-
-          <div className="form-submit">
+          <Box className="form-submit">
             <Form.Item>
               <Button htmlType="submit" className="button">
                 SignUp
               </Button>
-              <p>
+              <Paragraph>
                 Have an account?
                 <Link to="/login">Login</Link>
-              </p>
+              </Paragraph>
             </Form.Item>
-          </div>
+          </Box>
         </Form>
-      </div>
-      <div className="right" />
-    </div>
+      </Box>
+      <Box className="right" />
+    </Box>
   );
 };
 

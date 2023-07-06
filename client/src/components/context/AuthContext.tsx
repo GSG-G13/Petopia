@@ -1,25 +1,11 @@
 import axios from 'axios';
 import { createContext, useState, useEffect } from 'react';
 import { message } from 'antd';
-
-interface User {
-  userId: number
-  fullName: string
-  email:string
-  userImage: string
-  address:string
-  phone:string
-  followerCount: number
-  followingCount: number
-}
-interface Category {
-  categoryId:number
-  title:string
-}
+import { IUser, ICategory } from '../../interfaces';
 
 interface AuthProps {
-  userData: User,
-  categoriesData:Category[]
+  userData: IUser,
+  categoriesData:ICategory[]
 }
 
 export const AuthContext = createContext<AuthProps>({
@@ -32,6 +18,7 @@ export const AuthContext = createContext<AuthProps>({
     phone: '',
     followerCount: 0,
     followingCount: 0,
+    userType: 'regular',
   },
   categoriesData: [{ categoryId: 0, title: '' }],
 });
@@ -40,7 +27,7 @@ interface IChildrenProps {
 }
 
 export const AuthContextProvider = ({ children } : IChildrenProps) => {
-  const [userData, setUser] = useState<User>({
+  const [userData, setUser] = useState<IUser>({
     userId: 0,
     fullName: '',
     email: '',
@@ -49,8 +36,9 @@ export const AuthContextProvider = ({ children } : IChildrenProps) => {
     phone: '',
     followerCount: 0,
     followingCount: 0,
+    userType: 'regular',
   });
-  const [categoriesData, setCategories] = useState<Category[]>([{ categoryId: 0, title: '' }]);
+  const [categoriesData, setCategories] = useState<ICategory[]>([{ categoryId: 0, title: '' }]);
 
   const fetchAuthData = async () => {
     try {
