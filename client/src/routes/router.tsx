@@ -3,6 +3,7 @@ import App from '../App';
 import PageNotFound from '../components/commons/PageNotFound';
 import '../index.css';
 import Login from '../pages/Login';
+import SignUp from '../pages/SignUp';
 import PostContainer from '../components/PostContainer';
 import { AuthContextProvider } from '../components/context/AuthContext';
 
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
+    path: '/signup',
+    element: <SignUp />,
+  },
+  {
     path: '/explore',
     element:
   <AuthContextProvider>
@@ -27,6 +32,12 @@ const router = createBrowserRouter([
     element:
   <AuthContextProvider>
     <PostContainer path="feed" />
+  </AuthContextProvider>,
+  }, {
+    path: '/profile/:id',
+    element:
+  <AuthContextProvider>
+    <PostContainer path="profile" />
   </AuthContextProvider>,
   },
 ]);

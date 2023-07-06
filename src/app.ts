@@ -5,6 +5,7 @@ import dotenv from 'dotenv'
 import { join } from 'path'
 import router from './routes'
 import serverError from './helpers/serverErrors'
+import cors from 'cors'
 
 dotenv.config()
 const { NODE_ENV, PORT } = process.env
@@ -16,6 +17,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(compression())
 app.use(cookieParser())
+app.use(cors())
 
 app.use('/api/v1', router)
 
