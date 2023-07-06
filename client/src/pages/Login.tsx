@@ -3,29 +3,30 @@ import {
 } from 'antd';
 import Title from 'antd/es/typography/Title';
 import '../styles/Register.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 import Box from '../components/commons/Box';
 import Paragraph from '../components/commons/Paragraph';
 
 const Login = () => {
-  const [user, setUser] = useState({
-    email: '',
-    password: '',
-  });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     try {
-      const res = await axios.post('/api/v1/auth/login', user);
+      const res = await axios.post('/api/v1/auth/login', { email, password });
 
       if (res.data.message) {
         message.open({
           type: 'success',
           content: res.data.message,
         });
+        navigate('/feed');
       }
-    } catch (err: any) {
+    } catch (err) {
       message.open({
         type: 'error',
         content: err.response.data.message,
@@ -54,20 +55,20 @@ const Login = () => {
               rules={[
                 {
                   type: 'email',
-                  message: 'The input is not valid E-mail!',
+                  message: 'The Input Is Not A Valid Email!',
                 },
                 {
                   required: true,
-                  message: 'Please input your E-mail!',
+                  message: 'Please Enter Your Email!',
                 },
               ]}
               hasFeedback
             >
               <Input
                 className="input"
-                value={user.email}
+                value={email}
                 onChange={(e) => {
-                  setUser({ ...user, email: e.target.value });
+                  setEmail(e.target.value);
                 }}
               />
             </Form.Item>
@@ -81,19 +82,20 @@ const Login = () => {
                 {
                   type: 'string',
                   min: 8,
+                  message: 'The Password Must Be At Least 8 Characters',
                 },
                 {
                   required: true,
-                  message: 'Please input your Password!',
+                  message: 'Please Enter Your Password!',
                 },
               ]}
               hasFeedback
             >
               <Input.Password
                 className="input"
-                value={user.password}
+                value={password}
                 onChange={(e) => {
-                  setUser({ ...user, password: e.target.value });
+                  setPassword(e.target.value);
                 }}
               />
             </Form.Item>
