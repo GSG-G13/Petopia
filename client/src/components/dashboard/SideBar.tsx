@@ -4,7 +4,6 @@ import {
   TeamOutlined,
   ApartmentOutlined,
   DatabaseOutlined,
-  AuditOutlined,
 } from '@ant-design/icons';
 import { Menu } from 'antd';
 import type { MenuProps } from 'antd/es/menu';
