@@ -33,7 +33,7 @@ const Comment: React.FC<Props> = ({
       <Box className="comment-content">
         <Box className="comment-div-1">
           <Box className="comment-div">
-            <Link to={`userId:${comment.userId}`} className="username">{comment.user.fullName}</Link>
+            <Link to={`/profile/${comment.userId}`} className="username">{comment.user.fullName}</Link>
             <Paragraph className="date">{formatTime(comment.createdAt)}</Paragraph>
           </Box>
 
