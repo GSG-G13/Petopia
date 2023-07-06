@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Empty, message } from 'antd';
 import PostCard from './post/PostCard';
@@ -12,15 +13,18 @@ interface Props {
 }
 
 const PostContainer : React.FC<Props> = ({ path }: Props) => {
+  const { id } = useParams();
   const [explorePosts, setPosts] = useState<IPost[]>([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [scrollLoading, setScrollLoading] = useState(false);
-  let apiLink = `/api/v1/posts/feed?page=${page}`;
+  let apiLink = `/api/v1/posts?page=${page}`;
   switch (path) {
     case 'explore': apiLink = `/api/v1/posts?page=${page}`;
       break;
     case 'feed': apiLink = `/api/v1/posts/feed?page=${page}`;
+      break;
+    case 'profile': apiLink = `/api/v1/users/${id}/posts?page=${page}`;
       break;
     default: apiLink = `/api/v1/posts?page=${page}`;
   }
@@ -30,7 +34,11 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
         setLoading(true);
       }
       const { data: { data } } = await axios.get(apiLink);
-      setPosts((prevData) => [...prevData, ...data]);
+      if (page === 1) {
+        setPosts(data);
+      } else {
+        setPosts((prevData) => [...prevData, ...data]);
+      }
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.status !== 401) {
         message.error('Something went wrong!');
@@ -42,8 +50,12 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
   };
 
   useEffect(() => {
+    setPage(1);
+  }, [path, id]);
+
+  useEffect(() => {
     fetchData();
-  }, [page]);
+  }, [page, path, id]);
 
   const handleScroll = (event:React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = event.currentTarget as HTMLDivElement;

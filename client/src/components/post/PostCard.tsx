@@ -43,7 +43,7 @@ const PostCard: React.FC<Props> = ({ post, posts, setPosts }) => {
             />
             <Box className="user-post-info">
               <Box className="name-div">
-                <Link to={`user/${post.userId}`} className="username">{post.user.fullName}</Link>
+                <Link to={`/profile/${post.userId}`} className="username">{post.user.fullName}</Link>
                 <PostActions
                   posts={posts}
                   setPosts={setPosts}
