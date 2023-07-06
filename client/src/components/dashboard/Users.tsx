@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { Space, Table, Input } from 'antd';
+import {
+  Space, Table, Input, Popconfirm, Button, message,
+} from 'antd';
+import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 interface DataType {
+  userId: number;
   fullName: string;
   email: string;
   phone: string;
   userType: string;
+  status: string;
 }
 
 const Users: React.FC = () => {
@@ -17,11 +23,11 @@ const Users: React.FC = () => {
   const fakeDataUrl = 'http://localhost:5173/api/v1/users';
 
   useEffect(() => {
-    fetch(fakeDataUrl)
-      .then((res) => res.json())
+    axios.get(fakeDataUrl)
+      .then((res) => res.data)
       .then((res) => {
-        setUsers(res.data);
-        setList(res.data);
+        setUsers(res.data.sort((a: any, b: any) => a.userId - b.userId));
+        setList(res.data.sort((a: any, b: any) => a.userId - b.userId));
       });
   }, []);
 
@@ -35,7 +41,27 @@ const Users: React.FC = () => {
     }
   };
 
+  const handleStatus = (userStatus: string, userId: number) => {
+    const newStatus = userStatus === 'active' ? 'deactive' : 'active';
+    axios.patch(`http://localhost:5173/api/v1/users/${userId}`, { status: newStatus })
+      .then((res) => {
+        const updatedUsers = users.map((user) => (user.userId === userId ? { ...user, status: newStatus } : user));
+        setUsers(updatedUsers);
+        setList(updatedUsers);
+        message.success(res.data.message);
+      })
+      .catch((error) => {
+        // handle error
+        console.error(error);
+      });
+  };
+
   const columns = [
+    {
+      title: 'Id',
+      dataIndex: 'userId',
+      key: 'userId',
+    },
     {
       title: 'Full Name',
       dataIndex: 'fullName',
@@ -58,11 +84,22 @@ const Users: React.FC = () => {
       key: 'tag',
     },
     {
-      title: 'Action',
+      title: 'Status',
+      dataIndex: 'status',
       key: 'action',
-      render: () => (
+      render: (text: string, record: DataType) => (
         <Space size="middle">
-          <Link to="deactive">De-active</Link>
+          <Popconfirm
+            title={`Are you sure to ${text === 'active' ? 'deactive' : 'active'} this user?`}
+            onConfirm={() => handleStatus(text, record.userId)}
+            okText="Yes"
+            cancelText="No"
+            icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
+          >
+            <Button danger>
+              {text === 'active' ? 'deactive' : 'active'}
+            </Button>
+          </Popconfirm>
         </Space>
       ),
     },
@@ -70,10 +107,12 @@ const Users: React.FC = () => {
 
   const data: DataType[] = users.map((user) => ({
     key: user.email,
+    userId: user.userId,
     fullName: user.fullName,
     email: user.email,
     phone: user.phone,
     userType: user.userType,
+    status: user.status,
   }));
 
   return (

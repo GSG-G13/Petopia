@@ -31,7 +31,6 @@ const items: MenuItem[] = [
   getItem(<Link to="/dashboard/users">Users</Link>, '2', <TeamOutlined />),
   getItem(<Link to="/dashboard/categories">Categories</Link>, '3', <ApartmentOutlined />),
   getItem(<Link to="/dashboard/posts">Posts</Link>, '4', <DatabaseOutlined />),
-  getItem(<Link to="/dashboard/profile">Profile</Link>, '5', <AuditOutlined />),
 ];
 
 const SideBar: React.FC = () => {

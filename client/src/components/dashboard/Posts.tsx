@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Space, Table, Input } from 'antd';
+import {
+  Space, Table, Input, Popconfirm, Button, message,
+} from 'antd';
+import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 interface DataType {
   postId: number;
@@ -21,11 +25,11 @@ const Posts: React.FC = () => {
   const fakeDataUrl = 'http://localhost:5173/api/v1/posts';
 
   useEffect(() => {
-    fetch(fakeDataUrl)
-      .then((res) => res.json())
+    axios.get(fakeDataUrl)
+      .then((res) => res.data)
       .then((res) => {
-        setPosts(res.data);
-        setList(res.data);
+        setPosts(res.data.sort((a: any, b: any) => a.postId - b.postId));
+        setList(res.data.sort((a: any, b: any) => a.postId - b.postId));
       });
   }, []);
 
@@ -39,7 +43,29 @@ const Posts: React.FC = () => {
     }
   };
 
+  const handleDelete = (postId: number) => {
+    axios.delete(`http://localhost:5173/api/v1/posts/${postId}`)
+      .then((res) => {
+        const updatedPosts = posts.filter((post) => post.postId !== postId);
+        setPosts(updatedPosts);
+        setList(updatedPosts);
+        message.open({
+          type: 'success',
+          content: res.data.message,
+        });
+      })
+      .catch((error) => {
+        // handle error
+        console.error(error);
+      });
+  };
+
   const columns = [
+    {
+      title: 'Id',
+      dataIndex: 'postId',
+      key: 'id',
+    },
     {
       title: 'Username',
       dataIndex: ['user', 'fullName'],
@@ -59,15 +85,25 @@ const Posts: React.FC = () => {
     {
       title: 'Action',
       key: 'action',
-      render: () => (
+      render: (record: DataType) => (
         <Space size="middle">
-          <Link to="delete">Delete</Link>
+          <Popconfirm
+            title="Delete the post"
+            description="Are you sure to delete this post?"
+            icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
+            onConfirm={() => handleDelete(record.postId)}
+          >
+            <Button danger>
+              <Link to="/dashboard/posts">Delete</Link>
+            </Button>
+          </Popconfirm>
         </Space>
       ),
     },
   ];
 
   const data: DataType[] = posts.map((post) => ({
+    key: post.postId,
     postId: post.postId,
     user: {
       fullName: post.user.fullName,

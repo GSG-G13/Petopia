@@ -167,21 +167,21 @@ const fakeData: {
 
     },
     {
-      userId: 1,
-      categoryId: 1,
-      postContent: 'This is a regular post.',
+      userId: 2,
+      categoryId: 4,
+      postContent: 'Check out this product Im selling!',
       isHaveImg: true,
-      likesCount: 2,
-      commentsCount: 2
+      likesCount: 1,
+      commentsCount: 1
 
     },
     {
-      userId: 1,
+      userId: 2,
       categoryId: 1,
-      postContent: 'This is a regular post.',
-      isHaveImg: true,
-      likesCount: 2,
-      commentsCount: 2
+      postContent: 'Looking to adopt a pet.',
+      isHaveImg: false,
+      likesCount: 0,
+      commentsCount: 0
 
     }
   ],

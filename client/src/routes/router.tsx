@@ -8,6 +8,7 @@ import Users from '../components/dashboard/Users';
 import Posts from '../components/dashboard/Posts';
 import PostContainer from '../components/PostContainer';
 import { AuthContextProvider } from '../components/context/AuthContext';
+import Categories from '../components/dashboard/Categories';
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/users',
         element: <Users />,
+      },
+      {
+        path: '/dashboard/categories',
+        element: <Categories />,
       },
       {
         path: '/dashboard/posts',
