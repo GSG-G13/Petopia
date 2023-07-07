@@ -29,6 +29,7 @@ body{
     height: 140.602px;
     flex-shrink: 0;
     background: #FFF;
+    height:164px !important;
 }
 .addPost--modalCard{
     width: 582px;
@@ -83,6 +84,12 @@ body{
     position: absolute;
     right: 0;
     transform: translate(-48%,10px);
+    color: #9EA2A5;
+  }
+  .add-icon {
+    position: absolute;
+    right: 0;
+    transform: translate(-13%,-22px);
     color: #9EA2A5;
   }
 .addPost--post-field{

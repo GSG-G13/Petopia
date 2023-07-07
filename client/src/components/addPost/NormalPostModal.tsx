@@ -1,32 +1,62 @@
 import {
-  Modal, Form, Input, Upload, Card,
+  Modal, Form, Input, Upload, Card, message,
 } from 'antd';
 import { MessageAdd1, DirectInbox } from 'iconsax-react';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import axios from 'axios';
 import Paragraph from '../commons/Paragraph';
 import ImageComponent from '../commons/Image';
 import Box from '../commons/Box';
+import { AuthContext } from '../context/AuthContext';
+import uploadToCloudinary from '../../helpers/uploadToCloudinary';
 
 const { TextArea } = Input;
 
-const normFile = (e: any) => {
-  if (Array.isArray(e)) {
-    return e;
-  }
-  return e?.fileList;
-};
-type SizeType = Parameters<typeof Form>[0]['size'];
-
-const NormalPostModal = ({ visible, onClose }: { visible: boolean, onClose: () => void }) => {
-  const [componentSize, setComponentSize] = useState<SizeType>(() => 'middle');
-
-  const onFormLayoutChange = ({ size }: { size: SizeType }) => {
-    setComponentSize(() => size);
+const NormalPostModal = ({ visible, onClose } : { visible: boolean; onClose: () => void }) => {
+  const { userData } = useContext(AuthContext);
+  const [form] = Form.useForm();
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  const normFile = (e: { fileList: unknown; }) => {
+    if (Array.isArray(e)) {
+      return e;
+    }
+    return e?.fileList;
   };
 
-  const handleOk = () => {
-    // Add post logic
-    onClose();
+  const addNormalPost = async () => {
+    try {
+      await form.validateFields();
+      const images = form.getFieldValue('images');
+      if (images && images.length > 0) {
+        const imageUrls = await Promise.all(images.map(uploadToCloudinary));
+        form.setFieldsValue({ images: imageUrls });
+      }
+      await axios.post('/api/v1/posts/', {
+        postContent: form.getFieldValue('postContent'),
+        isHaveImg: (!!images),
+        imagesUrl: form.getFieldValue('images'),
+        categoryId: 3,
+      });
+
+      form.resetFields();
+      message.success('Post added successfully');
+      onClose();
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response?.status !== 401) {
+        message.error('Something went wrong!');
+      }
+    }
+  };
+
+  const handleOk = async () => {
+    try {
+      setConfirmLoading(true);
+      await addNormalPost();
+      setConfirmLoading(false);
+    } catch (error) {
+      message.error('Something went wrong');
+      setConfirmLoading(false);
+    }
   };
 
   const handleCancel = () => {
@@ -36,47 +66,60 @@ const NormalPostModal = ({ visible, onClose }: { visible: boolean, onClose: () =
   return (
     <Modal
       title="Add Your Normal Post"
-      visible={visible}
+      open={visible}
       onOk={handleOk}
       onCancel={handleCancel}
       okText="Add Post"
       width={650}
       style={{ top: 20 }}
+      confirmLoading={confirmLoading}
       className="addPost--addPostModal"
     >
       <Form
+        form={form}
+        name="post-form"
         labelCol={{ span: 4 }}
         wrapperCol={{ span: 24 }}
         layout="horizontal"
-        initialValues={{ size: componentSize }}
-        onValuesChange={onFormLayoutChange}
-        size={componentSize}
         style={{ maxWidth: 600, display: 'flex', flexDirection: 'column' }}
       >
         <Card className="addPost--modalCard">
           <Box className="addPost">
             <ImageComponent
-              src="https://cdn.discordapp.com/attachments/1113720733860888597/1121405281147027526/IMG_20201207_144829.jpg"
+              src={userData.userImage}
               alt="image"
               className="addPost--user-img"
               width="40px"
               height="40px"
             />
-            <TextArea
-              className="addPost--post-field"
-              style={{ height: 90, width: 490 }}
-              placeholder="What's in your mind, Mohammed?"
-            />
+            <Form.Item
+              name="postContent"
+              rules={[{ required: true, message: "Post content can't be empty" }]}
+              messageVariables={{ label: 'post-content' }}
+            >
+              <TextArea
+                className="addPost--post-field"
+                style={{ height: 90, width: 490 }}
+                placeholder={`What's in your mind, ${userData.fullName}?`}
+              />
+            </Form.Item>
             <MessageAdd1 className="add" />
           </Box>
-
           <Form.Item className="addPost--uploadField">
-            <Form.Item name="dragger" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
-              <Upload.Dragger name="files" action="/upload.do" listType="picture" multiple>
+            <Form.Item name="images" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
+              <Upload.Dragger
+                action=""
+                listType="picture"
+                multiple
+                beforeUpload={() => false}
+                onChange={({ fileList }) => {
+                  form.setFieldsValue({ images: fileList });
+                }}
+              >
                 <Paragraph className="addPost--ant-upload-drag-icon">
                   <DirectInbox />
                 </Paragraph>
-                <Paragraph>Click or drag Images to this area to upload</Paragraph>
+                <Paragraph>Click or drag images to this area to upload</Paragraph>
               </Upload.Dragger>
             </Form.Item>
           </Form.Item>

@@ -23,6 +23,7 @@ const Label: React.FC<Props> = ({ title }: Props) => {
       colors.side = 'var(--sell-side-color)';
       break;
     case 'Help':
+    case 'Post':
       colors.main = 'var(--help-color)';
       colors.side = 'var(--help-side-color)';
       break;

@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
-  Space, Card, Button, Input,
+  Space, Card, Button, Input, Form, message,
 } from 'antd';
 import { MessageAdd1 } from 'iconsax-react';
+import axios from 'axios';
 import ImageComponent from '../commons/Image';
 import Box from '../commons/Box';
 import NormalPostModal from './NormalPostModal';
 import AddAdoptionModal from './AddAdoptionModal';
 import AddProductModal from './AddProductModal';
-
 import './addPost.css';
+import { AuthContext } from '../context/AuthContext';
 
 const AddNewPost: React.FC = () => {
   const [normalPostModal, setNormalPostModal] = useState(false);
   const [adoptionModal, setAdoptionModal] = useState(false);
   const [productModal, setProductModal] = useState(false);
-
+  const { userData } = useContext(AuthContext);
+  const [form] = Form.useForm();
   const showNormalPostModal = () => {
     setNormalPostModal(true);
   };
@@ -39,25 +41,66 @@ const AddNewPost: React.FC = () => {
   const hideProductModal = () => {
     setProductModal(false);
   };
+  const addNormalPost = async () => {
+    try {
+      await axios.post(
+        '/api/v1/posts/',
+        {
+          postContent: form.getFieldValue('postContent'), isHaveImg: false, categoryId: 3,
+        },
+      );
+      form.resetFields();
+      message.success('Post added successfully');
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response?.status !== 401) {
+        message.error('Something went wrong!');
+      }
+    }
+  };
 
   return (
     <Space direction="vertical" size={16}>
-      <NormalPostModal visible={normalPostModal} onClose={hideNormalPostModal} />
-      <AddAdoptionModal visible={adoptionModal} onClose={hideAdoptionModal} />
-      <AddProductModal visible={productModal} onClose={hideProductModal} />
-      <div className="addPost--welcome">Welcome back, Mohammed!</div>
+      {normalPostModal ? <NormalPostModal visible={normalPostModal} onClose={hideNormalPostModal} /> : null}
+      {adoptionModal ? <AddAdoptionModal visible={adoptionModal} onClose={hideAdoptionModal} /> : null}
+      {productModal ? <AddProductModal visible={productModal} onClose={hideProductModal} /> : null}
+      <Box className="addPost--welcome">
+        Welcome back,
+        {' '}
+        {userData.fullName}
+      </Box>
       <Card className="addPost--card">
-        <Box className="addPost">
-          <ImageComponent
-            src="https://cdn.discordapp.com/attachments/1113720733860888597/1121405281147027526/IMG_20201207_144829.jpg"
-            alt="image"
-            className="addPost--user-img"
-            width="40px"
-            height="40px"
-          />
-          <Input type="text" id="hi" className="addPost--post-field" placeholder="What's in your mind, Mohammed?" />
-          <MessageAdd1 className="add" />
-        </Box>
+
+        <Form
+          form={form}
+          name="post-normal"
+          onFinish={addNormalPost}
+        >
+          <Box className="addPost">
+            <ImageComponent
+              src={userData.userImage}
+              alt="image"
+              className="addPost--user-img"
+              width="40px"
+              height="40px"
+            />
+            <Form.Item
+              name="postContent"
+              rules={[{ required: true, message: 'post content can\'t be empty' }]}
+              messageVariables={{ label: 'postContent' }}
+            >
+              <Input
+                type="text"
+                id="hi"
+                className="addPost--post-field"
+                placeholder={`What's in your mind, ${userData.fullName} ?`}
+              />
+            </Form.Item>
+            <Form.Item className="add" style={{ margin: 0, padding: 0 }}>
+              <Button type="link" icon={<MessageAdd1 className="add-icon" />} htmlType="submit" />
+            </Form.Item>
+          </Box>
+        </Form>
+
         <Space direction="horizontal" size={16}>
           <Button
             type="text"
