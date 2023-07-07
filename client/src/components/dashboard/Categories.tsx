@@ -17,18 +17,6 @@ const Categories: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [title, setTitle] = useState('');
 
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-
   const fakeDataUrl = 'http://localhost:5173/api/v1/categories';
 
   useEffect(() => {
@@ -57,6 +45,19 @@ const Categories: React.FC = () => {
         content: err.response.data.message,
       });
     }
+  };
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    onFinish();
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
   };
 
   const handleDelete = (categoryId: number) => {
@@ -139,11 +140,6 @@ const Categories: React.FC = () => {
                 setTitle(e.target.value);
               }}
             />
-          </Form.Item>
-          <Form.Item>
-            <Button htmlType="submit">
-              Add
-            </Button>
           </Form.Item>
         </Form>
       </Modal>

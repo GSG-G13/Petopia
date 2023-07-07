@@ -1,9 +1,9 @@
-body {
-  overflow: auto;
-}
-
 .dashboard {
   display: flex;
+}
+
+body {
+  overflow: auto;
 }
 
 .stats {
@@ -18,4 +18,15 @@ header {
   justify-content: center;
   align-items: center;
   background-color: #FFFFFF;
+}
+
+h1 {
+  position: absolute;
+  margin-left: 20px;
+  margin-top: 15px;
+}
+
+.text {
+  text-align: center;
+  margin: 20px 0;
 }
