@@ -44,6 +44,7 @@ body{
     margin-top: 10px;
     margin-bottom: 10px;
     border: 0px;
+    background: var(--help-color);
 }
 .addPost--postButton:hover{
     background-color: #e9e8ec;
@@ -154,3 +155,22 @@ body{
     border-radius: 40px;
     object-fit: cover;
 }
+.add-post-buttons-container{
+    display: flex;
+    gap: 15px;
+    max-width: 532px;
+    overflow: auto;
+}
+.add-post-buttons-container::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  .add-post-buttons-container::-webkit-scrollbar-track {
+    background-color: #d7d6d6;
+    border-radius: 10px;
+  }
+  
+  .add-post-buttons-container::-webkit-scrollbar-thumb {
+    background-color: #F37F29;
+    border-radius: 10px;
+  }

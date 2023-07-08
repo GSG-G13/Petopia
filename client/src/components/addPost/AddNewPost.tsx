@@ -11,13 +11,14 @@ import AddAdoptionModal from './AddAdoptionModal';
 import AddProductModal from './AddProductModal';
 import './addPost.css';
 import { AuthContext } from '../context/AuthContext';
+import { ICategory } from '../../interfaces';
 
 const AddNewPost: React.FC = () => {
   const [normalPostModal, setNormalPostModal] = useState(false);
-  const [breedPostModal, setBreedPostModal] = useState(false);
   const [adoptionModal, setAdoptionModal] = useState(false);
   const [productModal, setProductModal] = useState(false);
   const { userData, categoriesData } = useContext(AuthContext);
+  const [category, setCategory] = useState<ICategory>({ title: 'Post', categoryId: 3 });
   const [form] = Form.useForm();
   const showNormalPostModal = () => {
     setNormalPostModal(true);
@@ -25,14 +26,6 @@ const AddNewPost: React.FC = () => {
 
   const hideNormalPostModal = () => {
     setNormalPostModal(false);
-  };
-
-  const showBreedPostModal = () => {
-    setBreedPostModal(true);
-  };
-
-  const hideBreedPostModal = () => {
-    setBreedPostModal(false);
   };
 
   const showAdoptionModal = () => {
@@ -50,17 +43,17 @@ const AddNewPost: React.FC = () => {
   const hideProductModal = () => {
     setProductModal(false);
   };
-  const getModal = (category:string) => {
-    switch (category) {
+  const getModal = (categoryData:ICategory) => {
+    switch (categoryData.title) {
       case 'Post':
+        setCategory(() => categoryData);
         return showNormalPostModal;
-      case 'Breed':
-        return showBreedPostModal;
       case 'Sell':
         return showProductModal;
       case 'Adoption':
         return showAdoptionModal;
       default:
+        setCategory(() => categoryData);
         return showNormalPostModal;
     }
   };
@@ -87,16 +80,7 @@ const AddNewPost: React.FC = () => {
         <NormalPostModal
           visible={normalPostModal}
           onClose={hideNormalPostModal}
-          categoryId={3}
-          title="Add your normal post"
-        />
-      ) : null}
-      {breedPostModal ? (
-        <NormalPostModal
-          visible={breedPostModal}
-          onClose={hideBreedPostModal}
-          categoryId={2}
-          title="Add your Breed post"
+          category={category}
         />
       ) : null}
       {adoptionModal ? <AddAdoptionModal visible={adoptionModal} onClose={hideAdoptionModal} /> : null}
@@ -139,21 +123,21 @@ const AddNewPost: React.FC = () => {
           </Box>
         </Form>
 
-        <Space direction="horizontal" size={16}>
+        <Box className="add-post-buttons-container">
           {
-            categoriesData.map((category) => (
+            categoriesData.map((categoryData) => (
               <Button
                 type="text"
                 size="large"
-                key={category.categoryId}
-                className={`addPost--${category.title}Button addPost--postButtons`}
-                onClick={() => (getModal(category.title))()}
+                key={categoryData.categoryId}
+                className={`addPost--${categoryData.title}Button addPost--postButtons`}
+                onClick={() => (getModal(categoryData))()}
               >
-                { category.title}
+                { categoryData.title}
               </Button>
             ))
           }
-        </Space>
+        </Box>
       </Card>
     </Space>
   );
