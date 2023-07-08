@@ -29,7 +29,7 @@ body{
     height: 140.602px;
     flex-shrink: 0;
     background: #FFF;
-    height:164px !important;
+    height: 170px !important; 
 }
 .addPost--modalCard{
     width: 582px;
