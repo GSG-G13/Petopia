@@ -69,7 +69,7 @@ const NormalPostModal = ({
 
   return (
     <Modal
-      title={`Add ${category.title === 'Post' ? 'normal' : category.title} post`}
+      title={`Add ${category.title === 'Post' ? 'Your' : category.title} Post`}
       open={visible}
       onOk={handleOk}
       onCancel={handleCancel}
