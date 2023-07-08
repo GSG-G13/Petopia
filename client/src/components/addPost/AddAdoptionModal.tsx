@@ -15,7 +15,12 @@ const { TextArea } = Input;
 
 type SizeType = Parameters<typeof Form>[0]['size'];
 
-const AddAdoptionModal = ({ visible, onClose }: { visible: boolean, onClose: () => void }) => {
+interface Props {
+  visible: boolean
+  onClose: () => void
+}
+
+const AddAdoptionModal = ({ visible, onClose }: Props) => {
   const [componentSize, setComponentSize] = useState<SizeType>(() => 'middle');
   const onFormLayoutChange = ({ size }: { size: SizeType }) => {
     setComponentSize(() => size);
@@ -91,7 +96,7 @@ const AddAdoptionModal = ({ visible, onClose }: { visible: boolean, onClose: () 
 
   return (
     <Modal
-      title="Add Your Adoption Post"
+      title="Add Adoption Post"
       open={visible}
       onOk={handleOk}
       onCancel={handleCancel}
