@@ -58,20 +58,20 @@ body{
     border-radius: 8px;
     margin-right: 10px;
 }
-.addPost--adoptionButton{
-    background: #EFEDFF;
+.addPost--AdoptionButton{
+    background: var(--adoption-color);
 }
-.addPost--productButton{
-    background: #F8F0FE;
+.addPost--BreedButton{
+    background: var(--breed-color);
 }
-.addPost--discussButton{
-    background: #FBF2DC;
+.addPost--PostButton{
+    background: var(--help-color);
 }
-.addPost--saleButton{
-    background: #FBDCE7;
+.addPost--SellButton{
+    background: var(--sell-color);
 }
-.addPost--helpButton{
-    background: #F3FBDC;
+.addPost--HelpButton{
+    background: var(--sell-color);
 }
 .addPost--post-header{
     display: inline-flex;

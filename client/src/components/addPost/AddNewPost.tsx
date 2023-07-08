@@ -14,9 +14,10 @@ import { AuthContext } from '../context/AuthContext';
 
 const AddNewPost: React.FC = () => {
   const [normalPostModal, setNormalPostModal] = useState(false);
+  const [breedPostModal, setBreedPostModal] = useState(false);
   const [adoptionModal, setAdoptionModal] = useState(false);
   const [productModal, setProductModal] = useState(false);
-  const { userData } = useContext(AuthContext);
+  const { userData, categoriesData } = useContext(AuthContext);
   const [form] = Form.useForm();
   const showNormalPostModal = () => {
     setNormalPostModal(true);
@@ -24,6 +25,14 @@ const AddNewPost: React.FC = () => {
 
   const hideNormalPostModal = () => {
     setNormalPostModal(false);
+  };
+
+  const showBreedPostModal = () => {
+    setBreedPostModal(true);
+  };
+
+  const hideBreedPostModal = () => {
+    setBreedPostModal(false);
   };
 
   const showAdoptionModal = () => {
@@ -40,6 +49,20 @@ const AddNewPost: React.FC = () => {
 
   const hideProductModal = () => {
     setProductModal(false);
+  };
+  const getModal = (category:string) => {
+    switch (category) {
+      case 'Post':
+        return showNormalPostModal;
+      case 'Breed':
+        return showBreedPostModal;
+      case 'Sell':
+        return showProductModal;
+      case 'Adoption':
+        return showAdoptionModal;
+      default:
+        return showNormalPostModal;
+    }
   };
   const addNormalPost = async () => {
     try {
@@ -60,7 +83,22 @@ const AddNewPost: React.FC = () => {
 
   return (
     <Space direction="vertical" size={16}>
-      {normalPostModal ? <NormalPostModal visible={normalPostModal} onClose={hideNormalPostModal} /> : null}
+      {normalPostModal ? (
+        <NormalPostModal
+          visible={normalPostModal}
+          onClose={hideNormalPostModal}
+          categoryId={3}
+          title="Add your normal post"
+        />
+      ) : null}
+      {breedPostModal ? (
+        <NormalPostModal
+          visible={breedPostModal}
+          onClose={hideBreedPostModal}
+          categoryId={2}
+          title="Add your Breed post"
+        />
+      ) : null}
       {adoptionModal ? <AddAdoptionModal visible={adoptionModal} onClose={hideAdoptionModal} /> : null}
       {productModal ? <AddProductModal visible={productModal} onClose={hideProductModal} /> : null}
       <Box className="addPost--welcome">
@@ -102,33 +140,19 @@ const AddNewPost: React.FC = () => {
         </Form>
 
         <Space direction="horizontal" size={16}>
-          <Button
-            type="text"
-            size="large"
-            className="addPost--discussButton addPost--postButtons"
-            onClick={showNormalPostModal}
-          >
-            Normal Post
-          </Button>
-          <Button
-            type="text"
-            size="large"
-            className="addPost--adoptionButton addPost--postButtons"
-            onClick={showAdoptionModal}
-          >
-            Adoption
-          </Button>
-          <Button
-            type="text"
-            size="large"
-            className="addPost--productButton addPost--postButtons"
-            onClick={showProductModal}
-          >
-            Product
-          </Button>
-          <Button type="text" size="large" className="addPost--helpButton addPost--postButtons">
-            Help
-          </Button>
+          {
+            categoriesData.map((category) => (
+              <Button
+                type="text"
+                size="large"
+                key={category.categoryId}
+                className={`addPost--${category.title}Button addPost--postButtons`}
+                onClick={() => (getModal(category.title))()}
+              >
+                { category.title}
+              </Button>
+            ))
+          }
         </Space>
       </Card>
     </Space>

@@ -12,7 +12,10 @@ import uploadToCloudinary from '../../helpers/uploadToCloudinary';
 
 const { TextArea } = Input;
 
-const NormalPostModal = ({ visible, onClose } : { visible: boolean; onClose: () => void }) => {
+const NormalPostModal = ({
+  visible, onClose, categoryId, title,
+} :
+{ visible: boolean; onClose: () => void, categoryId:number, title:string }) => {
   const { userData } = useContext(AuthContext);
   const [form] = Form.useForm();
   const [confirmLoading, setConfirmLoading] = useState(false);
@@ -35,7 +38,7 @@ const NormalPostModal = ({ visible, onClose } : { visible: boolean; onClose: () 
         postContent: form.getFieldValue('postContent'),
         isHaveImg: (!!images),
         imagesUrl: form.getFieldValue('images'),
-        categoryId: 3,
+        categoryId,
       });
 
       form.resetFields();
@@ -65,7 +68,7 @@ const NormalPostModal = ({ visible, onClose } : { visible: boolean; onClose: () 
 
   return (
     <Modal
-      title="Add Your Normal Post"
+      title={title}
       open={visible}
       onOk={handleOk}
       onCancel={handleCancel}
