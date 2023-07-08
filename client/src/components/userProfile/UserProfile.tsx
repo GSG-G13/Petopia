@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import {
   Button, Card, Avatar, Row, Col, Typography, Space, Badge,
 } from 'antd';
@@ -39,10 +40,10 @@ const UserProfile = () => {
     <>
       <UsersModal visible={normalPostModal} onClose={hideNormalPostModal} />
 
-      <Card style={{ width: '100%', position: 'relative', height:'500px' }} bordered={false}>
+      <Card style={{ width: '100%', position: 'relative', height: '500px' }} bordered={false}>
         <Button type="link" icon={<LeftOutlined />}>Back</Button>
         <img
-          alt="Cover Photo"
+          alt="Cover"
           style={{ height: 90, width: '100%' }}
           src="https://images.unsplash.com/photo-1557683316-973673baf926?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=829&q=80"
         />

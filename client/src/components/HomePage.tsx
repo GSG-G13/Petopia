@@ -3,11 +3,11 @@ import {
   Layout, Row, Col, Drawer, Space, Badge,
 } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
+import { Outlet } from 'react-router';
 import RightSide from './sideBars/RightSide';
 import LeftSideBox from './sideBars/LeftSideBox';
 import UserProfile from './userProfile/UserProfile';
 import useWindowSize from './useWindowSize';
-import PostContainer from './PostContainer';
 
 const { Header, Content } = Layout;
 
@@ -117,7 +117,7 @@ const HomePage = () => {
 
           <Col span={getProfileSpan()}>
             <UserProfile />
-            {/* <PostContainer path="explore" /> */}
+            <Outlet />
           </Col>
 
           {size.width > 1450 ? (

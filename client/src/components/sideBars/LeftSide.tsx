@@ -1,3 +1,5 @@
+import { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Card, Typography, Divider, Dropdown, Button,
   Menu,
@@ -12,7 +14,6 @@ import {
   UserOutlined,
   DownOutlined,
 } from '@ant-design/icons';
-import { useContext, useState } from 'react';
 import UsersModal from './UsersModal';
 import ImageComponent from '../commons/Image';
 import { AuthContext } from '../context/AuthContext';
@@ -103,8 +104,8 @@ const LeftSide = () => {
           border: 'none', fontSize: 17, marginBottom: 20, maxWidth: 300,
         }}
       >
-        <Item key="home" icon={<HomeOutlined />}>Home</Item>
-        <Item key="explore" icon={<SearchOutlined />}>Explore</Item>
+        <Item key="home" icon={<HomeOutlined />}><Link to="/">Feed</Link></Item>
+        <Item key="explore" icon={<SearchOutlined />}><Link to="explore">Explore</Link></Item>
         <Item key="notifications" icon={<BellOutlined />}>Notifications</Item>
         <Item key="messages" icon={<MessageOutlined />}>Messages</Item>
         <Item key="bookmarks" icon={<BookOutlined />}>Bookmarks</Item>
