@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Loading from './components/commons/LoadingComponent';
+import AddNewPost from './components/addPost/AddNewPost';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -9,7 +10,7 @@ const App = () => {
   }, []);
 
   return loading === false ? (
-    <h1>Petopia</h1>
+    <AddNewPost />
   ) : (
     <Loading />
   );

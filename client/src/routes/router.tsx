@@ -4,9 +4,11 @@ import PageNotFound from '../components/commons/PageNotFound';
 import '../index.css';
 import HomePage from '../components/HomePage';
 
-// const { post } = fakeData;
+import Login from '../pages/Login';
+import SignUp from '../pages/SignUp';
 import PostContainer from '../components/PostContainer';
-import { AuthContextProvider } from '../components/context/AuthContext';
+import ProtectedRoute from '../components/ProtectedRoute';
+import NotProtectedRoute from '../components/NotProtectedRoute';
 
 const router = createBrowserRouter([
   {
@@ -16,23 +18,37 @@ const router = createBrowserRouter([
   },
   {
     path: '/home',
-    element: <AuthContextProvider><HomePage /></AuthContextProvider>,
+    element: <ProtectedRoute><HomePage /></ProtectedRoute>,
+  }, {
+    path: '/login',
+    element:
+  <NotProtectedRoute>
+    <Login />
+  </NotProtectedRoute>,
+  },
+  {
+    path: '/signup',
+    element:
+  <NotProtectedRoute>
+    <SignUp />
+  </NotProtectedRoute>,
   },
   {
     path: '/explore',
     element:
-  <AuthContextProvider>
+  <ProtectedRoute>
     <PostContainer path="explore" />
-  </AuthContextProvider>,
+  </ProtectedRoute>,
   }, {
     path: '/feed',
     element:
-  <AuthContextProvider>
+  <ProtectedRoute>
     <PostContainer path="feed" />
-  </AuthContextProvider>,
+  </ProtectedRoute>,
   }, {
     path: '/profile/:id',
-    element: <PostContainer path="profile" />,
+    element:
+  <PostContainer path="profile" />,
   },
 ]);
 export default router;
