@@ -9,13 +9,14 @@ import ImageComponent from '../commons/Image';
 import Box from '../commons/Box';
 import { AuthContext } from '../context/AuthContext';
 import uploadToCloudinary from '../../helpers/uploadToCloudinary';
+import { ICategory } from '../../interfaces';
 
 const { TextArea } = Input;
 
 const NormalPostModal = ({
-  visible, onClose, categoryId, title,
+  visible, onClose, category,
 } :
-{ visible: boolean; onClose: () => void, categoryId:number, title:string }) => {
+{ visible: boolean; onClose: () => void, category:ICategory }) => {
   const { userData } = useContext(AuthContext);
   const [form] = Form.useForm();
   const [confirmLoading, setConfirmLoading] = useState(false);
@@ -38,7 +39,7 @@ const NormalPostModal = ({
         postContent: form.getFieldValue('postContent'),
         isHaveImg: (!!images),
         imagesUrl: form.getFieldValue('images'),
-        categoryId,
+        categoryId: category.categoryId,
       });
 
       form.resetFields();
@@ -68,7 +69,7 @@ const NormalPostModal = ({
 
   return (
     <Modal
-      title={title}
+      title={`Add ${category.title === 'Post' ? 'normal' : category.title} post`}
       open={visible}
       onOk={handleOk}
       onCancel={handleCancel}
