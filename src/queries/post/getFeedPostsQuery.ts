@@ -5,7 +5,7 @@ const getFeedPostsQuery = async (page: number, limit: number, userId: number): P
   const offset = (page - 1) * limit
   const follows = await Follower.findAll({ where: { followingId: userId } })
   const followersIds = follows.map((follow) => follow.followerId)
-
+  followersIds.push(userId)
   const posts = await Post.findAll({
     include: [
       {
