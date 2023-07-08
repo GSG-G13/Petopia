@@ -6,6 +6,8 @@ import Login from '../pages/Login';
 import SignUp from '../pages/SignUp';
 import PostContainer from '../components/PostContainer';
 import { AuthContextProvider } from '../components/context/AuthContext';
+import ProtectedRoute from '../components/ProtectedRoute';
+import NotProtectedRoute from '../components/NotProtectedRoute';
 
 const router = createBrowserRouter([
   {
@@ -18,30 +20,34 @@ const router = createBrowserRouter([
   },
   {
     path: '/login',
-    element: <Login />,
+    element:
+  <NotProtectedRoute>
+    <Login />
+  </NotProtectedRoute>,
   },
   {
     path: '/signup',
-    element: <SignUp />,
+    element:
+  <NotProtectedRoute>
+    <SignUp />
+  </NotProtectedRoute>,
   },
   {
     path: '/explore',
     element:
-  <AuthContextProvider>
+  <ProtectedRoute>
     <PostContainer path="explore" />
-  </AuthContextProvider>,
+  </ProtectedRoute>,
   }, {
     path: '/feed',
     element:
-  <AuthContextProvider>
+  <ProtectedRoute>
     <PostContainer path="feed" />
-  </AuthContextProvider>,
+  </ProtectedRoute>,
   }, {
     path: '/profile/:id',
     element:
-  <AuthContextProvider>
-    <PostContainer path="profile" />
-  </AuthContextProvider>,
+  <PostContainer path="profile" />,
   },
 ]);
 export default router;
