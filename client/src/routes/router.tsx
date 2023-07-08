@@ -12,10 +12,7 @@ import NotProtectedRoute from '../components/NotProtectedRoute';
 const router = createBrowserRouter([
   {
     path: '/',
-    element:
-  <AuthContextProvider>
-    <App />
-  </AuthContextProvider>,
+    element: <App />,
     errorElement: <PageNotFound />,
   },
   {
