@@ -588,57 +588,6 @@ describe('Test Get feed posts for userId = 1 which is following userId = 2', () 
             ],
             "pets": []
         }
-        // ,
-        // {
-        //     "postId": 1,
-        //     "userId": 1,
-        //     "categoryId": 1,
-        //     "postContent": "This is a regular post.",
-        //     "isHaveImg": true,
-        //     "likesCount": 2,
-        //     "commentsCount": 2,
-        //     "postImages": [
-        //         {
-        //             "imageId": 1,
-        //             "postId": 1,
-        //             "imageUrl": "https://cdn.discordapp.com/attachments/1113720733860888597/1121405281147027526/IMG_20201207_144829.jpg",
-        //         },
-        //         {
-        //             "imageId": 3,
-        //             "postId": 1,
-        //             "imageUrl": "https://i.imgur.com/KcYHnFr.jpg",
-        //         },
-        //         {
-        //             "imageId": 4,
-        //             "postId": 1,
-        //             "imageUrl": "https://i.imgur.com/KcYHnFr.jpg",
-        //         }
-        //     ],
-        //     "category": {
-        //         "title": "Adoption"
-        //     },
-        //     "user": {
-        //         "userId": 1,
-        //         "fullName": "Abdallah Abujazar",
-        //         "userImage": "https://i.imgur.com/KcYHnFr.jpg",
-        //         "phone": "123-456-7890"
-        //     },
-        //     "products": [],
-        //     "pets": [
-        //         {
-        //             "petId": 1,
-        //             "petName": "Max",
-        //             "age": 3,
-        //             "gender": "Male",
-        //             "healthStatus": "Healthy",
-        //             "adoptionStatus": "Available",
-        //             "petType": {
-        //                 "typeId": 1,
-        //                 "title": "Dog"
-        //             }
-        //         }
-        //     ]
-        // }
     ]
     test('200 | get all explore posts page=1', async () => {
         await request(app)
