@@ -22,17 +22,13 @@ const Label: React.FC<Props> = ({ title }: Props) => {
       colors.main = 'var(--sell-color)';
       colors.side = 'var(--sell-side-color)';
       break;
-    case 'Help':
-      colors.main = 'var(--help-color)';
-      colors.side = 'var(--help-side-color)';
-      break;
     case 'Breed':
       colors.main = 'var(--breed-color)';
       colors.side = 'var(--breed-side-color)';
       break;
     default:
-      colors.main = 'white';
-      colors.side = 'white';
+      colors.main = 'var(--help-color)';
+      colors.side = 'var(--sell-side-color)';
   }
   return (
     <Box className="label" style={{ backgroundColor: colors.main }}>

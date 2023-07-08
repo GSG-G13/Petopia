@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro');
+body{
+    font-family: 'Readex Pro';
+
+}
+.addPost--welcome{
+    color: #0D161D;
+    font-size: 18px;
+    font-family: Readex Pro;
+    font-weight: 500;
+    margin-top: 40px;
+}
+.addPost--petInformationTitle{
+    color: #0D161D;
+    font-size: 18px;
+    font-family: Readex Pro;
+    font-weight: 500;
+    margin-bottom: 40px;
+
+}
+.addPost--uploadField{
+    margin-top: 20px;
+}
+.addPost--card{
+    width: 582px;
+    font-family: 'Readex Pro';
+    border-radius: 8px;
+    border: 1px solid #F0F0F5;
+    height: 140.602px;
+    flex-shrink: 0;
+    background: #FFF;
+    height: 170px !important; 
+}
+.addPost--modalCard{
+    width: 582px;
+    font-family: 'Readex Pro';
+    border-radius: 8px;
+    border: 1px solid #F0F0F5;
+    flex-shrink: 0;
+    background: #FFF;
+
+}
+.addPost--postButtons{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 0px;
+    background: var(--help-color);
+}
+.addPost--postButton:hover{
+    background-color: #e9e8ec;
+}
+.addPost--postButton{
+    color: #0D161D;
+    text-align: center;
+    font-size: 14px;
+    font-family: Readex Pro;
+    font-weight: 300;
+    padding: 15px;
+    border-radius: 8px;
+    margin-right: 10px;
+}
+.addPost--AdoptionButton{
+    background: var(--adoption-color);
+}
+.addPost--BreedButton{
+    background: var(--breed-color);
+}
+.addPost--PostButton{
+    background: var(--help-color);
+}
+.addPost--SellButton{
+    background: var(--sell-color);
+}
+.addPost--HelpButton{
+    background: var(--sell-color);
+}
+.addPost--post-header{
+    display: inline-flex;
+    align-items: center;
+    justify-content:space-between ;
+    width: 107%;
+    gap: 7px
+}
+.add {
+    position: absolute;
+    right: 0;
+    transform: translate(-48%,10px);
+    color: #9EA2A5;
+  }
+  .add-icon {
+    position: absolute;
+    right: 0;
+    transform: translate(-13%,-22px);
+    color: #9EA2A5;
+  }
+.addPost--post-field{
+    width: 427.085px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    border: 1px solid #F0F0F5;
+    font-size: 14px;
+    font-family: Readex Pro;
+    font-weight: 300;
+    outline: none;
+    padding-left: 10px;
+    padding-right: 3rem;
+}
+
+.addPost{
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 7px;
+    position: relative;
+}
+.addPost--addPostModal{
+    margin: auto;
+    width: 500px;
+    height: 1000px;
+}
+
+
+.addPost--post-buttons{
+    display: flex;
+    width: 535px;
+    justify-content: space-between;
+    align-items: center;
+}
+.addPost--item{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+}
+.addPost--icon{
+    font-size: 20px;
+    cursor: pointer;
+}
+.addPost--label{
+    display: inline-flex;
+    align-self: end;
+    height: 35px;
+    padding: 0px 15px;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 8px 0px 0px 8px;
+    background: #EFEDFF;
+    position: relative;
+}
+
+
+.addPost--user-img{
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    object-fit: cover;
+}
+.add-post-buttons-container{
+    display: flex;
+    gap: 15px;
+    max-width: 532px;
+    overflow: auto;
+}
+.add-post-buttons-container::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  .add-post-buttons-container::-webkit-scrollbar-track {
+    background-color: #d7d6d6;
+    border-radius: 10px;
+  }
+  
+  .add-post-buttons-container::-webkit-scrollbar-thumb {
+    background-color: #F37F29;
+    border-radius: 10px;
+  }
