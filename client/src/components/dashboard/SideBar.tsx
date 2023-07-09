@@ -40,9 +40,7 @@ const SideBar: React.FC = () => {
     .map((item: any) => item.key);
   return (
     <Menu
-      style={{
-        width: '256px', height: '100vh', fontSize: '17px',
-      }}
+      className="dash-menu"
       selectedKeys={selectedKeys}
       items={items}
     />

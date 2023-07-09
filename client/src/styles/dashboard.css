@@ -6,6 +6,12 @@ body {
   overflow: auto;
 }
 
+.dash-menu {
+  width: 256px;
+  height: 100vh;
+  font-size: 17px;
+}
+
 .stats {
   flex: 1;
   padding: 20px;
@@ -17,7 +23,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
 h1 {
@@ -29,4 +35,19 @@ h1 {
 .text {
   text-align: center;
   margin: 20px 0;
+}
+
+@media(max-width: 767px) {
+  .dash-menu{
+    width: 150px;
+  }
+  h1 {
+    position: absolute;
+    margin-left: 20px;
+    margin-top: 15px;
+    visibility: hidden;
+  }
+  header h2 {
+    font-size: 24px;
+  }
 }
