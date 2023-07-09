@@ -54,8 +54,8 @@ export const AuthContextProvider = ({ children } : IChildrenProps) => {
       setLoading(true);
       const { data: { user, categories } } = await axios.get('/api/v1/auth');
       if (user && categories) {
-        setUser(user);
-        setCategories(categories);
+        setUser(() => user);
+        setCategories(() => categories);
       }
       setLoading(false);
     } catch (error) {

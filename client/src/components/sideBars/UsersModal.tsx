@@ -1,55 +1,130 @@
-import {  Avatar, Button, Row, Col, Typography, Modal } from 'antd';
+import {
+  Avatar, Button, Row, Col, Typography, Modal, message,
+} from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import {
+  Dispatch, SetStateAction, useEffect, useState,
+} from 'react';
+import axios from 'axios';
+import { IFollow } from '../../interfaces';
+import Box from '../commons/Box';
 
 const { Title } = Typography;
 
-const data = [
-  { id: 1, name: 'Mohammad', username: 'username', avatar: 'https://media.discordapp.net/attachments/1112051630985187378/1122439026163601531/5308de68ed17c97ce5e45cef8f648dbb.png?width=320&height=320' },
-  { id: 2, name: 'Mohammad', username: 'username', avatar: 'https://media.discordapp.net/attachments/1112051630985187378/1122439026390073394/38308a08c26e275d9560bcbabeb74324.png?width=320&height=320' },
-  { id: 3, name: 'Mohammad', username: 'username', avatar: 'ellipse-1-2.png' },
-  { id: 4, name: 'Mohammad', username: 'username', avatar: 'ellipse-1-3.png' },
-  { id: 5, name: 'Mohammad', username: 'username', avatar: 'ellipse-1-4.png' },
-];
-
-const UsersModal = ({ visible, onClose }: { visible: boolean, onClose: () => void }) => {
-    
-  const handleOk = () => {
-    onClose();
-  };
-
+const UsersModal = ({
+  visible, onClose, userId, type, setFollowingCount,
+}: { visible: boolean, onClose: () => void, userId:number, type:string,
+  setFollowingCount:Dispatch<SetStateAction<number>> }) => {
+  const [users, setUsers] = useState<IFollow[]>([]);
+  const [followings, setFollowings] = useState<IFollow[]>([]);
   const handleCancel = () => {
     onClose();
   };
 
+  const checkIsFollowing = (id:number, arr:IFollow[]): boolean => {
+    let result = false;
+    arr.forEach((element:IFollow) => {
+      if (element.followerId === id) {
+        result = true;
+      }
+    });
+    return result;
+  };
+  const getFollowings = async (id:number) => {
+    try {
+      const { data: { data } } = await axios.get(`/api/v1/follow/followings/${id}`);
+      setFollowings(data);
+    } catch (error) {
+      message.error('Something went wrong!');
+    }
+  };
+
+  const getData = async (id:number, path: string) => {
+    try {
+      const { data: { data } } = await axios.get(`/api/v1/follow/${path}/${id}`);
+      setUsers(data);
+    } catch (error) {
+      message.error('Something went wrong!');
+    }
+  };
+
+  useEffect(() => { getData(userId, type); getFollowings(userId); }, []);
+
+  const follow = async (id:number) => {
+    try {
+      const { data: { data } } = await axios.post(`/api/v1/follow/followers/${id}`);
+      setFollowingCount((prev) => prev + 1);
+      setFollowings([...followings, data]);
+      message.success('Followed successfully.');
+    } catch (error) {
+      message.error('Something went wrong!');
+    }
+  };
+  const unfollow = async (id:number) => {
+    try {
+      await axios.delete(`/api/v1/follow/followings/${id}`);
+      const updatedFollowings = followings.filter(
+        (following) => following.followerId !== id,
+      );
+      setFollowingCount((prev) => prev - 1);
+      setFollowings(updatedFollowings);
+      message.success('UnFollowed successfully.');
+    } catch (error) {
+      message.error('Something went wrong!');
+    }
+  };
   return (
-    <div>
+    <Box>
       <Modal
-        title="Likes"
-        visible={visible}
-        onOk={handleOk}
+        title={type}
+        open={visible}
         onCancel={handleCancel}
         width={650}
         style={{ top: 20 }}
+        footer={null}
       >
-        {data.map(item => (
-          <Row key={item.id} style={{ marginBottom: 16, alignItems: 'center' }} align="middle">
+        {users.length !== 0 ? users.map((item) => (
+          <Row key={item.followId} style={{ marginBottom: 16, alignItems: 'center' }} align="middle">
             <Col flex="auto">
               <Row align="middle" gutter={8}>
                 <Col>
-                  <Avatar src={item.avatar} shape="circle" style={{height:50, width:50}} icon={<UserOutlined />} />
+                  <Avatar
+                    src={type === 'followings' ? item.followingUser?.userImage : item?.followerUser?.userImage}
+                    shape="circle"
+                    style={{ height: 50, width: 50 }}
+                    icon={<UserOutlined />}
+                  />
                 </Col>
                 <Col>
-                  <Title level={5}>{item.name}</Title>
+                  <Title level={5}>
+                    {type === 'followings' ? item.followingUser?.fullName : item?.followerUser?.fullName}
+
+                  </Title>
                 </Col>
               </Row>
             </Col>
             <Col>
-              <Button type="dashed" shape="round">Follow</Button>
+              <Button
+                type="dashed"
+                shape="round"
+                onClick={
+                    checkIsFollowing(type === 'followers' ? item.followingId : item.followerId, followings)
+                      ? () => unfollow(type === 'followers'
+                        ? item.followingId : item.followerId) : () => follow(type === 'followers'
+                        ? item.followingId : item.followerId)
+}
+              >
+                {checkIsFollowing(
+                  type === 'followers' ? item.followingId : item.followerId,
+                  followings,
+                ) ? 'Following' : 'Follow'}
+
+              </Button>
             </Col>
           </Row>
-        ))}
+        )) : null}
       </Modal>
-    </div>
+    </Box>
   );
 };
 

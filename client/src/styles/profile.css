@@ -1,6 +1,4 @@
-.user-img {
-    width: 80px;
-    height: 80px;
-    border-radius: 80px;
+.user-img-profile {
+    border-radius: 96px;
     object-fit: cover;
 }

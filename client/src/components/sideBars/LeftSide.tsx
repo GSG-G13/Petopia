@@ -17,12 +17,15 @@ import UsersModal from './UsersModal';
 import ImageComponent from '../commons/Image';
 import { AuthContext } from '../context/AuthContext';
 import '../../styles/profile.css';
+import Box from '../commons/Box';
 
 const { Item } = Menu;
 const LeftSide = () => {
   const { Title, Text } = Typography;
   const { userData } = useContext(AuthContext);
   const [normalPostModal, setNormalPostModal] = useState(false);
+  const [type, setType] = useState('');
+  const [followingCount, setFollowingCount] = useState(userData.followingCount);
   const showNormalPostModal = () => {
     setNormalPostModal(true);
   };
@@ -45,57 +48,68 @@ const LeftSide = () => {
       label: 'Product',
     },
   ];
-
   return (
     <>
-      <UsersModal visible={normalPostModal} onClose={hideNormalPostModal} />
       { userData.userId === 0 ? null
         : (
-          <Card
-            style={{
-              maxWidth: 300, marginTop: 16, top: 0, border: 'none',
-            }}
-            loading={false}
-          >
-            <div style={{
-              display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '15px',
-            }}
+          <>
+            <Card
+              style={{
+                maxWidth: 300, marginTop: 16, top: 0, border: 'none',
+              }}
+              loading={false}
             >
-              <ImageComponent
-                src={userData.userImage}
-                height="96px"
-                width="96px"
-                alt="imgg"
-                className="user-img"
+              <Box style={{
+                display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '15px',
+              }}
+              >
+                <ImageComponent
+                  src={userData.userImage}
+                  height="96px"
+                  width="96px"
+                  alt="imgg"
+                  className="user-img-profile"
+                />
+              </Box>
+              <Title level={2} style={{ textAlign: 'center' }}>{userData.fullName}</Title>
+              <Divider />
+              <Box style={{ display: 'flex', justifyContent: 'space-between' }}>
+                {/* <Box>
+      <Title level={4}>586</Title>
+      <Text type="secondary">Posts</Text>
+    </Box> */}
+                {/* <Divider type="vertical" style={{ height: '60px' }} /> */}
+                <Box onClick={() => {
+                  setType(() => 'followers');
+                  showNormalPostModal();
+                }}
+                >
+                  <Title level={4} className="pointer">{userData.followerCount}</Title>
+                  <Text className="pointer" type="secondary">Followers</Text>
+                </Box>
+                <Divider type="vertical" style={{ height: '60px' }} />
+                <Box
+                  onClick={() => {
+                    setType(() => 'followings');
+                    showNormalPostModal();
+                  }}
+                >
+                  <Title level={4}>{followingCount}</Title>
+                  <Text type="secondary">Following</Text>
+                </Box>
+              </Box>
+            </Card>
+            {normalPostModal ? (
+              <UsersModal
+                visible={normalPostModal}
+                onClose={hideNormalPostModal}
+                userId={userData.userId}
+                type={type}
+                setFollowingCount={setFollowingCount}
               />
-
-            </div>
-            <Title level={2} style={{ textAlign: 'center' }}>{userData.fullName}</Title>
-            <Divider />
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <div>
-                <Title level={4}>586</Title>
-                <Text type="secondary">Posts</Text>
-              </div>
-              <Divider type="vertical" style={{ height: '60px' }} />
-              <div>
-                <Title level={4} onClick={showNormalPostModal}>15.4K</Title>
-                <Text type="secondary">Followers</Text>
-              </div>
-              <Divider type="vertical" style={{ height: '60px' }} />
-              <div>
-                <Title level={4}>648</Title>
-                <Text type="secondary">Following</Text>
-              </div>
-            </div>
-          </Card>
+            ) : null}
+          </>
         )}
-      {/* <Card
-        style={{
-          maxWidth: 300, marginTop: 16, border: 'none', padding: 0, marginBottom: 15,
-        }}
-        loading={false}
-      > */}
       <Menu
         mode="vertical"
         className="menu"
@@ -124,9 +138,6 @@ const LeftSide = () => {
           <DownOutlined style={{ fontWeight: 'bold' }} />
         </Button>
       </Dropdown>
-      {' '}
-
-      {/* </Card> */}
     </>
   );
 };
