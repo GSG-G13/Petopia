@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import {
   Button, Card, Avatar, Row, Col, Typography, Space, Badge,
 } from 'antd';
