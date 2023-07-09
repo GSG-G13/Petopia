@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import {
   Input, Button, Form, message,
 } from 'antd';
@@ -8,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Box from '../components/commons/Box';
 import Paragraph from '../components/commons/Paragraph';
+import { AuthContext } from '../components/context/AuthContext';
 
 const SignUp = () => {
   const [fullName, setFullName] = useState('');
@@ -17,6 +18,7 @@ const SignUp = () => {
   const [avatar, setAvatar] = useState('');
 
   const navigate = useNavigate();
+  const { userLogged, setUserLogged } = useContext(AuthContext);
 
   const defaultAvatr = 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png';
 
@@ -30,6 +32,8 @@ const SignUp = () => {
           type: 'success',
           content: res.data.message,
         });
+
+        setUserLogged(!userLogged);
         navigate('/explore');
       }
     } catch (err) {

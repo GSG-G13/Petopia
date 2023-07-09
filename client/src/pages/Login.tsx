@@ -4,26 +4,29 @@ import {
 import Title from 'antd/es/typography/Title';
 import '../styles/Register.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import axios from 'axios';
 import Box from '../components/commons/Box';
 import Paragraph from '../components/commons/Paragraph';
+import { AuthContext } from '../components/context/AuthContext';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const { userLogged, setUserLogged } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
     try {
       const res = await axios.post('/api/v1/auth/login', { email, password });
-
       if (res.data.message) {
         message.open({
           type: 'success',
           content: res.data.message,
         });
+        setUserLogged(!userLogged);
         navigate('/feed');
       }
     } catch (err) {
