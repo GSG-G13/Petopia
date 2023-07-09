@@ -118,6 +118,7 @@ const Posts: React.FC = () => {
     <>
       <div>
         <Input.Search
+          className="search"
           placeholder="Search by name..."
           onSearch={handleSearch}
           enterButton
@@ -127,6 +128,7 @@ const Posts: React.FC = () => {
         />
       </div>
       <Table
+        className="table-list"
         columns={columns}
         dataSource={data}
         pagination={{

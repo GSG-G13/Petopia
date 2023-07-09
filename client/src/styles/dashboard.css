@@ -8,7 +8,6 @@ body {
 
 .dash-menu {
   width: 256px;
-  height: 100vh;
   font-size: 17px;
 }
 
@@ -26,10 +25,21 @@ header {
   background-color: #ffffff;
 }
 
+header h2 {
+  color: #6060ff;
+  font-size: 26px;
+}
+
+.search {
+  margin-bottom: 20px;
+}
+
 h1 {
   position: absolute;
   margin-left: 20px;
   margin-top: 15px;
+  font-size: 30px;
+  color: #f37f29;
 }
 
 .text {
@@ -37,9 +47,33 @@ h1 {
   margin: 20px 0;
 }
 
+.table-list {
+  overflow-x: auto;
+}
+
+.stat-card {
+  width: 80%;
+  text-align: center;
+  margin: auto;
+  border-bottom: 3px solid #6060ff;
+}
+
+.stat-chart {
+  width: 80%;
+  margin: auto;
+}
+
+header .logout {
+  position: absolute;
+  right: 30px;
+}
+
 @media(max-width: 767px) {
+  .table-list {
+    width: 100%;
+  }
   .dash-menu{
-    width: 150px;
+    width: 120px;
   }
   h1 {
     position: absolute;
@@ -49,5 +83,19 @@ h1 {
   }
   header h2 {
     font-size: 24px;
+    margin-right: 60px;
+  }
+  .text {
+    font-size: 18px;
+  }
+  .stat-card {
+    width: 100%;
+  }
+  .stat-chart {
+    width: 100%;
+  }
+  header .logout {
+    position: absolute;
+    right: 10px;
   }
 }

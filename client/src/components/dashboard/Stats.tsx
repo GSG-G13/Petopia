@@ -37,7 +37,7 @@ const Stats: React.FC = () => {
   };
   return (
     <>
-      <Card style={{ width: '80%', textAlign: 'center', margin: 'auto' }}>
+      <Card className="stat-card">
         <Statistic title="Total Users" value={1000} />
         <Statistic title="Active Users" value={800} />
         <Statistic title="New Users" value={200} />
@@ -45,7 +45,7 @@ const Stats: React.FC = () => {
       </Card>
       <h2 className="text">Monthly Applications</h2>
       <h3 className="text">Area Chart</h3>
-      <Area {...config} />
+      <Area {...config} className="stat-chart" />
     </>
   );
 };
