@@ -1,14 +1,11 @@
-import { Layout, Card } from 'antd';
+import { Card } from 'antd';
 import LeftSide from './LeftSide';
 import Box from '../commons/Box';
-
-const { Sider } = Layout;
 
 const boxStyle: React.CSSProperties = {
   backgroundColor: 'transparent',
   display: 'flex',
   flexDirection: 'row',
-  justifyContent: 'center',
   width: '100%',
   height: '100vh',
   margin: 0,
@@ -23,10 +20,7 @@ const rectangleWrapperStyle: React.CSSProperties = {
 const rectangleStyle: React.CSSProperties = {
   backgroundColor: '#ffffff',
   borderColor: '#efeff4',
-  // borderLeftStyle: 'solid',
-  // borderLeftWidth: '1px',
   width: '337px',
- 
 };
 
 const LeftSideBox = () => (

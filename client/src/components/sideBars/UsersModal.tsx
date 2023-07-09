@@ -1,19 +1,20 @@
 import {
-  Avatar, Button, Row, Col, Typography, Modal, message,
+  Avatar, Button, Row, Col, Typography, Modal, message, Empty,
 } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import {
   Dispatch, SetStateAction, useEffect, useState,
 } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { IFollow } from '../../interfaces';
 import Box from '../commons/Box';
 
 const { Title } = Typography;
 
 const UsersModal = ({
-  visible, onClose, userId, type, setFollowingCount,
-}: { visible: boolean, onClose: () => void, userId:number, type:string,
+  visible, onClose, userId, type, setFollowingCount, loggedId,
+}: { visible: boolean, onClose: () => void, userId:number, type:string, loggedId:number
   setFollowingCount:Dispatch<SetStateAction<number>> }) => {
   const [users, setUsers] = useState<IFollow[]>([]);
   const [followings, setFollowings] = useState<IFollow[]>([]);
@@ -48,7 +49,7 @@ const UsersModal = ({
     }
   };
 
-  useEffect(() => { getData(userId, type); getFollowings(userId); }, []);
+  useEffect(() => { getData(userId, type); getFollowings(loggedId); }, []);
 
   const follow = async (id:number) => {
     try {
@@ -97,32 +98,48 @@ const UsersModal = ({
                 </Col>
                 <Col>
                   <Title level={5}>
-                    {type === 'followings' ? item.followingUser?.fullName : item?.followerUser?.fullName}
-
+                    <Link
+                      to={`/profile/${type === 'followers'
+                        ? item.followingId : item.followerId}`}
+                      className="username"
+                    >
+                      {' '}
+                      {type === 'followings' ? item.followingUser?.fullName : item?.followerUser?.fullName}
+                    </Link>
                   </Title>
                 </Col>
               </Row>
             </Col>
             <Col>
-              <Button
-                type="dashed"
-                shape="round"
-                onClick={
+              {(type === 'followers' ? item.followingId : item.followerId) === loggedId ? null
+                : (
+                  <Button
+                    type="dashed"
+                    shape="round"
+                    className="follow-button"
+                    onClick={
                     checkIsFollowing(type === 'followers' ? item.followingId : item.followerId, followings)
                       ? () => unfollow(type === 'followers'
                         ? item.followingId : item.followerId) : () => follow(type === 'followers'
                         ? item.followingId : item.followerId)
 }
-              >
-                {checkIsFollowing(
-                  type === 'followers' ? item.followingId : item.followerId,
-                  followings,
-                ) ? 'Following' : 'Follow'}
-
-              </Button>
+                  >
+                    {checkIsFollowing(
+                      type === 'followers' ? item.followingId : item.followerId,
+                      followings,
+                    ) ? 'Following' : 'Follow'}
+                  </Button>
+                )}
             </Col>
           </Row>
-        )) : null}
+        ))
+          : (
+            <Empty
+              image={Empty.PRESENTED_IMAGE_SIMPLE}
+              description={`There are no ${type} yet`}
+              style={{ display: 'flex', transitionDelay: 'display 5s', justifyContent: 'center' }}
+            />
+          )}
       </Modal>
     </Box>
   );

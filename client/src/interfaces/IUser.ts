@@ -3,6 +3,7 @@ interface IUser {
   fullName: string
   email: string
   userImage: string
+  profileImage?: string
   address: string
   phone: string
   followerCount: number

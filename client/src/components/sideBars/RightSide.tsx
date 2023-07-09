@@ -9,7 +9,7 @@ const RightSide = (): JSX.Element => {
     backgroundColor: 'transparent',
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'end',
     width: '100%',
   };
 

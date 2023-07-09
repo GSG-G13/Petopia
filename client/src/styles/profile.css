@@ -2,3 +2,13 @@
     border-radius: 96px;
     object-fit: cover;
 }
+.profile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.profile-cover {
+    object-fit: cover;
+    border-radius: 10px;
+}

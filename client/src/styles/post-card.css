@@ -42,7 +42,7 @@
 .username {
     margin: 0;
     font-size: 14px;
-    color: #0D161D;
+    color: #0D161D !important;
     font-weight: 600;
     font-family : var(--main-font);
 }
@@ -158,7 +158,7 @@ a {
 }
 
 a:hover {
-    color: #f8cb5c
+    color: #f8cb5c !important;
 }
 
 .comment {

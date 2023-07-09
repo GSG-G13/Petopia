@@ -26,6 +26,11 @@ const router = createBrowserRouter([
       element:
   <PostContainer path="feed" />,
     },
+    {
+      path: 'profile/:id',
+      element:
+  <PostContainer path="profile" />,
+    },
     ],
   },
   {
@@ -42,10 +47,10 @@ const router = createBrowserRouter([
     <SignUp />
   </NotProtectedRoute>,
   },
-  {
-    path: '/profile/:id',
-    element:
-  <PostContainer path="profile" />,
-  },
+  // {
+  //   path: '/profile/:id',
+  //   element:
+  // <PostContainer path="profile" />,
+  // },
 ]);
 export default router;

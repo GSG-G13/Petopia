@@ -1,10 +1,10 @@
 import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import {
-  Card, Typography, Divider, Dropdown, Button,
+  Card, Typography, Divider,
   Menu,
 } from 'antd';
-import { MessageAdd1 } from 'iconsax-react';
+
 import {
   HomeOutlined,
   SearchOutlined,
@@ -19,6 +19,8 @@ import ImageComponent from '../commons/Image';
 import { AuthContext } from '../context/AuthContext';
 import '../../styles/profile.css';
 import Box from '../commons/Box';
+import AddNewPostSideBar from '../addPost/AddNewPostSideBar';
+import FollowingCountContext from '../context/FollowingCountContext';
 
 const { Item } = Menu;
 const LeftSide = () => {
@@ -26,7 +28,8 @@ const LeftSide = () => {
   const { userData } = useContext(AuthContext);
   const [normalPostModal, setNormalPostModal] = useState(false);
   const [type, setType] = useState('');
-  const [followingCount, setFollowingCount] = useState(userData.followingCount);
+  // const [followingCount, setFollowingCount] = useState(userData.followingCount);
+  const { followingCount, setFollowingCount } = useContext(FollowingCountContext);
   const showNormalPostModal = () => {
     setNormalPostModal(true);
   };
@@ -35,22 +38,8 @@ const LeftSide = () => {
     setNormalPostModal(false);
   };
 
-  const items = [
-    {
-      key: '1',
-      label: 'Post',
-    },
-    {
-      key: '2',
-      label: 'Adoption',
-    },
-    {
-      key: '3',
-      label: 'Product',
-    },
-  ];
   return (
-    <>
+    <Box style={{ height: '100vh' }}>
       { userData.userId === 0 ? null
         : (
           <>
@@ -72,7 +61,7 @@ const LeftSide = () => {
                   className="user-img-profile"
                 />
               </Box>
-              <Title level={2} style={{ textAlign: 'center' }}>{userData.fullName}</Title>
+              <Title level={2} style={{ textAlign: 'center', fontSize: '26px' }}>{userData.fullName}</Title>
               <Divider />
               <Box style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Box onClick={() => {
@@ -90,8 +79,8 @@ const LeftSide = () => {
                     showNormalPostModal();
                   }}
                 >
-                  <Title level={4}>{followingCount}</Title>
-                  <Text type="secondary">Following</Text>
+                  <Title level={4} className="pointer">{followingCount}</Title>
+                  <Text className="pointer" type="secondary">Following</Text>
                 </Box>
               </Box>
             </Card>
@@ -100,6 +89,7 @@ const LeftSide = () => {
                 visible={normalPostModal}
                 onClose={hideNormalPostModal}
                 userId={userData.userId}
+                loggedId={userData.userId}
                 type={type}
                 setFollowingCount={setFollowingCount}
               />
@@ -113,28 +103,43 @@ const LeftSide = () => {
           border: 'none', fontSize: 17, marginBottom: 20, maxWidth: 300,
         }}
       >
-        <Item key="home" icon={<HomeOutlined />}><Link to="/">Feed</Link></Item>
-        <Item key="explore" icon={<SearchOutlined />}><Link to="explore">Explore</Link></Item>
+        <Item key="home" icon={<HomeOutlined />}>
+          <NavLink to="/">
+            Feed
+          </NavLink>
+
+        </Item>
+        <Item key="explore" icon={<SearchOutlined />}>
+          <NavLink
+            to="explore"
+            // className={({ isActive, isPending }) => (
+            //   isActive? 'actives': isPending? 'pending': '')}
+          >
+            Explore
+          </NavLink>
+
+        </Item>
         <Item key="notifications" icon={<BellOutlined />}>Notifications</Item>
         <Item key="messages" icon={<MessageOutlined />}>Messages</Item>
         <Item key="bookmarks" icon={<BookOutlined />}>Bookmarks</Item>
         <Item key="products" icon={<DownOutlined />}>Products</Item>
-        <Item key="profile" icon={<UserOutlined />}>Profile</Item>
+        <Item key="profile" icon={<UserOutlined />}>
+          {' '}
+          <NavLink
+            to={`/profile/${userData.userId}`}
+            // className={({ isActive, isPending }) => (
+            //   isActive? 'actives': isPending
+            //       ? 'pending'
+            //       : '')}
+          >
+            Profile
+
+          </NavLink>
+        </Item>
       </Menu>
-      <Dropdown menu={{ items }}>
-        <Button
-          type="primary"
-          size="large"
-          style={{
-            borderRadius: '150px', backgroundColor: '#F37F29', fontSize: '16px', width: 207.386,
-          }}
-        >
-          <MessageAdd1 size="20" color="#fff" />
-          <span style={{ marginLeft: '16px', borderRight: '2px solid #fff', paddingRight: '10px' }}>Create Post</span>
-          <DownOutlined style={{ fontWeight: 'bold' }} />
-        </Button>
-      </Dropdown>
-    </>
+
+      <AddNewPostSideBar />
+    </Box>
   );
 };
 

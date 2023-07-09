@@ -7,6 +7,8 @@ import { IPost } from '../interfaces';
 import Box from './commons/Box';
 import '../styles/posts.css';
 import PostSkeleton from './post/PostSkeleton';
+import UserProfile from './userProfile/UserProfile';
+import AddNewPost from './addPost/AddNewPost';
 
 interface Props {
   path: string
@@ -14,6 +16,7 @@ interface Props {
 
 const PostContainer : React.FC<Props> = ({ path }: Props) => {
   const { id } = useParams();
+  const userId = Number(id);
   const [explorePosts, setPosts] = useState<IPost[]>([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -24,7 +27,7 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
       break;
     case 'feed': apiLink = `/api/v1/posts/feed?page=${page}`;
       break;
-    case 'profile': apiLink = `/api/v1/users/${id}/posts?page=${page}`;
+    case 'profile': apiLink = `/api/v1/users/${userId}/posts?page=${page}`;
       break;
     default: apiLink = `/api/v1/posts?page=${page}`;
   }
@@ -51,11 +54,11 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
 
   useEffect(() => {
     setPage(1);
-  }, [path, id]);
+  }, [path, userId]);
 
   useEffect(() => {
     fetchData();
-  }, [page, path, id]);
+  }, [page, path, userId]);
 
   const handleScroll = (event:React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = event.currentTarget as HTMLDivElement;
@@ -74,6 +77,8 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
   )
     : (
       <Box className="posts-container" onScroll={handleScroll}>
+        {path === 'profile' ? <UserProfile userId={userId} /> : null}
+        {path === 'feed' || path === 'explore' ? <AddNewPost /> : null}
         {explorePosts.length !== 0
           ? explorePosts.map((post:IPost) => (
             <PostCard
