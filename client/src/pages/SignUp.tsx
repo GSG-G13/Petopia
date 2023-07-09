@@ -36,7 +36,7 @@ const SignUp = () => {
         setUserLogged(!userLogged);
         navigate('/explore');
       }
-    } catch (err) {
+    } catch (err: any) {
       message.open({
         type: 'error',
         content: err.response.data.message,

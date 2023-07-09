@@ -29,10 +29,11 @@ const Login = () => {
         setUserLogged(!userLogged);
         navigate('/feed');
       }
-    } catch (err) {
+    } catch (err: any) {
+      const errorMessage = err.response.data.message;
       message.open({
         type: 'error',
-        content: err.response.data.message,
+        content: errorMessage,
       });
     }
   };
