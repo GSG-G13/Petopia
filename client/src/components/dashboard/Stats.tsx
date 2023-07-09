@@ -45,7 +45,7 @@ const Stats: React.FC = () => {
       </Card>
       <h2 className="text">Monthly Applications</h2>
       <h3 className="text">Area Chart</h3>
-      <Area {...config} className="stat-chart" />
+      <Area {...config} className="stat-chart" color="#f37f29" />
     </>
   );
 };
