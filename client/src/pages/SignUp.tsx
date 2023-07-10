@@ -177,7 +177,7 @@ const SignUp = () => {
                     setAvatar(() => fileList[0] as { originFileObj: Blob; name: string | undefined; });
                   }}
                 >
-                  <Button> Upload your profile picture</Button>
+                  <Button className="button-upload"> Upload your profile picture</Button>
                 </Upload>
               </Form.Item>
             </Form.Item>
