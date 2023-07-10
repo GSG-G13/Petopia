@@ -12,6 +12,7 @@ import PostContainer from '../components/PostContainer';
 import Categories from '../components/dashboard/Categories';
 import ProtectedRoute from '../components/ProtectedRoute';
 import NotProtectedRoute from '../components/NotProtectedRoute';
+import AdminProtectedRoute from '../components/AdminProtectedRoute';
 
 const router = createBrowserRouter([
   {
@@ -52,7 +53,10 @@ const router = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    element: <DashBoard />,
+    element:
+  <AdminProtectedRoute>
+    <DashBoard />
+  </AdminProtectedRoute>,
     children: [
       {
         path: '/dashboard',

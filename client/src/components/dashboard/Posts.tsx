@@ -38,7 +38,7 @@ const Posts: React.FC = () => {
     if (value === '') {
       setPosts(list);
     } else {
-      const filteredPosts = list.filter((post) => post.user.fullName.toLowerCase().includes(value.toLowerCase()));
+      const filteredPosts = list.filter((post) => post.postContent.toLowerCase().includes(value.toLowerCase()));
       setPosts(filteredPosts);
     }
   };
@@ -67,15 +67,19 @@ const Posts: React.FC = () => {
       key: 'id',
     },
     {
-      title: 'Username',
-      dataIndex: ['user', 'fullName'],
-      key: 'username',
-      render: (text: string) => <Link to="/user">{text}</Link>,
-    },
-    {
       title: 'Content',
       dataIndex: 'postContent',
       key: 'content',
+      render: (text: string, record: DataType) => (
+        <Link to={`/post/${record.postId}`} target="_blank">
+          {text}
+        </Link>
+      ),
+    },
+    {
+      title: 'Username',
+      dataIndex: ['user', 'fullName'],
+      key: 'username',
     },
     {
       title: 'Tag',
@@ -119,7 +123,7 @@ const Posts: React.FC = () => {
       <div>
         <Input.Search
           className="search"
-          placeholder="Search by name..."
+          placeholder="Search in post content..."
           onSearch={handleSearch}
           enterButton
           value={searchName}

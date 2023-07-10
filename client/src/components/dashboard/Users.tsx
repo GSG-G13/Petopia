@@ -66,7 +66,11 @@ const Users: React.FC = () => {
       title: 'Full Name',
       dataIndex: 'fullName',
       key: 'fullName',
-      render: (text: string) => <Link to="/user">{text}</Link>,
+      render: (text: string, record: DataType) => (
+        <Link to={`/profile/${record.userId}`} target="_blank">
+          {text}
+        </Link>
+      ),
     },
     {
       title: 'Email',

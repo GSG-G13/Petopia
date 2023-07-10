@@ -26,7 +26,13 @@ const DashBoard = () => {
       <h1>Petopia</h1>
       <header>
         <h2>Dashboard</h2>
-        <Button type="primary" shape="round" icon={<LogoutOutlined />} className="logout" onClick={handleLogout}>
+        <Button
+          type="primary"
+          shape="round"
+          icon={<LogoutOutlined />}
+          className="logout"
+          onClick={handleLogout}
+        >
           Logout
         </Button>
       </header>

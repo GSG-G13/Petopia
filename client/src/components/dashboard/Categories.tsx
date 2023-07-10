@@ -13,7 +13,6 @@ interface DataType {
 
 const Categories: React.FC = () => {
   const [cats, setCats] = useState<DataType[]>([]);
-  // const [list, setList] = useState<DataType[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [title, setTitle] = useState('');
 
@@ -24,7 +23,6 @@ const Categories: React.FC = () => {
       .then((res) => res.data)
       .then((res) => {
         setCats(res.data.sort((a: any, b: any) => a.categoryId - b.categoryId));
-        // setList(res.data.sort((a: any, b: any) => a.categoryId - b.categoryId));
       });
   }, []);
 
@@ -116,7 +114,7 @@ const Categories: React.FC = () => {
 
   return (
     <>
-      <Button type="primary" onClick={showModal}>
+      <Button type="primary" onClick={showModal} className="add-cat">
         Add Category
       </Button>
       <Modal title="Add New Category" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>

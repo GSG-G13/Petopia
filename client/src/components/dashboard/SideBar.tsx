@@ -28,8 +28,8 @@ function getItem(
 const items: MenuItem[] = [
   getItem(<Link to="/dashboard">Stats</Link>, '1', <BarChartOutlined />),
   getItem(<Link to="/dashboard/users">Users</Link>, '2', <TeamOutlined />),
-  getItem(<Link to="/dashboard/categories">Categories</Link>, '3', <ApartmentOutlined />),
-  getItem(<Link to="/dashboard/posts">Posts</Link>, '4', <DatabaseOutlined />),
+  getItem(<Link to="/dashboard/posts">Posts</Link>, '3', <DatabaseOutlined />),
+  getItem(<Link to="/dashboard/categories">Categories</Link>, '4', <ApartmentOutlined />),
 ];
 
 const SideBar: React.FC = () => {
