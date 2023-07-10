@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import {
-  Input, Button, Form, message,
+  Input, Button, Form, message, Upload,
 } from 'antd';
 import Title from 'antd/es/typography/Title';
 import '../styles/Register.css';
@@ -9,32 +9,42 @@ import axios from 'axios';
 import Box from '../components/commons/Box';
 import Paragraph from '../components/commons/Paragraph';
 import { AuthContext } from '../components/context/AuthContext';
+import uploadToCloudinary from '../helpers/uploadToCloudinary';
 
 const SignUp = () => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [phone, setPhone] = useState('');
-  const [avatar, setAvatar] = useState('');
-
+  const [avatar, setAvatar] = useState< { originFileObj: Blob; name: string | undefined; } >();
   const navigate = useNavigate();
   const { userLogged, setUserLogged } = useContext(AuthContext);
 
   const defaultAvatr = 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png';
 
+  const normFile = (e: { fileList: { originFileObj: Blob; name: string | undefined; } }) => {
+    if (Array.isArray(e)) {
+      return e;
+    }
+    return e.fileList;
+  };
+
   const handleSubmit = async () => {
     try {
-      const res = await axios.post('/api/v1/auth/signup', {
-        fullName, email, password, phone, userImage: avatar || defaultAvatr,
-      });
-      if (res.data.message) {
-        message.open({
-          type: 'success',
-          content: res.data.message,
+      if (avatar) {
+        const imageUrl = await uploadToCloudinary(avatar);
+        const res = await axios.post('/api/v1/auth/signup', {
+          fullName, email, password, phone, userImage: imageUrl || defaultAvatr,
         });
+        if (res.data.message) {
+          message.open({
+            type: 'success',
+            content: res.data.message,
+          });
 
-        setUserLogged(!userLogged);
-        navigate('/explore');
+          setUserLogged(!userLogged);
+          navigate('/explore');
+        }
       }
     } catch (err: any) {
       message.open({
@@ -65,12 +75,12 @@ const SignUp = () => {
               rules={[
                 {
                   type: 'string',
-                  min: 10,
-                  message: 'Full Name must be at least 10 Characters!',
+                  min: 6,
+                  message: 'Full name must be at least 6 characters!',
                 },
                 {
                   required: true,
-                  message: 'Please Enter your FullName!',
+                  message: 'Please enter your full name!',
                 },
               ]}
               hasFeedback
@@ -91,11 +101,11 @@ const SignUp = () => {
               rules={[
                 {
                   type: 'email',
-                  message: 'The Input Is Not A Valid Email!',
+                  message: 'Email is not valid !',
                 },
                 {
                   required: true,
-                  message: 'Please Enter Your Email!',
+                  message: 'Please enter your email!',
                 },
               ]}
               hasFeedback
@@ -109,7 +119,6 @@ const SignUp = () => {
               />
             </Form.Item>
           </Box>
-
           <Box className="form-input">
             <Form.Item
               label="Password"
@@ -118,11 +127,11 @@ const SignUp = () => {
                 {
                   type: 'string',
                   min: 8,
-                  message: 'The Password Must Be At Least 8 Characters',
+                  message: 'The password must be at Least 8 characters',
                 },
                 {
                   required: true,
-                  message: 'Please Enter Your Password!',
+                  message: 'Please enter your password!',
                 },
               ]}
               hasFeedback
@@ -136,7 +145,6 @@ const SignUp = () => {
               />
             </Form.Item>
           </Box>
-
           <Box className="form-input">
             <Form.Item
               label="Phone Number"
@@ -157,28 +165,23 @@ const SignUp = () => {
               />
             </Form.Item>
           </Box>
-
           <Box className="form-input">
-            <Form.Item
-              label="Avatar"
-              name="avatar"
-              rules={[
-                {
-                  type: 'url',
-                  message: 'Please Enter A Valid URL Image!',
-                },
-              ]}
-            >
-              <Input
-                className="input"
-                value={avatar}
-                onChange={(e) => {
-                  setAvatar(e.target.value);
-                }}
-              />
+            <Form.Item className="addPost--uploadField">
+              <Form.Item label="Avatar" name="avatar" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
+                <Upload
+                  action=""
+                  listType="picture"
+                  maxCount={1}
+                  beforeUpload={() => false}
+                  onChange={({ fileList }) => {
+                    setAvatar(() => fileList[0] as { originFileObj: Blob; name: string | undefined; });
+                  }}
+                >
+                  <Button> Upload your profile picture</Button>
+                </Upload>
+              </Form.Item>
             </Form.Item>
           </Box>
-
           <Box className="form-submit">
             <Form.Item>
               <Button htmlType="submit" className="button">
