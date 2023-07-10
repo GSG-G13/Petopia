@@ -118,7 +118,6 @@ const UserProfile = ({ userId }:{ userId: number }) => {
           />
         )
         : null}
-
       <Card className="card" bordered={false}>
         <ImageComponent
           alt="Cover Photo"
@@ -130,21 +129,20 @@ const UserProfile = ({ userId }:{ userId: number }) => {
             : profile.profileImage}
         />
         <Row>
-
           <Col
             span={12}
             style={{
               textAlign: 'right', position: 'absolute', marginTop: 20, right: '40px',
             }}
           >
-            <Space>
-              <Badge dot offset={[-10, 10]}>
-                <Box style={iconWrapperStyle}>
-                  <BellOutlined style={iconStyle} className="notification" />
-                </Box>
-              </Badge>
-              {userData.userId === userId ? ''
-                : (
+            {userData.userId === userId ? ''
+              : (
+                <Space>
+                  <Badge dot offset={[-10, 10]}>
+                    <Box style={iconWrapperStyle}>
+                      <BellOutlined style={iconStyle} className="notification" />
+                    </Box>
+                  </Badge>
                   <Button
                     type="primary"
                     size="large"
@@ -157,10 +155,9 @@ const UserProfile = ({ userId }:{ userId: number }) => {
                   >
                     {checkIsFollowing(userId, followings) ? 'Following' : 'Follow'}
                   </Button>
-                )}
-            </Space>
+                </Space>
+              )}
           </Col>
-
           <Col span={12}>
             <Avatar
               size={100}
@@ -215,14 +212,6 @@ const UserProfile = ({ userId }:{ userId: number }) => {
                   {' '}
                   Followers
                 </Text>
-              </Space>
-            </Col>
-            <Col span={12} style={{ marginBottom: 15 }}>
-              <Space>
-                <Avatar src="https://media.discordapp.net/attachments/1112051630985187378/1122439026390073394/38308a08c26e275d9560bcbabeb74324.png?width=320&height=320" size="small" />
-                <Avatar src="https://media.discordapp.net/attachments/1112051630985187378/1122439026390073394/38308a08c26e275d9560bcbabeb74324.png?width=320&height=320" size="small" />
-                <Avatar src="https://media.discordapp.net/attachments/1112051630985187378/1122439026390073394/38308a08c26e275d9560bcbabeb74324.png?width=320&height=320" size="small" />
-                <Text>Recent Followers</Text>
               </Space>
             </Col>
           </Row>

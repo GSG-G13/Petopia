@@ -1,17 +1,17 @@
-import React from "react";
-import { BellOutlined, MessageOutlined, BookOutlined, LoginOutlined } from '@ant-design/icons';
+import React from 'react';
+import {
+  BellOutlined, MessageOutlined, BookOutlined, LoginOutlined,
+} from '@ant-design/icons';
+import axios from 'axios';
+import { message } from 'antd';
+import Box from '../commons/Box';
 
-interface Props {
-  style: any;
-}
-
-const TopRightSide: React.FC<Props> = ({ style }) => {
+const TopRightSide: React.FC = () => {
   const parentStyle = {
     display: 'flex',
     justifyContent: 'space-between',
     width: '276px',
     height: '50px',
-    ...style,
   };
 
   const iconWrapperStyle = {
@@ -27,25 +27,32 @@ const TopRightSide: React.FC<Props> = ({ style }) => {
   };
 
   const iconStyle = {
-    fontSize: '24px', 
+    fontSize: '24px',
     color: '#0D161D',
   };
-
+  const logout = async () => {
+    try {
+      await axios.get('/api/v1/auth/logout');
+      window.location.reload();
+    } catch (error) {
+      message.error('Something went wrong!');
+    }
+  };
   return (
-    <div style={parentStyle}>
-      <div style={iconWrapperStyle}>
+    <Box style={parentStyle}>
+      <Box style={iconWrapperStyle}>
         <BellOutlined style={iconStyle} className="notification" />
-      </div>
-      <div style={iconWrapperStyle}>
+      </Box>
+      <Box style={iconWrapperStyle}>
         <MessageOutlined style={iconStyle} className="message-text" />
-      </div>
-      <div style={iconWrapperStyle}>
+      </Box>
+      <Box style={iconWrapperStyle}>
         <BookOutlined style={iconStyle} className="bookmark" />
-      </div>
-      <div style={iconWrapperStyle}>
+      </Box>
+      <Box style={iconWrapperStyle} onClick={logout} className="pointer">
         <LoginOutlined style={iconStyle} className="login" />
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

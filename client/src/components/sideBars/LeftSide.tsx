@@ -28,7 +28,6 @@ const LeftSide = () => {
   const { userData } = useContext(AuthContext);
   const [normalPostModal, setNormalPostModal] = useState(false);
   const [type, setType] = useState('');
-  // const [followingCount, setFollowingCount] = useState(userData.followingCount);
   const { followingCount, setFollowingCount } = useContext(FollowingCountContext);
   const showNormalPostModal = () => {
     setNormalPostModal(true);

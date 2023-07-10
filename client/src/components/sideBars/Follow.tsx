@@ -1,46 +1,102 @@
-import React from 'react';
 import {
-  Card, Avatar, Button, Row, Col, Typography,
+  Button, Row, Col, Typography, message, Empty,
 } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import FollowingCountContext from '../context/FollowingCountContext';
+import { IFollow, IUser } from '../../interfaces';
+import { AuthContext } from '../context/AuthContext';
+import Box from '../commons/Box';
+import ImageComponent from '../commons/Image';
 
-const { Title, Text } = Typography;
+const { Title } = Typography;
 
-const data = [
-  {
-    id: 1, name: 'Mohammad', username: 'username', avatar: 'https://media.discordapp.net/attachments/1112051630985187378/1122439026163601531/5308de68ed17c97ce5e45cef8f648dbb.png?width=320&height=320',
-  },
-  {
-    id: 2, name: 'Mohammad', username: 'username', avatar: 'https://media.discordapp.net/attachments/1112051630985187378/1122439026390073394/38308a08c26e275d9560bcbabeb74324.png?width=320&height=320',
-  },
-  {
-    id: 3, name: 'Mohammad', username: 'username', avatar: 'ellipse-1-2.png',
-  },
-  {
-    id: 4, name: 'Mohammad', username: 'username', avatar: 'ellipse-1-3.png',
-  },
-  {
-    id: 5, name: 'Mohammad', username: 'username', avatar: 'ellipse-1-4.png',
-  },
-];
+const Follow = (): JSX.Element => {
+  const [followings, setFollowings] = useState<IFollow[]>([]);
+  const [users, setUsers] = useState<IUser[]>([]);
+  const { setFollowingCount } = useContext(FollowingCountContext);
+  const { userData } = useContext(AuthContext);
+  const fetchData = async (following:IFollow[]) => {
+    try {
+      const { data: { data } } = await axios.get('/api/v1/users/');
+      let filteredUsers = data.filter((user:IUser) => !following.some((follow) => follow.followerId === user.userId));
+      filteredUsers = filteredUsers.filter((user:IUser) => userData.userId !== user.userId);
+      setUsers(() => filteredUsers);
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response?.status !== 401) {
+        message.error('Something went wrong!');
+      }
+    }
+  };
 
-const Follow = (): JSX.Element => (
-  <div>
-    <Title level={4} style={{ marginTop: 40, marginBottom: 16 }}>Who to follow</Title>
-    {data.map((item) => (
-      <Row key={item.id} style={{ marginBottom: 16, alignItems: 'center' }} align="middle">
-        <Col flex="auto">
-          <Card.Meta
-            avatar={<Avatar src={item.avatar} shape="circle" style={{ height: 50, width: 50 }} icon={<UserOutlined />} />}
-            title={<Title level={5}>{item.name}</Title>}
-          />
-        </Col>
-        <Col>
-          <Button type="dashed" shape="round">Follow</Button>
-        </Col>
-      </Row>
-    ))}
-  </div>
-);
+  const getFollowings = async () => {
+    try {
+      const { data: { data } } = await axios.get(`/api/v1/follow/followings/${userData.userId}`);
+      setFollowings(data);
+      fetchData(data);
+    } catch (error) {
+      message.error('Something went wrong!');
+    }
+  };
+  useEffect(() => {
+    getFollowings();
+  }, []);
+
+  const follow = async (userId:number) => {
+    try {
+      const { data: { data } } = await axios.post(`/api/v1/follow/followers/${userId}`);
+      setUsers((prevUsers) => prevUsers.filter((user) => (user.userId !== userId)));
+      setFollowings([...followings, data]);
+      setFollowingCount((prev) => prev + 1);
+      message.success('Followed successfully.');
+    } catch (error) {
+      message.error('Something went wrong!');
+    }
+  };
+  return (
+    <Box>
+      <Title level={4} style={{ marginTop: 40, marginBottom: 16 }}>Who to follow</Title>
+      {users.length === 0 ? (
+        <Empty
+          image={Empty.PRESENTED_IMAGE_SIMPLE}
+          description="There are no more to follow"
+          style={{ display: 'flex', transitionDelay: 'display 5s', justifyContent: 'center' }}
+        />
+      ) : users.map((user) => (
+        <Row key={user.userId} style={{ marginBottom: 16, alignItems: 'center' }} align="middle">
+          <Col flex="auto">
+            <Box className="user-post-container likers">
+              <ImageComponent
+                src={user.userImage}
+                height="50px"
+                width="50px"
+                className="user-img"
+                alt="user avatar"
+              />
+              <Link
+                to={`/profile/${user.userId}`}
+                className="username"
+                style={{ maxWidth: '130px', fontSize: '14px' }}
+              >
+                {user.fullName}
+              </Link>
+            </Box>
+          </Col>
+          <Col>
+            <Button
+              type="dashed"
+              shape="round"
+              className="follow-button"
+              onClick={() => follow(user.userId)}
+            >
+              Follow
+            </Button>
+          </Col>
+        </Row>
+      ))}
+    </Box>
+  );
+};
 
 export default Follow;

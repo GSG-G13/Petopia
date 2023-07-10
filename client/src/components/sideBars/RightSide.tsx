@@ -3,6 +3,7 @@ import { Card } from 'antd';
 import TopRightSide from './TopRightSide';
 import Trending from './Trending';
 import Follow from './Follow';
+import Box from '../commons/Box';
 
 const RightSide = (): JSX.Element => {
   const boxStyle: React.CSSProperties = {
@@ -11,6 +12,7 @@ const RightSide = (): JSX.Element => {
     flexDirection: 'row',
     justifyContent: 'end',
     width: '100%',
+    height: '100vh',
   };
 
   const rectangleWrapperStyle: React.CSSProperties = {
@@ -25,19 +27,19 @@ const RightSide = (): JSX.Element => {
     borderLeftStyle: 'solid',
     borderLeftWidth: '1px',
     width: '337px',
+    height: '100vh',
   };
 
   return (
-    <div style={boxStyle}>
-      <div style={rectangleWrapperStyle}>
+    <Box style={boxStyle}>
+      <Box style={rectangleWrapperStyle}>
         <Card style={rectangleStyle} bordered={false}>
-          <TopRightSide style={{}} />
+          <TopRightSide />
           <Trending />
           <Follow />
         </Card>
-
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

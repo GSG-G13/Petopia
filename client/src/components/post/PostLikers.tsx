@@ -28,7 +28,7 @@ interface ILiker {
 const PostLikers:React.FC<Props> = ({ showLikers, setShowLikers, postId }:Props) => {
   const [likers, setLikers] = useState<ILiker[]>([]);
   const [followings, setFollowings] = useState<IFollow[]>([]);
-  const { followingCount, setFollowingCount } = useContext(FollowingCountContext);
+  const { setFollowingCount } = useContext(FollowingCountContext);
 
   const { userData } = useContext(AuthContext);
   const fetchData = async (id:number) => {
