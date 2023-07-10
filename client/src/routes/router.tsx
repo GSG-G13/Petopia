@@ -31,6 +31,11 @@ const router = createBrowserRouter([
       element:
   <PostContainer path="profile" />,
     },
+    {
+      path: 'post/:postId',
+      element:
+  <PostContainer path="post" />,
+    },
     ],
   },
   {

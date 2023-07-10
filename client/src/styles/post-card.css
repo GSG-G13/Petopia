@@ -120,6 +120,7 @@
 .post-content {
     font-weight: 300;
     font-family: var(--main-font);
+    margin-bottom: 15px;
 }
 
 .collapse-details {

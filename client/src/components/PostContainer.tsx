@@ -15,7 +15,7 @@ interface Props {
 }
 
 const PostContainer : React.FC<Props> = ({ path }: Props) => {
-  const { id } = useParams();
+  const { id, postId } = useParams();
   const userId = Number(id);
   const [explorePosts, setPosts] = useState<IPost[]>([]);
   const [page, setPage] = useState(1);
@@ -29,6 +29,9 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
       break;
     case 'profile': apiLink = `/api/v1/users/${userId}/posts?page=${page}`;
       break;
+    case 'post':
+      apiLink = `/api/v1/posts/${postId}`;
+      break;
     default: apiLink = `/api/v1/posts?page=${page}`;
   }
   const fetchData = async () => {
@@ -38,7 +41,11 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
       }
       const { data: { data } } = await axios.get(apiLink);
       if (page === 1) {
-        setPosts(data);
+        if (path === 'post') {
+          setPosts([data]);
+        } else {
+          setPosts(data);
+        }
       } else {
         setPosts((prevData) => [...prevData, ...data]);
       }
