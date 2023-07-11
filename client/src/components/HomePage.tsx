@@ -118,7 +118,7 @@ const HomePage = () => {
                 onClose={onCloseLeft}
                 open={visibleLeft}
                 getContainer={false}
-                style={{ position: 'absolute' }}
+                rootStyle={{ position: 'absolute' }}
               >
                 <LeftSideBox />
               </Drawer>
@@ -138,7 +138,7 @@ const HomePage = () => {
                 onClose={onCloseRight}
                 open={visibleRight}
                 getContainer={false}
-                style={{ position: 'absolute' }}
+                rootStyle={{ position: 'absolute' }}
               >
                 <RightSide />
               </Drawer>

@@ -24,9 +24,9 @@ app.use('/api/v1', router)
 app.set('port', PORT ?? 3000)
 
 if (NODE_ENV === 'production') {
-  app.use(express.static(join(__dirname, '..', 'client', 'build')))
+  app.use(express.static(join(__dirname, '..', 'client', 'dist')))
   app.get('/*', (_req, res) => {
-    res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'))
+    res.sendFile(join(__dirname, '..', 'client', 'dist', 'index.html'))
   })
 }
 app.use(serverError)

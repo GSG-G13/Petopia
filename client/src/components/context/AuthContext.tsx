@@ -32,19 +32,19 @@ export const AuthContext = createContext<AuthProps>({
 interface IChildrenProps {
   children : React.ReactNode
 }
-
+const defaultUser = {
+  userId: 0,
+  fullName: '',
+  email: '',
+  userImage: 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png',
+  address: '',
+  phone: '',
+  followerCount: 0,
+  followingCount: 0,
+  userType: 'regular',
+};
 export const AuthContextProvider = ({ children } : IChildrenProps) => {
-  const [userData, setUser] = useState<IUser>({
-    userId: 0,
-    fullName: '',
-    email: '',
-    userImage: 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png',
-    address: '',
-    phone: '',
-    followerCount: 0,
-    followingCount: 0,
-    userType: 'regular',
-  });
+  const [userData, setUser] = useState<IUser>(defaultUser);
   const [categoriesData, setCategories] = useState<ICategory[]>([{ categoryId: 0, title: '' }]);
   const [loading, setLoading] = useState(true);
   const [userLogged, setUserLogged] = useState(false);
@@ -60,6 +60,9 @@ export const AuthContextProvider = ({ children } : IChildrenProps) => {
       setLoading(false);
     } catch (error) {
       setLoading(false);
+      if (axios.isAxiosError(error) && error.response?.status === 401) {
+        setUser(defaultUser);
+      }
       if (axios.isAxiosError(error) && error.response?.status !== 401) {
         message.error('Something went wrong!');
       }

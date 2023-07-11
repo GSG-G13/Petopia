@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   BellOutlined, MessageOutlined, BookOutlined, LoginOutlined,
 } from '@ant-design/icons';
 import axios from 'axios';
 import { message } from 'antd';
 import Box from '../commons/Box';
+import { AuthContext } from '../context/AuthContext';
 
 const TopRightSide: React.FC = () => {
+  const { userLogged, setUserLogged } = useContext(AuthContext);
+
   const parentStyle = {
     display: 'flex',
     justifyContent: 'space-between',
@@ -33,7 +36,7 @@ const TopRightSide: React.FC = () => {
   const logout = async () => {
     try {
       await axios.get('/api/v1/auth/logout');
-      window.location.reload();
+      setUserLogged(!userLogged);
     } catch (error) {
       message.error('Something went wrong!');
     }
