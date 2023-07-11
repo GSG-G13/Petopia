@@ -12,6 +12,7 @@ import { AuthContext } from '../components/context/AuthContext';
 import uploadToCloudinary from '../helpers/uploadToCloudinary';
 
 const SignUp = () => {
+  const [loading, setLoading] = useState(false);
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,6 +33,7 @@ const SignUp = () => {
   const handleSubmit = async () => {
     try {
       if (avatar) {
+        setLoading(true);
         const imageUrl = await uploadToCloudinary(avatar);
         const res = await axios.post('/api/v1/auth/signup', {
           fullName, email, password, phone, userImage: imageUrl || defaultAvatr,
@@ -42,11 +44,13 @@ const SignUp = () => {
             content: res.data.message,
           });
 
+          setLoading(false);
           setUserLogged(!userLogged);
           navigate('/explore');
         }
       }
     } catch (err: any) {
+      setLoading(false);
       message.open({
         type: 'error',
         content: err.response.data.message,
@@ -184,12 +188,12 @@ const SignUp = () => {
           </Box>
           <Box className="form-submit">
             <Form.Item>
-              <Button htmlType="submit" className="button">
-                SignUp
+              <Button loading={loading} htmlType="submit" className="button">
+                Signup
               </Button>
               <Paragraph>
                 Have an account?
-                <Link to="/login">Login</Link>
+                <Link to="/login"> Login</Link>
               </Paragraph>
             </Form.Item>
           </Box>

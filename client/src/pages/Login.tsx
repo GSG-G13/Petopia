@@ -13,6 +13,7 @@ import { AuthContext } from '../components/context/AuthContext';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const { userLogged, setUserLogged } = useContext(AuthContext);
 
@@ -20,16 +21,19 @@ const Login = () => {
 
   const handleSubmit = async () => {
     try {
+      setLoading(true);
       const res = await axios.post('/api/v1/auth/login', { email, password });
       if (res.data.message) {
         message.open({
           type: 'success',
           content: res.data.message,
         });
+        setLoading(false);
         setUserLogged(!userLogged);
         navigate('/feed');
       }
     } catch (err: any) {
+      setLoading(false);
       const errorMessage = err.response.data.message;
       message.open({
         type: 'error',
@@ -107,12 +111,12 @@ const Login = () => {
 
           <Box className="form-submit">
             <Form.Item>
-              <Button htmlType="submit" className="button">
+              <Button loading={loading} htmlType="submit" className="button">
                 Login
               </Button>
               <Paragraph>
                 Dont have an account?
-                <Link to="/signup">SignUp</Link>
+                <Link to="/signup"> Signup</Link>
               </Paragraph>
             </Form.Item>
           </Box>
