@@ -32,22 +32,20 @@ const SignUp = () => {
 
   const handleSubmit = async () => {
     try {
-      if (avatar) {
-        setLoading(true);
-        const imageUrl = await uploadToCloudinary(avatar);
-        const res = await axios.post('/api/v1/auth/signup', {
-          fullName, email, password, phone, userImage: imageUrl || defaultAvatr,
+      setLoading(true);
+      const imageUrl = avatar ? await uploadToCloudinary(avatar) : defaultAvatr;
+      const res = await axios.post('/api/v1/auth/signup', {
+        fullName, email, password, phone, userImage: imageUrl,
+      });
+      if (res.data.message) {
+        message.open({
+          type: 'success',
+          content: res.data.message,
         });
-        if (res.data.message) {
-          message.open({
-            type: 'success',
-            content: res.data.message,
-          });
 
-          setLoading(false);
-          setUserLogged(!userLogged);
-          navigate('/explore');
-        }
+        setLoading(false);
+        setUserLogged(!userLogged);
+        navigate('/explore');
       }
     } catch (err: any) {
       setLoading(false);
