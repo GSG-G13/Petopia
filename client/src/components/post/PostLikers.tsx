@@ -12,6 +12,7 @@ import Paragraph from '../commons/Paragraph';
 import formatTime from '../../helpers/timeFormatter';
 import { AuthContext } from '../context/AuthContext';
 import { IFollow } from '../../interfaces';
+import FollowingCountContext from '../context/FollowingCountContext';
 
 interface Props {
   showLikers:boolean
@@ -27,7 +28,8 @@ interface ILiker {
 const PostLikers:React.FC<Props> = ({ showLikers, setShowLikers, postId }:Props) => {
   const [likers, setLikers] = useState<ILiker[]>([]);
   const [followings, setFollowings] = useState<IFollow[]>([]);
-  const [, setlabel] = useState('');
+  const { setFollowingCount } = useContext(FollowingCountContext);
+
   const { userData } = useContext(AuthContext);
   const fetchData = async (id:number) => {
     try {
@@ -65,7 +67,7 @@ const PostLikers:React.FC<Props> = ({ showLikers, setShowLikers, postId }:Props)
     try {
       const { data: { data } } = await axios.post(`/api/v1/follow/followers/${userId}`);
       setFollowings([...followings, data]);
-      setlabel('Following');
+      setFollowingCount((prev) => prev + 1);
       message.success('Followed successfully.');
     } catch (error) {
       message.error('Something went wrong!');
@@ -78,8 +80,8 @@ const PostLikers:React.FC<Props> = ({ showLikers, setShowLikers, postId }:Props)
         (following) => following.followerId !== userId,
       );
       setFollowings(updatedFollowings);
+      setFollowingCount((prev) => prev - 1);
       message.success('UnFollowed successfully.');
-      setlabel('Follow');
     } catch (error) {
       message.error('Something went wrong!');
     }

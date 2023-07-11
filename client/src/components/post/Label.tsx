@@ -28,7 +28,7 @@ const Label: React.FC<Props> = ({ title }: Props) => {
       break;
     default:
       colors.main = 'var(--help-color)';
-      colors.side = 'var(--sell-side-color)';
+      colors.side = 'var(--help-side-color)';
   }
   return (
     <Box className="label" style={{ backgroundColor: colors.main }}>

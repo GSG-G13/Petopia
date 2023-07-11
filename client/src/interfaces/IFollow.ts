@@ -4,7 +4,11 @@ interface IFollow {
   followingId: number
   createdAt: string
   updatedAt: string
-  followingUser: {
+  followingUser?: {
+    fullName: string
+    userImage: string
+  }
+  followerUser?: {
     fullName: string
     userImage: string
   }

@@ -4,7 +4,8 @@ import IUser from './IUser';
 import ICategory from './ICategory';
 import IFollow from './IFollow';
 import IPetType from './IPetType';
+import IFollowingContext from './IFollowingContext';
 
 export type {
-  IPost, IComment, IUser, ICategory, IFollow, IPetType,
+  IPost, IComment, IUser, ICategory, IFollow, IPetType, IFollowingContext,
 };
