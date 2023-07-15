@@ -388,13 +388,35 @@ a:hover {
 .description-div{
    display: flex;
    gap: 5px;
-   
 }
 .description{
     color: var(--body-font-color);
     margin: 0;
+    max-width: 180px;
 }
 .collapse{
     background-color: #FBF2DC;
     margin-bottom: 10px;
+}
+.follow-container{
+    max-height: 280px;
+    overflow: auto;
+}
+.follow-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.follow-container::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    border-radius: 10px;
+}
+
+.follow-container::-webkit-scrollbar-thumb {
+    background-color: #F37F29;
+    border-radius: 10px;
+    height: 10px;
+}
+.product-img{
+    border-radius: 15px;
+    object-fit: cover;
 }

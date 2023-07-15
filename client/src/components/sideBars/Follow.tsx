@@ -57,44 +57,48 @@ const Follow = (): JSX.Element => {
   return (
     <Box>
       <Title level={4} style={{ marginTop: 40, marginBottom: 16 }}>Who to follow</Title>
-      {users.length === 0 ? (
-        <Empty
-          image={Empty.PRESENTED_IMAGE_SIMPLE}
-          description="There are no more to follow"
-          style={{ display: 'flex', transitionDelay: 'display 5s', justifyContent: 'center' }}
-        />
-      ) : users.map((user) => (
-        <Row key={user.userId} style={{ marginBottom: 16, alignItems: 'center' }} align="middle">
-          <Col flex="auto">
-            <Box className="user-post-container likers">
-              <ImageComponent
-                src={user.userImage}
-                height="50px"
-                width="50px"
-                className="user-img"
-                alt="user avatar"
-              />
-              <Link
-                to={`/profile/${user.userId}`}
-                className="username"
-                style={{ maxWidth: '130px', fontSize: '14px' }}
+      <Box className="follow-container">
+
+        {users.length === 0 ? (
+          <Empty
+            image={Empty.PRESENTED_IMAGE_SIMPLE}
+            description="There are no more to follow"
+            style={{ display: 'flex', transitionDelay: 'display 5s', justifyContent: 'center' }}
+          />
+        ) : users.map((user) => (
+          <Row key={user.userId} style={{ marginBottom: 16, alignItems: 'center' }} align="middle">
+            <Col flex="auto">
+              <Box className="user-post-container likers">
+                <ImageComponent
+                  src={user.userImage}
+                  height="50px"
+                  width="50px"
+                  className="user-img"
+                  alt="user avatar"
+                />
+                <Link
+                  to={`/profile/${user.userId}`}
+                  className="username"
+                  style={{ maxWidth: '95px', fontSize: '14px' }}
+                >
+                  {user.fullName}
+                </Link>
+              </Box>
+            </Col>
+            <Col>
+              <Button
+                type="dashed"
+                shape="round"
+                className="follow-button"
+                style={{ margin: '10px' }}
+                onClick={() => follow(user.userId)}
               >
-                {user.fullName}
-              </Link>
-            </Box>
-          </Col>
-          <Col>
-            <Button
-              type="dashed"
-              shape="round"
-              className="follow-button"
-              onClick={() => follow(user.userId)}
-            >
-              Follow
-            </Button>
-          </Col>
-        </Row>
-      ))}
+                Follow
+              </Button>
+            </Col>
+          </Row>
+        ))}
+      </Box>
     </Box>
   );
 };
