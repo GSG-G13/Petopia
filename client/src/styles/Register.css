@@ -111,3 +111,7 @@ ul {
     margin-left: 0;
   }
 }
+.button-upload:hover{
+  border-color: #f39247 !important;
+  color:#f39247 !important;
+}
