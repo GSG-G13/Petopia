@@ -66,7 +66,7 @@ const Follow = (): JSX.Element => {
             style={{ display: 'flex', transitionDelay: 'display 5s', justifyContent: 'center' }}
           />
         ) : users.map((user) => (
-          <Row key={user.userId} style={{ marginBottom: 16, alignItems: 'center' }} align="middle">
+          <Row key={user.userId} style={{ marginBottom: 16, alignItems: 'center', maxWidth: '351px' }} align="middle">
             <Col flex="auto">
               <Box className="user-post-container likers">
                 <ImageComponent
@@ -79,7 +79,7 @@ const Follow = (): JSX.Element => {
                 <Link
                   to={`/profile/${user.userId}`}
                   className="username"
-                  style={{ maxWidth: '95px', fontSize: '14px' }}
+                  style={{ maxWidth: '175px', fontSize: '14px' }}
                 >
                   {user.fullName}
                 </Link>

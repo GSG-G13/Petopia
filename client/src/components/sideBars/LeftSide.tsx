@@ -44,7 +44,7 @@ const LeftSide = () => {
           <>
             <Card
               style={{
-                maxWidth: 300, marginTop: 16, top: 0, border: 'none',
+                maxWidth: 400, marginTop: 16, top: 0, border: 'none',
               }}
               loading={false}
             >
@@ -99,16 +99,17 @@ const LeftSide = () => {
         mode="vertical"
         className="menu"
         style={{
-          border: 'none', fontSize: 17, marginBottom: 20, maxWidth: 300,
+          border: 'none', fontSize: 20, marginBottom: 20, maxWidth: 400, padding: '5px',
         }}
+
       >
-        <Item key="home" icon={<HomeOutlined />}>
+        <Item key="home" style={{ marginBottom: '10px' }} icon={<HomeOutlined style={{ fontSize: '18px' }} />}>
           <NavLink to="/">
             Feed
           </NavLink>
 
         </Item>
-        <Item key="explore" icon={<SearchOutlined />}>
+        <Item key="explore" style={{ marginBottom: '10px' }} icon={<SearchOutlined style={{ fontSize: '18px' }} />}>
           <NavLink
             to="explore"
             // className={({ isActive, isPending }) => (
@@ -118,11 +119,43 @@ const LeftSide = () => {
           </NavLink>
 
         </Item>
-        <Item key="notifications" icon={<BellOutlined />}>Notifications</Item>
-        <Item key="messages" icon={<MessageOutlined />}>Messages</Item>
-        <Item key="bookmarks" icon={<BookOutlined />}>Bookmarks</Item>
-        <Item key="products" icon={<DownOutlined />}>Products</Item>
-        <Item key="profile" icon={<UserOutlined />}>
+        <Item
+          key="notifications"
+          style={{ marginBottom: '10px' }}
+          icon={<BellOutlined style={{ fontSize: '18px' }} />}
+        >
+          Notifications
+
+        </Item>
+        <Item
+          key="messages"
+          style={{ marginBottom: '10px' }}
+          icon={<MessageOutlined style={{ fontSize: '18px' }} />}
+        >
+          Messages
+
+        </Item>
+        <Item
+          key="bookmarks"
+          style={{ marginBottom: '10px' }}
+          icon={<BookOutlined style={{ fontSize: '18px' }} />}
+        >
+          Bookmarks
+
+        </Item>
+        <Item
+          key="products"
+          style={{ marginBottom: '10px' }}
+          icon={<DownOutlined style={{ fontSize: '18px' }} />}
+        >
+          Products
+
+        </Item>
+        <Item
+          key="profile"
+          style={{ marginBottom: '10px' }}
+          icon={<UserOutlined style={{ fontSize: '18px' }} />}
+        >
           {' '}
           <NavLink
             to={`/profile/${userData.userId}`}

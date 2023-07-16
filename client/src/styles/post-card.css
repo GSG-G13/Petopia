@@ -399,7 +399,7 @@ a:hover {
     margin-bottom: 10px;
 }
 .follow-container{
-    max-height: 280px;
+    max-height: 450px;
     overflow: auto;
 }
 .follow-container::-webkit-scrollbar {
