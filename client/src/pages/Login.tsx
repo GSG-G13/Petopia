@@ -115,9 +115,9 @@ const Login = () => {
               <Button loading={loading} htmlType="submit" className="button">
                 Login
               </Button>
-              <Paragraph>
+              <Paragraph className="font">
                 Dont have an account?
-                <Link to="/signup"> Signup</Link>
+                <Link to="/signup" className="font"> Signup</Link>
               </Paragraph>
             </Form.Item>
           </Box>
