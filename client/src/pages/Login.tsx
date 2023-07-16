@@ -55,6 +55,7 @@ const Login = () => {
           style={{ maxWidth: 600 }}
           initialValues={{ remember: true }}
           autoComplete="off"
+          requiredMark={false}
         >
           <Box className="form-input">
             <Form.Item
@@ -63,7 +64,7 @@ const Login = () => {
               rules={[
                 {
                   type: 'email',
-                  message: 'The Input Is Not A Valid Email!',
+                  message: 'The Input is not a valid Email!',
                 },
                 {
                   required: true,
@@ -90,7 +91,7 @@ const Login = () => {
                 {
                   type: 'string',
                   min: 8,
-                  message: 'The Password Must Be At Least 8 Characters',
+                  message: 'The Password must be at least 8 Characters',
                 },
                 {
                   required: true,
