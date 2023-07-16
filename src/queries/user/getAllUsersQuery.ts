@@ -8,7 +8,7 @@ const getAllUsersQuery = async (page: number, limit: number): Promise<object> =>
     const users = await User.findAll(
       {
         attributes: [
-          'fullName', 'email', 'userImage', 'profileImage',
+          'userId', 'fullName', 'email', 'userImage', 'profileImage',
           'address', 'phone', 'userType', 'status'
         ],
         limit,

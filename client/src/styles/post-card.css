@@ -42,7 +42,7 @@
 .username {
     margin: 0;
     font-size: 14px;
-    color: #0D161D;
+    color: #0D161D !important;
     font-weight: 600;
     font-family : var(--main-font);
 }
@@ -120,6 +120,7 @@
 .post-content {
     font-weight: 300;
     font-family: var(--main-font);
+    margin-bottom: 15px;
 }
 
 .collapse-details {
@@ -158,7 +159,7 @@ a {
 }
 
 a:hover {
-    color: #f8cb5c
+    color: #f8cb5c !important;
 }
 
 .comment {
@@ -387,13 +388,35 @@ a:hover {
 .description-div{
    display: flex;
    gap: 5px;
-   
 }
 .description{
     color: var(--body-font-color);
     margin: 0;
+    max-width: 180px;
 }
 .collapse{
     background-color: #FBF2DC;
     margin-bottom: 10px;
+}
+.follow-container{
+    max-height: 280px;
+    overflow: auto;
+}
+.follow-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.follow-container::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    border-radius: 10px;
+}
+
+.follow-container::-webkit-scrollbar-thumb {
+    background-color: #F37F29;
+    border-radius: 10px;
+    height: 10px;
+}
+.product-img{
+    border-radius: 15px;
+    object-fit: cover;
 }

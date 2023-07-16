@@ -1,19 +1,10 @@
-import { useEffect, useState } from 'react';
-import Loading from './components/commons/LoadingComponent';
-import AddNewPost from './components/addPost/AddNewPost';
+import HomePage from './components/HomePage';
+import ProtectedRoute from './components/ProtectedRoute';
 
-const App = () => {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 2000);
-  }, []);
-
-  return loading === false ? (
-    <AddNewPost />
-  ) : (
-    <Loading />
-  );
-};
+const App = () => (
+  <ProtectedRoute>
+    <HomePage />
+  </ProtectedRoute>
+);
 
 export default App;
