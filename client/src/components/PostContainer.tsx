@@ -9,6 +9,7 @@ import '../styles/posts.css';
 import PostSkeleton from './post/PostSkeleton';
 import UserProfile from './userProfile/UserProfile';
 import AddNewPost from './addPost/AddNewPost';
+import NoMorePosts from './NoMorePosts';
 
 interface Props {
   path: string
@@ -21,6 +22,7 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [scrollLoading, setScrollLoading] = useState(false);
+  const [scrollEnd, setScrollEnd] = useState(false);
   let apiLink = `/api/v1/posts?page=${page}`;
   switch (path) {
     case 'explore': apiLink = `/api/v1/posts?page=${page}`;
@@ -49,6 +51,9 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
       } else {
         setPosts((prevData) => [...prevData, ...data]);
       }
+      if (page > 1 && data.length === 0) {
+        setScrollEnd(true);
+      }
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.status !== 401) {
         message.error('Something went wrong!');
@@ -61,6 +66,7 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
 
   useEffect(() => {
     setPage(1);
+    setScrollEnd(false);
   }, [path, userId]);
 
   useEffect(() => {
@@ -108,7 +114,7 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
               }}
             />
           ) }
-        {scrollLoading && <PostSkeleton /> }
+        {scrollEnd ? <NoMorePosts /> : scrollLoading && <PostSkeleton /> }
       </Box>
     )
 
