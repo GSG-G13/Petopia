@@ -1,5 +1,6 @@
 import { Popover } from 'antd';
 import {
+  Archive,
   Call, MessageText1, Share, Whatsapp,
 } from 'iconsax-react';
 import { Dispatch, SetStateAction } from 'react';
@@ -65,6 +66,12 @@ const PostButtons: React.FC<Props> = ({
         <Share className="icon" variant="Outline" />
         <Paragraph className="pointer">Share</Paragraph>
       </Popover>
+      <Box className="item" onClick={() => {}}>
+        <Archive className="icon" />
+        <Paragraph className="pointer">
+          Save
+        </Paragraph>
+      </Box>
       {(product || adoption)
                 && (
                 <Box className="contact-owner">
