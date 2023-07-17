@@ -21,13 +21,15 @@ const unfollowUserQuery = async (
   try {
     await User.decrement('followerCount', {
       by: 1,
-      where: { userId: followingId },
+      // where: { userId: followingId },
+      where: { userId: followerId },
       transaction
     })
 
     await User.decrement('followingCount', {
       by: 1,
-      where: { userId: followerId },
+      // where: { userId: followerId },
+      where: { userId: followingId },
       transaction
     })
 

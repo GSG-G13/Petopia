@@ -7,24 +7,32 @@ import { IPost } from '../interfaces';
 import Box from './commons/Box';
 import '../styles/posts.css';
 import PostSkeleton from './post/PostSkeleton';
+import UserProfile from './userProfile/UserProfile';
+import AddNewPost from './addPost/AddNewPost';
+import NoMorePosts from './NoMorePosts';
 
 interface Props {
   path: string
 }
 
 const PostContainer : React.FC<Props> = ({ path }: Props) => {
-  const { id } = useParams();
+  const { id, postId } = useParams();
+  const userId = Number(id);
   const [explorePosts, setPosts] = useState<IPost[]>([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [scrollLoading, setScrollLoading] = useState(false);
+  const [scrollEnd, setScrollEnd] = useState(false);
   let apiLink = `/api/v1/posts?page=${page}`;
   switch (path) {
     case 'explore': apiLink = `/api/v1/posts?page=${page}`;
       break;
     case 'feed': apiLink = `/api/v1/posts/feed?page=${page}`;
       break;
-    case 'profile': apiLink = `/api/v1/users/${id}/posts?page=${page}`;
+    case 'profile': apiLink = `/api/v1/users/${userId}/posts?page=${page}`;
+      break;
+    case 'post':
+      apiLink = `/api/v1/posts/${postId}`;
       break;
     default: apiLink = `/api/v1/posts?page=${page}`;
   }
@@ -35,9 +43,16 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
       }
       const { data: { data } } = await axios.get(apiLink);
       if (page === 1) {
-        setPosts(data);
+        if (path === 'post') {
+          setPosts([data]);
+        } else {
+          setPosts(data);
+        }
       } else {
         setPosts((prevData) => [...prevData, ...data]);
+      }
+      if (page > 1 && data.length === 0) {
+        setScrollEnd(true);
       }
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.status !== 401) {
@@ -51,11 +66,12 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
 
   useEffect(() => {
     setPage(1);
-  }, [path, id]);
+    setScrollEnd(false);
+  }, [path, userId]);
 
   useEffect(() => {
     fetchData();
-  }, [page, path, id]);
+  }, [page, path, userId]);
 
   const handleScroll = (event:React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = event.currentTarget as HTMLDivElement;
@@ -74,6 +90,8 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
   )
     : (
       <Box className="posts-container" onScroll={handleScroll}>
+        {path === 'profile' ? <UserProfile userId={userId} /> : null}
+        {path === 'feed' || path === 'explore' ? <AddNewPost /> : null}
         {explorePosts.length !== 0
           ? explorePosts.map((post:IPost) => (
             <PostCard
@@ -85,7 +103,7 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
           )) : (
             <Empty
               image={Empty.PRESENTED_IMAGE_SIMPLE}
-              description="There are no posts yet"
+              description="There are no posts yet, You need to follow users to view their posts"
               style={{
                 display: 'flex',
                 transitionDelay: 'display 5s',
@@ -95,7 +113,7 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
               }}
             />
           ) }
-        {scrollLoading && <PostSkeleton /> }
+        {scrollEnd ? <NoMorePosts /> : scrollLoading && <PostSkeleton /> }
       </Box>
     )
 

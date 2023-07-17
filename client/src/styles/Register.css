@@ -78,7 +78,7 @@ ul {
 .Register .right {
   width: 50%;
   height: 100vh;
-  background-image: url("../assets/pet.png");
+  background-image: url("../assets/pet.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -110,4 +110,8 @@ ul {
   .Register .left form .form-submit p {
     margin-left: 0;
   }
+}
+.button-upload:hover{
+  border-color: #f39247 !important;
+  color:#f39247 !important;
 }

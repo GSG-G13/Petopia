@@ -14,11 +14,37 @@ import ProtectedRoute from '../components/ProtectedRoute';
 import NotProtectedRoute from '../components/NotProtectedRoute';
 import AdminProtectedRoute from '../components/AdminProtectedRoute';
 
+import '../index.css';
+
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     errorElement: <PageNotFound />,
+    children: [{
+      path: 'explore',
+      element:
+  <PostContainer path="explore" />,
+    }, {
+      index: true,
+      element:
+  <PostContainer path="feed" />,
+    }, {
+      path: 'feed',
+      element:
+  <PostContainer path="feed" />,
+    },
+    {
+      path: 'profile/:id',
+      element:
+  <PostContainer path="profile" />,
+    },
+    {
+      path: 'post/:postId',
+      element:
+  <PostContainer path="post" />,
+    },
+    ],
   },
   {
     path: '/login',

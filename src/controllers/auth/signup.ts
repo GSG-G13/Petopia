@@ -61,7 +61,7 @@ const signup = async (req: Request, res: Response, next: NextFunction): Promise<
 
     const token = signToken({ userId: newUser.userId, email: newUser.email })
 
-    res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' })
+    res.cookie('token', token, { httpOnly: true })//, secure: process.env.NODE_ENV === 'production'
       .status(201)
       .json({
         message: 'User Created Successfully',
