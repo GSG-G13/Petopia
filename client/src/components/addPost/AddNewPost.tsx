@@ -81,10 +81,26 @@ const AddNewPost: React.FC = () => {
           visible={normalPostModal}
           onClose={hideNormalPostModal}
           category={category}
+          commentsCounts={0}
+          likesCount={0}
         />
       ) : null}
-      {adoptionModal ? <AddAdoptionModal visible={adoptionModal} onClose={hideAdoptionModal} /> : null}
-      {productModal ? <AddProductModal visible={productModal} onClose={hideProductModal} /> : null}
+      {adoptionModal ? (
+        <AddAdoptionModal
+          visible={adoptionModal}
+          onClose={hideAdoptionModal}
+          commentsCounts={0}
+          likesCount={0}
+        />
+      ) : null}
+      {productModal ? (
+        <AddProductModal
+          visible={productModal}
+          onClose={hideProductModal}
+          commentsCounts={0}
+          likesCount={0}
+        />
+      ) : null}
       <Box className="addPost--welcome">
         Welcome back,
         {' '}
