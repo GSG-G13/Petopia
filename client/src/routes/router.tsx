@@ -10,11 +10,8 @@ import Login from '../pages/Login';
 import SignUp from '../pages/SignUp';
 import PostContainer from '../components/PostContainer';
 import Categories from '../components/dashboard/Categories';
-import ProtectedRoute from '../components/ProtectedRoute';
 import NotProtectedRoute from '../components/NotProtectedRoute';
 import AdminProtectedRoute from '../components/AdminProtectedRoute';
-
-import '../index.css';
 
 const router = createBrowserRouter([
   {
@@ -61,23 +58,6 @@ const router = createBrowserRouter([
   </NotProtectedRoute>,
   },
   {
-    path: '/explore',
-    element:
-  <ProtectedRoute>
-    <PostContainer path="explore" />
-  </ProtectedRoute>,
-  }, {
-    path: '/feed',
-    element:
-  <ProtectedRoute>
-    <PostContainer path="feed" />
-  </ProtectedRoute>,
-  }, {
-    path: '/profile/:id',
-    element:
-  <PostContainer path="profile" />,
-  },
-  {
     path: '/dashboard',
     element:
   <AdminProtectedRoute>
@@ -85,19 +65,19 @@ const router = createBrowserRouter([
   </AdminProtectedRoute>,
     children: [
       {
-        path: '/dashboard',
+        index: true,
         element: <Stats />,
       },
       {
-        path: '/dashboard/users',
+        path: 'users',
         element: <Users />,
       },
       {
-        path: '/dashboard/categories',
+        path: 'categories',
         element: <Categories />,
       },
       {
-        path: '/dashboard/posts',
+        path: 'posts',
         element: <Posts />,
       },
     ],

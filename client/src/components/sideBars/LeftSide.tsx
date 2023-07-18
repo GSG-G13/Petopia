@@ -102,12 +102,21 @@ const LeftSide = () => {
           border: 'none', fontSize: 17, marginBottom: 20, maxWidth: 300,
         }}
       >
-        <Item key="home" icon={<HomeOutlined />}>
-          <NavLink to="/">
-            Feed
-          </NavLink>
+        {userData.userType === 'admin' ? (
+          <Item key="dashboard" icon={<HomeOutlined />}>
+            <NavLink to="/">
+              Dashboard
+            </NavLink>
 
-        </Item>
+          </Item>
+        ) : (
+          <Item key="home" icon={<HomeOutlined />}>
+            <NavLink to="/">
+              Feed
+            </NavLink>
+
+          </Item>
+        )}
         <Item key="explore" icon={<SearchOutlined />}>
           <NavLink
             to="explore"
