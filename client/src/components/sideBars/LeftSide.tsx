@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   Card, Typography, Divider,
   Menu,
@@ -14,6 +14,7 @@ import {
   UserOutlined,
   DownOutlined,
 } from '@ant-design/icons';
+import type { MenuProps } from 'antd/es/menu';
 import UsersModal from './UsersModal';
 import ImageComponent from '../commons/Image';
 import { AuthContext } from '../context/AuthContext';
@@ -22,7 +23,23 @@ import Box from '../commons/Box';
 import AddNewPostSideBar from '../addPost/AddNewPostSideBar';
 import FollowingCountContext from '../context/FollowingCountContext';
 
-const { Item } = Menu;
+type MenuItem = Required<MenuProps>['items'][number];
+function getItem(
+  label: React.ReactNode,
+  key?: React.Key | null,
+  icon?: React.ReactNode,
+  children?: MenuItem[],
+  className?: string,
+): MenuItem {
+  return {
+    key,
+    icon,
+    children,
+    label,
+    className,
+  } as MenuItem;
+}
+
 const LeftSide = () => {
   const { Title, Text } = Typography;
   const { userData } = useContext(AuthContext);
@@ -36,6 +53,33 @@ const LeftSide = () => {
   const hideNormalPostModal = () => {
     setNormalPostModal(false);
   };
+  const location = useLocation();
+  const items: MenuItem[] = [
+    getItem(
+      <Link to="/">Feed</Link>,
+      '1',
+      <HomeOutlined style={{ fontSize: '18px' }} />,
+    ),
+    getItem(
+      <Link to="/explore">Explore</Link>,
+      '2',
+      <SearchOutlined style={{ fontSize: '18px' }} />,
+      undefined,
+      'item-menu',
+    ),
+    getItem(<Link to="/notifications">Notifications</Link>, '3', <BellOutlined style={{ fontSize: '18px' }} />),
+    getItem(<Link to="/messages">Messages</Link>, '4', <MessageOutlined style={{ fontSize: '18px' }} />),
+    getItem(<Link to="/bookmarks">Bookmarks</Link>, '5', <BookOutlined style={{ fontSize: '18px' }} />),
+    getItem(<Link to="/products">Products</Link>, '7', <DownOutlined style={{ fontSize: '18px' }} />),
+    getItem(
+      <Link to={`/profile/${userData.userId}`}>Profile</Link>,
+      '8',
+      <UserOutlined style={{ fontSize: '18px' }} />,
+    ),
+  ];
+  const selectedKeys = items
+    .filter((item: any) => item.label.props.to === location.pathname)
+    .map((item: any) => item.key);
 
   return (
     <Box style={{ height: '100vh' }}>
@@ -97,79 +141,13 @@ const LeftSide = () => {
         )}
       <Menu
         mode="vertical"
-        className="menu"
+        selectedKeys={selectedKeys}
+        items={items}
+        className="dash-menu"
         style={{
-          border: 'none', fontSize: 20, marginBottom: 20, maxWidth: 400, padding: '5px',
+          border: 'none', fontSize: 20, marginBottom: 20, maxWidth: 500, padding: '5px',
         }}
-
-      >
-        <Item key="home" style={{ marginBottom: '10px' }} icon={<HomeOutlined style={{ fontSize: '18px' }} />}>
-          <NavLink to="/">
-            Feed
-          </NavLink>
-
-        </Item>
-        <Item key="explore" style={{ marginBottom: '10px' }} icon={<SearchOutlined style={{ fontSize: '18px' }} />}>
-          <NavLink
-            to="explore"
-            // className={({ isActive, isPending }) => (
-            //   isActive? 'actives': isPending? 'pending': '')}
-          >
-            Explore
-          </NavLink>
-
-        </Item>
-        <Item
-          key="notifications"
-          style={{ marginBottom: '10px' }}
-          icon={<BellOutlined style={{ fontSize: '18px' }} />}
-        >
-          Notifications
-
-        </Item>
-        <Item
-          key="messages"
-          style={{ marginBottom: '10px' }}
-          icon={<MessageOutlined style={{ fontSize: '18px' }} />}
-        >
-          Messages
-
-        </Item>
-        <Item
-          key="bookmarks"
-          style={{ marginBottom: '10px' }}
-          icon={<BookOutlined style={{ fontSize: '18px' }} />}
-        >
-          Bookmarks
-
-        </Item>
-        <Item
-          key="products"
-          style={{ marginBottom: '10px' }}
-          icon={<DownOutlined style={{ fontSize: '18px' }} />}
-        >
-          Products
-
-        </Item>
-        <Item
-          key="profile"
-          style={{ marginBottom: '10px' }}
-          icon={<UserOutlined style={{ fontSize: '18px' }} />}
-        >
-          {' '}
-          <NavLink
-            to={`/profile/${userData.userId}`}
-            // className={({ isActive, isPending }) => (
-            //   isActive? 'actives': isPending
-            //       ? 'pending'
-            //       : '')}
-          >
-            Profile
-
-          </NavLink>
-        </Item>
-      </Menu>
-
+      />
       <AddNewPostSideBar />
     </Box>
   );
