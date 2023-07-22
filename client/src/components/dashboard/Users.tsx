@@ -20,14 +20,12 @@ const Users: React.FC = () => {
   const [searchName, setSearchName] = useState('');
   const [list, setList] = useState<DataType[]>([]);
 
-  const fakeDataUrl = 'http://localhost:5173/api/v1/users';
-
   useEffect(() => {
-    axios.get(fakeDataUrl)
+    axios.get('/api/v1/users')
       .then((res) => res.data)
       .then((res) => {
-        setUsers(res.data.sort((a: any, b: any) => a.userId - b.userId));
-        setList(res.data.sort((a: any, b: any) => a.userId - b.userId));
+        setUsers(res.data.sort((a: DataType, b: DataType) => a.userId - b.userId));
+        setList(res.data.sort((a: DataType, b: DataType) => a.userId - b.userId));
       });
   }, []);
 
@@ -43,16 +41,17 @@ const Users: React.FC = () => {
 
   const handleStatus = (userStatus: string, userId: number) => {
     const newStatus = userStatus === 'active' ? 'deactive' : 'active';
-    axios.patch(`http://localhost:5173/api/v1/users/${userId}`, { status: newStatus })
+    axios.patch(`/api/v1/users/${userId}`, { status: newStatus })
       .then((res) => {
         const updatedUsers = users.map((user) => (user.userId === userId ? { ...user, status: newStatus } : user));
         setUsers(updatedUsers);
         setList(updatedUsers);
         message.success(res.data.message);
       })
-      .catch((error) => {
-        // handle error
-        console.error(error);
+      .catch((err) => {
+        if (axios.isAxiosError(err) && err.response?.status !== 401) {
+          message.error(err?.response?.data.message || 'Something went wrong!');
+        }
       });
   };
 

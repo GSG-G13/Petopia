@@ -16,10 +16,8 @@ const Categories: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [title, setTitle] = useState('');
 
-  const fakeDataUrl = 'http://localhost:5173/api/v1/categories';
-
   useEffect(() => {
-    axios.get(fakeDataUrl)
+    axios.get('/api/v1/categories')
       .then((res) => res.data)
       .then((res) => {
         setCats(res.data.sort((a: any, b: any) => a.categoryId - b.categoryId));
@@ -37,11 +35,10 @@ const Categories: React.FC = () => {
         });
         setCats([...cats, res.data.data]);
       }
-    } catch (err: any) {
-      message.open({
-        type: 'error',
-        content: err.response.data.message,
-      });
+    } catch (err) {
+      if (axios.isAxiosError(err) && err.response?.status !== 401) {
+        message.error(err?.response?.data.message || 'Something went wrong!');
+      }
     }
   };
 
@@ -59,7 +56,7 @@ const Categories: React.FC = () => {
   };
 
   const handleDelete = (categoryId: number) => {
-    axios.delete(`http://localhost:5173/api/v1/categories/${categoryId}`)
+    axios.delete(`/api/v1/categories/${categoryId}`)
       .then((res) => {
         const updatedCats = cats.filter((cat) => cat.categoryId !== categoryId);
         setCats(updatedCats);
@@ -69,9 +66,10 @@ const Categories: React.FC = () => {
           content: res.data.message,
         });
       })
-      .catch((error) => {
-        // handle error
-        console.error(error);
+      .catch((err) => {
+        if (axios.isAxiosError(err) && err.response?.status !== 401) {
+          message.error(err?.response?.data.message || 'Something went wrong!');
+        }
       });
   };
 

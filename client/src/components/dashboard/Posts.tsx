@@ -20,16 +20,23 @@ interface DataType {
 const Posts: React.FC = () => {
   const [posts, setPosts] = useState<DataType[]>([]);
   const [searchName, setSearchName] = useState('');
+  const [loading, setLoading] = useState(true);
   const [list, setList] = useState<DataType[]>([]);
 
-  const fakeDataUrl = 'http://localhost:5173/api/v1/posts';
-
   useEffect(() => {
-    axios.get(fakeDataUrl)
+    setLoading(true);
+    axios.get('/api/v1/posts')
       .then((res) => res.data)
       .then((res) => {
-        setPosts(res.data.sort((a: any, b: any) => a.postId - b.postId));
-        setList(res.data.sort((a: any, b: any) => a.postId - b.postId));
+        setLoading(false);
+        setPosts(res.data.sort((a: DataType, b: DataType) => a.postId - b.postId));
+        setList(res.data.sort((a: DataType, b: DataType) => a.postId - b.postId));
+      })
+      .catch((err) => {
+        setLoading(false);
+        if (axios.isAxiosError(err) && err.response?.status !== 401) {
+          message.error(err?.response?.data.message || 'Something went wrong!');
+        }
       });
   }, []);
 
@@ -44,7 +51,7 @@ const Posts: React.FC = () => {
   };
 
   const handleDelete = (postId: number) => {
-    axios.delete(`http://localhost:5173/api/v1/posts/${postId}`)
+    axios.delete(`/api/v1/posts/${postId}`)
       .then((res) => {
         const updatedPosts = posts.filter((post) => post.postId !== postId);
         setPosts(updatedPosts);
@@ -54,9 +61,10 @@ const Posts: React.FC = () => {
           content: res.data.message,
         });
       })
-      .catch((error) => {
-        // handle error
-        console.error(error);
+      .catch((err) => {
+        if (axios.isAxiosError(err) && err.response?.status !== 401) {
+          message.error(err?.response?.data.message || 'Something went wrong!');
+        }
       });
   };
 
@@ -135,9 +143,9 @@ const Posts: React.FC = () => {
         className="table-list"
         columns={columns}
         dataSource={data}
+        loading={loading}
         pagination={{
-          pageSize: 6,
-          total: data.length,
+          pageSize: 10,
         }}
       />
     </>

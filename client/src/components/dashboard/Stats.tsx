@@ -21,11 +21,11 @@ const Stats: React.FC = () => {
       shape: 'diamond',
     },
     tooltip: {
-      formatter: (data: any) => ({
+      formatter: (formatterData) => ({
         name: '',
-        value: data?.count,
+        value: formatterData?.count,
       }),
-      customContent: (name: any, data: any) => `<div>${data?.map((item: any) => `<div class="tooltip-chart" >
+      customContent: (_name, contentData) => `<div>${contentData?.map((item) => `<div class="tooltip-chart" >
               <span class="tooltip-item-name">${item?.name}</span>
               <span class="tooltip-item-value">${item?.value}</span>
             </div>`)}</div>`,

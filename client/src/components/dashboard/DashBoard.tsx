@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { Button, message } from 'antd';
 import axios from 'axios';
 import { LogoutOutlined } from '@ant-design/icons';
@@ -7,6 +7,7 @@ import SideBar from './SideBar';
 import { AuthContext } from '../context/AuthContext';
 
 import '../../styles/dashboard.css';
+import Box from '../commons/Box';
 
 const DashBoard = () => {
   const { userLogged, setUserLogged } = useContext(AuthContext);
@@ -28,7 +29,7 @@ const DashBoard = () => {
   };
   return (
     <>
-      <h1>Petopia</h1>
+      <Link to="/feed"><h1>Petopia</h1></Link>
       <header>
         <h2>Dashboard</h2>
         <Button
@@ -41,12 +42,12 @@ const DashBoard = () => {
           Logout
         </Button>
       </header>
-      <div className="dashboard">
+      <Box className="dashboard">
         <SideBar />
-        <div className="stats">
+        <Box className="stats">
           <Outlet />
-        </div>
-      </div>
+        </Box>
+      </Box>
     </>
   );
 };
