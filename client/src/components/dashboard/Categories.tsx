@@ -15,14 +15,24 @@ const Categories: React.FC = () => {
   const [cats, setCats] = useState<DataType[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [title, setTitle] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
+    setLoading(true);
     axios.get('/api/v1/categories')
-      .then((res) => res.data)
-      .then((res) => {
-        setCats(res.data.sort((a: any, b: any) => a.categoryId - b.categoryId));
+      .then(({ data: { data } }) => {
+        if (page === 1) setTotal(data[0].userId);
+        setLoading(false);
+        setCats(data);
+      }).catch((err) => {
+        setLoading(false);
+        if (axios.isAxiosError(err) && err.response?.status !== 401) {
+          message.error(err?.response?.data.message || 'Something went wrong!');
+        }
       });
-  }, []);
+  }, [page]);
 
   const onFinish = async () => {
     try {
@@ -60,7 +70,6 @@ const Categories: React.FC = () => {
       .then((res) => {
         const updatedCats = cats.filter((cat) => cat.categoryId !== categoryId);
         setCats(updatedCats);
-        // setList(updatedCats);
         message.open({
           type: 'success',
           content: res.data.message,
@@ -142,9 +151,11 @@ const Categories: React.FC = () => {
       <Table
         columns={columns}
         dataSource={data}
+        loading={loading}
         pagination={{
-          pageSize: 6,
-          total: data.length,
+          pageSize: 10,
+          total,
+          onChange: (pageNumber) => setPage(pageNumber),
         }}
       />
     </>

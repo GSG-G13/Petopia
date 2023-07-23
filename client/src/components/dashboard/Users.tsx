@@ -19,15 +19,26 @@ const Users: React.FC = () => {
   const [users, setUsers] = useState<DataType[]>([]);
   const [searchName, setSearchName] = useState('');
   const [list, setList] = useState<DataType[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    axios.get('/api/v1/users')
-      .then((res) => res.data)
-      .then((res) => {
-        setUsers(res.data.sort((a: DataType, b: DataType) => a.userId - b.userId));
-        setList(res.data.sort((a: DataType, b: DataType) => a.userId - b.userId));
+    setLoading(true);
+    axios.get(`/api/v1/users?page=${page}`)
+      .then(({ data: { data } }) => {
+        if (page === 1) setTotal(data[0].userId);
+        setLoading(false);
+        setUsers(data);
+        setList(data);
+      })
+      .catch((err) => {
+        setLoading(false);
+        if (axios.isAxiosError(err) && err.response?.status !== 401) {
+          message.error(err?.response?.data.message || 'Something went wrong!');
+        }
       });
-  }, []);
+  }, [page]);
 
   const handleSearch = (value: string) => {
     setSearchName(value);
@@ -135,9 +146,11 @@ const Users: React.FC = () => {
         className="table-list"
         columns={columns}
         dataSource={data}
+        loading={loading}
         pagination={{
-          pageSize: 6,
-          total: data.length,
+          pageSize: 10,
+          total,
+          onChange: (pageNumber) => setPage(pageNumber),
         }}
       />
     </>

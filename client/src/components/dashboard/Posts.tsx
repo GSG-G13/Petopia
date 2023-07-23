@@ -21,16 +21,18 @@ const Posts: React.FC = () => {
   const [posts, setPosts] = useState<DataType[]>([]);
   const [searchName, setSearchName] = useState('');
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [total, setTotal] = useState(0);
   const [list, setList] = useState<DataType[]>([]);
 
   useEffect(() => {
     setLoading(true);
-    axios.get('/api/v1/posts')
-      .then((res) => res.data)
-      .then((res) => {
+    axios.get(`/api/v1/posts?page=${page}`)
+      .then(({ data: { data } }) => {
+        if (page === 1) setTotal(data[0].postId);
         setLoading(false);
-        setPosts(res.data.sort((a: DataType, b: DataType) => a.postId - b.postId));
-        setList(res.data.sort((a: DataType, b: DataType) => a.postId - b.postId));
+        setPosts(data);
+        setList(data);
       })
       .catch((err) => {
         setLoading(false);
@@ -38,7 +40,7 @@ const Posts: React.FC = () => {
           message.error(err?.response?.data.message || 'Something went wrong!');
         }
       });
-  }, []);
+  }, [page]);
 
   const handleSearch = (value: string) => {
     setSearchName(value);
@@ -146,6 +148,8 @@ const Posts: React.FC = () => {
         loading={loading}
         pagination={{
           pageSize: 10,
+          total,
+          onChange: (pageNumber) => setPage(pageNumber),
         }}
       />
     </>
