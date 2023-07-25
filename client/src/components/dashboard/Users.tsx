@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+  Dispatch, SetStateAction, useEffect, useState,
+} from 'react';
 import {
   Space, Table, Input, Popconfirm, Button, message,
 } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 import axios from 'axios';
 
 interface DataType {
@@ -15,22 +17,26 @@ interface DataType {
   status: string;
 }
 
+type ContextType = { stats: { userCount: number } };
+
 const Users: React.FC = () => {
   const [users, setUsers] = useState<DataType[]>([]);
-  const [searchName, setSearchName] = useState('');
+  const [searchName, setSearchName] = useState<string>('');
   const [list, setList] = useState<DataType[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const [total, setTotal] = useState(0);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [page, setPage] = useState<number>(1);
+  const [total, setTotal] = useState<number>(0);
+
+  const { stats: { userCount } } = useOutletContext<ContextType>();
 
   useEffect(() => {
     setLoading(true);
     axios.get(`/api/v1/users?page=${page}`)
       .then(({ data: { data } }) => {
-        if (page === 1) setTotal(data[0].userId);
         setLoading(false);
         setUsers(data);
         setList(data);
+        setTotal(userCount);
       })
       .catch((err) => {
         setLoading(false);

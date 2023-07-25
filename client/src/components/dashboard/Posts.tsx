@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+  Dispatch, SetStateAction, useEffect, useState,
+} from 'react';
 import {
   Space, Table, Input, Popconfirm, Button, message,
 } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 import axios from 'axios';
 
 interface DataType {
@@ -17,22 +19,32 @@ interface DataType {
   };
 }
 
+type ContextType = {
+  stats: { postsCount: number },
+  countChanged: boolean,
+  setCountChanged: Dispatch<SetStateAction<boolean>>,
+};
+
 const Posts: React.FC = () => {
   const [posts, setPosts] = useState<DataType[]>([]);
-  const [searchName, setSearchName] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const [total, setTotal] = useState(0);
+  const [searchName, setSearchName] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(true);
+  const [page, setPage] = useState<number>(1);
+  const [total, setTotal] = useState<number>(0);
   const [list, setList] = useState<DataType[]>([]);
+
+  const {
+    stats: { postsCount }, countChanged, setCountChanged,
+  } = useOutletContext<ContextType>();
 
   useEffect(() => {
     setLoading(true);
     axios.get(`/api/v1/posts?page=${page}`)
       .then(({ data: { data } }) => {
-        if (page === 1) setTotal(data[0].postId);
         setLoading(false);
         setPosts(data);
         setList(data);
+        setTotal(postsCount);
       })
       .catch((err) => {
         setLoading(false);
@@ -40,7 +52,7 @@ const Posts: React.FC = () => {
           message.error(err?.response?.data.message || 'Something went wrong!');
         }
       });
-  }, [page]);
+  }, [page, countChanged]);
 
   const handleSearch = (value: string) => {
     setSearchName(value);
@@ -53,17 +65,22 @@ const Posts: React.FC = () => {
   };
 
   const handleDelete = (postId: number) => {
+    setLoading(true);
     axios.delete(`/api/v1/posts/${postId}`)
       .then((res) => {
         const updatedPosts = posts.filter((post) => post.postId !== postId);
         setPosts(updatedPosts);
         setList(updatedPosts);
+        setCountChanged(!countChanged);
+        setTotal(postsCount);
+        setLoading(false);
         message.open({
           type: 'success',
           content: res.data.message,
         });
       })
       .catch((err) => {
+        setLoading(false);
         if (axios.isAxiosError(err) && err.response?.status !== 401) {
           message.error(err?.response?.data.message || 'Something went wrong!');
         }

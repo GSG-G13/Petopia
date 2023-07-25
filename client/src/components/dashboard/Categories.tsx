@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+  Dispatch, useEffect, useState, SetStateAction,
+} from 'react';
 import {
   Space, Table, Popconfirm, Button, message, Modal, Form, Input,
 } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 import axios from 'axios';
 
 interface DataType {
@@ -11,28 +13,36 @@ interface DataType {
   title: string;
 }
 
+type ContextType = {
+  stats: { categoriesCount: number },
+  countChanged: boolean,
+  setCountChanged: Dispatch<SetStateAction<boolean>>
+};
+
 const Categories: React.FC = () => {
   const [cats, setCats] = useState<DataType[]>([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [title, setTitle] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [total, setTotal] = useState(0);
-  const [page, setPage] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [title, setTitle] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(true);
+  const [total, setTotal] = useState<number>(0);
+  const [page, setPage] = useState<number>(1);
+
+  const { stats: { categoriesCount }, countChanged, setCountChanged } = useOutletContext<ContextType>();
 
   useEffect(() => {
     setLoading(true);
     axios.get('/api/v1/categories')
       .then(({ data: { data } }) => {
-        if (page === 1) setTotal(data[0].userId);
         setLoading(false);
         setCats(data);
+        setTotal(categoriesCount);
       }).catch((err) => {
         setLoading(false);
         if (axios.isAxiosError(err) && err.response?.status !== 401) {
           message.error(err?.response?.data.message || 'Something went wrong!');
         }
       });
-  }, [page]);
+  }, [page, countChanged]);
 
   const onFinish = async () => {
     try {
@@ -43,6 +53,7 @@ const Categories: React.FC = () => {
           type: 'success',
           content: res.data.message,
         });
+        setCountChanged(!countChanged);
         setCats([...cats, res.data.data]);
       }
     } catch (err) {
@@ -66,16 +77,20 @@ const Categories: React.FC = () => {
   };
 
   const handleDelete = (categoryId: number) => {
+    setLoading(true);
     axios.delete(`/api/v1/categories/${categoryId}`)
       .then((res) => {
         const updatedCats = cats.filter((cat) => cat.categoryId !== categoryId);
+        setCountChanged(!countChanged);
         setCats(updatedCats);
+        setLoading(false);
         message.open({
           type: 'success',
           content: res.data.message,
         });
       })
       .catch((err) => {
+        setLoading(false);
         if (axios.isAxiosError(err) && err.response?.status !== 401) {
           message.error(err?.response?.data.message || 'Something went wrong!');
         }
