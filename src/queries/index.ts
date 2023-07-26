@@ -29,6 +29,8 @@ import {
   getAllPetTypesQuery, getPetTypeByIdQuery
 } from './petType'
 
+import { getBookmarksQuery } from './bookmarks'
+
 import getStatsQuery from './stats'
 export {
   getPostQuery, addPostQuery,
@@ -53,5 +55,7 @@ export {
   loginQuery, createUser,
 
   createPetTypeQuery, deletePetTypeQuery, editPetTypeQuery, getAllPetTypesQuery, getPetTypeByIdQuery,
-  getStatsQuery
+  getStatsQuery,
+
+  getBookmarksQuery
 }

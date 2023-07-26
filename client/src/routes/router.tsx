@@ -41,6 +41,11 @@ const router = createBrowserRouter([
       element:
   <PostContainer path="post" />,
     },
+    {
+      path: 'bookmarks',
+      element:
+  <PostContainer path="bookmarks" />,
+    },
     ],
   },
   {

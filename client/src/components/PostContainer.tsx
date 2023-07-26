@@ -34,6 +34,9 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
     case 'post':
       apiLink = `/api/v1/posts/${postId}`;
       break;
+    case 'bookmarks':
+      apiLink = '/api/v1/bookmarks';
+      break;
     default: apiLink = `/api/v1/posts?page=${page}`;
   }
   const fetchData = async () => {
@@ -42,7 +45,19 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
         setLoading(true);
       }
       const { data: { data } } = await axios.get(apiLink);
-      if (page === 1) {
+      if (path === 'bookmarks') {
+        if (data.length === 0) {
+          setPosts([]);
+        } else {
+          data.forEach(({ post }: { post: IPost }, i: number) => {
+            if (i === 0) {
+              return setPosts([post]);
+            }
+            return setPosts((prevData) => [...prevData, post]);
+          });
+        }
+        setScrollEnd(true);
+      } else if (page === 1) {
         if (path === 'post') {
           setPosts([data]);
         } else {
@@ -103,7 +118,8 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
           )) : (
             <Empty
               image={Empty.PRESENTED_IMAGE_SIMPLE}
-              description="There are no posts yet, You need to follow users to view their posts"
+              description={path === 'bookmarks' ? "You don't have any Bookmarked Posts"
+                : 'There are no posts yet, You need to follow users to view their posts'}
               style={{
                 display: 'flex',
                 transitionDelay: 'display 5s',

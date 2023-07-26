@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import {
   Card, Typography, Divider,
   Menu,
@@ -129,7 +129,15 @@ const LeftSide = () => {
         </Item>
         <Item key="notifications" icon={<BellOutlined />}>Notifications</Item>
         <Item key="messages" icon={<MessageOutlined />}>Messages</Item>
-        <Item key="bookmarks" icon={<BookOutlined />}>Bookmarks</Item>
+        {userData.userType !== 'admin' && (
+        <Item key="bookmarks" icon={<BookOutlined />}>
+          <Link to="bookmarks">
+            Bookmarks
+          </Link>
+
+        </Item>
+        )}
+
         <Item key="products" icon={<DownOutlined />}>Products</Item>
         <Item key="profile" icon={<UserOutlined />}>
           {' '}

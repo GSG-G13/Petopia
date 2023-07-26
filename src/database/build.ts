@@ -2,7 +2,7 @@ import dotenv from 'dotenv'
 import sequelize from './config'
 import fakeData from './fakeData'
 import {
-  User, Post, PostImage, Comment, Like, Follower, PetType, Category, Product, Pet
+  User, Post, PostImage, Comment, Like, Follower, PetType, Category, Product, Pet, Bookmarks
 } from '../models'
 
 dotenv.config()
@@ -17,6 +17,7 @@ const buildTables = async (): Promise<void> => {
     await Post.bulkCreate(fakeData.posts)
     await PostImage.bulkCreate(fakeData.postImages)
     await Comment.bulkCreate(fakeData.comments)
+    await Bookmarks.bulkCreate(fakeData.bookmarks)
     await Like.bulkCreate(fakeData.likes)
     await Follower.bulkCreate(fakeData.followers)
     await Product.bulkCreate(fakeData.products)

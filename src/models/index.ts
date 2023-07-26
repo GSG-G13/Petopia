@@ -9,6 +9,7 @@ import PetType from './PetType'
 import Category from './Category'
 import Product from './Product'
 import Pet from './Pet'
+import Bookmarks from './Bookmarks'
 
 User.hasMany(Post, { foreignKey: 'userId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
 Post.belongsTo(User, { foreignKey: 'userId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
@@ -34,6 +35,12 @@ Follower.belongsTo(User, { as: 'followingUser', foreignKey: 'followerId', onDele
 User.hasMany(Follower, { foreignKey: 'followingId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
 Follower.belongsTo(User, { as: 'followerUser', foreignKey: 'followingId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
 
+User.hasMany(Bookmarks, { foreignKey: 'userId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+Bookmarks.belongsTo(User, { foreignKey: 'userId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+
+Post.hasMany(Bookmarks, { foreignKey: 'postId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+Bookmarks.belongsTo(Post, { foreignKey: 'postId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+
 Post.hasMany(Product, { foreignKey: 'postId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
 Product.belongsTo(Post, { foreignKey: 'postId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
 
@@ -46,4 +53,4 @@ Pet.belongsTo(PetType, { foreignKey: 'type', onDelete: 'CASCADE', onUpdate: 'CAS
 Category.hasMany(Post, { foreignKey: 'categoryId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
 Post.belongsTo(Category, { foreignKey: 'categoryId', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
 
-export { sequelize, User, Post, PostImage, Comment, Like, Follower, PetType, Category, Product, Pet }
+export { sequelize, User, Post, PostImage, Comment, Like, Follower, PetType, Category, Product, Pet, Bookmarks }
