@@ -1,6 +1,4 @@
-import React, {
-  Dispatch, SetStateAction, useEffect, useState,
-} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Space, Table, Input, Popconfirm, Button, message,
 } from 'antd';

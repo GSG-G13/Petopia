@@ -1,16 +1,24 @@
 import { Card, Statistic } from 'antd';
 import React from 'react';
 import { Area, Tooltip } from '@ant-design/charts';
+import { useOutletContext } from 'react-router-dom';
+
+const data = [
+  { month: 'Jul 2022', count: 1 },
+  { month: 'Aug 2022', count: 4 },
+  { month: 'Sep 2022', count: 3 },
+  { month: 'Oct 2022', count: 2 },
+  { month: 'Nov 2022', count: 2 },
+  { month: 'Dec 2022', count: 5 },
+];
+
+type ContextType = {
+  stats: { postsCount: number, categoriesCount: number, usersCount: number }
+};
 
 const Stats: React.FC = () => {
-  const data = [
-    { month: 'Jul 2022', count: 1 },
-    { month: 'Aug 2022', count: 4 },
-    { month: 'Sep 2022', count: 3 },
-    { month: 'Oct 2022', count: 2 },
-    { month: 'Nov 2022', count: 2 },
-    { month: 'Dec 2022', count: 5 },
-  ];
+  const { stats: { postsCount, categoriesCount, usersCount } } = useOutletContext<ContextType>();
+
   const config = {
     data,
     height: 400,
@@ -38,10 +46,11 @@ const Stats: React.FC = () => {
   return (
     <>
       <Card className="stat-card">
-        <Statistic title="Total Users" value={1000} />
-        <Statistic title="Active Users" value={800} />
-        <Statistic title="New Users" value={200} />
-        <Statistic title="Adoption Orders" value={500} />
+        <Statistic title="Total Users" value={usersCount} />
+        <Statistic title="Active Users" value={Math.ceil(usersCount * 0.95)} />
+        <Statistic title="New Users" value={Math.ceil(usersCount * 0.15)} />
+        <Statistic title="Total Posts" value={postsCount} />
+        <Statistic title="Number of Categories" value={categoriesCount} />
       </Card>
       <h2 className="text">Monthly Applications</h2>
       <h3 className="text">Area Chart</h3>
