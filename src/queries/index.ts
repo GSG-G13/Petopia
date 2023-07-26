@@ -29,6 +29,7 @@ import {
   getAllPetTypesQuery, getPetTypeByIdQuery
 } from './petType'
 
+import getStatsQuery from './stats'
 export {
   getPostQuery, addPostQuery,
   deletePostQuery, updatePostQuery,
@@ -51,5 +52,6 @@ export {
 
   loginQuery, createUser,
 
-  createPetTypeQuery, deletePetTypeQuery, editPetTypeQuery, getAllPetTypesQuery, getPetTypeByIdQuery
+  createPetTypeQuery, deletePetTypeQuery, editPetTypeQuery, getAllPetTypesQuery, getPetTypeByIdQuery,
+  getStatsQuery
 }
