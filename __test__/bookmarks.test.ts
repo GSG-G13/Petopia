@@ -7,7 +7,7 @@ beforeAll(() => buildTables());
 afterAll(() => sequelize.close());
 
 describe("Test getBookmarks controller", () => {
-  test("200 | when comments are retrieved successfully", async () => {
+  test("200 | When Bookmarks are retrieved successfully", async () => {
     const comments =     [
         {
           bookmarksId: 1,
@@ -34,7 +34,7 @@ describe("Test getBookmarks controller", () => {
       });
   });
 
-  test("200 | when comments are retrieved successfully", async () => {
+  test("401 | When No user is logged in", async () => {
     await request(app)
       .get("/api/v1/bookmarks")
       .expect(401)
@@ -43,7 +43,7 @@ describe("Test getBookmarks controller", () => {
       });
   });
 
-  test("200 | when comments are retrieved successfully", async () => {
+  test("403 | When the admin try to view bookmarks", async () => {
     await request(app)
       .get("/api/v1/bookmarks")
       .set("Cookie", `token=${process.env.TOKEN_ADMIN}`)
