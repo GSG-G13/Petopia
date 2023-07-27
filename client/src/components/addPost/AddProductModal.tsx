@@ -27,18 +27,21 @@ const AddProductModal = ({
   visible, onClose, post, type = 'Add', likesCount, commentsCounts,
 }: Props) => {
   const [componentSize, setComponentSize] = useState<SizeType>(() => 'middle');
+  const [confirmLoading, setConfirmLoading] = useState(false);
+
+  const { userData } = useContext(AuthContext);
+  const [form] = Form.useForm();
+
   const onFormLayoutChange = ({ size }: { size: SizeType }) => {
     setComponentSize(() => size);
   };
-  const { userData } = useContext(AuthContext);
-  const [form] = Form.useForm();
-  const [confirmLoading, setConfirmLoading] = useState(false);
   const normFile = (e: { fileList: unknown; }) => {
     if (Array.isArray(e)) {
       return e;
     }
     return e?.fileList;
   };
+
   const addProductPost = async () => {
     try {
       await form.validateFields();
@@ -103,7 +106,7 @@ const AddProductModal = ({
       if (type === 'Add') {
         await addProductPost();
       } else if (type === 'Edit') {
-        editProductPost(post !== undefined ? post?.postId : 0);
+        await editProductPost(post !== undefined ? post?.postId : 0);
       }
       setConfirmLoading(false);
     } catch (error) {

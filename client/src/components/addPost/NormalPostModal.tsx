@@ -20,9 +20,11 @@ const NormalPostModal = ({
 { visible: boolean; onClose: () => void, category:ICategory, post?:IPost, type?:string,
   likesCount:number,
   commentsCounts:number }) => {
+  const [confirmLoading, setConfirmLoading] = useState(false);
+
   const { userData } = useContext(AuthContext);
   const [form] = Form.useForm();
-  const [confirmLoading, setConfirmLoading] = useState(false);
+
   const normFile = (e: { fileList: unknown; }) => {
     if (Array.isArray(e)) {
       return e;
@@ -85,7 +87,7 @@ const NormalPostModal = ({
       if (type === 'Add') {
         await addNormalPost();
       } else if (type === 'Edit') {
-        editNormalPost(post !== undefined ? post?.postId : 0);
+        await editNormalPost(post !== undefined ? post?.postId : 0);
       }
       setConfirmLoading(false);
     } catch (error) {

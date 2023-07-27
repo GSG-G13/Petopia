@@ -29,13 +29,16 @@ const AddAdoptionModal = ({
   visible, onClose, post, type = 'Add', likesCount, commentsCounts,
 }: Props) => {
   const [componentSize, setComponentSize] = useState<SizeType>(() => 'middle');
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [types, setTypes] = useState<IPetType[]>([]);
+
+  const { userData } = useContext(AuthContext);
+  const [form] = Form.useForm();
+
   const onFormLayoutChange = ({ size }: { size: SizeType }) => {
     setComponentSize(() => size);
   };
-  const { userData } = useContext(AuthContext);
-  const [form] = Form.useForm();
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const [types, setTypes] = useState<IPetType[]>([]);
+
   const getTypes = async () => {
     try {
       const { data: { data } } = await axios.get('/api/v1/types/');
@@ -121,7 +124,7 @@ const AddAdoptionModal = ({
       if (type === 'Add') {
         await addAdoptionPost();
       } else if (type === 'Edit') {
-        editAdoptionPost(post !== undefined ? post?.postId : 0);
+        await editAdoptionPost(post !== undefined ? post?.postId : 0);
       }
       setConfirmLoading(false);
     } catch (error) {
