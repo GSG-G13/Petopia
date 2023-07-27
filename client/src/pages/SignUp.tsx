@@ -59,7 +59,7 @@ const SignUp = () => {
   return (
     <Box className="Register">
       <Box className="left">
-        <Title level={2}>Get Started Now</Title>
+        <Title level={2} className="font">Get Started Now</Title>
         <Form
           onFinish={handleSubmit}
           name="basic"
@@ -88,7 +88,7 @@ const SignUp = () => {
               hasFeedback
             >
               <Input
-                className="input"
+                className="input font"
                 value={fullName}
                 onChange={(e) => {
                   setFullName(e.target.value);
@@ -113,7 +113,7 @@ const SignUp = () => {
               hasFeedback
             >
               <Input
-                className="input"
+                className="input font"
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
@@ -139,7 +139,7 @@ const SignUp = () => {
               hasFeedback
             >
               <Input.Password
-                className="input"
+                className="input font"
                 value={password}
                 onChange={(e) => {
                   setPassword(e.target.value);
@@ -159,7 +159,7 @@ const SignUp = () => {
               ]}
             >
               <Input
-                className="input"
+                className="input font"
                 value={phone}
                 onChange={(e) => {
                   setPhone(e.target.value);
@@ -179,19 +179,19 @@ const SignUp = () => {
                     setAvatar(() => fileList[0] as { originFileObj: Blob; name: string | undefined; });
                   }}
                 >
-                  <Button className="button-upload"> Upload your profile picture</Button>
+                  <Button className="button-upload font"> Upload your profile picture</Button>
                 </Upload>
               </Form.Item>
             </Form.Item>
           </Box>
           <Box className="form-submit">
             <Form.Item>
-              <Button loading={loading} htmlType="submit" className="button">
+              <Button loading={loading} htmlType="submit" className="button font">
                 Signup
               </Button>
-              <Paragraph>
+              <Paragraph className="font">
                 Have an account?
-                <Link to="/login"> Login</Link>
+                <Link to="/login" className="font"> Login</Link>
               </Paragraph>
             </Form.Item>
           </Box>

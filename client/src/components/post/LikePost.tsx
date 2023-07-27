@@ -1,4 +1,6 @@
-import { useContext, useEffect, useState } from 'react';
+import {
+  Dispatch, SetStateAction, useContext, useEffect, useState,
+} from 'react';
 import { Heart } from 'iconsax-react';
 import axios from 'axios';
 import { message } from 'antd';
@@ -10,9 +12,10 @@ import PostLikers from './PostLikers';
 interface Props {
   likesCount: number
   postId:number
+  SetLikes:Dispatch<SetStateAction<number>>
 }
-const LikePost:React.FC<Props> = ({ likesCount, postId }:Props) => {
-  const [Likes, SetLikes] = useState(likesCount);
+const LikePost:React.FC<Props> = ({ likesCount, SetLikes, postId }:Props) => {
+  // const [Likes, SetLikes] = useState(likesCount);
   const [showLike, setShowLike] = useState(false);
   const { userData } = useContext(AuthContext);
   const [showLikers, setShowLikers] = useState(false);
@@ -77,7 +80,7 @@ const LikePost:React.FC<Props> = ({ likesCount, postId }:Props) => {
         ) }
 
       <Paragraph className="pointer" onClick={() => { setShowLikers(true); }}>
-        {Likes}
+        {likesCount}
         {' '}
         Like
       </Paragraph>

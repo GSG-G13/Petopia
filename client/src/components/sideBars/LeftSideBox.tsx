@@ -14,13 +14,13 @@ const boxStyle: React.CSSProperties = {
 const rectangleWrapperStyle: React.CSSProperties = {
   border: 'none',
   height: '1024px',
-  width: '337px',
+  width: '400px',
 };
 
 const rectangleStyle: React.CSSProperties = {
   backgroundColor: '#ffffff',
   borderColor: '#efeff4',
-  width: '337px',
+  width: '400px',
 };
 
 const LeftSideBox = () => (
@@ -31,7 +31,6 @@ const LeftSideBox = () => (
       </Card>
     </Box>
   </Box>
-
 );
 
 export default LeftSideBox;

@@ -1,3 +1,5 @@
 import getBookmarks from './getBookmarks'
+import addBookmarks from './addBookmarks'
+import deleteBookmarks from './deleteBookmarks'
 
-export { getBookmarks }
+export { getBookmarks, addBookmarks, deleteBookmarks }

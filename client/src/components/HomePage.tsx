@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import {
-  Layout, Row, Col, Drawer, Space, Badge,
+  Layout, Row, Col, Drawer, Space,
 } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import { Outlet } from 'react-router';
@@ -10,6 +10,7 @@ import useWindowSize from './useWindowSize';
 import { AuthContext } from './context/AuthContext';
 import FollowingCountContext from './context/FollowingCountContext';
 import { IFollowingContext } from '../interfaces';
+import Box from './commons/Box';
 
 const { Header, Content } = Layout;
 
@@ -18,12 +19,13 @@ const HomePage = () => {
     width: '50px',
     height: '50px',
     flexShrink: 0,
-    borderRadius: '50px',
+    borderRadius: '20px',
     border: '1px solid #F0F0F5',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: '20px',
+    backgroundColor: '#fff',
   };
 
   const iconStyle = {
@@ -70,27 +72,23 @@ const HomePage = () => {
     <Layout style={{ backgroundColor: 'transparent' }}>
       {size.width <= 1000 && !visibleLeft && (
         <Header style={{
-          backgroundColor: '#fff',
+          backgroundColor: 'transparent',
           position: 'fixed',
           zIndex: 1,
-          width: '95%',
+          width: '100%',
           display: 'flex',
           justifyContent: 'space-between',
         }}
         >
           <Space onClick={showDrawerLeft}>
-            <Badge dot offset={[-10, 10]}>
-              <div style={iconWrapperStyle}>
-                <MenuOutlined style={iconStyle} />
-              </div>
-            </Badge>
+            <Box style={iconWrapperStyle}>
+              <MenuOutlined style={iconStyle} />
+            </Box>
           </Space>
           <Space onClick={showDrawerRight}>
-            <Badge dot offset={[-10, 10]}>
-              <div style={iconWrapperStyle}>
-                <MenuOutlined style={iconStyle} />
-              </div>
-            </Badge>
+            <Box style={iconWrapperStyle}>
+              <MenuOutlined style={iconStyle} />
+            </Box>
           </Space>
         </Header>
       )}
@@ -112,13 +110,14 @@ const HomePage = () => {
               </Col>
             ) : (
               <Drawer
-                title="Menu"
                 placement="left"
                 closable={false}
                 onClose={onCloseLeft}
                 open={visibleLeft}
                 getContainer={false}
                 rootStyle={{ position: 'absolute' }}
+                contentWrapperStyle={{ width: '424px' }}
+                bodyStyle={{ overflow: 'hidden' }}
               >
                 <LeftSideBox />
               </Drawer>
@@ -132,13 +131,14 @@ const HomePage = () => {
               </Col>
             ) : (
               <Drawer
-                title="Menu"
                 placement="right"
                 closable={false}
                 onClose={onCloseRight}
                 open={visibleRight}
                 getContainer={false}
                 rootStyle={{ position: 'absolute' }}
+                contentWrapperStyle={{ width: '424px' }}
+                bodyStyle={{ overflow: 'hidden' }}
               >
                 <RightSide />
               </Drawer>

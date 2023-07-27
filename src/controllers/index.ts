@@ -8,7 +8,7 @@ import { createLike, unLike, getPostLikers } from './likes'
 import { getPost, addPost, updatePost, deletePost, getExplorePosts, getFeedPosts } from './post'
 import { createFollow, unfollowUser, showUserFollowers, showUserFollowing } from './follow'
 import getStats from './stats'
-import { getBookmarks } from './bookmarks'
+import { getBookmarks, addBookmarks, deleteBookmarks } from './bookmarks'
 
 export {
   getPost, addPost, updatePost, deletePost, getExplorePosts, getFeedPosts,
@@ -22,5 +22,5 @@ export {
   createLike, unLike, getPostLikers,
   createFollow, unfollowUser, showUserFollowers, showUserFollowing,
   getStats,
-  getBookmarks
+  getBookmarks, addBookmarks, deleteBookmarks
 }

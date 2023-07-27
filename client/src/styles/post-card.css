@@ -399,7 +399,7 @@ a:hover {
     margin-bottom: 10px;
 }
 .follow-container{
-    max-height: 280px;
+    max-height: 450px;
     overflow: auto;
 }
 .follow-container::-webkit-scrollbar {
@@ -420,3 +420,12 @@ a:hover {
     border-radius: 15px;
     object-fit: cover;
 }
+.dash-menu {
+    font-size: 17px;
+  }
+  .ant-menu > .ant-menu-item-selected,
+  .ant-menu > .ant-menu-item:active
+  {
+    background-color: #fbf2dc !important;
+    color: #f37f29;
+  }

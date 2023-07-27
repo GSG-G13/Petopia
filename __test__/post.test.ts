@@ -51,7 +51,7 @@ describe('Test Get a specified post.', () => {
                     petId: 1,
                     petName: "Max",
                     age: 3,
-                    gender: "Male",
+                    gender: "male",
                     healthStatus: "Healthy",
                     adoptionStatus: "Available",
                     petType: {
@@ -102,7 +102,7 @@ describe('Test Get explore posts', () => {
                     petId: 2,
                     petName: "Bella",
                     age: 2,
-                    gender: "Female",
+                    gender: "female",
                     healthStatus: "Vaccinated",
                     adoptionStatus: "Adopted",
                     petType: {
@@ -186,7 +186,7 @@ describe('Test Get explore posts', () => {
                     petId: 1,
                     petName: "Max",
                     age: 3,
-                    gender: "Male",
+                    gender: "male",
                     healthStatus: "Healthy",
                     adoptionStatus: "Available",
                     petType: {
@@ -542,7 +542,7 @@ describe('Test Get feed posts for userId = 1 which is following userId = 2', () 
                     "petId": 2,
                     "petName": "Bella",
                     "age": 2,
-                    "gender": "Female",
+                    "gender": "female",
                     "healthStatus": "Vaccinated",
                     "adoptionStatus": "Adopted",
                     "petType": {

@@ -2,7 +2,7 @@ import CustomError from './CustomError'
 import { type Request, type Response, type NextFunction } from 'express'
 
 const serverError = (
-  err: { name?: string, status?: number, message?: string, errors?: string[] },
+  err: { name?: string, status?: number, message?: string, errors?: string[], original: { detail: string } },
   _req: Request,
   res: Response,
   _next: NextFunction
@@ -38,6 +38,18 @@ const serverError = (
   if (err.message?.includes('is out of range for type integer')) {
     return res.status(400).json({
       message: 'Please Enter a valid id number'
+    })
+  }
+
+  if (err.original?.detail.includes('is not present in table')) {
+    return res.status(400).json({
+      message: "The post you are looking doesn't exist"
+    })
+  }
+
+  if (err.message?.includes('violates foreign key constraint')) {
+    return res.status(400).json({
+      message: 'Bad Request, please try again later'
     })
   }
 

@@ -146,7 +146,7 @@ const fakeData: {
       petName: 'Max',
       type: 1,
       age: 3,
-      gender: 'Male',
+      gender: 'male',
       healthStatus: 'Healthy',
       adoptionStatus: 'Available'
     },
@@ -155,7 +155,7 @@ const fakeData: {
       petName: 'Bella',
       type: 2,
       age: 2,
-      gender: 'Female',
+      gender: 'female',
       healthStatus: 'Vaccinated',
       adoptionStatus: 'Adopted'
     }

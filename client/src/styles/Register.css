@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro');
 /* Start Global Roles */
 * {
   margin: 0;
@@ -22,7 +21,7 @@ html {
   scroll-behavior: smooth;
 }
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "Readex Pro", sans-serif;
   font-style: normal;
 }
 a {
@@ -45,14 +44,14 @@ ul {
 }
 
 .Register .left h2 {
-  font-weight: 500;
+  font-weight: 600;
   font-size: 32px;
   margin-bottom: 40px;
+  font-family: "Readex Pro", sans-serif;
 }
 
 .Register .left form .form-submit .button {
   width: 100%;
-  font-weight: 700;
   font-size: 15px;
   background-color: var(--primary);
   color: #fff;
@@ -114,4 +113,10 @@ ul {
 .button-upload:hover{
   border-color: #f39247 !important;
   color:#f39247 !important;
+}
+label{
+  font-family: "Readex Pro", sans-serif;
+}
+.font{
+  font-family: "Readex Pro", sans-serif;
 }

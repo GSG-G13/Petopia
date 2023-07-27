@@ -13,7 +13,7 @@ const TopRightSide: React.FC = () => {
   const parentStyle = {
     display: 'flex',
     justifyContent: 'space-between',
-    width: '276px',
+    maxWidth: '368px',
     height: '50px',
   };
 

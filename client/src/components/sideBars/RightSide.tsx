@@ -18,7 +18,7 @@ const RightSide = (): JSX.Element => {
   const rectangleWrapperStyle: React.CSSProperties = {
     border: 'none',
     height: '1024px',
-    width: '337px',
+    width: '400px',
   };
 
   const rectangleStyle: React.CSSProperties = {
@@ -26,7 +26,7 @@ const RightSide = (): JSX.Element => {
     borderColor: '#efeff4',
     borderLeftStyle: 'solid',
     borderLeftWidth: '1px',
-    width: '337px',
+    width: '400px',
     height: '100vh',
   };
 
