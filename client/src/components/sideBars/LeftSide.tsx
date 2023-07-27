@@ -56,7 +56,8 @@ const LeftSide = () => {
   const location = useLocation();
   const items: MenuItem[] = [
     getItem(
-      <Link to="/">Feed</Link>,
+      userData.userType === 'admin' ? (
+        <Link to="/">Dashboard</Link>) : (<Link to="/">Feed</Link>),
       '1',
       <HomeOutlined style={{ fontSize: '18px' }} />,
     ),
@@ -154,3 +155,20 @@ const LeftSide = () => {
 };
 
 export default LeftSide;
+/**
+ *         {userData.userType === 'admin' ? (
+          <Item key="dashboard" icon={<HomeOutlined />}>
+            <NavLink to="/">
+              Dashboard
+            </NavLink>
+
+          </Item>
+        ) : (
+          <Item key="home" icon={<HomeOutlined />}>
+            <NavLink to="/">
+              Feed
+            </NavLink>
+
+          </Item>
+        )}
+ */

@@ -7,6 +7,7 @@ import followRouter from './follow'
 import likeRouter from './like'
 import userRouter from './user'
 import typeRouter from './type'
+import statsRouter from './stats'
 
 const router = express.Router()
 
@@ -19,5 +20,5 @@ router.use('/follow', followRouter)
 router.use('/like', likeRouter)
 router.use('/users', userRouter)
 router.use('/types', typeRouter)
-
+router.use('/stats', statsRouter)
 export default router
