@@ -49,7 +49,6 @@ describe("Test getBookmarks controller", () => {
       .set("Cookie", `token=${process.env.TOKEN_ADMIN}`)
       .expect(403)
       .expect((res) => {
-        console.log(res.body)
         expect(res.body.message).toEqual("Not enough permissions");
       });
   });
