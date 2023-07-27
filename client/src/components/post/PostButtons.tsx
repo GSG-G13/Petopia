@@ -1,7 +1,9 @@
 import { Popover } from 'antd';
 import {
+  Archive,
   Call, MessageText1, Share, Whatsapp,
 } from 'iconsax-react';
+import { Dispatch, SetStateAction } from 'react';
 import CopyLink from './ShareComponent';
 import Box from '../commons/Box';
 import Paragraph from '../commons/Paragraph';
@@ -16,11 +18,12 @@ interface Props {
   likesCount: number
   adoption: boolean
   product: boolean
+  SetLikes:Dispatch<SetStateAction<number>>
 }
 const PostButtons: React.FC<Props> = ({
   showComments, setShowComments,
   phoneNumber,
-  postId, likesCount, commentsCount, adoption, product,
+  postId, likesCount, SetLikes, commentsCount, adoption, product,
 }) => {
   const contact = (
     <Box className="content-pop">
@@ -44,7 +47,7 @@ const PostButtons: React.FC<Props> = ({
   return (
 
     <Box className="post-buttons">
-      <LikePost likesCount={likesCount} postId={postId} />
+      <LikePost likesCount={likesCount} SetLikes={SetLikes} postId={postId} />
       <Box className="item" onClick={() => setShowComments(!showComments)}>
         <MessageText1 className="icon" variant="Outline" />
         <Paragraph className="pointer">
@@ -63,6 +66,12 @@ const PostButtons: React.FC<Props> = ({
         <Share className="icon" variant="Outline" />
         <Paragraph className="pointer">Share</Paragraph>
       </Popover>
+      <Box className="item" onClick={() => {}}>
+        <Archive className="icon" />
+        <Paragraph className="pointer">
+          Save
+        </Paragraph>
+      </Box>
       {(product || adoption)
                 && (
                 <Box className="contact-owner">

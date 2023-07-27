@@ -41,7 +41,7 @@ const Trending = () => {
           ) : (
             <Row gutter={[15, 15]}>
               {products.slice(0, 4).map((product) => (
-                <Col span={12} style={{ padding: '15px 0 0 15px' }} key={product.postId}>
+                <Col span={12} style={{ padding: '15px 0 0 27px' }} key={product.postId}>
                   <Link to={`/post/${product.postId}`}>
                     <Tooltip placement="bottom" title={`posted by ${product.user.fullName}`}>
                       <ImageComponent

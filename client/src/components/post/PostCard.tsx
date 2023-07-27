@@ -27,11 +27,11 @@ const PostCard: React.FC<Props> = ({ post, posts, setPosts }) => {
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState<IComment[]>([]);
   const [commentsCounts, setCommentsCounts] = useState(post.commentsCount);
+  const [likesCount, SetLikes] = useState(post.likesCount);
   const { userData } = useContext(AuthContext);
   return (
     <Space direction="vertical" size={16}>
       <Card className="card">
-
         <Box className="post-header">
           <Box className="user-post-container">
             <Image
@@ -47,6 +47,9 @@ const PostCard: React.FC<Props> = ({ post, posts, setPosts }) => {
                 <PostActions
                   posts={posts}
                   setPosts={setPosts}
+                  post={post}
+                  commentsCounts={commentsCounts}
+                  likesCount={likesCount}
                   userId={userData.userId}
                   userType={userData.userType}
                   userPost={post.userId}
@@ -72,7 +75,8 @@ const PostCard: React.FC<Props> = ({ post, posts, setPosts }) => {
           setShowComments={setShowComments}
           phoneNumber={post.user.phone}
           postId={post.postId}
-          likesCount={post.likesCount}
+          likesCount={likesCount}
+          SetLikes={SetLikes}
           commentsCount={commentsCounts}
           adoption={post.pets !== undefined && post.pets.length !== 0}
           product={post.products !== undefined && post.products.length !== 0}

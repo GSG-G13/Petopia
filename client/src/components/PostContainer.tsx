@@ -103,7 +103,8 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
           )) : (
             <Empty
               image={Empty.PRESENTED_IMAGE_SIMPLE}
-              description="There are no posts yet, You need to follow users to view their posts"
+              description={path === 'feed' ? 'There are no posts yet, You need to follow users to view their posts!'
+                : 'There are no posts yet!'}
               style={{
                 display: 'flex',
                 transitionDelay: 'display 5s',

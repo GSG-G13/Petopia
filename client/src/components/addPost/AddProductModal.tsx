@@ -1,7 +1,8 @@
+/* eslint-disable react/require-default-props */
 import {
   Modal, Form, Input, InputNumber, Card, Upload, message,
 } from 'antd';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { MessageAdd1, DirectInbox } from 'iconsax-react';
 import axios from 'axios';
 import Paragraph from '../commons/Paragraph';
@@ -9,25 +10,38 @@ import ImageComponent from '../commons/Image';
 import Box from '../commons/Box';
 import { AuthContext } from '../context/AuthContext';
 import uploadToCloudinary from '../../helpers/uploadToCloudinary';
+import { IPost } from '../../interfaces';
 
 const { TextArea } = Input;
 
 type SizeType = Parameters<typeof Form>[0]['size'];
-
-const AddProductModal = ({ visible, onClose }: { visible: boolean, onClose: () => void }) => {
+interface Props {
+  visible: boolean
+  onClose: () => void
+  post?:IPost
+  type?:string
+  likesCount:number
+  commentsCounts:number
+}
+const AddProductModal = ({
+  visible, onClose, post, type = 'Add', likesCount, commentsCounts,
+}: Props) => {
   const [componentSize, setComponentSize] = useState<SizeType>(() => 'middle');
+  const [confirmLoading, setConfirmLoading] = useState(false);
+
+  const { userData } = useContext(AuthContext);
+  const [form] = Form.useForm();
+
   const onFormLayoutChange = ({ size }: { size: SizeType }) => {
     setComponentSize(() => size);
   };
-  const { userData } = useContext(AuthContext);
-  const [form] = Form.useForm();
-  const [confirmLoading, setConfirmLoading] = useState(false);
   const normFile = (e: { fileList: unknown; }) => {
     if (Array.isArray(e)) {
       return e;
     }
     return e?.fileList;
   };
+
   const addProductPost = async () => {
     try {
       await form.validateFields();
@@ -56,11 +70,44 @@ const AddProductModal = ({ visible, onClose }: { visible: boolean, onClose: () =
       }
     }
   };
+  const editProductPost = async (postId:number) => {
+    try {
+      await form.validateFields();
+      const images = form.getFieldValue('images');
+      if (images && images.length > 0) {
+        const imageUrls = await Promise.all(images.map(uploadToCloudinary));
+        form.setFieldsValue({ images: imageUrls });
+      }
+      await axios.put(`/api/v1/posts/${postId}`, {
+        postContent: form.getFieldValue('postContent'),
+        isHaveImg: (!!images),
+        imagesUrl: form.getFieldValue('images'),
+        categoryId: 4,
+        title: form.getFieldValue('title'),
+        price: form.getFieldValue('price'),
+        details: form.getFieldValue('details'),
+        rating: 4.9,
+        likesCount: post !== undefined ? likesCount : 0,
+        commentsCount: post !== undefined ? commentsCounts : 0,
+      });
 
+      form.resetFields();
+      message.success('Post edited successfully');
+      onClose();
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response?.status !== 401) {
+        message.error('Something went wrong!');
+      }
+    }
+  };
   const handleOk = async () => {
     try {
       setConfirmLoading(true);
-      await addProductPost();
+      if (type === 'Add') {
+        await addProductPost();
+      } else if (type === 'Edit') {
+        await editProductPost(post !== undefined ? post?.postId : 0);
+      }
       setConfirmLoading(false);
     } catch (error) {
       message.error('Something went wrong');
@@ -71,15 +118,28 @@ const AddProductModal = ({ visible, onClose }: { visible: boolean, onClose: () =
   const handleCancel = () => {
     onClose();
   };
-
+  useEffect(() => {
+    if (visible) {
+      form.setFieldsValue({
+        postContent: post?.postContent || '',
+        isHaveImg: (!!form.getFieldValue('images')),
+        imagesUrl: form.getFieldValue('images'),
+        petName: post?.pets?.[0]?.petName || '',
+        title: post?.products?.[0]?.title || '',
+        price: post?.products?.[0]?.price || '',
+        details: post?.products?.[0]?.details || '',
+        rating: post?.products?.[0]?.rating || '',
+      });
+    }
+  }, [visible, post]);
   return (
     <Modal
-      title="Add Your Product Post"
+      title={`${type} Product Post`}
       open={visible}
       onOk={handleOk}
       onCancel={handleCancel}
       confirmLoading={confirmLoading}
-      okText="Add Post"
+      okText={`${type} Post`}
       width={650}
       style={{ top: 20 }}
       className="addPost--addPostModal"

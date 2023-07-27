@@ -124,7 +124,7 @@ const UserProfile = ({ userId }:{ userId: number }) => {
           height="90px"
           width="100%"
           className="profile-cover"
-          src={profile?.profileImage === undefined
+          src={profile?.profileImage === null || profile?.profileImage === undefined
             ? 'https://images.unsplash.com/photo-1557683316-973673baf926?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=829&q=80'
             : profile.profileImage}
         />
