@@ -1,6 +1,5 @@
 import { Popover } from 'antd';
 import {
-  Archive,
   Call, MessageText1, Share, Whatsapp,
 } from 'iconsax-react';
 import { Dispatch, SetStateAction } from 'react';
@@ -8,6 +7,7 @@ import CopyLink from './ShareComponent';
 import Box from '../commons/Box';
 import Paragraph from '../commons/Paragraph';
 import LikePost from './LikePost';
+import SavePost from './SavePost';
 
 interface Props {
   showComments: boolean
@@ -66,12 +66,13 @@ const PostButtons: React.FC<Props> = ({
         <Share className="icon" variant="Outline" />
         <Paragraph className="pointer">Share</Paragraph>
       </Popover>
-      <Box className="item" onClick={() => {}}>
+      {/* <Box className="item" onClick={() => {}}>
         <Archive className="icon" />
         <Paragraph className="pointer">
           Save
         </Paragraph>
-      </Box>
+      </Box> */}
+      <SavePost postId={postId} />
       {(product || adoption)
                 && (
                 <Box className="contact-owner">

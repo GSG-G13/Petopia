@@ -15,7 +15,6 @@ interface Props {
   SetLikes:Dispatch<SetStateAction<number>>
 }
 const LikePost:React.FC<Props> = ({ likesCount, SetLikes, postId }:Props) => {
-  // const [Likes, SetLikes] = useState(likesCount);
   const [showLike, setShowLike] = useState(false);
   const { userData } = useContext(AuthContext);
   const [showLikers, setShowLikers] = useState(false);
