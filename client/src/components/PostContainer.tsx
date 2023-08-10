@@ -129,7 +129,7 @@ const PostContainer : React.FC<Props> = ({ path }: Props) => {
               }}
             />
           ) }
-        {scrollEnd ? <NoMorePosts /> : scrollLoading && <PostSkeleton /> }
+        {scrollEnd && explorePosts.length !== 0 ? <NoMorePosts /> : scrollLoading && <PostSkeleton /> }
       </Box>
     )
 
