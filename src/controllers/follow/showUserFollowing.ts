@@ -18,7 +18,6 @@ const showUserFollowing = async (req: CustomRequest, res: Response, next: NextFu
       data: followers
     })
   } catch (err: unknown) {
-    console.log(err)
     next(err)
   }
 }

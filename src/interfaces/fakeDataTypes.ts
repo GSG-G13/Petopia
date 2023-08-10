@@ -17,6 +17,11 @@ export interface ICategory {
   title: string
 }
 
+export interface IBookmarks {
+  userId: number
+  postId: number
+}
+
 export interface IPetType {
   title: string
 }

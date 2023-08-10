@@ -1,6 +1,6 @@
 import {
   type IUser, type IPost, type IPostImage, type IComment, type ILike, type IFollower, type IPetType,
-  type ICategory, type IProduct, type IPet
+  type ICategory, type IProduct, type IPet, type IBookmarks
 } from '../interfaces/fakeDataTypes'
 
 const fakeData: {
@@ -14,6 +14,7 @@ const fakeData: {
   posts: IPost[]
   postImages: IPostImage[]
   products: IProduct[]
+  bookmarks: IBookmarks[]
 } = {
   users: [
     {
@@ -90,6 +91,20 @@ const fakeData: {
       userId: 1,
       postId: 2,
       commentText: 'Interesting topic.'
+    }
+  ],
+  bookmarks: [
+    {
+      userId: 1,
+      postId: 1
+    },
+    {
+      userId: 3,
+      postId: 1
+    },
+    {
+      userId: 1,
+      postId: 2
     }
   ],
   followers: [

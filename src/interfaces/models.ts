@@ -8,6 +8,12 @@ interface ICategory extends Model<InferAttributes<ICategory>, InferCreationAttri
   title: string
 }
 
+interface IBookmarks extends Model<InferAttributes<IBookmarks>, InferCreationAttributes<IBookmarks>> {
+  bookmarksId: CreationOptional<number>
+  userId: ForeignKey<number>
+  postId: ForeignKey<number>
+}
+
 interface IComment extends Model<InferAttributes<IComment>, InferCreationAttributes<IComment>> {
   commentId: CreationOptional<number>
   userId: ForeignKey<number>
@@ -84,4 +90,4 @@ interface IUser extends Model<InferAttributes<IUser>, InferCreationAttributes<IU
   followingCount?: number
 }
 
-export type { ICategory, IComment, IFollower, ILike, IPet, IPetType, IPost, IPostImage, IProduct, IUser }
+export type { ICategory, IComment, IFollower, ILike, IPet, IPetType, IPost, IPostImage, IProduct, IUser, IBookmarks }

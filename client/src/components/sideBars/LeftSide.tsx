@@ -155,20 +155,3 @@ const LeftSide = () => {
 };
 
 export default LeftSide;
-/**
- *         {userData.userType === 'admin' ? (
-          <Item key="dashboard" icon={<HomeOutlined />}>
-            <NavLink to="/">
-              Dashboard
-            </NavLink>
-
-          </Item>
-        ) : (
-          <Item key="home" icon={<HomeOutlined />}>
-            <NavLink to="/">
-              Feed
-            </NavLink>
-
-          </Item>
-        )}
- */
